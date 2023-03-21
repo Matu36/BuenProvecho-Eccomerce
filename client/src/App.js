@@ -1,11 +1,15 @@
 import './App.css';
 import { Routes, Route } from "react-router-dom";
 
+import NavBar from './components/NavBar';
+
 function App() {
   return (
-    <div className="App">
-      Pymes Solution!
-    </div>
+    <Routes>
+    
+    <Route exact path={"/"} element={<NavBar />} />
+    
+    </Routes>
   );
 }
 
