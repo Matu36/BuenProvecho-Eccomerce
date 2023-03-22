@@ -19,6 +19,7 @@ import {
   DrawerBody,
 } from "@chakra-ui/react";
 import { HamburgerIcon, ChevronDownIcon } from "@chakra-ui/icons";
+import SearchBar from "./SearchBar";
 
 export default function NavBar() {
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -54,26 +55,31 @@ export default function NavBar() {
         >
           <Box>
             <Text fontSize="xl" fontWeight="bold">
-              Pymes Solution!
+              Pymes Solutions!
             </Text>
-            
           </Box>
+          <Box flex="1" ml="auto" mr="auto" maxWidth="300px">
+            <SearchBar />
+          </Box>
+
           <Box ml="auto">
             <Menu>
-            
-              <MenuButton as={Button} rightIcon={<ChevronDownIcon/>}>
-                Productos
+              <MenuButton as={Button} rightIcon={<ChevronDownIcon />}>
+                Categorias
               </MenuButton>
               <MenuList>
-                
-                <MenuItem>Producto 1</MenuItem>
-                <MenuItem>Producto 2</MenuItem>
-                <MenuItem>Producto 3</MenuItem>
+                <MenuItem>Carnes</MenuItem>
+                <MenuItem>Pastas</MenuItem>
+                <MenuItem>Pescados</MenuItem>
+                <MenuItem>Ensaladas</MenuItem>
+                <MenuItem>Minutas</MenuItem>
+                <MenuItem>Platos Frios</MenuItem>
+                <MenuItem>Bebidas</MenuItem>
               </MenuList>
             </Menu>
-            
+
             <Button ml={4}>Contacto</Button>
-            <DarkMode/>
+            <DarkMode />
           </Box>
         </Flex>
       </Box>
