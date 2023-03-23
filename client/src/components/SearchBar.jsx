@@ -2,13 +2,11 @@ import React, {useState} from "react";
 import { Box } from "@chakra-ui/react";
 import { DB } from "../utils/DB.js";
 import { ReactSearchAutocomplete } from "react-search-autocomplete";
-import { setRecipeIdAutocomplete } from "../Redux/actions/index";
-import { useDispatch } from "react-redux";
 
-export default function SearchBar() {
-  const dispatch = useDispatch();
+
+export default function SearchBar({ handleSelectFood }) {
   const [searchString, setSearchString] = useState("");
-
+ 
 const handleOnSearch = (string, results) => {
   setSearchString(string);
 };
@@ -27,7 +25,6 @@ const searchByName = DB
 }));
 
  
-
   const handleOnHover = (result) => {
     console.log(result);
   };
@@ -37,7 +34,9 @@ const searchByName = DB
   };
 
   const handleOnSelect = (item) => {
-    dispatch(setRecipeIdAutocomplete(item.id));
+    const selected = DB.find((food) => food.id === item.id);
+    handleSelectFood(selected || null);
+    
   };
 
   const formatResult = (item) => {
@@ -64,6 +63,7 @@ const searchByName = DB
         fuseOptions={{ keys: ["Nombre"] }}
       resultStringKeyName="Nombre"
       />
+    
     </Box>
-  );
-}
+);
+     }

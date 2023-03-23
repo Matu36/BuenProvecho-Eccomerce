@@ -1,17 +1,33 @@
-import React from "react";
+import React, {useState} from "react";
 import { Box, Image } from "@chakra-ui/react";
 import NavBar from "./NavBar";
 import RandomSlider from "./randomSlider";
 import Logo from "../img/LOGO.png";
+import Card from "./Card";
 
 export default function Home() {
+
+  const [selectedFood, setSelectedFood] = useState();
+  
+
+  const handleSelectFood = (food) => {
+    setSelectedFood(food);
+    console.log(selectedFood)
+  };
+
+
+
   return (
     <Box>
-      <Box position="fixed" top="0" left="0" right="0" zIndex="1">
-        <NavBar />
-      </Box>
+      <NavBar handleSelectFood={handleSelectFood} />
+      {selectedFood && (
+        <Box position="fixed" top="0" left="0" right="0" zIndex="1">
+          <Card selectedFood={selectedFood} />
+        </Box>
+      )}
+
       <Box
-        mt="-3rem"
+        mt="-8rem"
         display="flex"
         alignItems="center"
         justifyContent="center"
@@ -28,9 +44,9 @@ export default function Home() {
         </Box>
       </Box>
 
-      <Box marginLeft="14rem" marginTop="-7rem">
+       <Box marginLeft="14rem" marginTop="-7rem">
         {RandomSlider()}
-      </Box>
+      </Box> 
     </Box>
   );
 }

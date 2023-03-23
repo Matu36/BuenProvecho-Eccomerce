@@ -1,5 +1,6 @@
 import React from "react";
 import DarkMode from "../utils/DarkMode";
+import { FaInstagram, FaFacebook, FaMapMarkerAlt, FaWhatsapp   } from "react-icons/fa"
 import {
   Text,
   Button,
@@ -21,7 +22,7 @@ import {
 import { HamburgerIcon, ChevronDownIcon } from "@chakra-ui/icons";
 import SearchBar from "./SearchBar";
 
-export default function NavBar() {
+export default function NavBar({ handleSelectFood }) {
   const { isOpen, onOpen, onClose } = useDisclosure();
 
   return (
@@ -54,15 +55,13 @@ export default function NavBar() {
           display={{ base: "none", md: "flex" }}
         >
           <Box>
-            <Text fontSize="xl" fontWeight="bold">
-              Pymes Solutions!
-            </Text>
+          <DarkMode />
           </Box>
-          <Box flex="1" ml="auto" mr="auto" maxWidth="300px">
-            <SearchBar />
+          <Box flex="1" ml="auto" mr="auto" maxWidth="500px">
+          <SearchBar handleSelectFood= {handleSelectFood} />
           </Box>
 
-          <Box ml="auto">
+          <Box display="flex" alignItems="center" mr={4}>
             <Menu>
               <MenuButton as={Button} rightIcon={<ChevronDownIcon />}>
                 Categorias
@@ -78,8 +77,40 @@ export default function NavBar() {
               </MenuList>
             </Menu>
 
-            <Button ml={4}>Contacto</Button>
-            <DarkMode />
+            <Box display="flex" alignItems="center">
+  <IconButton
+    as="a"
+    href="https://www.instagram.com/"
+    target="_blank"
+    aria-label="Instagram"
+    icon={<FaInstagram />}
+    mr={2}
+  />
+  <IconButton
+    as="a"
+    href="https://www.facebook.com/"
+    target="_blank"
+    aria-label="Facebook"
+    icon={<FaFacebook />}
+    mr={2}
+  />
+  <IconButton
+    as="a"
+    href="https://maps.google.com/"
+    target="_blank"
+    aria-label="Geolocalización"
+    icon={<FaMapMarkerAlt />}
+    mr={2}
+  />
+  <IconButton
+    as="a"
+    href="https://wa.me/5492215704647"
+    target="_blank"
+    aria-label="Whatsapp"
+    icon={<FaWhatsapp />}
+  />
+</Box>
+            
           </Box>
         </Flex>
       </Box>
