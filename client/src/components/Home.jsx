@@ -4,6 +4,7 @@ import NavBar from "./NavBar";
 import RandomSlider from "./randomSlider";
 import Logo from "../img/LOGO.png";
 import Card from "./Card";
+import Sidebar from "./Sidebar";
 
 export default function Home() {
 
@@ -26,14 +27,29 @@ export default function Home() {
         </Box>
       )}
 
+<Box display={{ base: "none", md: "flex" }} position="fixed"
+backgroundColor= "#F6F6F6" 
+borderRight= "1px solid #DADADA" 
+padding= "10px"
+    top="85"
+    left="0"
+    bottom="0"
+    width="10rem"
+    overflow="auto"
+   
+   >
+        <Sidebar />
+      </Box>
       <Box
-        mt="-8rem"
+        mt={{base: "-20rem", md: "-8rem"}}
         display="flex"
         alignItems="center"
         justifyContent="center"
         height="100vh"
       >
-        <Box maxWidth="400px" maxHeight="200px" margin="auto">
+        <Box 
+        maxWidth={{base: "200px", md: "400px"}} 
+        maxHeight={{base:"50px", md: "200px"}} margin="auto">
           <Image
             src={Logo}
             alt="Logo de la empresa"
@@ -47,6 +63,7 @@ export default function Home() {
        <Box marginLeft="14rem" marginTop="-7rem">
         {RandomSlider()}
       </Box> 
+      
     </Box>
   );
 }
