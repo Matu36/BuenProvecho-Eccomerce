@@ -1,17 +1,26 @@
-import React from "react";
-import { Box, MenuButton, Button, Menu, Icon } from "@chakra-ui/react";
+import React, {useState} from "react";
+import { Box, Button, Menu, Icon } from "@chakra-ui/react";
 import { GiChickenOven, GiFishEggs, GiFrenchFries, GiFullPizza}  from "react-icons/gi";
 import {TbSalad, TbIceCream} from "react-icons/tb";
 import {BiDrink, BiDish} from "react-icons/bi";
+import { DB } from "../utils/DB";
 
+export default function Sidebar ({setProducts}) {
+  const [activeCategory, setActiveCategory] = useState(null);
 
-export default function Sidebar () {
+  const handleClick = (category) => {
+    setActiveCategory(category);
 
+    // Filtra la base de datos por categoría seleccionada
+    const filteredProducts = DB.filter((product) => product.Categoría === category);
+    setProducts(filteredProducts);
+  };
     return (
     <Box>
 <Menu flexDirection="column" alignItems="flex-start" >
     
-              <MenuButton as={Button} leftIcon={<Icon as={GiChickenOven} />}  
+<Button as="a"
+      href="#Cartas" leftIcon={<Icon as={GiChickenOven} />} onClick={() => handleClick("Carnes")}  
    color="#0077CC"
    textDecor="none"
    marginLeft="10px"
@@ -20,63 +29,70 @@ export default function Sidebar () {
    bg= "none"
    >
                 Carnes
-              </MenuButton>
-              <MenuButton as={Button} leftIcon={<Icon as={GiFullPizza} />}  color="#0077CC"
+              </Button>
+              <Button as="a"
+      href="#Cartas" leftIcon={<Icon as={GiFullPizza} />} onClick={() => handleClick("Pasta")}  color="#0077CC"
    textDecor="none"
    marginLeft="10px"
    padding="5px"
    borderRadius="5px"
    bg= "none">
                 Pastas
-              </MenuButton>
-              <MenuButton as={Button}  leftIcon={<Icon as={GiFishEggs} />} color="#0077CC"
+              </Button>
+              <Button as="a"
+      href="#Cartas" leftIcon={<Icon as={GiFishEggs} />} onClick={() => handleClick("Pescados")} color="#0077CC"
    textDecor="none"
    marginLeft="10px"
    padding="5px"
    borderRadius="5px"
    bg= "none">
                 Pescados
-              </MenuButton>
-              <MenuButton as={Button} leftIcon={<Icon as={TbSalad} />} color="#0077CC"
+              </Button>
+              <Button as="a"
+      href="#Cartas" leftIcon={<Icon as={TbSalad} />} onClick={() => handleClick("Ensaladas")} color="#0077CC"
    textDecor="none"
    marginLeft="10px"
    padding="5px"
    borderRadius="5px"
    bg= "none">
                 Ensaladas
-              </MenuButton>
-              <MenuButton as={Button}  leftIcon={<Icon as={GiFrenchFries} />} color="#0077CC"
+              </Button>
+              <Button as="a"
+      href="#Cartas" leftIcon={<Icon as={GiFrenchFries} />} onClick={() => handleClick("Minutas")} color="#0077CC"
    textDecor="none"
    marginLeft="10px"
    padding="5px"
    borderRadius="5px"
    bg= "none">
                 Minutas
-              </MenuButton>
-              <MenuButton as={Button}  leftIcon={<Icon as={BiDish} />}   color="#0077CC"
+              </Button>
+              <Button as="a"
+      href="#Cartas" leftIcon={<Icon as={BiDish} />} onClick={() => handleClick("Platos frios")}   color="#0077CC"
    textDecor="none"
    marginLeft="10px"
    padding="5px"
    borderRadius="5px"
    bg= "none">
                 Platos Frios
-              </MenuButton>
-              <MenuButton as={Button}  leftIcon={<Icon as={BiDrink} />} color="#0077CC"
+              </Button>
+              <Button as="a"
+      href="#Cartas" leftIcon={<Icon as={BiDrink} />} onClick={() => handleClick("Bebidas")} color="#0077CC"
    textDecor="none"
    marginLeft="10px"
    padding="5px"
    borderRadius="5px"
    bg= "none">
                 Bebidas
-              </MenuButton>
-              <MenuButton as={Button} leftIcon={<Icon as={TbIceCream} />} color="#0077CC"
+              </Button>
+              <Button as="a"
+      href="#Cartas" leftIcon={<Icon as={TbIceCream} />} onClick={() => handleClick("Postres")} color="#0077CC"
    textDecor="none"
    marginLeft="10px"
    padding="5px"
    borderRadius="5px"
    bg= "none">
                 Postres
-              </MenuButton>
+              </Button>
              
             </Menu>
 
