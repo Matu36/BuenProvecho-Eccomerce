@@ -1,14 +1,33 @@
 import React, { useState } from "react";
-import { Box, Image, Text } from "@chakra-ui/react";
+import { Box, Image, Text, Button, Icon } from "@chakra-ui/react";
 import NavBar from "./NavBar";
 import RandomSlider from "./randomSlider";
 import Logo from "../img/LOGO.png";
 import Card from "./Card";
 import Sidebar from "./Sidebar";
+import {GiShoppingCart, GiMoneyStack} from "react-icons/gi";
 
 export default function Home() {
   const [selectedFood, setSelectedFood] = useState();
   const [products, setProducts] = useState([]);
+
+  /*
+  const [recipeByIdAutocomplete, setrecipeByIdAutocomplete] = useState();
+
+  const filterById = () => {
+    const cache = [...recipes];
+    const recipe = cache.find(
+      (recipe) => recipe.id === recipeDetailIdAutocomplete
+    );
+    setrecipeByIdAutocomplete(recipe);
+  };
+
+  useEffect(() => {
+    filterById();
+  }, [recipeDetailIdAutocomplete, recipes]);
+  
+  VER ESTO PARA EL AUTOCOMPLETE
+  */
 
   const handleSelectFood = (DB) => {
     setSelectedFood(DB);
@@ -90,9 +109,35 @@ export default function Home() {
             <Text fontWeight="semibold" fontSize="lg" mr="2">
               {product.Nombre}
             </Text>
-            <Text fontSize="sm" color="gray.500">
-              {product.Efectivo}
-            </Text>
+            <Box flexDirection= "column">
+              <Box>
+            <Button as="a"
+                href="https://wa.me/5492215704647"
+                target="_blank"
+                aria-label="Whatsapp"
+      leftIcon={<Icon as={GiMoneyStack} />}  
+   color="#0077CC"
+   textDecor="none"
+   padding="5px"
+   borderRadius="5px"
+   bg= "none"
+   >
+                Efectivo {product.Efectivo}
+              </Button>
+              </Box>
+              <Box>
+            <Button 
+      leftIcon={<Icon as={GiShoppingCart} />}  
+   color="#0077CC"
+   textDecor="none"
+   padding="5px"
+   borderRadius="5px"
+   bg= "none"
+   >
+                Añadir al Carrito
+              </Button>
+              </Box>
+              </Box>
           </Box>
         ))}
       </Box>
