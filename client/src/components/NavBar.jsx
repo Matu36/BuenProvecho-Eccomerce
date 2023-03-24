@@ -168,7 +168,7 @@ export default function NavBar({ handleSelectFood }) {
               />
               <IconButton
                 as="a"
-                href="https://wa.me/5492215704647"
+                href="https://wa.me/5492215704647?text=Hola,%20quisiera%20hacerte%20un%20pedido"
                 target="_blank"
                 aria-label="Whatsapp"
                 icon={<FaWhatsapp />}
