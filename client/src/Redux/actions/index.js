@@ -4,7 +4,7 @@ export const SET_RECIPEID_AUTOCOMPLETE = "SET_RECIPEID_AUTOCOMPLETE";
 
 export const setSearchValueName = (searchValueName) => {
   return (dispatch) =>
-    dispatch({ type: SET_SEARCH_VALUE_NAME, payload: searchValueName });
+    dispatch({ type: SET_SEARCH_VALUE_NAME, payload: searchValueName.Nombre });
 };
 
 export const setRecipeIdAutocomplete = (recipeIdAutocomplete) => {

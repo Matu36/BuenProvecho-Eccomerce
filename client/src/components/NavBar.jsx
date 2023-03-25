@@ -29,9 +29,9 @@ import {
   Button,
 } from "@chakra-ui/react";
 import { HamburgerIcon } from "@chakra-ui/icons";
-import SearchBar from "./SearchBar";
+import { GiShoppingCart} from "react-icons/gi";
 
-export default function NavBar({ handleSelectFood }) {
+export default function NavBar() {
   const { isOpen, onOpen, onClose } = useDisclosure();
 
   const { colorMode } = useColorMode();
@@ -134,11 +134,18 @@ export default function NavBar({ handleSelectFood }) {
           <Box flex="1" ml="auto" mr="auto" maxWidth=
           {{base: "100px", md: "400px"}}
           >
-            <SearchBar handleSelectFood={handleSelectFood} />
+            {/* <SearchBar /> */}
           </Box>
 
           <Box display="flex" alignItems="center" mr={4}>
             <Box display="flex" alignItems="center">
+            <IconButton
+                target="_blank"
+                aria-label="ShoppingCart"
+                icon={<GiShoppingCart />}
+                mr={2}
+                colorScheme={buttonColorScheme}
+              />
               <IconButton
                 as="a"
                 href="https://www.instagram.com/"
