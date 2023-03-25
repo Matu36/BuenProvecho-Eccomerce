@@ -17,6 +17,7 @@ import Sidebar from "./Sidebar";
 import { GiShoppingCart, GiMoneyStack } from "react-icons/gi";
 import { DB } from "../utils/DB";
 import About from "./About";
+import Card from "./Card";
 
 export default function Home() {
   //RENDERIZADO DE CARTA EN EL FILTRO DE CATEGORIA
@@ -38,14 +39,14 @@ export default function Home() {
     setSearchTerm(value);
 
     // Filtrar las opciones de autocompletado
-    let options = comidas.filter((comida) => {
-      return comida.Nombre.toLowerCase().includes(value.toLowerCase());
-    }).slice(0, 3);
+    let options = comidas
+      .filter((comida) => {
+        return comida.Nombre.toLowerCase().includes(value.toLowerCase());
+      })
+      .slice(0, 3);
 
     setAutocompleteOptions(options);
   };
-
-  
 
   const handleInputKeyDown = (event) => {
     if (event.key === "Enter") {
@@ -69,7 +70,6 @@ export default function Home() {
     setFilteredComidas([]);
     setAutocompleteOptions([]);
   };
-
   useEffect(() => {
     if (searchTerm === "") {
       handleReset();
@@ -81,7 +81,6 @@ export default function Home() {
     <Box>
       <Box>
         <NavBar setShowAbout={setShowAbout} />
-        
       </Box>
       <Box marginTop="-3.5rem" marginLeft="23rem" maxWidth="40%">
         <InputGroup borderRadius="5%">
@@ -99,69 +98,30 @@ export default function Home() {
           />
         </InputGroup>
         <button onClick={handleSearch}></button>
-        <Box marginTop= "-1rem"  height="30px" overflow-y="auto">
-        <ul>
-          {autocompleteOptions.map((comida) => (
-            <Text marginLeft= "2rem"  zIndex= "3"  fontSize= "16px" fontWeight= "bold" key={comida.id} onClick={() => handleComidaClick(comida)}>
-              {comida.Nombre}
-            </Text>
-          ))}
-        </ul>
+        <Box marginTop="-1rem" height="30px" overflow-y="auto">
+          <ul>
+            {autocompleteOptions.map((comida) => (
+              <Text
+                marginLeft="2rem"
+                zIndex="3"
+                fontSize="16px"
+                fontWeight="bold"
+                key={comida.id}
+                onClick={() => handleComidaClick(comida)}
+              >
+                {comida.Nombre}
+              </Text>
+            ))}
+          </ul>
         </Box>
-        {filteredComidas.map((comida) => (
-          <Box
-            maxW="50%"
-            overflow="hidden"
-            boxShadow="md"
-            mx="auto"
-            mt="4"
-            key={comida.id}
-            onClick={() => handleComidaClick(comida)}
-          >
-            <Image
-              maxH="300px"
-              maxW="100%"
-              border="2px solid #8B4513"
-              width="200px"
-              height="200px"
-              objectFit="cover"
-              src={comida.Imagen}
-              alt={comida.Nombre}
-            />
-            <Text fontWeight="semibold" fontSize="lg" mr="2">
-              {comida.Nombre}
-            </Text>
-            <Box flexDirection="column">
-              <Box>
-                <Button
-                  as="a"
-                  href="https://wa.me/5492215704647"
-                  target="_blank"
-                  aria-label="Whatsapp"
-                  leftIcon={<Icon as={GiMoneyStack} />}
-                  color="#0077CC"
-                  textDecor="none"
-                  padding="5px"
-                  borderRadius="5px"
-                  bg="none"
-                >
-                  Efectivo {comida.Efectivo}
-                </Button>
-              </Box>
-              <Box>
-                <Button
-                  leftIcon={<Icon as={GiShoppingCart} />}
-                  color="#0077CC"
-                  textDecor="none"
-                  padding="5px"
-                  borderRadius="5px"
-                  bg="none"
-                >
-                  Añadir al Carrito
-                </Button>
-              </Box>
-            </Box>
-          </Box>
+        {filteredComidas.map((comida, index) => (
+          <Card 
+          id= {comida.id}
+          key={index} onClick={() => handleComidaClick(comida)}
+          Imagen ={comida.Imagen} alt={comida.Nombre} 
+          Nombre = {comida.Nombre}
+          Efectivo = {comida.Efectivo}
+          />
         ))}
       </Box>
       {showAbout ? <About /> : null}
