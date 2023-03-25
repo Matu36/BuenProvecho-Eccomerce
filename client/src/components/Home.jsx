@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from "react";
 import {
   Text,
-  Button,
-  Icon,
   Box,
   Image,
   Input,
@@ -14,7 +12,6 @@ import NavBar from "./NavBar";
 import RandomSlider from "./randomSlider";
 import Logo from "../img/LOGO.png";
 import Sidebar from "./Sidebar";
-import { GiShoppingCart, GiMoneyStack } from "react-icons/gi";
 import { DB } from "../utils/DB";
 import About from "./About";
 import Card from "./Card";
@@ -176,59 +173,16 @@ export default function Home() {
         mt="4"
       >
         {/* Renderiza los productos filtrados */}
-        {products.map((product) => (
-          <Box
-            maxW="50%"
-            overflow="hidden"
-            boxShadow="md"
-            mx="auto"
-            mt="4"
-            key={product.id}
-          >
-            <Image
-              src={product.Imagen}
-              alt={product.Nombre}
-              maxH="300px"
-              maxW="100%"
-              border="2px solid #8B4513"
-              width="200px"
-              height="200px"
-              objectFit="cover"
-            />
-            <Text fontWeight="semibold" fontSize="lg" mr="2">
-              {product.Nombre}
-            </Text>
-            <Box flexDirection="column">
-              <Box>
-                <Button
-                  as="a"
-                  href="https://wa.me/5492215704647"
-                  target="_blank"
-                  aria-label="Whatsapp"
-                  leftIcon={<Icon as={GiMoneyStack} />}
-                  color="#0077CC"
-                  textDecor="none"
-                  padding="5px"
-                  borderRadius="5px"
-                  bg="none"
-                >
-                  Efectivo {product.Efectivo}
-                </Button>
-              </Box>
-              <Box>
-                <Button
-                  leftIcon={<Icon as={GiShoppingCart} />}
-                  color="#0077CC"
-                  textDecor="none"
-                  padding="5px"
-                  borderRadius="5px"
-                  bg="none"
-                >
-                  Añadir al Carrito
-                </Button>
-              </Box>
-            </Box>
-          </Box>
+        {products.map((product, index) => (
+          <Card
+            id= {product.id}
+            key={index}
+            Imagen= {product.Imagen}
+            Nombre= {product.Nombre}
+            Efectivo= {product.Efectivo}
+          />
+            
+          
         ))}
       </Box>
     </Box>
