@@ -1,47 +1,162 @@
-import React, { useState } from "react";
-import { Box, Image, Text, Button, Icon } from "@chakra-ui/react";
+import React, { useState, useEffect } from "react";
+import {
+  Text,
+  Button,
+  Icon,
+  Box,
+  Image,
+  Input,
+  InputGroup,
+  InputLeftElement,
+} from "@chakra-ui/react";
+import { SearchIcon } from "@chakra-ui/icons";
 import NavBar from "./NavBar";
 import RandomSlider from "./randomSlider";
 import Logo from "../img/LOGO.png";
-import Card from "./Card";
 import Sidebar from "./Sidebar";
-import {GiShoppingCart, GiMoneyStack} from "react-icons/gi";
+import { GiShoppingCart, GiMoneyStack } from "react-icons/gi";
+import { DB } from "../utils/DB";
 
 export default function Home() {
-  const [selectedFood, setSelectedFood] = useState();
+  //RENDERIZADO DE CARTA EN EL FILTRO DE CATEGORIA
   const [products, setProducts] = useState([]);
 
-  /*
-  const [recipeByIdAutocomplete, setrecipeByIdAutocomplete] = useState();
+  //AUTOCOMPLETE//
 
-  const filterById = () => {
-    const cache = [...recipes];
-    const recipe = cache.find(
-      (recipe) => recipe.id === recipeDetailIdAutocomplete
-    );
-    setrecipeByIdAutocomplete(recipe);
+  const [searchTerm, setSearchTerm] = useState("");
+  const [comidas, setComidas] = useState(DB);
+  const [selectedComida, setSelectedComida] = useState(null);
+  const [filteredComidas, setFilteredComidas] = useState([]);
+  const [autocompleteOptions, setAutocompleteOptions] = useState([]);
+
+  const handleInputChange = (event) => {
+    const value = event.target.value;
+    setSearchTerm(value);
+
+    // Filtrar las opciones de autocompletado
+    let options = comidas.filter((comida) => {
+      return comida.Nombre.toLowerCase().includes(value.toLowerCase());
+    });
+
+    setAutocompleteOptions(options);
+  };
+
+  
+
+  const handleInputKeyDown = (event) => {
+    if (event.key === "Enter") {
+      handleSearch();
+    }
+  };
+
+  const handleSearch = () => {
+    const filteredComidas = comidas.filter((comida) => {
+      return comida.Nombre.toLowerCase().includes(searchTerm.toLowerCase());
+    });
+    setFilteredComidas(filteredComidas);
+  };
+
+  const handleComidaClick = (comida) => {
+    setSelectedComida(comida);
+  };
+
+  const handleReset = () => {
+    setSearchTerm("");
+    setFilteredComidas([]);
+    setAutocompleteOptions([]);
   };
 
   useEffect(() => {
-    filterById();
-  }, [recipeDetailIdAutocomplete, recipes]);
-  
-  VER ESTO PARA EL AUTOCOMPLETE
-  */
-
-  const handleSelectFood = (DB) => {
-    setSelectedFood(DB);
-  };
+    if (searchTerm === "") {
+      handleReset();
+    }
+  }, [searchTerm]);
+  //FIN AUTOCOMPLETE
 
   return (
     <Box>
-      <NavBar handleSelectFood={handleSelectFood} />
-
-      {selectedFood && (
-        <Box position="fixed" top="250px" left="0" right="0" zIndex="1">
-          <Card selectedFood={selectedFood} />
-        </Box>
-      )}
+      <Box>
+        <NavBar />
+      </Box>
+      <Box marginTop="-3.5rem" marginLeft="23rem" maxWidth="40%">
+        <InputGroup borderRadius="5%">
+          <InputLeftElement
+            pointerEvents="none"
+            children={<SearchIcon color="gray.300" />}
+          />
+          <Input
+            backgroundColor="white"
+            placeholder="Buscar Comida"
+            type="text"
+            value={searchTerm}
+            onChange={handleInputChange}
+            onKeyDown={handleInputKeyDown}
+          />
+        </InputGroup>
+        <button onClick={handleSearch}></button>
+        <ul>
+          {autocompleteOptions.map((comida) => (
+            <Text key={comida.id} onClick={() => handleComidaClick(comida)}>
+              {comida.Nombre}
+            </Text>
+          ))}
+        </ul>
+        {filteredComidas.map((comida) => (
+          <Box
+            maxW="50%"
+            overflow="hidden"
+            boxShadow="md"
+            mx="auto"
+            mt="4"
+            key={comida.id}
+            onClick={() => handleComidaClick(comida)}
+          >
+            <Image
+              maxH="300px"
+              maxW="100%"
+              border="2px solid #8B4513"
+              width="200px"
+              height="200px"
+              objectFit="cover"
+              src={comida.Imagen}
+              alt={comida.Nombre}
+            />
+            <Text fontWeight="semibold" fontSize="lg" mr="2">
+              {comida.Nombre}
+            </Text>
+            <Box flexDirection="column">
+              <Box>
+                <Button
+                  as="a"
+                  href="https://wa.me/5492215704647"
+                  target="_blank"
+                  aria-label="Whatsapp"
+                  leftIcon={<Icon as={GiMoneyStack} />}
+                  color="#0077CC"
+                  textDecor="none"
+                  padding="5px"
+                  borderRadius="5px"
+                  bg="none"
+                >
+                  Efectivo {comida.Efectivo}
+                </Button>
+              </Box>
+              <Box>
+                <Button
+                  leftIcon={<Icon as={GiShoppingCart} />}
+                  color="#0077CC"
+                  textDecor="none"
+                  padding="5px"
+                  borderRadius="5px"
+                  bg="none"
+                >
+                  Añadir al Carrito
+                </Button>
+              </Box>
+            </Box>
+          </Box>
+        ))}
+      </Box>
 
       <Box
         display={{ base: "none", md: "flex" }}
@@ -95,13 +210,20 @@ export default function Home() {
       >
         {/* Renderiza los productos filtrados */}
         {products.map((product) => (
-          <Box mx="auto" mt="8" key={product.id}>
+          <Box
+            maxW="50%"
+            overflow="hidden"
+            boxShadow="md"
+            mx="auto"
+            mt="4"
+            key={product.id}
+          >
             <Image
               src={product.Imagen}
               alt={product.Nombre}
               maxH="300px"
               maxW="100%"
-              border="1px solid #8B4513"
+              border="2px solid #8B4513"
               width="200px"
               height="200px"
               objectFit="cover"
@@ -109,35 +231,36 @@ export default function Home() {
             <Text fontWeight="semibold" fontSize="lg" mr="2">
               {product.Nombre}
             </Text>
-            <Box flexDirection= "column">
+            <Box flexDirection="column">
               <Box>
-            <Button as="a"
-                href="https://wa.me/5492215704647"
-                target="_blank"
-                aria-label="Whatsapp"
-      leftIcon={<Icon as={GiMoneyStack} />}  
-   color="#0077CC"
-   textDecor="none"
-   padding="5px"
-   borderRadius="5px"
-   bg= "none"
-   >
-                Efectivo {product.Efectivo}
-              </Button>
+                <Button
+                  as="a"
+                  href="https://wa.me/5492215704647"
+                  target="_blank"
+                  aria-label="Whatsapp"
+                  leftIcon={<Icon as={GiMoneyStack} />}
+                  color="#0077CC"
+                  textDecor="none"
+                  padding="5px"
+                  borderRadius="5px"
+                  bg="none"
+                >
+                  Efectivo {product.Efectivo}
+                </Button>
               </Box>
               <Box>
-            <Button 
-      leftIcon={<Icon as={GiShoppingCart} />}  
-   color="#0077CC"
-   textDecor="none"
-   padding="5px"
-   borderRadius="5px"
-   bg= "none"
-   >
-                Añadir al Carrito
-              </Button>
+                <Button
+                  leftIcon={<Icon as={GiShoppingCart} />}
+                  color="#0077CC"
+                  textDecor="none"
+                  padding="5px"
+                  borderRadius="5px"
+                  bg="none"
+                >
+                  Añadir al Carrito
+                </Button>
               </Box>
-              </Box>
+            </Box>
           </Box>
         ))}
       </Box>
