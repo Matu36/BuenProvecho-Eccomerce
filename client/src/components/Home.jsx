@@ -16,10 +16,14 @@ import Logo from "../img/LOGO.png";
 import Sidebar from "./Sidebar";
 import { GiShoppingCart, GiMoneyStack } from "react-icons/gi";
 import { DB } from "../utils/DB";
+import About from "./About";
 
 export default function Home() {
   //RENDERIZADO DE CARTA EN EL FILTRO DE CATEGORIA
   const [products, setProducts] = useState([]);
+
+  //About
+  const [showAbout, setShowAbout] = useState(false);
 
   //AUTOCOMPLETE//
 
@@ -36,7 +40,7 @@ export default function Home() {
     // Filtrar las opciones de autocompletado
     let options = comidas.filter((comida) => {
       return comida.Nombre.toLowerCase().includes(value.toLowerCase());
-    });
+    }).slice(0, 3);
 
     setAutocompleteOptions(options);
   };
@@ -76,7 +80,8 @@ export default function Home() {
   return (
     <Box>
       <Box>
-        <NavBar />
+        <NavBar setShowAbout={setShowAbout} />
+        
       </Box>
       <Box marginTop="-3.5rem" marginLeft="23rem" maxWidth="40%">
         <InputGroup borderRadius="5%">
@@ -94,13 +99,15 @@ export default function Home() {
           />
         </InputGroup>
         <button onClick={handleSearch}></button>
+        <Box marginTop= "-1rem"  height="30px" overflow-y="auto">
         <ul>
           {autocompleteOptions.map((comida) => (
-            <Text key={comida.id} onClick={() => handleComidaClick(comida)}>
+            <Text marginLeft= "2rem"  zIndex= "3"  fontSize= "16px" fontWeight= "bold" key={comida.id} onClick={() => handleComidaClick(comida)}>
               {comida.Nombre}
             </Text>
           ))}
         </ul>
+        </Box>
         {filteredComidas.map((comida) => (
           <Box
             maxW="50%"
@@ -157,7 +164,7 @@ export default function Home() {
           </Box>
         ))}
       </Box>
-
+      {showAbout ? <About /> : null}
       <Box
         display={{ base: "none", md: "flex" }}
         position="fixed"
