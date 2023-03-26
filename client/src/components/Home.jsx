@@ -80,13 +80,15 @@ export default function Home() {
 
   return (
     <Box >
-<Box borderWidth="20px" borderLeftWidth="10px" borderRightWidth="40px" solid
+<Box borderWidth="0px" borderLeftWidth="40px" borderRightWidth="40px" solid
       borderColor= "yellow.300"
 >
       <Box>
-        <NavBar setShowAbout={setShowAbout} />
+        <NavBar 
+        setShowAbout={setShowAbout}
+        setProducts= {setProducts} />
       </Box>
-      <Box marginTop={{base: "-3rem", md: "-3.5rem"}} marginLeft={{base: "2rem", md: "21rem"}} 
+      <Box marginTop={{base: "-3rem", md: "-3.5rem"}} marginLeft={{base: "2rem", md: "20rem"}} 
       maxWidth={{base: "80%", md:"40%"}}>
         <InputGroup borderRadius="5%">
           <InputLeftElement
@@ -119,6 +121,8 @@ export default function Home() {
             ))}
           </ul>
         </Box>
+
+        
         {filteredComidas.map((comida, index) => (
           <Card 
             id={comida.id}
@@ -130,6 +134,7 @@ export default function Home() {
             Efectivo={comida.Efectivo}
           />
         ))}
+        
       </Box>
       {showAbout ? <About /> : null}
       <Box
@@ -138,7 +143,7 @@ export default function Home() {
         backgroundColor="#F6F6F6"
         borderRight="1px solid #F6F6F6"
         padding="10px"
-        top="100"
+        top="79.9"
         left="0"
         bottom="0"
         width="10rem"
@@ -169,6 +174,7 @@ export default function Home() {
       </Box>
 
       <Box
+      
         marginLeft={{ base: "2rem", md: "14rem" }}
         marginTop={{ base: "-18rem", md: "-7rem" }}
         maxW={{ base: "80%" }}
