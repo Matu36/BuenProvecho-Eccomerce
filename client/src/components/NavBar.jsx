@@ -1,10 +1,12 @@
-import React from "react";
+import React, {useState} from "react";
 import DarkMode from "../utils/DarkMode";
+import { DB } from "../utils/DB";
 import {
   FaInstagram,
   FaFacebook,
   FaMapMarkerAlt,
   FaWhatsapp,
+  FaHome
 } from "react-icons/fa";
 import {
   GiChickenOven,
@@ -32,7 +34,16 @@ import { HamburgerIcon } from "@chakra-ui/icons";
 import { GiShoppingCart } from "react-icons/gi";
 
 
-export default function NavBar({ setShowAbout }) {
+export default function NavBar({ setShowAbout, setProducts }) {
+  const [activeCategory, setActiveCategory] = useState(null);
+  
+  const handleClick = (category) => {
+    setActiveCategory(category);
+
+    // Filtra la base de datos por categoría seleccionada
+    const filteredProducts = DB.filter((product) => product.Categoría === category);
+    setProducts(filteredProducts);
+  };
 
   const handleAboutClick = () => {
     setShowAbout(true);
@@ -53,13 +64,15 @@ export default function NavBar({ setShowAbout }) {
           color="white"
           py={{ base: 2, md: 4 }}
           px={8}
+          
           display={{ base: "flex", md: "flex" }}
           justifyContent={{ base: "space-between", md: "flex-start" }}
         >
           <Box display="flex" alignItems="center">
             {/* Responsivo icon hamburguer */}
             <Box>
-              <IconButton marginLeft= {{base: "-2.5rem"}}
+              
+              <IconButton marginLeft= {{base: "-4.5rem"}}
               marginTop= {{base: "0rem"}}
                 aria-label="Abrir menú"
                 icon={<HamburgerIcon />}
@@ -71,51 +84,77 @@ export default function NavBar({ setShowAbout }) {
                 display={{ md: "none" }} // Sólo muestra el botón en modo responsivo
               />
 
-              <Drawer isOpen={isOpen} placement="left" onClose={onClose}>
+<Button display= {{md: "none"}}
+              variant="ghost"
+              marginLeft= "-1rem"
+              marginTop= "0.5rem"
+              color="white"
+              fontSize= "24px"
+              onClick={() => window.location.reload()}>
+              {<FaHome />}
+            </Button>
+             
+
+              <Drawer isOpen={isOpen} placement="left" onClose={onClose} >
                 <DrawerOverlay />
-                <DrawerContent bg="gray.800" p="9" size="xs">
+                <DrawerContent  bg="red.400" p="9" size="xs" maxW="50vw">
                   <DrawerCloseButton />
                   <DrawerHeader color="white">Menú</DrawerHeader>
-                  <DrawerBody>
-                    <Button
+                  <DrawerBody marginLeft= "-2rem">
+                    <Button as="a"
+                     href="#Cartas"
+                     onClick={() => {handleClick("Carnes"); onClose()}}
                       variant="ghost"
                       color="white"
                       leftIcon={<GiChickenOven />}
                     >
                       Carnes
                     </Button>
-                    <Button
+                    <Button as="a"
+                     href="#Cartas"
+                     onClick={() => {handleClick("Pasta"); onClose()}}
                       variant="ghost"
                       color="white"
                       leftIcon={<GiFullPizza />}
                     >
                       Pastas
                     </Button>
-                    <Button
+                    <Button as="a"
+                     href="#Cartas"
+                     onClick={() => {handleClick("Pescados"); onClose()}}
                       variant="ghost"
                       color="white"
                       leftIcon={<GiFishEggs />}
                     >
                       Pescados
                     </Button>
-                    <Button
+                    <Button as="a"
+                     href="#Cartas"
+                     onClick={() => {handleClick("Ensaladas"); onClose()}}
                       variant="ghost"
                       color="white"
                       leftIcon={<TbSalad />}
                     >
                       Ensaladas
                     </Button>
-                    <Button
+                    <Button as="a"
+                     href="#Cartas"
+                     onClick={() => {handleClick("Minutas"); onClose()}}
                       variant="ghost"
                       color="white"
                       leftIcon={<GiFrenchFries />}
                     >
                       Minutas
                     </Button>
-                    <Button variant="ghost" color="white" leftIcon={<BiDish />}>
+                    <Button as="a"
+                     href="#Cartas"
+                     onClick={() => {handleClick("Platos Frios"); onClose()}}
+                    variant="ghost" color="white" leftIcon={<BiDish />}>
                       Platos Frios
                     </Button>
-                    <Button
+                    <Button as="a"
+                     href="#Cartas"
+                     onClick={() => {handleClick("Bebidas"); onClose()}}
                       variant="ghost"
                       color="white"
                       leftIcon={<BiDrink />}
@@ -123,6 +162,9 @@ export default function NavBar({ setShowAbout }) {
                       Bebidas
                     </Button>
                     <Button
+                    as="a"
+                    href="#Cartas"
+                    onClick={() => {handleClick("Postres"); onClose()}}
                       variant="ghost"
                       color="white"
                       leftIcon={<TbIceCream />}
@@ -134,9 +176,11 @@ export default function NavBar({ setShowAbout }) {
               </Drawer>
             </Box>
             {/* Fin Responsivo icon hamburguer */}
-
+            
       
       <DarkMode display= {{base: "none", md: "inline-flex"}}/>
+
+      
     
   
             <Button display= {{base: "none", md: "inline-flex"}}
