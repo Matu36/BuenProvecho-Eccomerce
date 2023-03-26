@@ -15,6 +15,7 @@ import Sidebar from "./Sidebar";
 import { DB } from "../utils/DB";
 import About from "./About";
 import Card from "./Card";
+import Footer from "./Footer";
 
 export default function Home() {
   //RENDERIZADO DE CARTA EN EL FILTRO DE CATEGORIA
@@ -60,6 +61,9 @@ export default function Home() {
 
   const handleComidaClick = (comida) => {
     setSelectedComida(comida);
+    handleReset();
+    setSearchTerm("");
+    setFilteredComidas([]);
   };
 
   const handleReset = () => {
@@ -75,11 +79,15 @@ export default function Home() {
   //FIN AUTOCOMPLETE
 
   return (
-    <Box>
+    <Box >
+<Box borderWidth="20px" borderLeftWidth="10px" borderRightWidth="40px" solid
+      borderColor= "yellow.300"
+>
       <Box>
         <NavBar setShowAbout={setShowAbout} />
       </Box>
-      <Box marginTop="-3.5rem" marginLeft="23rem" maxWidth="40%">
+      <Box marginTop={{base: "-3rem", md: "-3.5rem"}} marginLeft={{base: "2rem", md: "21rem"}} 
+      maxWidth={{base: "80%", md:"40%"}}>
         <InputGroup borderRadius="5%">
           <InputLeftElement
             pointerEvents="none"
@@ -102,7 +110,7 @@ export default function Home() {
                 marginLeft="2rem"
                 zIndex="3"
                 fontSize="16px"
-                fontWeight="bold"
+                
                 key={comida.id}
                 onClick={() => handleComidaClick(comida)}
               >
@@ -113,11 +121,13 @@ export default function Home() {
         </Box>
         {filteredComidas.map((comida, index) => (
           <Card 
-          id= {comida.id}
-          key={index} onClick={() => handleComidaClick(comida)}
-          Imagen ={comida.Imagen} alt={comida.Nombre} 
-          Nombre = {comida.Nombre}
-          Efectivo = {comida.Efectivo}
+            id={comida.id}
+            key={index}
+            onClick={() => handleComidaClick(comida)}
+            Imagen={comida.Imagen}
+            alt={comida.Nombre}
+            Nombre={comida.Nombre}
+            Efectivo={comida.Efectivo}
           />
         ))}
       </Box>
@@ -128,7 +138,7 @@ export default function Home() {
         backgroundColor="#F6F6F6"
         borderRight="1px solid #F6F6F6"
         padding="10px"
-        top="85"
+        top="100"
         left="0"
         bottom="0"
         width="10rem"
@@ -159,8 +169,9 @@ export default function Home() {
       </Box>
 
       <Box
-        marginLeft={{ base: "0rem", md: "14rem" }}
+        marginLeft={{ base: "2rem", md: "14rem" }}
         marginTop={{ base: "-18rem", md: "-7rem" }}
+        maxW={{ base: "80%" }}
       >
         {RandomSlider()}
       </Box>
@@ -175,16 +186,20 @@ export default function Home() {
         {/* Renderiza los productos filtrados */}
         {products.map((product, index) => (
           <Card
-            id= {product.id}
+            id={product.id}
             key={index}
-            Imagen= {product.Imagen}
-            Nombre= {product.Nombre}
-            Efectivo= {product.Efectivo}
+            Imagen={product.Imagen}
+            Nombre={product.Nombre}
+            Efectivo={product.Efectivo}
           />
-            
-          
         ))}
       </Box>
+      </Box>
+      <Box display={{md:"none"}}>
+
+<Footer setShowAbout={setShowAbout}/>
+      </Box>
+
     </Box>
   );
 }

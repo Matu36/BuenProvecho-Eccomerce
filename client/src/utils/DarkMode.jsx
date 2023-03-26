@@ -14,6 +14,7 @@ export default function ColorModeSwitcher() {
       variant="ghost"
       // color="current"
       marginLeft="2"
+      display= {{base: "none", md: "inline-flex"}}
       aria-label={
         colorMode === "light" ? "Switch to dark mode" : "Switch to light mode"
       }

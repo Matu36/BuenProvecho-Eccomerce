@@ -49,7 +49,7 @@ export default function NavBar({ setShowAbout }) {
     <Box>
       <Box>
         <Flex
-          bg="blue.500"
+          bg="yellow.300"
           color="white"
           py={{ base: 2, md: 4 }}
           px={8}
@@ -59,10 +59,12 @@ export default function NavBar({ setShowAbout }) {
           <Box display="flex" alignItems="center">
             {/* Responsivo icon hamburguer */}
             <Box>
-              <IconButton
+              <IconButton marginLeft= {{base: "-2.5rem"}}
+              marginTop= {{base: "0rem"}}
                 aria-label="Abrir menú"
                 icon={<HamburgerIcon />}
                 size="md"
+                fontSize= "24px"
                 variant="ghost"
                 color="white"
                 onClick={onOpen}
@@ -133,8 +135,11 @@ export default function NavBar({ setShowAbout }) {
             </Box>
             {/* Fin Responsivo icon hamburguer */}
 
-            <DarkMode />
-            <Button
+      
+      <DarkMode display= {{base: "none", md: "inline-flex"}}/>
+    
+  
+            <Button display= {{base: "none", md: "inline-flex"}}
               variant="ghost"
               color="white"
               mr={2}
@@ -142,7 +147,7 @@ export default function NavBar({ setShowAbout }) {
             >
               Inicio
             </Button>
-            <Button variant="ghost" color="white" mr={2} onClick= {handleAboutClick}>
+            <Button display= {{base: "none", md: "inline-flex"}} variant="ghost" color="white" mr={2} onClick= {handleAboutClick}>
               Sobre Nosotros
             </Button>
           </Box>
@@ -156,16 +161,18 @@ export default function NavBar({ setShowAbout }) {
             {/* <SearchBar /> */}
           </Box>
 
-          <Box display="flex" alignItems="center" mr={4}>
-            <Box display="flex" alignItems="center">
-              <IconButton
+          <Box display="flex" alignItems="center"  mr={{ base: -12, md: 4 }}
+           >
+            <Box display="flex" alignItems="center" >
+              <IconButton 
                 target="_blank"
                 aria-label="ShoppingCart"
+                fontSize= {{base:"28px", md: "24px"}}
                 icon={<GiShoppingCart />}
-                mr={2}
+                mr={{ base: 0, md: 2 }}
                 colorScheme={buttonColorScheme}
               />
-              <IconButton
+              <IconButton display= {{base: "none", md: "inline-flex"}}
                 as="a"
                 href="https://www.instagram.com/"
                 target="_blank"
@@ -174,7 +181,7 @@ export default function NavBar({ setShowAbout }) {
                 mr={2}
                 colorScheme={buttonColorScheme}
               />
-              <IconButton
+              <IconButton display= {{base: "none", md: "inline-flex"}}
                 as="a"
                 href="https://www.facebook.com/"
                 target="_blank"
@@ -183,7 +190,7 @@ export default function NavBar({ setShowAbout }) {
                 mr={2}
                 colorScheme={buttonColorScheme}
               />
-              <IconButton
+              <IconButton display= {{base: "none", md: "inline-flex"}}
                 as="a"
                 href="https://maps.google.com/"
                 target="_blank"
@@ -192,7 +199,7 @@ export default function NavBar({ setShowAbout }) {
                 mr={2}
                 colorScheme={buttonColorScheme}
               />
-              <IconButton
+              <IconButton display= {{base: "none", md: "inline-flex"}}
                 as="a"
                 href="https://wa.me/5492215704647?text=Hola,%20quisiera%20hacerte%20un%20pedido"
                 target="_blank"
