@@ -191,7 +191,8 @@ export default function NavBar({ setShowAbout, setProducts }) {
             >
               Inicio
             </Button>
-            <Button display= {{base: "none", md: "inline-flex"}} variant="ghost" color="white" mr={2} onClick= {handleAboutClick}>
+            <Button as="a"
+                     href="#About" display= {{base: "none", md: "inline-flex"}} variant="ghost" color="white" mr={2} onClick= {handleAboutClick}>
               Sobre Nosotros
             </Button>
           </Box>

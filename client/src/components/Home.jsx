@@ -64,7 +64,7 @@ export default function Home() {
     handleReset();
     setSearchTerm("");
     setFilteredComidas([]);
-  };
+}
 
   const handleReset = () => {
     setSearchTerm("");
@@ -137,7 +137,7 @@ export default function Home() {
         
       </Box>
       {showAbout ? <About /> : null}
-      <Box
+      <Box id="About"
         display={{ base: "none", md: "flex" }}
         position="fixed"
         backgroundColor="#F6F6F6"
