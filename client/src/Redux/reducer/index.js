@@ -1,24 +1,87 @@
-import {
-    SET_SEARCH_VALUE_NAME,
-    SET_RECIPEID_AUTOCOMPLETE,
-  } from "../actions/index";
-  
-  const initialState = {
-    recipeIdAutocomplete: null,
-    searchValueName: "",
-  };
-  
-  const autocompleteReducer = (state = initialState, action) => {
+import {ADD_TO_CART, REMOVE_ONE_FROM_CART, REMOVE_ALL_FROM_CART, CLEAR_CART, TOTAL_PRICE }
+from "../actions/index";
+import {DB} from "../../utils/DB.js";
+
+
+const InitialState = {
+
+    products: DB,
+
+    cart: [],
+
+    totalPrice: 0
+}
+
+function rootReducer (state=InitialState, action) {
+
     switch (action.type) {
-      case SET_RECIPEID_AUTOCOMPLETE:
-        return { ...state, recipeIdAutocomplete: action.payload };
-  
-      case SET_SEARCH_VALUE_NAME:
-        return { ...state, searchValue: action.payload };
-  
-      default:
-        return { ...state };
+        case ADD_TO_CART: {
+
+            let newItem = state.products.find(product => product.id === action.payload);
+            //console.log (newItem);
+
+            let itemInCart = state.cart.find(item => item.id === newItem.id)
+            
+            return itemInCart? {
+                ...state, 
+                cart: state.cart.map((item) => 
+                item.id === newItem.id
+                ?{...item, quantity: item.quantity + 1}
+                :item
+                ),
+            } : {...state, 
+                cart: [...state.cart, {...newItem, quantity:1}]
+            };
+ 
+            }
+
+        case REMOVE_ONE_FROM_CART: {
+            let itemToDelete = state.cart.find (item => item.id === action.payload)
+            return itemToDelete.quantity > 1? {
+                ...state,
+                cart: state.cart.map((item) => 
+                item.id === action.payload
+                ? {...item, quantity: item.quantity - 1}:item 
+                )
+            }: {
+                ...state,
+                cart: state.cart.filter ((item) => item.id !== action.payload)
+            };
+            
+        }
+
+        case REMOVE_ALL_FROM_CART: {
+            return {
+                ...state,
+                cart: state.cart.filter ((item) => item.id !== action.payload)
+            };
+            
+            
+        }
+
+        case CLEAR_CART: {
+            return InitialState;
+            
+        }
+
+        case TOTAL_PRICE: {
+
+            let priceTotal = state.cart.reduce((acc, item) => {
+               return acc + (item.quantity * item.Efectivo)
+                },0)
+
+            return {
+               ...state,
+                totalPrice: priceTotal,
+                            }
+
+        }
+
+        default:
+            return state;
     }
-  };
-  
-  export default autocompleteReducer;
+
+
+    }
+
+    export default rootReducer;

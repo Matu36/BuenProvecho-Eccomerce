@@ -1,9 +1,15 @@
 import React from "react";
 import { Box, Button, Text, Image, Icon } from "@chakra-ui/react";
 import {GiMoneyStack, GiShoppingCart} from "react-icons/gi";
+import { useDispatch } from "react-redux";
+import { ADD_TO_CART } from "../Redux/actions";
 
 export default function Card ({id, Imagen, Nombre, Efectivo }) {
-  
+  const dispatch = useDispatch();
+
+  const addToCartHandler = () => {
+    dispatch({ type: ADD_TO_CART, payload: id });
+  };
   
   return (
     <Box
@@ -40,7 +46,7 @@ export default function Card ({id, Imagen, Nombre, Efectivo }) {
                   borderRadius="5px"
                   bg="none"
                 >
-                  Efectivo {Efectivo}
+                  Efectivo $ {Efectivo}
                 </Button>
               </Box>
               <Box>
@@ -51,6 +57,7 @@ export default function Card ({id, Imagen, Nombre, Efectivo }) {
                   padding="5px"
                   borderRadius="5px"
                   bg="none"
+                  onClick={addToCartHandler}
                 >
                   Añadir al Carrito
                 </Button>
