@@ -11,6 +11,9 @@ export default function Card ({id, Imagen, Nombre, Efectivo }) {
   const addToCartHandler = () => {
     dispatch({ type: ADD_TO_CART, payload: id });
     setShowAlert(true);
+    setTimeout(() => {
+      setShowAlert(false);
+    }, 2000);
   };
   
   return (
