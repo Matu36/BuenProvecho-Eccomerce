@@ -1,6 +1,7 @@
 import React, {useState} from "react";
 import DarkMode from "../utils/DarkMode";
 import { DB } from "../utils/DB";
+import { Link } from "react-router-dom";
 import {
   FaInstagram,
   FaFacebook,
@@ -39,6 +40,8 @@ export default function NavBar({ setShowAbout, setProducts }) {
   
   const handleClick = (category) => {
     setActiveCategory(category);
+
+  
 
     // Filtra la base de datos por categoría seleccionada
     const filteredProducts = DB.filter((product) => product.Categoría === category);
@@ -209,7 +212,9 @@ export default function NavBar({ setShowAbout, setProducts }) {
           <Box display="flex" alignItems="center"  mr={{ base: -12, md: 4 }}
            >
             <Box display="flex" alignItems="center" >
+            <Link to="/sCart">
               <IconButton 
+                
                 target="_blank"
                 aria-label="ShoppingCart"
                 fontSize= {{base:"28px", md: "24px"}}
@@ -217,6 +222,7 @@ export default function NavBar({ setShowAbout, setProducts }) {
                 mr={{ base: 0, md: 2 }}
                 colorScheme={buttonColorScheme}
               />
+              </Link>
               <IconButton display= {{base: "none", md: "inline-flex"}}
                 as="a"
                 href="https://www.instagram.com/"
