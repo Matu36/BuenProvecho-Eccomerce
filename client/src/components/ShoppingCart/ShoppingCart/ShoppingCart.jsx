@@ -54,7 +54,7 @@ export default function ShoppingCart() {
         
         <Button as="a"
       href="/" leftIcon={<Icon as={GiFastBackwardButton} />}  color="#0077CC"
-   fontSize="24px"
+   fontSize="30px"
    marginLeft= {{base:"0", md:"-2rem"}}
    marginTop= {{base:"-1rem", md:"-5rem"}}
    padding="5px"
