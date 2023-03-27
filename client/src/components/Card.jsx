@@ -1,14 +1,16 @@
-import React from "react";
-import { Box, Button, Text, Image, Icon } from "@chakra-ui/react";
+import React, {useState} from "react";
+import { Box, Button, Text, Image, Icon, Alert, AlertIcon } from "@chakra-ui/react";
 import {GiMoneyStack, GiShoppingCart} from "react-icons/gi";
 import { useDispatch } from "react-redux";
 import { ADD_TO_CART } from "../Redux/actions";
 
 export default function Card ({id, Imagen, Nombre, Efectivo }) {
   const dispatch = useDispatch();
+  const [showAlert, setShowAlert] = useState(false);
 
   const addToCartHandler = () => {
     dispatch({ type: ADD_TO_CART, payload: id });
+    setShowAlert(true);
   };
   
   return (
@@ -61,6 +63,12 @@ export default function Card ({id, Imagen, Nombre, Efectivo }) {
                 >
                   Añadir al Carrito
                 </Button>
+                {showAlert && (
+      <Alert status="success">
+        <AlertIcon />
+        El ítem ha sido añadido al carrito.
+      </Alert>
+    )}
               </Box>
             </Box>
           </Box>
