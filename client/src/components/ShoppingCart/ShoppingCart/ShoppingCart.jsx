@@ -14,7 +14,6 @@ export default function ShoppingCart() {
   const { products, cart } = useSelector((state) =>
     state ? state : { products: [], cart: [] }
   );
-  console.log(products);
 
   const dispatch = useDispatch();
 

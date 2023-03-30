@@ -38,7 +38,7 @@ const RandomSlider = () => {
              />
           </Box>
           <Text mt="2" fontWeight="bold">{product.Nombre}</Text>
-          <Text>{product.Efectivo}</Text>
+          <Text>$ {product.Efectivo}</Text>
         </Box>
       </Box>
     ))}
