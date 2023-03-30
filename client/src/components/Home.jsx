@@ -12,10 +12,12 @@ import NavBar from "./NavBar";
 import RandomSlider from "./randomSlider";
 import Logo from "../img/LOGO.png";
 import Sidebar from "./Sidebar";
-import { DB } from "../utils/DB";
 import About from "./About";
 import Card from "./Card";
 import Footer from "./Footer";
+import { useSelector, useDispatch } from "react-redux";
+import { getComidas } from "../Redux/actions";
+
 
 export default function Home() {
   //RENDERIZADO DE CARTA EN EL FILTRO DE CATEGORIA
@@ -24,25 +26,36 @@ export default function Home() {
   //About
   const [showAbout, setShowAbout] = useState(false);
 
+  //TRAIGO LA DATA
+
+  const dispatch = useDispatch();
+  const Food = useSelector(state => state.comidas);
+
+
   //AUTOCOMPLETE//
 
   const [searchTerm, setSearchTerm] = useState("");
-  const [comidas, setComidas] = useState(DB);
+  const [comidas, setComidas] = useState(Food);
   const [selectedComida, setSelectedComida] = useState(null);
   const [filteredComidas, setFilteredComidas] = useState([]);
   const [autocompleteOptions, setAutocompleteOptions] = useState([]);
+
+  useEffect(() => {
+    dispatch(getComidas());
+  }, [comidas]);
 
   const handleInputChange = (event) => {
     const value = event.target.value;
     setSearchTerm(value);
 
     // Filtrar las opciones de autocompletado
-    let options = comidas
+    let options = Food
       .filter((comida) => {
         return comida.Nombre.toLowerCase().includes(value.toLowerCase());
       })
       .slice(0, 3);
 
+      console.log (comidas)
     setAutocompleteOptions(options);
   };
 
@@ -53,7 +66,7 @@ export default function Home() {
   };
 
   const handleSearch = () => {
-    const filteredComidas = comidas.filter((comida) => {
+    const filteredComidas = Food.filter((comida) => {
       return comida.Nombre.toLowerCase().includes(searchTerm.toLowerCase());
     });
     setFilteredComidas(filteredComidas);
@@ -76,6 +89,10 @@ export default function Home() {
       handleReset();
     }
   }, [searchTerm]);
+
+  useEffect(() => {
+    dispatch(getComidas());
+  }, [comidas]);
   //FIN AUTOCOMPLETE
 
   return (

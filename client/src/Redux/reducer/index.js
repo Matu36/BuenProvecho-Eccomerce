@@ -1,11 +1,14 @@
-import {ADD_TO_CART, REMOVE_ONE_FROM_CART, REMOVE_ALL_FROM_CART, CLEAR_CART, TOTAL_PRICE }
+import {ADD_TO_CART, REMOVE_ONE_FROM_CART, REMOVE_ALL_FROM_CART, CLEAR_CART, TOTAL_PRICE,
+GET_COMIDAS}
 from "../actions/index";
-import {DB} from "../../utils/DB.js";
+
 
 
 const InitialState = {
 
-    products: DB,
+    
+
+    comidas: [],
 
     cart: [],
 
@@ -17,7 +20,7 @@ function rootReducer (state=InitialState, action) {
     switch (action.type) {
         case ADD_TO_CART: {
 
-            let newItem = state.products.find(product => product.id === action.payload);
+            let newItem = state.comidas.find(product => product.id === action.payload);
             //console.log (newItem);
 
             let itemInCart = state.cart.find(item => item.id === newItem.id)
@@ -76,6 +79,8 @@ function rootReducer (state=InitialState, action) {
                             }
 
         }
+        case GET_COMIDAS:
+      return { ...state, comidas: action.payload };
 
         default:
             return state;

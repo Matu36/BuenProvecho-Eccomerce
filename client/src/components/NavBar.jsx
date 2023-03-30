@@ -14,6 +14,7 @@ import {
   GiFishEggs,
   GiFrenchFries,
   GiFullPizza,
+  GiChickenLeg
 } from "react-icons/gi";
 import { TbSalad, TbIceCream } from "react-icons/tb";
 import { BiDrink, BiDish } from "react-icons/bi";
@@ -112,6 +113,15 @@ export default function NavBar({ setShowAbout, setProducts }) {
                       leftIcon={<GiChickenOven />}
                     >
                       Carnes
+                    </Button>
+                    <Button as="a"
+                     href="#Cartas"
+                     onClick={() => {handleClick("Pollo"); onClose()}}
+                      variant="ghost"
+                      color="white"
+                      leftIcon={<GiChickenLeg />}
+                    >
+                      Pollo
                     </Button>
                     <Button as="a"
                      href="#Cartas"

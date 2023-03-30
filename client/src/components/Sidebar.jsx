@@ -1,20 +1,29 @@
 import React, {useState} from "react";
 import { Box, Button, Menu, Icon } from "@chakra-ui/react";
-import { GiChickenOven, GiFishEggs, GiFrenchFries, GiFullPizza}  from "react-icons/gi";
+import { GiChickenOven, GiFishEggs, GiFrenchFries, GiFullPizza, GiChickenLeg}  from "react-icons/gi";
 import {TbSalad, TbIceCream} from "react-icons/tb";
 import {BiDrink, BiDish} from "react-icons/bi";
-import { DB } from "../utils/DB";
+import { useSelector } from "react-redux";
+
 
 export default function Sidebar ({setProducts}) {
+
+  
+  const Food = useSelector(state => state.comidas);
+
+  
+
   const [activeCategory, setActiveCategory] = useState(null);
 
   const handleClick = (category) => {
     setActiveCategory(category);
 
     // Filtra la base de datos por categoría seleccionada
-    const filteredProducts = DB.filter((product) => product.Categoría === category);
+    const filteredProducts = Food.filter((product) => product.Categoria === category);
     setProducts(filteredProducts);
   };
+
+  
     return (
     <Box>
 <Menu flexDirection="column" alignItems="flex-start" >
@@ -29,6 +38,17 @@ export default function Sidebar ({setProducts}) {
    bg= "none"
    >
                 Carnes
+              </Button>
+              <Button as="a"
+      href="#Cartas" leftIcon={<Icon as={GiChickenLeg} />} onClick={() => handleClick("Pollo")}  
+   color="#0077CC"
+   textDecor="none"
+   marginLeft="10px"
+   padding="5px"
+   borderRadius="5px"
+   bg= "none"
+   >
+                Pollo
               </Button>
               <Button as="a"
       href="#Cartas" leftIcon={<Icon as={GiFullPizza} />} onClick={() => handleClick("Pasta")}  color="#0077CC"
