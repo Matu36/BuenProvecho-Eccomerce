@@ -8,7 +8,7 @@ export default function FeaturedInfo() {
     <Flex justify="space-between" alignItems="center" bg="gray.50" p="4" borderRadius="10px">
       <Box flex="1" mr="4">
         <Heading as="h3" fontSize="lg" mb="2">
-          Revenue
+          Ganancias
         </Heading>
         <Box display="flex" alignItems="center" mb="2">
           <Text fontSize="2xl" fontWeight="semibold" mr="2">
@@ -22,13 +22,13 @@ export default function FeaturedInfo() {
           </Box>
         </Box>
         <Text fontSize="md" color="gray.500">
-          Compare to last month
+          Comparado con el mes pasado
         </Text>
       </Box>
 
       <Box flex="1" mr="4">
         <Heading as="h3" fontSize="lg" mb="2">
-          Sales
+          Ventas
         </Heading>
         <Box display="flex" alignItems="center" mb="2">
           <Text fontSize="2xl" fontWeight="semibold" mr="2">
@@ -42,13 +42,13 @@ export default function FeaturedInfo() {
           </Box>
         </Box>
         <Text fontSize="md" color="gray.500">
-          Compare to last month
+        Comparado con el mes pasado
         </Text>
       </Box>
 
       <Box flex="1">
         <Heading as="h3" fontSize="lg" mb="2">
-          Cost
+          Costos
         </Heading>
         <Box display="flex" alignItems="center" mb="2">
           <Text fontSize="2xl" fontWeight="semibold" mr="2">
@@ -62,7 +62,7 @@ export default function FeaturedInfo() {
           </Box>
         </Box>
         <Text fontSize="md" color="gray.500">
-          Compare to last month
+        Comparado con el mes pasado
         </Text>
       </Box>
     </Flex>
