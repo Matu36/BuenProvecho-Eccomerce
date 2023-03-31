@@ -1,7 +1,8 @@
 import React, {useState} from "react";
 import DarkMode from "../utils/DarkMode";
-import { DB } from "../utils/DB";
+import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import {CiPizza} from "react-icons/ci";
 import {
   FaInstagram,
   FaFacebook,
@@ -12,9 +13,9 @@ import {
 import {
   GiChickenOven,
   GiFishEggs,
-  GiFrenchFries,
   GiFullPizza,
-  GiChickenLeg
+  GiChickenLeg,
+  GiFrenchFries
 } from "react-icons/gi";
 import { TbSalad, TbIceCream } from "react-icons/tb";
 import { BiDrink, BiDish } from "react-icons/bi";
@@ -38,20 +39,23 @@ import { GiShoppingCart } from "react-icons/gi";
 
 export default function NavBar({ setShowAbout, setProducts }) {
   const [activeCategory, setActiveCategory] = useState(null);
+
+const FoodResponsive = useSelector (state => state.comidas);
   
   const handleClick = (category) => {
     setActiveCategory(category);
 
-  
-
+    
     // Filtra la base de datos por categoría seleccionada
-    const filteredProducts = DB.filter((product) => product.Categoría === category);
+    const filteredProducts = FoodResponsive.filter((product) => product.Categoria === category);
     setProducts(filteredProducts);
   };
+
 
   const handleAboutClick = () => {
     setShowAbout(true);
   };
+
 
   const { isOpen, onOpen, onClose } = useDisclosure();
 
@@ -114,6 +118,7 @@ export default function NavBar({ setShowAbout, setProducts }) {
                     >
                       Carnes
                     </Button>
+                    
                     <Button as="a"
                      href="#Cartas"
                      onClick={() => {handleClick("Pollo"); onClose()}}
@@ -131,6 +136,15 @@ export default function NavBar({ setShowAbout, setProducts }) {
                       leftIcon={<GiFullPizza />}
                     >
                       Pastas
+                    </Button>
+                    <Button as="a"
+                     href="#Cartas"
+                     onClick={() => {handleClick("Pizzas"); onClose()}}
+                      variant="ghost"
+                      color="white"
+                      leftIcon={<CiPizza />}
+                    >
+                      Pizzas
                     </Button>
                     <Button as="a"
                      href="#Cartas"
@@ -152,16 +166,16 @@ export default function NavBar({ setShowAbout, setProducts }) {
                     </Button>
                     <Button as="a"
                      href="#Cartas"
-                     onClick={() => {handleClick("Minutas"); onClose()}}
+                     onClick={() => {handleClick("Guarniciones"); onClose()}}
                       variant="ghost"
                       color="white"
                       leftIcon={<GiFrenchFries />}
                     >
-                      Minutas
+                      Guarniciones
                     </Button>
                     <Button as="a"
                      href="#Cartas"
-                     onClick={() => {handleClick("Platos Frios"); onClose()}}
+                     onClick={() => {handleClick("Platos frios"); onClose()}}
                     variant="ghost" color="white" leftIcon={<BiDish />}>
                       Platos Frios
                     </Button>
