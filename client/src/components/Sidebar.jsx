@@ -2,8 +2,10 @@ import React, {useState} from "react";
 import { Box, Button, Menu, Icon } from "@chakra-ui/react";
 import { GiChickenOven, GiFishEggs, GiFrenchFries, GiFullPizza, GiChickenLeg}  from "react-icons/gi";
 import {TbSalad, TbIceCream} from "react-icons/tb";
+import {CiPizza} from "react-icons/ci";
 import {BiDrink, BiDish} from "react-icons/bi";
 import { useSelector } from "react-redux";
+
 
 
 export default function Sidebar ({setProducts}) {
@@ -60,6 +62,15 @@ export default function Sidebar ({setProducts}) {
                 Pastas
               </Button>
               <Button as="a"
+      href="#Cartas" leftIcon={<Icon as={CiPizza} />} onClick={() => handleClick("Pizzas")}  color="#0077CC"
+   textDecor="none"
+   marginLeft="10px"
+   padding="5px"
+   borderRadius="5px"
+   bg= "none">
+                Pizzas
+              </Button>
+              <Button as="a"
       href="#Cartas" leftIcon={<Icon as={GiFishEggs} />} onClick={() => handleClick("Pescados")} color="#0077CC"
    textDecor="none"
    marginLeft="10px"
@@ -78,13 +89,13 @@ export default function Sidebar ({setProducts}) {
                 Ensaladas
               </Button>
               <Button as="a"
-      href="#Cartas" leftIcon={<Icon as={GiFrenchFries} />} onClick={() => handleClick("Minutas")} color="#0077CC"
+      href="#Cartas" leftIcon={<Icon as={GiFrenchFries} />} onClick={() => handleClick("Guarniciones")} color="#0077CC"
    textDecor="none"
    marginLeft="10px"
    padding="5px"
    borderRadius="5px"
    bg= "none">
-                Minutas
+                Guarniciones
               </Button>
               <Button as="a"
       href="#Cartas" leftIcon={<Icon as={BiDish} />} onClick={() => handleClick("Platos frios")}   color="#0077CC"

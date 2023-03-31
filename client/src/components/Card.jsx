@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import { Box, Button, Text, Image, Icon, Alert, AlertIcon } from "@chakra-ui/react";
+import { Box, Button, Image, Icon, Alert, AlertIcon } from "@chakra-ui/react";
 import {GiMoneyStack, GiShoppingCart} from "react-icons/gi";
 import { useDispatch } from "react-redux";
 import { ADD_TO_CART } from "../Redux/actions";
@@ -18,25 +18,48 @@ export default function Card ({id, Imagen, Nombre, Efectivo }) {
   
   return (
     <Box
-            maxW="50%"
-            overflow="hidden"
-            boxShadow="md"
-            mx="auto"
-            mt="4"
+    maxW="50%"
+    overflow="hidden"
+    boxShadow="md"
+    mx="auto"
+    mt="4"
+    border="2px solid #8B4513"
+    borderRadius="lg"
+    _hover={{
+      boxShadow: "xl",
+      transform: "scale(1.05)",
+      cursor: "pointer",
+      // Agrega un fondo con opacidad para el texto
+      bg: "rgba(255, 255, 255, 0.8)",
+    }}
             
           >
             <Image src= {Imagen}
               maxH="300px"
               maxW="100%"
-              border="2px solid #8B4513"
+              
               width="200px"
               height="200px"
               objectFit="cover"
+              borderRadius="lg"
              
             />
-            <Text fontWeight="semibold" fontSize="lg" mr="2">
+            <Box p="4"
+        // Agrega un texto con una tipografía adecuada
+        fontFamily="Montserrat, sans-serif"
+        fontWeight="bold"
+        fontSize="xl"
+        textAlign="center"
+        // Agrega un color de fondo para el texto
+        bg="#F6E05E"
+        // Agrega una sombra para dar profundidad
+        boxShadow="md"
+        // Agrega una opacidad para el fondo del texto
+        opacity="0.9"
+      >
               {Nombre}
-            </Text>
+            
+            </Box>
             <Box flexDirection="column">
               <Box>
                 <Button
