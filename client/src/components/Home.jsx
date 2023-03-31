@@ -139,19 +139,19 @@ export default function Home() {
           </ul>
         </Box>
 
-        
+        <Box>
         {filteredComidas.map((comida, index) => (
           <Card 
             id={comida.id}
             key={index}
             onClick={() => handleComidaClick(comida)}
-            Imagen={comida.Imagen}
+            Imagen ={comida.Imagen}
             alt={comida.Nombre}
             Nombre={comida.Nombre}
             Efectivo={comida.Efectivo}
           />
         ))}
-        
+        </Box>
       </Box>
       {showAbout ? <About /> : null}
       <Box id="About"
