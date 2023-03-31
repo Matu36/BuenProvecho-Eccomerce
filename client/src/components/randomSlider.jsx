@@ -1,5 +1,5 @@
 import React from "react";
-import { Box, Image, Text } from "@chakra-ui/react";
+import { Box, Image } from "@chakra-ui/react";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -37,8 +37,6 @@ const RandomSlider = () => {
             <Image src={product.Imagen} alt="imagen" objectFit="cover" w="100%" h="100%"
              />
           </Box>
-          <Text mt="2" fontWeight="bold">{product.Nombre}</Text>
-          <Text>$ {product.Efectivo}</Text>
         </Box>
       </Box>
     ))}

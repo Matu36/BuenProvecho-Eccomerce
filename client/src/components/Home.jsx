@@ -169,7 +169,7 @@ export default function Home() {
         <Sidebar setProducts={setProducts} />
       </Box>
       <Box
-        mt={{ base: "-20rem", md: "-8rem" }}
+        mt={{ base: "-20rem", md: "-10rem" }}
         display="flex"
         alignItems="center"
         justifyContent="center"
@@ -192,8 +192,8 @@ export default function Home() {
 
       <Box
       
-        marginLeft={{ base: "2rem", md: "14rem" }}
-        marginTop={{ base: "-18rem", md: "-7rem" }}
+        marginLeft={{ base: "2rem", md: "17rem" }}
+        marginTop={{ base: "-18rem", md: "-9rem" }}
         maxW={{ base: "80%" }}
       >
         {RandomSlider()}
