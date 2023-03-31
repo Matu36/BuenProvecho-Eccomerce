@@ -1,8 +1,6 @@
 import {ADD_TO_CART, REMOVE_ONE_FROM_CART, REMOVE_ALL_FROM_CART, CLEAR_CART, TOTAL_PRICE,
-GET_COMIDAS}
+GET_COMIDAS, HOME_ADMIN_SHOW, RESET_ADMIN_SHOW}
 from "../actions/index";
-
-
 
 const InitialState = {
 
@@ -12,7 +10,9 @@ const InitialState = {
 
     cart: [],
 
-    totalPrice: 0
+    totalPrice: 0,
+
+    homeShow: "Home",
 }
 
 function rootReducer (state=InitialState, action) {
@@ -81,6 +81,17 @@ function rootReducer (state=InitialState, action) {
         }
         case GET_COMIDAS:
       return { ...state, comidas: action.payload };
+
+      case HOME_ADMIN_SHOW:
+      return {
+        ...state,
+        homeShow: action.payload,
+      };
+    case RESET_ADMIN_SHOW:
+      return {
+        ...state,
+        homeShow: InitialState.homeShow,
+      };
 
         default:
             return state;
