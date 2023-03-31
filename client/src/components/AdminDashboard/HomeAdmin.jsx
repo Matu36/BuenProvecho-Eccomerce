@@ -1,6 +1,8 @@
 import React from "react";
 import { Box } from "@chakra-ui/react";
 import FeaturedInfo from "./FeaturedInfo";
+import Chart from "./Chart";
+import { data } from "./UserData";
 
 export default function HomeAdmin () {
 
@@ -21,6 +23,12 @@ export default function HomeAdmin () {
     return (
         <Box>
 <FeaturedInfo />
+<Chart
+            data={data}
+            title="Anlítica de Usuarios"
+            grid
+            dataKey="Active User"
+          />
         </Box>
     )
 }
