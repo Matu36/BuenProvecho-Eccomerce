@@ -125,8 +125,9 @@ export default function Productos() {
         />
         <h1 className="titleIngredients">Productos</h1>
       </div>
-      <Box maxWidth="50%">
-        <Table variant="striped" colorScheme="teal">
+      
+      <Box maxW= "120%">
+        <Table variant="striped" colorScheme="teal" width="100%" >
           <Thead>
             <Tr>
               {columns.map((column) => (
@@ -136,7 +137,7 @@ export default function Productos() {
           </Thead>
           <Tbody>
             {totalIngredients.map((row) => (
-              <Tr key={row.id}>
+              <Tr width= "10%" key={row.id}>
                 {columns.map((column) => (
                   <Td width="20%" key={`${row.id}-${column.field}`}>
                     {column.field === "Efectivo" &&
@@ -203,15 +204,20 @@ export default function Productos() {
                               <BiEditAlt />
                             </button>
                           </Box>
+                          
                         )}
                       </div>
+                      
                     )}
                   </Td>
                 ))}
               </Tr>
+              
             ))}
 
-            <Box width="100%">
+          </Tbody>
+        </Table>
+        <Box width="100%" marginBottom= "2rem">
               <br />
               {productos && (
                 <Paginacion
@@ -221,13 +227,12 @@ export default function Productos() {
                 />
               )}
             </Box>
-            <br />
-          </Tbody>
-        </Table>
         {/* <Box display= "flex" width="800px">
             <IngredientForm />
           </Box> */}
+      
       </Box>
-    </Box>
+      </Box>
+    
   );
 }
