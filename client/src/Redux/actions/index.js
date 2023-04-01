@@ -8,6 +8,7 @@ export const TOTAL_PRICE = "TOTAL_PRICE";
 export const GET_COMIDAS = "GET_COMIDAS";
 export const HOME_ADMIN_SHOW = "HOME_ADMIN_SHOW";
 export const RESET_ADMIN_SHOW = "RESET_ADMIN_SHOW";
+export const UPDATE_COMIDA = 'UPDATE_COMIDA';
 
 export const changeHomeAdminShow = (payload) => async (dispatch) => {
   return dispatch({ type: HOME_ADMIN_SHOW, payload: payload });
@@ -20,4 +21,19 @@ export const getComidas = () => async (dispatch) => {
     let response = await axios.get('http://localhost:3001/comidas');
     return dispatch({ type: GET_COMIDAS, payload: response.data });
     
+  };
+
+  export const updateComida = (comida) => {
+    return dispatch => {
+      axios.put('http://localhost:3001/comidas', comida)
+        .then(res => {
+          dispatch({
+            type: UPDATE_COMIDA,
+            payload: { ...comida }
+          });
+        })
+        .catch(error => {
+          console.log(error);
+        });
+    };
   };

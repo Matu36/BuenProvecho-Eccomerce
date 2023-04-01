@@ -14,16 +14,28 @@ import {
   MdAssignment,
   MdMail,
 } from "react-icons/md";
+import { FaHome } from 'react-icons/fa';
+import { useDispatch } from "react-redux";
+import { changeHomeAdminShow } from "../../Redux/actions";
 
-const categories = [
-  { label: "Productos", icon: MdShoppingBasket },
-  { label: "Usuarios", icon: MdPerson },
-  { label: "Ventas", icon: MdAttachMoney },
-  { label: "Ordenes", icon: MdAssignment },
-  { label: "Contacto", icon: MdMail },
-];
 
 const SideBarAdmin = () => {
+
+  const dispatch = useDispatch();
+
+  const handleHomeAdmin = (e) => {
+    dispatch(changeHomeAdminShow(e.target.textContent));
+  };
+
+  const categories = [
+    { label: "Home", icon: FaHome },
+    { label: "Productos", icon: MdShoppingBasket},
+    { label: "Usuarios", icon: MdPerson},
+    { label: "Ventas", icon: MdAttachMoney},
+    { label: "Ordenes", icon: MdAssignment},
+    { label: "Contacto", icon: MdMail },
+  ];
+
   const { colorMode } = useColorMode();
   const [activeCategory, setActiveCategory] = useState(categories[0]);
   const bgColor = colorMode === "light" ? "blue.400" : "gray.800";
@@ -58,10 +70,13 @@ const SideBarAdmin = () => {
       <Box flex="1" overflowY="auto" mt="8">
         <Stack spacing="4" mt="4" align="stretch">
           {categories.map((category) => (
-            <Box
+            <Box 
               key={category.label}
               as="button"
-              onClick={() => setActiveCategory(category)}
+              onClick={(e) => {
+                handleHomeAdmin(e);
+                setActiveCategory(category);
+              }}
               p="3"
               borderRadius="md"
               transition="background-color 0.2s"
