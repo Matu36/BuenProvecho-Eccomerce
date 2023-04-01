@@ -32,8 +32,32 @@ catch(error) {
   console.log(error);
   return res.status(500).send(error);
 }
-}
+};
+
+const createComida = async (req, res) => {
+  try {
+    if (!req.body?.Nombre || !req.body?.Efectivo || !req.body?.Imagen || !req.body?.Categoria) 
+    throw "No body params";
+
+    const { Nombre, Efectivo, Categoria, Imagen, MercadoPago } = req.body;
+
+    const generateNewId = async () => {
+      const maxId = await Comidas.max("id");
+      const newId = maxId ? maxId + 1 : 1;
+      return newId;
+    };
+
+    let id = await generateNewId();
+
+    let createdComida = await Comidas.create({ id, ...req.body });
+
+    return res.status(201).send(createdComida);
+  } catch (e) {
+    console.log(e);
+    return res.status(400).send(e);
+  }
+};
 
 module.exports = {
-    getComidas, putComidas
+    getComidas, putComidas, createComida
 }

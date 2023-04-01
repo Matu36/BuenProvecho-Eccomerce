@@ -54,9 +54,9 @@ export default function WidgetLg () {
             {/* {props.all ?  */}
             <Th>Email</Th> : null
             {/* } */}
-            <Th>Orden#</Th>
+            <Th>Orden</Th>
             <Th>Fecha</Th>
-            <Th>Ingrediente#</Th>
+            <Th>Comida</Th>
             <Th>Estado</Th>
             <Th>Acciones</Th>
           </Tr>

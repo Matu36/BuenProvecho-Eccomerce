@@ -1,5 +1,5 @@
 import {ADD_TO_CART, REMOVE_ONE_FROM_CART, REMOVE_ALL_FROM_CART, CLEAR_CART, TOTAL_PRICE,
-GET_COMIDAS, HOME_ADMIN_SHOW, RESET_ADMIN_SHOW, UPDATE_COMIDA}
+GET_COMIDAS, HOME_ADMIN_SHOW, RESET_ADMIN_SHOW, UPDATE_COMIDA, CREATE_COMIDA}
 from "../actions/index";
 
 const InitialState = {
@@ -98,7 +98,11 @@ function rootReducer (state=InitialState, action) {
           }
           return comida;
         });
+
         return { ...state, comidas: updatedComidas };
+
+        case CREATE_COMIDA:
+      return { ...state, comidas: [...state.comidas, action.payload] };
 
         default:
             return state;
