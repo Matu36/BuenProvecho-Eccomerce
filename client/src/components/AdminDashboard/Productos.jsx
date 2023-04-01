@@ -17,12 +17,13 @@ export default function Productos() {
       id: product.id,
       Nombre: product.Nombre,
       Efectivo: product.Efectivo,
-      Categorias: product.Categorias,
+      Categoria: product.Categoria,
       Imagen: product.Imagen,
       MercadoPago: product.MercadoPago
     };
   });
 
+  
   //SEARCHBAR
   const [search, setSearch] = useState("");
   const [ingredients, setIngredients] = useState(rows);
@@ -50,43 +51,6 @@ export default function Productos() {
 
   //FIN SEARCHBAR
 
-  //EDITAR PRECIO
-
-  const [editIndex, setEditIndex] = useState(null);
-  const [editPrice, setEditPrice] = useState(null);
-
-  const handleEdit = (index, price) => {
-    setEditIndex(index);
-    setEditPrice(price);
-  };
-
-  const handlePriceChange = (price) => {
-    setEditPrice(price);
-  };
-
-  const handleSave = (index) => {
-    const updatedComida = {
-      id: totalIngredients[index].id,
-      Efectivo: editPrice,
-    };
-    dispatch(updateComida(updatedComida));
-    setEditIndex(null);
-    setEditPrice(null);
-  };
-
-  const handleCancel = () => {
-    setEditIndex(null);
-    setEditPrice(null);
-  };
-
-  //FIN EDITAR PRECIO
-
-  const columns = [
-    { field: "id", headerName: "id", width: 5 },
-    { field: "Nombre", headerName: "Nombre", width: 130 },
-    { field: "Efectivo", headerName: "Efectivo", width: 130 },
-  ];
-
   //PAGINADO
 
   const [currentPage, setCurrentPage] = useState(1); //Pagina Actual seteada en 1
@@ -109,6 +73,47 @@ export default function Productos() {
   }, [ingredients, currentPage]);
 
   //FIN PAGINADO
+
+  //EDITAR PRECIO
+
+  const [editIndex, setEditIndex] = useState(null);
+  const [editPrice, setEditPrice] = useState(null);
+
+  const handleEdit = (index, price) => {
+    setEditIndex(index);
+    setEditPrice(price);
+  };
+
+  const handlePriceChange = (price) => {
+    setEditPrice(price);
+  };
+
+  const handleSave = (index) => {
+    const updatedComida = {
+      id: rows[index].id,
+      Efectivo: editPrice,
+    };
+    dispatch(updateComida(updatedComida));
+    setEditIndex(null);
+    setEditPrice(null);
+  };
+
+  const handleCancel = () => {
+    setEditIndex(null);
+    setEditPrice(null);
+  };
+
+  //FIN EDITAR PRECIO
+
+  const columns = [
+    { field: "id", headerName: "id", width: 5 },
+    { field: "Nombre", headerName: "Nombre", width: 130 },
+    { field: "Efectivo", headerName: "Efectivo", width: 130 },
+    { field: "Categoria", headerName: "Categoria", width: 130 },
+    
+  ];
+
+  
 
   return (
     <Box>
@@ -136,10 +141,10 @@ export default function Productos() {
             </Tr>
           </Thead>
           <Tbody>
-            {totalIngredients.map((row) => (
-              <Tr width= "10%" key={row.id}>
+            {totalIngredients.map((row, index) => (
+              <Tr width= "10%" key={index}>
                 {columns.map((column) => (
-                  <Td width="20%" key={`${row.id}-${column.field}`}>
+                  <Td width="20%" id={row.id}  key={`${row.id}-${column.field}`}>
                     {column.field === "Efectivo" &&
                     editPrice !== null &&
                     editIndex === row.id ? (
