@@ -1,10 +1,8 @@
 import {ADD_TO_CART, REMOVE_ONE_FROM_CART, REMOVE_ALL_FROM_CART, CLEAR_CART, TOTAL_PRICE,
-GET_COMIDAS, HOME_ADMIN_SHOW, RESET_ADMIN_SHOW}
+GET_COMIDAS, HOME_ADMIN_SHOW, RESET_ADMIN_SHOW, UPDATE_COMIDA}
 from "../actions/index";
 
 const InitialState = {
-
-    
 
     comidas: [],
 
@@ -92,6 +90,15 @@ function rootReducer (state=InitialState, action) {
         ...state,
         homeShow: InitialState.homeShow,
       };
+
+      case UPDATE_COMIDA:
+        const updatedComidas = state.comidas.map((comida) => {
+          if (comida.id === action.payload.id) {
+            return { ...comida, ...action.payload };
+          }
+          return comida;
+        });
+        return { ...state, comidas: updatedComidas };
 
         default:
             return state;
