@@ -4,15 +4,19 @@ import Paginacion from "./Paginación";
 import { BiEditAlt, BiSave } from "react-icons/bi";
 import { MdCancel } from "react-icons/md";
 import { updateComida } from "../../Redux/actions/index";
-import { Input } from "@chakra-ui/react";
-
+import { Button, Input } from "@chakra-ui/react";
+import FormProduct from "./FormProduct";
 import { Table, Thead, Tbody, Tr, Th, Td, Box } from "@chakra-ui/react";
+import {CgCloseO} from "react-icons/cg";
+
 
 export default function Productos() {
   let dispatch = useDispatch();
   const productos = useSelector((state) => state.comidas);
 
-  const rows = productos.map((product) => {
+  const sortedProductos = [...productos].sort((a, b) => a.id - b.id);
+
+  const rows = sortedProductos.map((product) => {
     return {
       id: product.id,
       Nombre: product.Nombre,
@@ -23,7 +27,17 @@ export default function Productos() {
     };
   });
 
-  
+  //MOSTRANDO EL FORMULARIO DE CREACION //
+
+  const [mostrarFormulario, setMostrarFormulario] = useState(false);
+  function handleMostrarFormulario() {
+    setMostrarFormulario(true);
+  }
+
+  function handleCerrarFormulario() {
+    setMostrarFormulario(false);
+  }
+
   //SEARCHBAR
   const [search, setSearch] = useState("");
   const [ingredients, setIngredients] = useState(rows);
@@ -117,7 +131,7 @@ export default function Productos() {
 
   return (
     <Box>
-      <div className="my-container">
+      <div style={{ display: "flex", alignItems: "center" }}>
         <Input
           type="text"
           placeholder="Buscar Comida "
@@ -128,8 +142,27 @@ export default function Productos() {
           background="white"
           margin="10px"
         />
-        <h1 className="titleIngredients">Productos</h1>
+        <Button marginLeft= "5rem" onClick={handleMostrarFormulario}>Agregar Comida</Button>
       </div>
+        <h1 className="titleIngredients">Productos</h1>
+        {mostrarFormulario && (
+        <div
+          style={{
+            position: "fixed",
+            top: "50%",
+            left: "62%",
+            transform: "translate(-50%, -50%)",
+            backgroundColor: "transparent",
+            padding: "10px",
+            zIndex: "999",
+          }}
+        >
+          <button fontSize= "2rem"  onClick={handleCerrarFormulario}><CgCloseO/></button>
+          <FormProduct />
+        </div>
+      )}
+    
+ 
       
       <Box maxW= "120%">
         <Table variant="striped" colorScheme="teal" width="100%" >
@@ -232,10 +265,6 @@ export default function Productos() {
                 />
               )}
             </Box>
-        {/* <Box display= "flex" width="800px">
-            <IngredientForm />
-          </Box> */}
-      
       </Box>
       </Box>
     

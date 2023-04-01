@@ -9,6 +9,7 @@ export const GET_COMIDAS = "GET_COMIDAS";
 export const HOME_ADMIN_SHOW = "HOME_ADMIN_SHOW";
 export const RESET_ADMIN_SHOW = "RESET_ADMIN_SHOW";
 export const UPDATE_COMIDA = 'UPDATE_COMIDA';
+export const CREATE_COMIDA = "CREATE_COMIDA";
 
 export const changeHomeAdminShow = (payload) => async (dispatch) => {
   return dispatch({ type: HOME_ADMIN_SHOW, payload: payload });
@@ -37,3 +38,19 @@ export const getComidas = () => async (dispatch) => {
         });
     };
   };
+
+  export const createComida = ({
+    Nombre,
+    Efectivo,
+    Categoria,
+    Imagen, 
+    MercadoPago
+  }) => dispatch => axios
+        .post('http://localhost:3001/comidas', {
+          Nombre,
+    Efectivo,
+    Categoria,
+    Imagen, 
+    MercadoPago
+        })
+        .then((payload) => dispatch({ type: CREATE_COMIDA, payload }));
