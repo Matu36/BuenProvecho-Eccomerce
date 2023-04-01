@@ -79,18 +79,18 @@ export default function Productos() {
   const [editIndex, setEditIndex] = useState(null);
   const [editPrice, setEditPrice] = useState(null);
 
-  const handleEdit = (index, price) => {
-    setEditIndex(index);
-    setEditPrice(price);
+  const handleEdit = (id, Efectivo) => {
+    setEditIndex(id);
+    setEditPrice(Efectivo);
   };
 
-  const handlePriceChange = (price) => {
-    setEditPrice(price);
+  const handlePriceChange = (Efectivo) => {
+    setEditPrice(Efectivo);
   };
 
-  const handleSave = (index) => {
+  const handleSave = (id) => {
     const updatedComida = {
-      id: rows[index].id,
+      id: id,
       Efectivo: editPrice,
     };
     dispatch(updateComida(updatedComida));
