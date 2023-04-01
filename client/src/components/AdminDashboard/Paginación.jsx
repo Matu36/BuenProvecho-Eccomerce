@@ -2,7 +2,7 @@ import React from "react";
 import { Button, HStack } from "@chakra-ui/react";
 
 export default function Paginations(props) {
-  const { numberOfPages, currentPage, handlePageNumber } = props;
+  const { numberOfPage, currentPage, handlePageNumber } = props;
 
   const handleClick = (pageNumber) => {
     handlePageNumber(pageNumber);
@@ -10,7 +10,7 @@ export default function Paginations(props) {
 
   const renderPageNumbers = () => {
     const pageNumbers = [];
-    for (let i = 1; i <= numberOfPages; i++) {
+    for (let i = 1; i <= numberOfPage; i++) {
       pageNumbers.push(i);
     }
 
@@ -28,8 +28,8 @@ export default function Paginations(props) {
   };
 
   const isFirstPage = currentPage === 1;
-  const isLastPage = currentPage === numberOfPages;
-  const hasMultiplePages = numberOfPages > 1;
+  const isLastPage = currentPage === numberOfPage;
+  const hasMultiplePages = numberOfPage > 1;
 
   return (
     <HStack spacing={2} mt={4}>
@@ -70,7 +70,7 @@ export default function Paginations(props) {
         size="sm"
         variant="ghost"
         colorScheme="gray"
-        onClick={() => handleClick(numberOfPages)}
+        onClick={() => handleClick(numberOfPage)}
       >
         Última
       </Button>

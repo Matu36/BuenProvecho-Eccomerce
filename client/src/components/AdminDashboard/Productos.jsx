@@ -125,7 +125,7 @@ export default function Productos() {
         />
         <h1 className="titleIngredients">Productos</h1>
       </div>
-      <Box maxWidth="80%">
+      <Box maxWidth="50%">
         <Table variant="striped" colorScheme="teal">
           <Thead>
             <Tr>
