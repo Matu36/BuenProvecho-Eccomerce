@@ -6,6 +6,7 @@ import {
   Input,
   InputGroup,
   InputLeftElement,
+  Button
 } from "@chakra-ui/react";
 import { SearchIcon } from "@chakra-ui/icons";
 import NavBar from "./NavBar";
@@ -17,6 +18,8 @@ import Card from "./Card";
 import Footer from "./Footer";
 import { useSelector, useDispatch } from "react-redux";
 import { getComidas } from "../Redux/actions";
+import MensajesUsuario from "./MensajesUsuario";
+import { CgCloseO } from "react-icons/cg";
 
 
 export default function Home() {
@@ -95,6 +98,19 @@ export default function Home() {
   }, [comidas]);
   //FIN AUTOCOMPLETE
 
+  //MENSAJES USUARIO//
+
+  const [mostrarFormulario, setMostrarFormulario] = useState(false);
+  function handleMostrarFormulario() {
+    setMostrarFormulario(true);
+  }
+
+  function handleCerrarFormulario() {
+    setMostrarFormulario(false);
+  }
+
+  //FIN MENSAJES DE USUARIO
+
   return (
     <Box >
 <Box borderWidth="0px" borderLeftWidth="40px" borderRightWidth="40px" solid
@@ -105,6 +121,7 @@ export default function Home() {
         setShowAbout={setShowAbout}
         setProducts= {setProducts} />
       </Box>
+      
       <Box marginTop={{base: "-3rem", md: "-3.5rem"}} marginLeft={{base: "2rem", md: "20rem"}} 
       maxWidth={{base: "80%", md:"40%"}}>
         <InputGroup borderRadius="5%">
@@ -138,8 +155,28 @@ export default function Home() {
             ))}
           </ul>
         </Box>
-
+        <Button marginLeft="40rem" onClick={handleMostrarFormulario}>
+          Dejanos tu Mensaje!
+        </Button>
         <Box>
+        {mostrarFormulario && (
+        <div
+          style={{
+            position: "fixed",
+            top: "50%",
+            left: "50%",
+            transform: "translate(-50%, -50%)",
+            backgroundColor: "white",
+            padding: "10px",
+            zIndex: "999",
+          }}
+        >
+          <button fontSize="2rem" onClick={handleCerrarFormulario}>
+            <CgCloseO />
+          </button>
+          <MensajesUsuario />
+        </div>
+      )}
         {filteredComidas.map((comida, index) => (
           <Card 
             id={comida.id}
@@ -189,6 +226,9 @@ export default function Home() {
           />
         </Box>
       </Box>
+      <Box>
+
+       </Box>
 
       <Box
       
@@ -219,6 +259,7 @@ export default function Home() {
       </Box>
       </Box>
       <Box display={{md:"none"}}>
+        
 
 <Footer setShowAbout={setShowAbout}/>
       </Box>

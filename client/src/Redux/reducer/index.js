@@ -1,5 +1,6 @@
-import {ADD_TO_CART, REMOVE_ONE_FROM_CART, REMOVE_ALL_FROM_CART, CLEAR_CART, TOTAL_PRICE,
-GET_COMIDAS, HOME_ADMIN_SHOW, RESET_ADMIN_SHOW, UPDATE_COMIDA, CREATE_COMIDA}
+import {ADD_TO_CART, REMOVE_ONE_FROM_CART, REMOVE_ALL_FROM_CART, CLEAR_CART, 
+  TOTAL_PRICE,GET_COMIDAS, HOME_ADMIN_SHOW, RESET_ADMIN_SHOW, UPDATE_COMIDA, 
+  CREATE_COMIDA, GET_USERS, GET_MENSAJES, MENSAJE_CREADO }
 from "../actions/index";
 
 const InitialState = {
@@ -11,6 +12,10 @@ const InitialState = {
     totalPrice: 0,
 
     homeShow: "Home",
+
+    users: [],
+
+    mensajes: []
 }
 
 function rootReducer (state=InitialState, action) {
@@ -103,6 +108,20 @@ function rootReducer (state=InitialState, action) {
 
         case CREATE_COMIDA:
       return { ...state, comidas: [...state.comidas, action.payload] };
+
+      case GET_USERS:
+      return {
+        ...state,
+        users: action.payload,
+      };
+
+      case GET_MENSAJES:
+      return { ...state, mensajes: action.payload };
+
+      case MENSAJE_CREADO:
+      return { ...state, mensajes: [...state.mensajes, action.payload] };
+
+      
 
         default:
             return state;

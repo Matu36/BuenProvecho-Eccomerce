@@ -10,6 +10,11 @@ export const HOME_ADMIN_SHOW = "HOME_ADMIN_SHOW";
 export const RESET_ADMIN_SHOW = "RESET_ADMIN_SHOW";
 export const UPDATE_COMIDA = 'UPDATE_COMIDA';
 export const CREATE_COMIDA = "CREATE_COMIDA";
+export const DELETE_COMIDA_SUCCESS = "DELETE_COMIDA_SUCCESS";
+export const GET_USERS = "GET_USERS";
+export const GET_MENSAJES = "GET_MENSAJES";
+export const MENSAJE_CREADO = "MENSAJE_CREADO";
+
 
 export const changeHomeAdminShow = (payload) => async (dispatch) => {
   return dispatch({ type: HOME_ADMIN_SHOW, payload: payload });
@@ -54,3 +59,41 @@ export const getComidas = () => async (dispatch) => {
     MercadoPago
         })
         .then((payload) => dispatch({ type: CREATE_COMIDA, payload }));
+        
+
+        export const deleteComida = (id) => async (dispatch) => {
+          return await axios.delete('http://localhost:3001/comidas', { data: { id } });
+        };
+
+        export const getUsers = 
+        (currentUser) => {
+          let user;
+          if (currentUser) {
+            user = {
+              id: currentUser.id,
+              email: currentUser.email,
+            };
+          }
+          return async (dispatch) => {
+            try {
+              const response = await axios.get('http://localhost:3001/users', { params: user });
+              dispatch({ type: GET_USERS, payload: response.data });
+            } catch (error) {
+              console.log(error);
+            }
+          };
+        };
+
+        export const getMensajes = () => async (dispatch) => {
+          let response = await axios.get('http://localhost:3001/mensajes');
+          return dispatch({ type: GET_MENSAJES, payload: response.data });
+          
+        };
+
+        export const crearMensaje = (mensaje) => async (dispatch) => {
+         
+            const { data } = await axios.post('http://localhost:3001/mensajes',
+             mensaje);
+            dispatch({ type: MENSAJE_CREADO, payload: data });
+          
+        };

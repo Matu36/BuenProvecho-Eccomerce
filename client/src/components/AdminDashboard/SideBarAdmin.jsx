@@ -33,7 +33,7 @@ const SideBarAdmin = () => {
     { label: "Usuarios", icon: MdPerson},
     { label: "Ventas", icon: MdAttachMoney},
     { label: "Ordenes", icon: MdAssignment},
-    { label: "Contacto", icon: MdMail },
+    { label: "Mensajes", icon: MdMail },
   ];
 
   const { colorMode } = useColorMode();
