@@ -9,6 +9,7 @@ export default function Mensajes () {
 
     const message = mensajes.map((product) => {
         return {
+         
           email: product.email,
           Nombre: product.Nombre,
           Mensaje: product.Mensaje
@@ -42,8 +43,8 @@ export default function Mensajes () {
   //FIN PAGINADO
 
     return (
-        <Box bg="gray.100" p={4} borderRadius="lg" maxW="800px">
-        {message.map((msg, index) => (
+        <Box bg="gray.100" p={4} borderRadius="lg">
+        {totalIngredients.map((msg, index) => (
           <Box key={index} mb={4}>
           <Text fontWeight="bold">{msg.Nombre}</Text>
           <Text>{msg.email}</Text>
@@ -54,7 +55,7 @@ export default function Mensajes () {
     
 <Box width="100%" marginBottom="2rem">
           <br />
-          {mensajes && (
+          {message && (
             <Paginacion
               currentPage={currentPage}
               numberOfPage={numberOfPage}
