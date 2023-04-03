@@ -27,14 +27,15 @@ export default function MensajesUsuario() {
         icon: "success",
         title: "El mensaje ha sido enviado",
         showConfirmButton: false,
-        timer: 4000,
+        timer: 3000,
       });
-      window.location.reload();
+      
       setMensaje({
         Nombre: "",
         email: "",
         Mensaje: "",
       });
+
     } else {
       Swal.fire({
         position: "center",
