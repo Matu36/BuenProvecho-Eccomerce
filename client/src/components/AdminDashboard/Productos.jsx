@@ -3,12 +3,21 @@ import { useDispatch, useSelector } from "react-redux";
 import Paginacion from "./Paginación";
 import { BiEditAlt, BiSave } from "react-icons/bi";
 import { MdCancel } from "react-icons/md";
-import { updateComida } from "../../Redux/actions/index";
+import { updateComida, deleteComida } from "../../Redux/actions/index";
 import { Button, Input } from "@chakra-ui/react";
 import FormProduct from "./FormProduct";
-import { Table, Thead, Tbody, Tr, Th, Td, Box } from "@chakra-ui/react";
-import {CgCloseO} from "react-icons/cg";
-
+import {
+  Table,
+  Thead,
+  Tbody,
+  Tr,
+  Th,
+  Td,
+  Box,
+  
+} from "@chakra-ui/react";
+import { CgCloseO } from "react-icons/cg";
+import { DeleteIcon } from "@chakra-ui/icons";
 
 export default function Productos() {
   let dispatch = useDispatch();
@@ -23,7 +32,7 @@ export default function Productos() {
       Efectivo: product.Efectivo,
       Categoria: product.Categoria,
       Imagen: product.Imagen,
-      MercadoPago: product.MercadoPago
+      MercadoPago: product.MercadoPago,
     };
   });
 
@@ -65,12 +74,18 @@ export default function Productos() {
 
   //FIN SEARCHBAR
 
+  const handleDelete = (id) => {
+    if (window.confirm("¿Estás seguro de que quieres eliminar esta comida?")) {
+      dispatch(deleteComida(id));
+      window.location.reload();
+    }
+  };
+
   //PAGINADO
 
   const [currentPage, setCurrentPage] = useState(1); //Pagina Actual seteada en 1
   const [numberOfPage, setNumberOfPage] = useState(0); //Numero de Paginas seteado en 0
   const [totalIngredients, setTotalIngredients] = useState(rows);
-
 
   const indexFirstPageIngredient = () => (currentPage - 1) * 9; // Indice del primer Elemento
   const indexLastPageIngredient = () => indexFirstPageIngredient() + 9; //Indice del segundo elemento
@@ -124,10 +139,15 @@ export default function Productos() {
     { field: "Nombre", headerName: "Nombre", width: 130 },
     { field: "Efectivo", headerName: "Efectivo", width: 130 },
     { field: "Categoria", headerName: "Categoria", width: 130 },
-    
+    {
+      field: "Acciones",
+      headerName: "Acciones",
+      width: 130,
+      renderCell: (id) => (
+        <button onClick={() => handleDelete(id)}>Eliminar</button>
+      ),
+    },
   ];
-
-  
 
   return (
     <Box>
@@ -142,30 +162,32 @@ export default function Productos() {
           background="white"
           margin="10px"
         />
-        <Button marginLeft= "5rem" onClick={handleMostrarFormulario}>Agregar Comida</Button>
+        <Button marginLeft="5rem" onClick={handleMostrarFormulario}>
+          Agregar Comida
+        </Button>
       </div>
-        <h1 className="titleIngredients">Productos</h1>
-        {mostrarFormulario && (
+      <h1 className="titleIngredients">Productos</h1>
+      {mostrarFormulario && (
         <div
           style={{
             position: "fixed",
             top: "50%",
             left: "62%",
             transform: "translate(-50%, -50%)",
-            backgroundColor: "transparent",
+            backgroundColor: "white",
             padding: "10px",
             zIndex: "999",
           }}
         >
-          <button fontSize= "2rem"  onClick={handleCerrarFormulario}><CgCloseO/></button>
+          <button fontSize="2rem" onClick={handleCerrarFormulario}>
+            <CgCloseO />
+          </button>
           <FormProduct />
         </div>
       )}
-    
- 
-      
-      <Box maxW= "120%">
-        <Table variant="striped" colorScheme="teal" width="100%" >
+
+      <Box maxW="120%">
+        <Table variant="striped" colorScheme="teal" width="100%">
           <Thead>
             <Tr>
               {columns.map((column) => (
@@ -175,9 +197,9 @@ export default function Productos() {
           </Thead>
           <Tbody>
             {totalIngredients.map((row, index) => (
-              <Tr width= "10%" key={index}>
+              <Tr width="10%" key={index}>
                 {columns.map((column) => (
-                  <Td width="20%" id={row.id}  key={`${row.id}-${column.field}`}>
+                  <Td width="20%" id={row.id} key={`${row.id}-${column.field}`}>
                     {column.field === "Efectivo" &&
                     editPrice !== null &&
                     editIndex === row.id ? (
@@ -242,31 +264,37 @@ export default function Productos() {
                               <BiEditAlt />
                             </button>
                           </Box>
-                          
+                        )}
+
+                        {column.field === "Acciones" && (
+                          <Box ml="auto">
+                            <button
+                              style={{ fontSize: "24px", marginLeft: "-5rem" }}
+                              onClick={() => handleDelete(row.id)} // aquí se pasa el ID
+                            >
+                              <DeleteIcon />
+                            </button>
+                          </Box>
                         )}
                       </div>
-                      
                     )}
                   </Td>
                 ))}
               </Tr>
-              
             ))}
-
           </Tbody>
         </Table>
-        <Box width="100%" marginBottom= "2rem">
-              <br />
-              {productos && (
-                <Paginacion
-                  currentPage={currentPage}
-                  numberOfPage={numberOfPage}
-                  handlePageNumber={handlePageNumber}
-                />
-              )}
-            </Box>
+        <Box width="100%" marginBottom="2rem">
+          <br />
+          {productos && (
+            <Paginacion
+              currentPage={currentPage}
+              numberOfPage={numberOfPage}
+              handlePageNumber={handlePageNumber}
+            />
+          )}
+        </Box>
       </Box>
-      </Box>
-    
+    </Box>
   );
 }

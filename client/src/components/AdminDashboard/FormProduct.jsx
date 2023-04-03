@@ -2,7 +2,7 @@ import React, { useState} from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {createComida} from "../../Redux/actions/index";
 import { Input, FormLabel, Button } from "@chakra-ui/react";
-import { Box, Text, HStack, FormControl, Select, InputGroup, InputLeftAddon, 
+import { Box, HStack, FormControl, Select, InputGroup, InputLeftAddon, 
     NumberInput, NumberInputField, Center } from "@chakra-ui/react";
 import Swal from "sweetalert2";
 
@@ -31,6 +31,7 @@ const categorias = [...new Set(comidas.map((comida) => comida.Categoria))];
 
       const newIngredient = {
         ...ingredient,
+       
         
       };
       dispatch(createComida(newIngredient));
@@ -73,18 +74,18 @@ const categorias = [...new Set(comidas.map((comida) => comida.Categoria))];
   opacity="0.9"
   borderBlockEndColor="ActiveBorder"
 >
-  <Text
+  {/* <Text
     fontSize={{ base: "20px", md: "30px", lg: "46px" }}
     textAlign="center"
     fontWeight="bold"
     color="teal.600"
-    backgroundColor="yellow.200"
+    backgroundColor="blue.200"
     opacity="0.5"
     mb="5px"
     
   >
     Agregar Comida
-  </Text>
+  </Text> */}
 
   <HStack spacing="24px">
     <Box>
@@ -125,12 +126,12 @@ const categorias = [...new Set(comidas.map((comida) => comida.Categoria))];
         <InputGroup>
           <InputLeftAddon children="$" />
           <NumberInput
-            name="price"
+            name="Efectivo"
             value={ingredient.Efectivo}
             autoComplete="off"
             placeholder="Precio "
-            onChange={(e) =>
-              setIngredient({ ...ingredient, Efectivo: e.target.value })
+            onChange={(value) =>
+              setIngredient({ ...ingredient, Efectivo: parseInt(value) || '' })
             }
           >
             <NumberInputField />
@@ -138,6 +139,7 @@ const categorias = [...new Set(comidas.map((comida) => comida.Categoria))];
         </InputGroup>
       </FormControl>
 
+      
       <FormControl>
         <FormLabel>Imagen</FormLabel>
         <Input
@@ -155,12 +157,12 @@ const categorias = [...new Set(comidas.map((comida) => comida.Categoria))];
         <InputGroup>
           <InputLeftAddon children="$" />
           <NumberInput
-            name="stock"
+            name="MercadoPago"
             value={ingredient.MercadoPago}
             autoComplete="off"
             placeholder="MercadoPago "
-            onChange={(e) =>
-              setIngredient({ ...ingredient, MercadoPago: e.target.value })
+            onChange={(value) =>
+              setIngredient({ ...ingredient, MercadoPago: parseInt(value) || '' })
             }
           >
             <NumberInputField />

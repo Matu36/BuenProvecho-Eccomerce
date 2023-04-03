@@ -6,18 +6,22 @@ import Chart from "./Chart";
 import { data } from "./UserData";
 import WidgetSm from "./WidgetSm";
 import WidgetLg from "./WidgetLg";
-import {getComidas} from "../../Redux/actions/index";
+import {getComidas, getMensajes} from "../../Redux/actions/index";
 import Productos from "./Productos";
+import { getUsers } from "../../Redux/actions/index";
+import Mensajes from "./Mensajes";
 
 
 export default function HomeAdmin () {
 
-  // let currentUser = JSON.parse(localStorage.getItem("MANGIARE_user"));
+  let currentUser = JSON.parse(localStorage.getItem("MANGIARE_user"));
   const dispatch = useDispatch();
   const homeShow = useSelector((state) => state.homeShow);
 
    useEffect(() => {
     dispatch(getComidas());
+    dispatch(getUsers(currentUser));
+    dispatch(getMensajes())
     }, []);
 
     /*
@@ -42,6 +46,7 @@ export default function HomeAdmin () {
         <Box>
           
           {homeShow === "Productos" && <Productos />}
+          {homeShow === "Mensajes" && <Mensajes />}
           {homeShow === "Home" && (
           <Box>
 <FeaturedInfo />

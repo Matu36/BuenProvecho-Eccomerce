@@ -1,5 +1,6 @@
 const {Comidas} = require ("../db.js");
 
+
 const getComidas = async (req, res) => {
     try{
       let com = await Comidas.findAll();
@@ -58,6 +59,23 @@ const createComida = async (req, res) => {
   }
 };
 
+const deleteComida = async (req, res) => {
+  try {
+    const { id } = req.body;
+    await Comidas.destroy({
+      where: {
+        id,
+        
+      },
+    });
+
+    res.status(200).send("Comida eliminada exitosamente");
+  } catch (error) {
+    console.log(error);
+    res.status(400).send(error);
+  }
+};
+
 module.exports = {
-    getComidas, putComidas, createComida
+    getComidas, putComidas, createComida, deleteComida
 }
