@@ -3,8 +3,9 @@ import { Box, Button, Image, Icon, Alert, AlertIcon } from "@chakra-ui/react";
 import {GiMoneyStack, GiShoppingCart} from "react-icons/gi";
 import { useDispatch } from "react-redux";
 import { ADD_TO_CART } from "../Redux/actions";
+import {AiOutlineCloseCircle} from "react-icons/ai";
 
-export default function Card ({id, Imagen, Nombre, Efectivo }) {
+export default function Card ({id, Imagen, Nombre, Efectivo, onClose }) {
   const dispatch = useDispatch();
   const [showAlert, setShowAlert] = useState(false);
 
@@ -17,12 +18,12 @@ export default function Card ({id, Imagen, Nombre, Efectivo }) {
   };
   
   return (
-    <Box
+    <Box 
     maxW="50%"
     overflow="hidden"
     boxShadow="md"
     mx="auto"
-    mt="4"
+    mt="3rem"
     border="2px solid #8B4513"
     borderRadius="lg"
     _hover={{
@@ -34,11 +35,14 @@ export default function Card ({id, Imagen, Nombre, Efectivo }) {
     }}
             
           >
+            {onClose && <Button  display= "flex" background= "none"  flexDirection= "row-reverse"  alignContent= "flex-end"
+            justifyContent= "flex-start" _hover={{background: "none", color: "white"}}  fontSize= "30px"   marginLeft= "10.8rem" onClick={onClose}><AiOutlineCloseCircle /></Button>}
+             
             <Image src= {Imagen}
               maxH="300px"
               maxW="100%"
-              
-              width="200px"
+              marginTop= "-2.5rem"
+              width="100%"
               height="200px"
               objectFit="cover"
               borderRadius="lg"

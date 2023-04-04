@@ -15,7 +15,7 @@ import {
   GiFishEggs,
   GiFullPizza,
   GiChickenLeg,
-  GiFrenchFries
+  GiFrenchFries,
 } from "react-icons/gi";
 import { TbSalad, TbIceCream } from "react-icons/tb";
 import { BiDrink, BiDish } from "react-icons/bi";
@@ -33,11 +33,13 @@ import {
   DrawerBody,
   Button,
 } from "@chakra-ui/react";
+import {BiMessageDetail} from "react-icons/bi";
 import { HamburgerIcon } from "@chakra-ui/icons";
 import { GiShoppingCart } from "react-icons/gi";
+import AuthButton from "./Auth0";
 
 
-export default function NavBar({ setShowAbout, setProducts }) {
+export default function NavBar({ setShowAbout, setProducts, handleMostrarFormulario }) {
   const [activeCategory, setActiveCategory] = useState(null);
 
 const FoodResponsive = useSelector (state => state.comidas);
@@ -74,7 +76,7 @@ const FoodResponsive = useSelector (state => state.comidas);
           px={8}
           
           display={{ base: "flex", md: "flex" }}
-          justifyContent={{ base: "space-between", md: "flex-start" }}
+          justifyContent={{ base: "space-between" }}
         >
           <Box display="flex" alignItems="center">
             {/* Responsivo icon hamburguer */}
@@ -205,20 +207,26 @@ const FoodResponsive = useSelector (state => state.comidas);
             {/* Fin Responsivo icon hamburguer */}
             
       
-      <DarkMode display= {{base: "none", md: "inline-flex"}}/>
+            </Box>
+<Box marginLeft= "-2rem">
+      <DarkMode display= {{base: "none", md: "inline-flex"}}
+      />
+      <Button background= "none" marginLeft={{base: "none", md: "inline-flex"}} _hover={{background: "none"}} onClick={handleMostrarFormulario}>
+          <BiMessageDetail />
+      </Button>
 
       
     
   
             <Button display= {{base: "none", md: "inline-flex"}}
-              variant="ghost"
+              variant="ghost" fontSize= "22px"
               color="white"
               mr={2}
               onClick={() => window.location.reload()}
             >
-              Inicio
+              <FaHome />
             </Button>
-            <Button as="a"
+            <Button as="a" 
                      href="#About" display= {{base: "none", md: "inline-flex"}} variant="ghost" color="white" mr={2} onClick= {handleAboutClick}>
               Sobre Nosotros
             </Button>
@@ -231,9 +239,10 @@ const FoodResponsive = useSelector (state => state.comidas);
             maxWidth={{ base: "100px", md: "400px" }}
           >
             {/* <SearchBar /> */}
-          </Box>
+            </Box>
+          
 
-          <Box display="flex" alignItems="center"  mr={{ base: -12, md: 4 }}
+          <Box display="flex" alignItems="center"  mr={{ base: -12, md: 1 }}
            >
             <Box display="flex" alignItems="center" >
             <Link to="/sCart">
@@ -282,7 +291,16 @@ const FoodResponsive = useSelector (state => state.comidas);
                 icon={<FaWhatsapp />}
                 colorScheme={buttonColorScheme}
               />
+             
+  
+
             </Box>
+            
+          </Box>
+          <Box>
+
+            
+          <AuthButton />
           </Box>
         </Flex>
       </Box>
