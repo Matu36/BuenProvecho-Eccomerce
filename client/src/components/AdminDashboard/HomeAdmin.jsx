@@ -21,7 +21,6 @@ export default function HomeAdmin () {
 
    useEffect(() => {
     dispatch(getComidas());
-    
     dispatch(getMensajes())
     }, []);
 

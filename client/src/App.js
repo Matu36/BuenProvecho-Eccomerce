@@ -12,7 +12,7 @@ const Auth0ProviderConfig = {
   clientId: "g4Cw4zVyvVGWDkq8HCFfWL2J451RRgzG",
   redirectUri: window.location.origin
 };
-
+//// render={() => isAuthenticated ? <AppAdmin /> : <Home /> } />
 
 function App() {
 
@@ -24,7 +24,8 @@ return (
       <Route exact path={"/"} element={<Home />} />
       <Route exact path={"/"} element={<NavBar />} />
       <Route exact path={"/Scart"} element={<ShoppingCart />} />
-      <Route exact path={"/admin"} render={() => isAuthenticated ? <AppAdmin /> : <Home /> } />
+      <Route exact path={"/admin"} element= {<AppAdmin/>} />
+      
     </Routes>
     </Auth0Provider>
   );
