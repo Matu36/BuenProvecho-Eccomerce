@@ -22,6 +22,7 @@ import MensajesUsuario from "./MensajesUsuario";
 import { CgCloseO } from "react-icons/cg";
 
 
+
 export default function Home() {
   //RENDERIZADO DE CARTA EN EL FILTRO DE CATEGORIA
   const [products, setProducts] = useState([]);
@@ -62,11 +63,11 @@ export default function Home() {
     setAutocompleteOptions(options);
   };
 
-  const handleInputKeyDown = (event) => {
+   const handleInputKeyDown = (event) => {
     if (event.key === "Enter") {
       handleSearch();
     }
-  };
+  }; 
 
   const handleSearch = () => {
     const filteredComidas = Food.filter((comida) => {
@@ -77,10 +78,10 @@ export default function Home() {
 
   const handleComidaClick = (comida) => {
     setSelectedComida(comida);
-    handleReset();
-    setSearchTerm("");
+    setSearchTerm(comida.Nombre);
     setFilteredComidas([]);
-}
+    setAutocompleteOptions([]);
+  };
 
   const handleReset = () => {
     setSearchTerm("");
@@ -96,6 +97,10 @@ export default function Home() {
   useEffect(() => {
     dispatch(getComidas());
   }, [comidas]);
+
+  const handleResetComidaSeleccionada = () => {
+    setSelectedComida(null);
+  };
   //FIN AUTOCOMPLETE
 
   //MENSAJES USUARIO//
@@ -118,12 +123,13 @@ export default function Home() {
 >
       <Box>
         <NavBar 
+        handleMostrarFormulario= {handleMostrarFormulario}
         setShowAbout={setShowAbout}
         setProducts= {setProducts} />
       </Box>
       
       <Box marginTop={{base: "-3rem", md: "-3.5rem"}} marginLeft={{base: "2rem", md: "20rem"}} 
-      maxWidth={{base: "80%", md:"40%"}}>
+      maxWidth={{base: "80%", md:"40%"}} zIndex= "2">
         <InputGroup borderRadius="5%">
           <InputLeftElement
             pointerEvents="none"
@@ -139,25 +145,26 @@ export default function Home() {
           />
         </InputGroup>
         <button onClick={handleSearch}></button>
-        <Box marginTop="-1rem" height="30px" overflow-y="auto">
+        <Box marginTop="-1rem" height="30px" overflow-y="auto"
+        zIndex= "1">
           <ul>
             {autocompleteOptions.map((comida) => (
-              <Text
-                marginLeft="2rem"
-                zIndex="3"
+              <Text background= "white" width= "100%"
+                paddingLeft="1rem"
+                zIndex="2"
+                fontWeight= "bold"
                 fontSize="16px"
-                
                 key={comida.id}
                 onClick={() => handleComidaClick(comida)}
+                style={{ cursor: 'pointer' }}
               >
                 {comida.Nombre}
               </Text>
             ))}
           </ul>
         </Box>
-        <Button marginLeft="40rem" onClick={handleMostrarFormulario}>
-          Dejanos tu Mensaje!
-        </Button>
+       
+        {/*  */}
         <Box>
         {mostrarFormulario && (
         <div
@@ -176,19 +183,24 @@ export default function Home() {
           </button>
           <MensajesUsuario />
         </div>
+        
       )}
-        {filteredComidas.map((comida, index) => (
-          <Card 
-            id={comida.id}
-            key={index}
-            onClick={() => handleComidaClick(comida)}
-            Imagen ={comida.Imagen}
-            alt={comida.Nombre}
-            Nombre={comida.Nombre}
-            Efectivo={comida.Efectivo}
-          />
-        ))}
-        </Box>
+      </Box>
+        {selectedComida && (
+          // <Box marginTop= "3rem">
+           
+  <Card 
+    id={selectedComida.id}
+    Imagen ={selectedComida.Imagen}
+    alt={selectedComida.Nombre}
+    Nombre={selectedComida.Nombre}
+    Efectivo={selectedComida.Efectivo}
+    onClose= {handleResetComidaSeleccionada}
+  />
+  
+  // </Box>
+)}
+        
       </Box>
       {showAbout ? <About /> : null}
       <Box id="About"
@@ -204,6 +216,7 @@ export default function Home() {
         overflow="auto"
       >
         <Sidebar setProducts={setProducts} />
+        
       </Box>
       <Box
         mt={{ base: "-20rem", md: "-10rem" }}
@@ -238,7 +251,8 @@ export default function Home() {
       >
         {RandomSlider()}
       </Box>
-      <Box
+      
+      <Box 
         id="Cartas"
         maxW="sm"
         overflow="hidden"

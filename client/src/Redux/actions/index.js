@@ -65,24 +65,13 @@ export const getComidas = () => async (dispatch) => {
           return await axios.delete('http://localhost:3001/comidas', { data: { id } });
         };
 
-        export const getUsers = 
-        (currentUser) => {
-          let user;
-          if (currentUser) {
-            user = {
-              id: currentUser.id,
-              email: currentUser.email,
-            };
-          }
-          return async (dispatch) => {
-            try {
-              const response = await axios.get('http://localhost:3001/users', { params: user });
-              dispatch({ type: GET_USERS, payload: response.data });
-            } catch (error) {
-              console.log(error);
-            }
-          };
-        };
+        export const getUsers = currentUser => {
+          console.log('Usuario', currentUser);
+
+          return dispatch => 
+              axios.get('http://localhost:3001/users', { params: currentUser})
+                .then(response => dispatch({ type: GET_USERS, payload: response.data }))
+        }
 
         export const getMensajes = () => async (dispatch) => {
           let response = await axios.get('http://localhost:3001/mensajes');
