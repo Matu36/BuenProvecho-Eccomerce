@@ -146,9 +146,10 @@ const categorias = [...new Set(comidas.map((comida) => comida.Categoria))];
           type="file"
           name="imagen"
           accept="image/png, image/jpeg, image/jpg"
-          onChange={(e) =>
+          onChange={(e) => {
+            console.log (e.target.files[0]);
             setIngredient({ ...ingredient, Imagen: e.target.files[0] })
-          }
+          }}
         />
       </FormControl>
 

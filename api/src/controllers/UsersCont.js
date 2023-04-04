@@ -4,6 +4,7 @@ const getUsers = async (req, res) => {
   try {
     if (!req.query?.id || !req.query?.email) throw "No query params";
 
+    console.log(req.query);
     let requestUser = await Users.findOne({
       where: { id: req.query.id, email: req.query.email },
     });

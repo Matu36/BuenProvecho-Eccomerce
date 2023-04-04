@@ -20,6 +20,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { getComidas } from "../Redux/actions";
 import MensajesUsuario from "./MensajesUsuario";
 import { CgCloseO } from "react-icons/cg";
+import AuthButton from "./Auth0";
 
 
 export default function Home() {
@@ -155,7 +156,7 @@ export default function Home() {
             ))}
           </ul>
         </Box>
-        <Button marginLeft="40rem" onClick={handleMostrarFormulario}>
+        <Button marginLeft={{base: "8rem", md: "40rem"}} onClick={handleMostrarFormulario}>
           Dejanos tu Mensaje!
         </Button>
         <Box>
