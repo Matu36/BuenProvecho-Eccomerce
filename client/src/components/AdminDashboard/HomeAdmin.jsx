@@ -6,7 +6,7 @@ import Chart from "./Chart";
 import { data } from "./UserData";
 import WidgetSm from "./WidgetSm";
 import WidgetLg from "./WidgetLg";
-import {getComidas, getMensajes} from "../../Redux/actions/index";
+import {getComidas, getMensajes, getUsers} from "../../Redux/actions/index";
 import Productos from "./Productos";
 // import { getUsers } from "../../Redux/actions/index";
 import Mensajes from "./Mensajes";
@@ -22,6 +22,7 @@ export default function HomeAdmin () {
    useEffect(() => {
     dispatch(getComidas());
     dispatch(getMensajes())
+    dispatch(getUsers({id:1 , email: 'matipineda857@gmail.com'}))
     }, []);
 
     /*

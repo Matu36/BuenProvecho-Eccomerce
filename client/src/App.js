@@ -5,18 +5,17 @@ import Home from './components/Home';
 import ShoppingCart from "../src/components/ShoppingCart/ShoppingCart/ShoppingCart"
 import AppAdmin from './components/AdminDashboard/AppAdmin';
 import { Auth0Provider } from "@auth0/auth0-react";
-import { useAuth0 } from "@auth0/auth0-react";
 
-const Auth0ProviderConfig = {
+
+export const Auth0ProviderConfig = {
   domain: "dev-kpt3n5qs35pzlkke.us.auth0.com",
   clientId: "g4Cw4zVyvVGWDkq8HCFfWL2J451RRgzG",
   redirectUri: window.location.origin
 };
-//// render={() => isAuthenticated ? <AppAdmin /> : <Home /> } />
+
 
 function App() {
 
-const {isAuthenticated} = useAuth0();
 return (
 
     <Auth0Provider {...Auth0ProviderConfig}>

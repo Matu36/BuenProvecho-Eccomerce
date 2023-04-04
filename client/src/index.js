@@ -7,6 +7,7 @@ import { ChakraProvider, ColorModeScript } from "@chakra-ui/react";
 import {store} from "../src/Redux/store/index";
 import { Provider } from "react-redux";
 
+
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
