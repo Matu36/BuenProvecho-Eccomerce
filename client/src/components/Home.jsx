@@ -128,8 +128,8 @@ export default function Home() {
         setProducts= {setProducts} />
       </Box>
       
-      <Box marginTop={{base: "-3rem", md: "-3.5rem"}} marginLeft={{base: "2rem", md: "20rem"}} 
-      maxWidth={{base: "80%", md:"40%"}} zIndex= "2">
+      <Box marginTop={{base: "-3rem", md: "-3.5rem"}} marginLeft={{base: "2rem", md: "25rem"}} 
+      maxWidth={{base: "80%", md:"30%"}} zIndex= "2">
         <InputGroup borderRadius="5%">
           <InputLeftElement
             pointerEvents="none"
@@ -145,7 +145,7 @@ export default function Home() {
           />
         </InputGroup>
         <button onClick={handleSearch}></button>
-        <Box marginTop="-1rem" height="30px" overflow-y="auto"
+        <Box marginTop="-1em" height="30px" overflow-y="auto"
         zIndex= "1">
           <ul>
             {autocompleteOptions.map((comida) => (
