@@ -19,7 +19,7 @@ export default function Card ({id, Imagen, Nombre, Efectivo, onClose }) {
   
   return (
     <Box 
-    maxW="50%"
+    maxW={{base: "80%", md:"50%"}}
     overflow="hidden"
     boxShadow="md"
     mx="auto"
@@ -39,7 +39,7 @@ export default function Card ({id, Imagen, Nombre, Efectivo, onClose }) {
             justifyContent= "flex-start" _hover={{background: "none", color: "white"}}  fontSize= "30px"   marginLeft= "10.8rem" onClick={onClose}><AiOutlineCloseCircle /></Button>}
              
             <Image src= {Imagen}
-              maxH="300px"
+              maxH="100%"
               maxW="100%"
               marginTop= "-2.5rem"
               width="100%"

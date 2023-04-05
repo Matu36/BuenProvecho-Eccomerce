@@ -256,7 +256,7 @@ export default function NavBar({
               color="white"
               title="Envianos tu Mensaje!"
               fontSize="22px"
-              
+              display={{base:"none", md: "inline"}}
               marginLeft={{ base: "none", md: "inline-flex" }}
               
               onClick={handleMostrarFormulario}
@@ -297,7 +297,7 @@ export default function NavBar({
             {/* <SearchBar /> */}
           </Box>
 
-          <Box display="flex" alignItems="center" mr={{ base: -12, md: 1 }}>
+          <Box  display="flex" alignItems="center" mr={{ base: -11, md: 14 }}>
             <Box display="flex" alignItems="center">
               <Link to="/sCart">
                 <IconButton
@@ -306,6 +306,7 @@ export default function NavBar({
                   fontSize={{ base: "28px", md: "28px" }}
                   icon={<GiShoppingCart />}
                   mr={{ base: 0, md: 2 }}
+                  title="Carrito de Compras"
                   
                   variant="ghost"
               color="white"
@@ -320,6 +321,7 @@ export default function NavBar({
                 fontSize={{ base: "28px", md: "22px" }}
                 icon={<FaInstagram />}
                 mr={2}
+                title="Instagram"
                 variant="ghost"
               color="white"
               />
@@ -331,6 +333,7 @@ export default function NavBar({
                 aria-label="Facebook"
                 fontSize={{ base: "28px", md: "22px" }}
                 icon={<FaFacebook />}
+                title="Facebook"
                 mr={2}
                 variant="ghost"
               color="white"
@@ -342,6 +345,7 @@ export default function NavBar({
                 target="_blank"
                 fontSize={{ base: "28px", md: "22px" }}
                 aria-label="Geolocalización"
+                title="Geolocalización"
                 icon={<FaMapMarkerAlt />}
                 mr={2}
                 variant="ghost"
@@ -355,12 +359,16 @@ export default function NavBar({
                 fontSize={{ base: "28px", md: "22px" }}
                 aria-label="Whatsapp"
                 icon={<FaWhatsapp />}
+                title="Whatsapp"
                 variant="ghost"
               color="white"
               />
             </Box>
           </Box>
-          <Box>
+          <Box display={{base: "none", md: "flex"}}  position= "absolute" ml= "67rem" mt="0.5rem">
+            <AuthButton />
+          </Box>
+          <Box display={{base: "flex", md: "none"}} position= "absolute" ml= "18rem" mt="0.5rem">
             <AuthButton />
           </Box>
         </Flex>
