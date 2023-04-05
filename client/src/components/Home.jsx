@@ -128,8 +128,8 @@ export default function Home() {
         setProducts= {setProducts} />
       </Box>
       
-      <Box marginTop={{base: "-3rem", md: "-3.5rem"}} marginLeft={{base: "2rem", md: "20rem"}} 
-      maxWidth={{base: "80%", md:"40%"}} zIndex= "2">
+      <Box marginTop={{base: "-3rem", md: "-3.5rem"}} marginLeft={{base: "2rem", md: "22rem"}} 
+      maxWidth={{base: "70%", md:"35%"}} >
         <InputGroup borderRadius="5%">
           <InputLeftElement
             pointerEvents="none"
@@ -145,15 +145,15 @@ export default function Home() {
           />
         </InputGroup>
         <button onClick={handleSearch}></button>
-        <Box marginTop="-1rem" height="30px" overflow-y="auto"
+        <Box marginTop="-1em" height="30px" overflow-y="auto"
         zIndex= "1">
           <ul>
             {autocompleteOptions.map((comida) => (
               <Text background= "white" width= "100%"
                 paddingLeft="1rem"
-                zIndex="2"
+                zIndex="1"
                 fontWeight= "bold"
-                fontSize="16px"
+                fontSize={{base: "12px",md:"16px"}}
                 key={comida.id}
                 onClick={() => handleComidaClick(comida)}
                 style={{ cursor: 'pointer' }}
@@ -162,9 +162,10 @@ export default function Home() {
               </Text>
             ))}
           </ul>
+          </Box>
         </Box>
        
-        {/*  */}
+       
         <Box>
         {mostrarFormulario && (
         <div
@@ -186,6 +187,8 @@ export default function Home() {
         
       )}
       </Box>
+      <Box maxWidth={{base: "85%", md:"40%"}} marginTop={{base: "-3rem", md: "0"}} 
+      marginLeft={{base: "1.5rem", md: "20rem"}} zIndex="2">
         {selectedComida && (
           // <Box marginTop= "3rem">
            
@@ -275,7 +278,8 @@ export default function Home() {
       <Box display={{md:"none"}}>
         
 
-<Footer setShowAbout={setShowAbout}/>
+<Footer setShowAbout={setShowAbout}
+handleMostrarFormulario= {handleMostrarFormulario}/>
       </Box>
 
     </Box>
