@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import DarkMode from "../utils/DarkMode";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
@@ -20,7 +20,6 @@ import {
 import { TbSalad, TbIceCream } from "react-icons/tb";
 import { BiDrink, BiDish } from "react-icons/bi";
 import {
-  useColorMode,
   Box,
   Flex,
   IconButton,
@@ -32,6 +31,7 @@ import {
   DrawerHeader,
   DrawerBody,
   Button,
+  Badge,
 } from "@chakra-ui/react";
 import { BiMessageDetail } from "react-icons/bi";
 import { HamburgerIcon } from "@chakra-ui/icons";
@@ -46,6 +46,15 @@ export default function NavBar({
   const [activeCategory, setActiveCategory] = useState(null);
 
   const FoodResponsive = useSelector((state) => state.comidas);
+
+  const carrito = useSelector((state) => state.cart);
+
+  const [carritoCount, setCarritoCount] = useState(0);
+
+  useEffect(() => {
+    const contador = carrito.length;
+    setCarritoCount(contador);
+  }, [carrito]);
 
   const handleClick = (category) => {
     setActiveCategory(category);
@@ -62,10 +71,6 @@ export default function NavBar({
   };
 
   const { isOpen, onOpen, onClose } = useDisclosure();
-
-  const { colorMode } = useColorMode();
-
-  const buttonColorScheme = colorMode === "light" ? "#F08080" : "gray";
 
   return (
     <Box>
@@ -256,9 +261,8 @@ export default function NavBar({
               color="white"
               title="Envianos tu Mensaje!"
               fontSize="22px"
-              display={{base:"none", md: "inline"}}
+              display={{ base: "none", md: "inline" }}
               marginLeft={{ base: "none", md: "inline-flex" }}
-              
               onClick={handleMostrarFormulario}
             >
               <BiMessageDetail />
@@ -297,7 +301,7 @@ export default function NavBar({
             {/* <SearchBar /> */}
           </Box>
 
-          <Box  display="flex" alignItems="center" mr={{ base: -11, md: 14 }}>
+          <Box display="flex" alignItems="center" mr={{ base: -11, md: 14 }}>
             <Box display="flex" alignItems="center">
               <Link to="/sCart">
                 <IconButton
@@ -307,11 +311,28 @@ export default function NavBar({
                   icon={<GiShoppingCart />}
                   mr={{ base: 0, md: 2 }}
                   title="Carrito de Compras"
-                  
                   variant="ghost"
-              color="white"
+                  color="white"
                 />
+                {carritoCount > 0 && (
+                  <Badge 
+                  marginLeft= "-1rem"
+                  marginTop= "1rem"
+                    bg="red"
+                    borderRadius="50%"
+                    color="white"
+                    fontSize="sm"
+                    fontWeight="bold"
+                    lineHeight="1"
+                    minW="1.25rem"
+                    minH="1.25rem"
+                    textAlign="center"
+                  >
+                    {carritoCount}
+                  </Badge>
+                )}
               </Link>
+
               <IconButton
                 display={{ base: "none", md: "inline-flex" }}
                 as="a"
@@ -323,7 +344,7 @@ export default function NavBar({
                 mr={2}
                 title="Instagram"
                 variant="ghost"
-              color="white"
+                color="white"
               />
               <IconButton
                 display={{ base: "none", md: "inline-flex" }}
@@ -336,7 +357,7 @@ export default function NavBar({
                 title="Facebook"
                 mr={2}
                 variant="ghost"
-              color="white"
+                color="white"
               />
               <IconButton
                 display={{ base: "none", md: "inline-flex" }}
@@ -349,7 +370,7 @@ export default function NavBar({
                 icon={<FaMapMarkerAlt />}
                 mr={2}
                 variant="ghost"
-              color="white"
+                color="white"
               />
               <IconButton
                 display={{ base: "none", md: "inline-flex" }}
@@ -361,14 +382,24 @@ export default function NavBar({
                 icon={<FaWhatsapp />}
                 title="Whatsapp"
                 variant="ghost"
-              color="white"
+                color="white"
               />
             </Box>
           </Box>
-          <Box display={{base: "none", md: "flex"}}  position= "absolute" ml= "67rem" mt="0.5rem">
+          <Box
+            display={{ base: "none", md: "flex" }}
+            position="absolute"
+            ml="67rem"
+            mt="0.5rem"
+          >
             <AuthButton />
           </Box>
-          <Box display={{base: "flex", md: "none"}} position= "absolute" ml= "18rem" mt="0.5rem">
+          <Box
+            display={{ base: "flex", md: "none" }}
+            position="absolute"
+            ml="18rem"
+            mt="0.5rem"
+          >
             <AuthButton />
           </Box>
         </Flex>

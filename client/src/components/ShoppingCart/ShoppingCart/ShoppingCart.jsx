@@ -53,7 +53,7 @@ export default function ShoppingCart() {
       
       <Flex>
      
-        <Box marginLeft={{base:"1rem", md:"4rem"}} marginTop={{base:"1rem", md:"4rem"}}>
+        <Box marginLeft={{base:"1rem", md:"4rem"}} marginTop={{base:"1rem", md:"3rem"}}>
         
         <Button as="a"
       href="/" leftIcon={<Icon as={GiFastBackwardButton} />}  color="#0077CC"
