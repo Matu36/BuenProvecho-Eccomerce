@@ -29,11 +29,12 @@ export default function Usuarios () {
         }, []);
 
     const user = sortedusers.map((u) => {
+      const role = u.role === false ? 'Administrador' : 'Usuario';
         return {
           id: u.id,
           email: u.email,
           address: u.address,
-          role: u.role,
+          role: role,
           createdAt: u.createdAt,
         };
       });
@@ -95,7 +96,8 @@ export default function Usuarios () {
     { field: "id", headerName: "id", width: 5 },
     { field: "email", headerName: "email", width: 130 },
     { field: "address", headerName: "Direccion", width: 130 },
-    { field: "role", headerName: "Role", width: 130 },
+    { field: "role", headerName: "Role", width: 130 }
+,
     { field: "createdAt", headerName: "Ingreso", width: 130 },
 
     ]

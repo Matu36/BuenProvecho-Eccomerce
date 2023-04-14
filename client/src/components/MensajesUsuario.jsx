@@ -6,7 +6,14 @@ import { Box, HStack, FormControl, Center } from "@chakra-ui/react";
 import Swal from "sweetalert2";
 
 export default function MensajesUsuario() {
+  const [emailValido, setEmailValido] = useState(true);
   const dispatch = useDispatch();
+
+  const validarEmail = (valor) => {
+    // Expresión regular para verificar el formato del email
+    const expresion = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return expresion.test(valor);
+  };
 
   const [mensaje, setMensaje] = useState({
     Nombre: "",
@@ -16,6 +23,13 @@ export default function MensajesUsuario() {
 
   const handleOnSubmit = async (e) => {
     e.preventDefault();
+
+    if (!validarEmail(mensaje.email)) {
+      setEmailValido(false);
+      return;
+    }
+  
+    setEmailValido(true);
 
     if (mensaje.Nombre && mensaje.email && mensaje.Mensaje) {
       const newMensaje = {
@@ -82,8 +96,8 @@ export default function MensajesUsuario() {
             <FormControl>
               <FormLabel>Email</FormLabel>
               <Input
-                type="text"
-                name="nombre"
+                type="email"
+                name="email"
                 value={mensaje.email}
                 autoComplete="off"
                 placeholder="Email"

@@ -19,15 +19,15 @@ const categorias = [...new Set(comidas.map((comida) => comida.Categoria))];
     Efectivo: "",
     Categoria: "",
     Imagen: "",
-    MercadoPago: ""
+    
   });
 
   
   const handleOnSubmit = async (e) => {
     e.preventDefault();
 
-    if (ingredient.Nombre && ingredient.Efectivo && ingredient.Categoria && ingredient.Imagen &&
-        ingredient.MercadoPago) {
+    if (ingredient.Nombre && ingredient.Efectivo && ingredient.Categoria && ingredient.Imagen
+        ) {
 
       const newIngredient = {
         ...ingredient,
@@ -48,7 +48,7 @@ const categorias = [...new Set(comidas.map((comida) => comida.Categoria))];
     Efectivo: "",
     Categoria: "",
     Imagen: "",
-    MercadoPago: ""
+    
       });
     } else {
       Swal.fire({
@@ -153,23 +153,6 @@ const categorias = [...new Set(comidas.map((comida) => comida.Categoria))];
         />
       </FormControl>
 
-      <FormControl>
-        <FormLabel>MercadoPago</FormLabel>
-        <InputGroup>
-          <InputLeftAddon children="$" />
-          <NumberInput
-            name="MercadoPago"
-            value={ingredient.MercadoPago}
-            autoComplete="off"
-            placeholder="MercadoPago "
-            onChange={(value) =>
-              setIngredient({ ...ingredient, MercadoPago: parseInt(value) || '' })
-            }
-          >
-            <NumberInputField />
-          </NumberInput>
-        </InputGroup>
-      </FormControl>
     </Box>
 
     

@@ -7,7 +7,7 @@ import {
 import { useDispatch, useSelector } from "react-redux";
 import CartItem from "../CartItem/CartItem";
 import { Box, Flex, Text, Button, Icon, Divider } from "@chakra-ui/react";
-import {GiFastBackwardButton} from "react-icons/gi";
+import {MdOutlineArrowBackIosNew} from "react-icons/md";
 
 export default function ShoppingCart() {
   const { products, cart } = useSelector((state) =>
@@ -55,17 +55,19 @@ export default function ShoppingCart() {
      
         <Box marginLeft={{base:"1rem", md:"4rem"}} marginTop={{base:"1rem", md:"3rem"}}>
         
-        <Button as="a"
-      href="/" leftIcon={<Icon as={GiFastBackwardButton} />}  color="#0077CC"
-   fontSize="30px"
-   marginLeft= {{base:"0", md:"-2rem"}}
+        <Button as="a" 
+        background= "none"
+        _hover={{background: "none"}}
+      href="/" leftIcon={<Icon as={MdOutlineArrowBackIosNew}/>}  color="#0077CC"
+   fontSize="20px"
+   marginLeft= {{base:"0", md:"-1rem"}}
    marginTop= {{base:"-1rem", md:"-5rem"}}
    padding="5px"
    borderRadius="5px"
    bg= "none">
-                
+                Home
               </Button>
-             
+              
           <Text fontSize="2xl" fontWeight="bold" mb={6}>
             Mi Carrito de Compras 
             <Button marginLeft= "13rem" onClick={clearCart}>
