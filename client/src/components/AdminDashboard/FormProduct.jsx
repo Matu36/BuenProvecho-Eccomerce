@@ -57,7 +57,7 @@ export default function FormProduct(props) {
     Efectivo: "",
     Categoria: "",
     Imagen: "",
-    MercadoPago: "",
+    // MercadoPago: "",
   });
 
   const handleOnSubmit = async (e) => {
@@ -67,8 +67,8 @@ export default function FormProduct(props) {
       ingredient.Nombre &&
       ingredient.Efectivo &&
       ingredient.Categoria &&
-      ingredient.Imagen &&
-      ingredient.MercadoPago
+      ingredient.Imagen 
+      // ingredient.MercadoPago 
     ) {
       const newIngredient = {
         ...ingredient,
@@ -87,7 +87,7 @@ export default function FormProduct(props) {
         Efectivo: "",
         Categoria: "",
         Imagen: "",
-        MercadoPago: "",
+        // MercadoPago: "",
       });
     } else {
       Swal.fire({
@@ -116,18 +116,7 @@ export default function FormProduct(props) {
         opacity="0.9"
         borderBlockEndColor="ActiveBorder"
       >
-        {/* <Text
-    fontSize={{ base: "20px", md: "30px", lg: "46px" }}
-    textAlign="center"
-    fontWeight="bold"
-    color="teal.600"
-    backgroundColor="blue.200"
-    opacity="0.5"
-    mb="5px"
-    
-  >
-    Agregar Comida
-  </Text> */}
+  
 
         <HStack spacing="24px">
           <Box>
@@ -194,7 +183,7 @@ export default function FormProduct(props) {
               />
             </FormControl>
 
-            <FormControl>
+             {/* <FormControl>
               <FormLabel>MercadoPago</FormLabel>
               <InputGroup>
                 <InputLeftAddon children="$" />
@@ -213,7 +202,7 @@ export default function FormProduct(props) {
                   <NumberInputField />
                 </NumberInput>
               </InputGroup>
-            </FormControl>
+            </FormControl>  */}
           </Box>
         </HStack>
         <Center marginTop="20px">

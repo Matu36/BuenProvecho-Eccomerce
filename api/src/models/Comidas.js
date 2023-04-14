@@ -5,9 +5,10 @@ module.exports = (sequelize) => {
   // defino el modelo
   sequelize.define('comidas', {
     id: {
-      type: DataTypes.STRING(3),  
-      allowNull: false,  // No puede ser nulo el campo
-      primaryKey: true  //  Id que se autoincrementa
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      primaryKey: true,
+      autoIncrement: true
     },
     Nombre: {
       type: DataTypes.STRING,
