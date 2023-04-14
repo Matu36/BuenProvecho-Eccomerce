@@ -41,8 +41,9 @@ return (
 </Box>
 </Box>
 <Box marginLeft={135}>
-<Button onClick={addToCartHandler}> <AiFillPlusCircle /> </Button>
 <Button onClick={()=> delFromCart(id)}> <AiOutlineMinusCircle /> </Button>
+<Button onClick={addToCartHandler}> <AiFillPlusCircle /> </Button>
+
 </Box>
 <Divider my={1} borderBottom="1px solid black" ml={4} />
 </Box>
