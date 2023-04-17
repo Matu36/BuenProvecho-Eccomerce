@@ -5,15 +5,14 @@ import { useSelector } from "react-redux";
 
 export default function NavBarAdmin() {
 
-  const mensajes = useSelector((state) => state.mensajes);
+  const mensajessinleer = useSelector((state) => state.mensajesnoleidos);
   const [mensajeNoLeido, setMensajeNoLeido] = useState(0);
 
-  
-  
+
   useEffect(() => {
-    const noLeidos = mensajes.filter((mensaje) => !mensaje.leido).length;
-    setMensajeNoLeido(noLeidos);
-  }, [mensajes]);
+    const contador = mensajessinleer.length
+    setMensajeNoLeido(contador);
+  }, [mensajessinleer]);
   
   return (
     <Flex
@@ -44,7 +43,7 @@ export default function NavBarAdmin() {
           variant="ghost"
           onClick={() => {
             alert(`Tiene ${mensajeNoLeido} mensajes sin leer.`);
-            setMensajeNoLeido(0);
+            
           }}
         >
           
