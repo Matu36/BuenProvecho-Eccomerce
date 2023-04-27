@@ -15,14 +15,14 @@ import Usuarios from "./Usuarios";
 
 export default function HomeAdmin () {
 
-  // let currentUser = JSON.parse(localStorage.getItem("MANGIARE_user"));
+  let currentUser = JSON.parse(localStorage.getItem("user"));
   const dispatch = useDispatch();
   const homeShow = useSelector((state) => state.homeShow);
 
    useEffect(() => {
     dispatch(getComidas());
     dispatch(getMensajes())
-    dispatch(getUsers({id:1 , email: 'matipineda857@gmail.com'}))
+    dispatch(getUsers(currentUser))
     }, []);
 
     /*

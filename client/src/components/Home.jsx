@@ -19,10 +19,20 @@ import { useSelector, useDispatch } from "react-redux";
 import { getComidas } from "../Redux/actions";
 import MensajesUsuario from "./MensajesUsuario";
 import { CgCloseO } from "react-icons/cg";
+import { getUsers } from "../Redux/actions";
 
 
 
 export default function Home() {
+
+  let currentUser = JSON.parse(localStorage.getItem("user"));
+  
+
+  useEffect(() => {
+    dispatch(getUsers(currentUser))
+    }, []);
+
+
   //RENDERIZADO DE CARTA EN EL FILTRO DE CATEGORIA
   const [products, setProducts] = useState([]);
 
