@@ -6,8 +6,9 @@ import {
     FaMapMarkerAlt,
     FaWhatsapp,
   } from "react-icons/fa";
+  import { BiMessageDetail } from "react-icons/bi";
 
-export default function Footer ({setShowAbout}) {
+export default function Footer ({setShowAbout, handleMostrarFormulario}) {
 
     const { colorMode } = useColorMode();
     const buttonColorScheme = colorMode === "light" ? "#F08080" : "gray";
@@ -59,6 +60,15 @@ export default function Footer ({setShowAbout}) {
                 icon={<FaWhatsapp />}
                 colorScheme={buttonColorScheme}
               />
+              <Button
+              variant="ghost"
+              color="white"
+              title="Envianos tu Mensaje!"
+              fontSize="22px"
+              onClick={handleMostrarFormulario}
+            >
+              <BiMessageDetail />
+            </Button>
             </Box>
           </Box>
           <Box>

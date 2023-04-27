@@ -1,6 +1,6 @@
 import {ADD_TO_CART, REMOVE_ONE_FROM_CART, REMOVE_ALL_FROM_CART, CLEAR_CART, 
   TOTAL_PRICE,GET_COMIDAS, HOME_ADMIN_SHOW, RESET_ADMIN_SHOW, UPDATE_COMIDA, 
-  CREATE_COMIDA, GET_USERS, GET_MENSAJES, MENSAJE_CREADO }
+  CREATE_COMIDA, GET_USERS, GET_MENSAJES, MENSAJE_CREADO, REMOVE_ONE_FROM_MESSAGE}
 from "../actions/index";
 
 const InitialState = {
@@ -15,7 +15,9 @@ const InitialState = {
 
     users: [],
 
-    mensajes: []
+    mensajes: [],
+
+    mensajesnoleidos: []
 }
 
 function rootReducer (state=InitialState, action) {
@@ -116,10 +118,15 @@ function rootReducer (state=InitialState, action) {
       };
 
       case GET_MENSAJES:
-      return { ...state, mensajes: action.payload };
+      return { ...state, mensajes: action.payload, mensajesnoleidos: action.payload };
 
       case MENSAJE_CREADO:
       return { ...state, mensajes: [...state.mensajes, action.payload] };
+
+      case REMOVE_ONE_FROM_MESSAGE: return {
+        ...state,
+        mensajesnoleidos: state.mensajesnoleidos.filter((objeto) => objeto.id !== action.payload)
+      };
 
       
 

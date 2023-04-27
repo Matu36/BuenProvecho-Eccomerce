@@ -14,6 +14,7 @@ export const DELETE_COMIDA_SUCCESS = "DELETE_COMIDA_SUCCESS";
 export const GET_USERS = "GET_USERS";
 export const GET_MENSAJES = "GET_MENSAJES";
 export const MENSAJE_CREADO = "MENSAJE_CREADO";
+export const REMOVE_ONE_FROM_MESSAGE = "REMOVE_ONE_FROM_MESSAGE";
 
 
 export const changeHomeAdminShow = (payload) => async (dispatch) => {
@@ -86,3 +87,5 @@ export const getComidas = () => async (dispatch) => {
             dispatch({ type: MENSAJE_CREADO, payload: data });
           
         };
+
+        

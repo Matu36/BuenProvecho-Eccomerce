@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import {
   CLEAR_CART,
   REMOVE_ALL_FROM_CART,
@@ -6,14 +6,16 @@ import {
 } from "../../../Redux/actions/index";
 import { useDispatch, useSelector } from "react-redux";
 import CartItem from "../CartItem/CartItem";
-import { Box, Flex, Image, Text, Button, Icon } from "@chakra-ui/react";
-import Carrito from "../../../img/Carrito.jpg";
-import {GiFastBackwardButton} from "react-icons/gi";
+import { Box, Flex, Text, Button, Icon, Divider } from "@chakra-ui/react";
+import {MdOutlineArrowBackIosNew} from "react-icons/md";
+
 
 export default function ShoppingCart() {
   const { products, cart } = useSelector((state) =>
     state ? state : { products: [], cart: [] }
   );
+
+ 
 
   const dispatch = useDispatch();
 
@@ -38,9 +40,12 @@ export default function ShoppingCart() {
     return total;
   };
 
+
+  const MercadoPago = totalPrice() * 1.05;
+
   return (
     
-    <Box
+    <Box 
     
       borderWidth="40px"
       borderLeftWidth="40px"
@@ -48,39 +53,63 @@ export default function ShoppingCart() {
       solid
       borderColor="yellow.300"
     >
+      
       <Flex>
-        <Box marginLeft={{base:"1rem", md:"4rem"}} marginTop={{base:"1rem", md:"4rem"}}>
+     
+        <Box marginLeft={{base:"1rem", md:"4rem"}} marginTop={{base:"1rem", md:"3rem"}}>
         
-        <Button as="a"
-      href="/" leftIcon={<Icon as={GiFastBackwardButton} />}  color="#0077CC"
-   fontSize="30px"
-   marginLeft= {{base:"0", md:"-2rem"}}
+        <Button as="a" 
+        background= "none"
+        _hover={{background: "none"}}
+      href="/" leftIcon={<Icon as={MdOutlineArrowBackIosNew}/>}  color="#0077CC"
+   fontSize="20px"
+   marginLeft= {{base:"0", md:"-1rem"}}
    marginTop= {{base:"-1rem", md:"-5rem"}}
    padding="5px"
    borderRadius="5px"
    bg= "none">
-                
+                Home
               </Button>
+              
           <Text fontSize="2xl" fontWeight="bold" mb={6}>
-            Carrito de Compras
+            Mi Carrito de Compras 
+            <Button marginLeft= "13rem" onClick={clearCart}>
+            Limpiar el Carrito
+          </Button>
           </Text>
+          
           <Box>
             {cart.map((item, index) => (
               <CartItem key={index} data={item} delFromCart={delFromCart} />
             ))}
           </Box>
-          <Button mt={4} onClick={clearCart}>
-            Limpiar el Carrito
-          </Button>
-          <Text fontSize="2xl" fontWeight="bold" mt={4}>
-            Precio Total: ${totalPrice()}
-          </Text>
+          <Box>
+         
+          </Box>
+          
+          
+        </Box>
+        <Divider marginLeft={2} orientation="vertical" borderLeft="1px solid black" h="400px" marginTop= "6rem" />
+        <Box marginLeft="auto" marginRight={{ base: "1rem", md: "11rem" }} marginTop={{ base: "1rem", md: "9rem" }}>
+        
+          <Text fontSize="xl" fontWeight="bold">Detalle Total</Text>
+          <br />
+
+          <Text>Precio Total: ${totalPrice()}</Text>
+          <Text>Precio MercadoPago (5%): ${MercadoPago}</Text>
+          <br />
+
+          <Divider border= "1px solid black"></Divider>
+          <br />
+
+          <Text fontSize= "20px" fontWeight= "bold">Total: ${MercadoPago}</Text>
+          
+
         </Box>
 
-        <Box maxW="50%" marginTop={{base:"4rem", md:"2rem"}}>
-          <Image src={Carrito} marginLeft={{base: "0rem", md: "5rem"}}></Image>
-        </Box>
+        
       </Flex>
+      
     </Box>
   );
 }

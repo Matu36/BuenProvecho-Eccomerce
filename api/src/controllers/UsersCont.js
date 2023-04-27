@@ -1,4 +1,5 @@
 const { Users } = require("../db.js");
+// const sendEmailWithTemplate = require("../mailer/sendEmailWithTemplate");
 
 const getUsers = async (req, res) => {
   try {
@@ -26,6 +27,28 @@ const getUsers = async (req, res) => {
   }
 };
 
+
+const postUser = async (req, res) => {
+  try {
+    if (!req.body?.email) throw "No body params";
+
+    const [instance, created] = await Users.findOrCreate({
+      where: { email: req.body.email.toLowerCase() },
+    });
+
+    if (created) {
+      console.log("Usuario Creado");
+      // sendEmailWithTemplate(instance.email, "newUser");
+    }
+
+    res.send(instance);
+  } catch (error) {
+    console.log(error);
+    res.status(500).send(error);
+  }
+};
+
 module.exports = {
-    getUsers
+    getUsers,
+    postUser
 }
