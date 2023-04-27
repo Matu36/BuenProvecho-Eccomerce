@@ -20,6 +20,7 @@ export default function Usuarios () {
 
     const dispatch = useDispatch ();
     const users = useSelector (state => state.users)
+    
 
     const sortedusers = [...users].sort((a, b) => a.id - b.id);
     useEffect(() => {

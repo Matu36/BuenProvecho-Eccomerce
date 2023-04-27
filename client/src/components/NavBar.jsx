@@ -70,6 +70,8 @@ export default function NavBar({
     setShowAbout(true);
   };
 
+ 
+
   const { isOpen, onOpen, onClose } = useDisclosure();
 
   return (

@@ -6,7 +6,6 @@ import {
   Input,
   InputGroup,
   InputLeftElement,
-  Button
 } from "@chakra-ui/react";
 import { SearchIcon } from "@chakra-ui/icons";
 import NavBar from "./NavBar";
@@ -34,6 +33,8 @@ export default function Home() {
 
   const dispatch = useDispatch();
   const Food = useSelector(state => state.comidas);
+  
+
 
 
   //AUTOCOMPLETE//

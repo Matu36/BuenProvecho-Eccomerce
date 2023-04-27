@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import {
   CLEAR_CART,
   REMOVE_ALL_FROM_CART,
@@ -9,10 +9,13 @@ import CartItem from "../CartItem/CartItem";
 import { Box, Flex, Text, Button, Icon, Divider } from "@chakra-ui/react";
 import {MdOutlineArrowBackIosNew} from "react-icons/md";
 
+
 export default function ShoppingCart() {
   const { products, cart } = useSelector((state) =>
     state ? state : { products: [], cart: [] }
   );
+
+ 
 
   const dispatch = useDispatch();
 
