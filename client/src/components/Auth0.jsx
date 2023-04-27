@@ -8,13 +8,10 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 import { useSelector, useDispatch } from "react-redux";
 import { getUsers } from "../Redux/actions";
-import { useNavigate } from 'react-router-dom';
-
 
   const AuthButton = () => {
   const { isAuthenticated, loginWithRedirect, logout, user } = useAuth0();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const navigate = useNavigate();
   
 
   //LOCALSTORAGE --> USO LA PROPIEDAD "user" DE 
@@ -43,7 +40,6 @@ import { useNavigate } from 'react-router-dom';
 
   // FIN LOCAL STORAGE
 
-  
   //redirige el usuario creado a nuestra propia base de datos; La prpiedad
   //user ya viene con Auth0.
   useEffect(() => {
@@ -71,9 +67,14 @@ import { useNavigate } from 'react-router-dom';
     checkIsAdmin();
   }, [isAuthenticated, user]); */
 
-  
-
- 
+  const loggingOut = () => {
+    localStorage.removeItem("user");
+    logout({
+      logoutParams: {
+        returnTo: window.location.origin,
+      },
+    });
+  };
 
   return (
     <Menu isOpen={isMenuOpen} onClose={() => setIsMenuOpen(false)}>
@@ -98,7 +99,7 @@ import { useNavigate } from 'react-router-dom';
         textAlign="center"
         onClick={() => {
           if (isAuthenticated) {
-            logout();
+            loggingOut();
             window.location.reload();
           } else {
             loginWithRedirect();
