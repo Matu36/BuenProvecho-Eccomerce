@@ -4,7 +4,7 @@ import {AiOutlineCloseCircle, AiOutlineMinusCircle, AiFillPlusCircle} from "reac
 import { ADD_TO_CART } from "../../../Redux/actions";
 import { useDispatch } from "react-redux";
  
-export default function CartItem({data, delFromCart}) {
+export default function CartItem({data, delFromCart, clearCart}) {
 
     const dispatch = useDispatch ();
 
@@ -17,35 +17,38 @@ let {id, Imagen, Nombre, Efectivo, quantity} = data;
 return (
 
 
-<Box>
+<Box marginTop={{base:"-1rem", md:"0"}}>
     
     <Flex backgroundColor= "gray.100">
     
-<Box maxW= "30%" height= "150px" marginTop= "1.5rem" >
-<Image boxSize="150px" objectFit="cover" src={Imagen} />
+<Box maxW= {{base:"30%", md:"30%" }} height= {{base:"50px", md:"150px"}} marginTop={{base: "1rem", md:"1.5rem"}} 
+>
+<Image marginLeft={{base:"1rem", md:"0"}} boxSize={{base:"70px", md:"150px"}} objectFit="cover" src={Imagen} />
   
 </Box>
-<Box>
+<Box width={{ base: '70%', md: 'auto' }}
+  maxWidth={{ base: '100%', md: '600px' }}>
     <Box>
-    <Button marginLeft= "25rem" onClick={()=> delFromCart(id, true)} background= "none" 
+    <Button marginLeft= {{base:"5rem", md:"25rem"}} marginTop={{base:"0rem", md:"0"}} onClick={()=> delFromCart(id, true)} background= "none" 
     _hover={{background: "none", color: "white"}}  fontSize= "24px" > <AiOutlineCloseCircle /> </Button>
     </Box>
     <Box marginTop="-1rem">
 <Text fontSize="1xl" fontWeight="bold" mb={1} mx={7}> {Nombre} </Text>
 <br />
 <br />
-<Box display="flex" mx={2}>
+<Box display={{base: "block", md: "flex"}} mx={{base: 0, md: 2}} ml={{base: -70, md: 4}}mt={{base:-8, md:0}}>
 <Text fontSize="1xl" fontWeight="bold" mx={5} > S/. ${Efectivo}</Text>
 <Text fontSize="1xl" fontWeight="bold" mx={5} > Cantidad: {quantity} </Text>
 <Text fontSize="1xl" fontWeight="bold" mx={5} > Sub total:  ${Efectivo * quantity}.00 </Text>
 </Box>
 </Box>
-<Box marginLeft={135}>
-<Button onClick={()=> delFromCart(id)}> <AiOutlineMinusCircle /> </Button>
-<Button onClick={addToCartHandler}> <AiFillPlusCircle /> </Button>
+<Box marginLeft={{base:10, md:135}} display={{base:"flex"}} >
+<Button marginTop={{base:"-3.5rem", md:"0"}} onClick={()=> delFromCart(id)}> <AiOutlineMinusCircle /> </Button>
+<Button marginTop={{base:"-3.5rem", md:"0"}} onClick={addToCartHandler}> <AiFillPlusCircle /> </Button>
 
 </Box>
-<Divider my={1} borderBottom="1px solid black" ml={4} />
+<Divider my={{base: 3, md: 1}} borderBottom="1px solid black" ml={{base: -7, md: 0}} />
+
 </Box>
 
 </Flex>
