@@ -32,7 +32,7 @@ export default function Home() {
     dispatch(getUsers(currentUser))
     }, []);
 
-
+   
   //RENDERIZADO DE CARTA EN EL FILTRO DE CATEGORIA
   const [products, setProducts] = useState([]);
 

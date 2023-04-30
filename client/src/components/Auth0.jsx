@@ -12,26 +12,16 @@ import { getUsers } from "../Redux/actions";
   const AuthButton = () => {
   const { isAuthenticated, loginWithRedirect, logout, user } = useAuth0();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  
-
-  //LOCALSTORAGE --> USO LA PROPIEDAD "user" DE 
-  //ESTA FORMA let currentUser = JSON.parse(localStorage.getItem("user")); PARA
-  //EL RESTO DE LOS COMPONENTES.
-  let currentUser = JSON.parse(localStorage.getItem("user"));
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    dispatch(getUsers(currentUser))
-    }, []);
 
   const Usuario = useSelector (state => state.users);
 
 
+  //FUNCION DE LOCAL STORAGE
   useEffect(() => {
     if (isAuthenticated && user) {
       const {email } = user;
-      const userData = { email }; // utiliza sub como el id del usuario
-      localStorage.setItem("user", JSON.stringify(userData)); // almacenar los datos del usuario usando su sub como clave
+      const userData = { email }; 
+      localStorage.setItem("user", JSON.stringify(userData)); 
     } else {
       localStorage.removeItem("user");
     }
@@ -53,20 +43,7 @@ import { getUsers } from "../Redux/actions";
 
   // finaliza aca el codigo para llevar a nuestro usuario a nuestra base de datos
 
-  /* useEffect(() => {
-    const checkIsAdmin = async () => {
-      if (isAuthenticated && user) {
-        try {
-          const res = await axios.get(`http://localhost:3001/users?email=${user.email}`);
-          setIsAdmin(res.data[0].role === "false");
-        } catch (error) {
-          console.log(error);
-        }
-      }
-    };
-    checkIsAdmin();
-  }, [isAuthenticated, user]); */
-
+    //FUNCION DE LOGOUT PARA QUE CUANDO SALIMOS DE LA PAGINA REMUEVA AL USUARIO QUE ENTRO
   const loggingOut = () => {
     localStorage.removeItem("user");
     logout({
@@ -76,6 +53,7 @@ import { getUsers } from "../Redux/actions";
     });
   };
 
+  
   return (
     <Menu isOpen={isMenuOpen} onClose={() => setIsMenuOpen(false)}>
   <MenuButton
@@ -102,10 +80,8 @@ import { getUsers } from "../Redux/actions";
             loggingOut();
             window.location.reload();
           } else {
-            loginWithRedirect();
-            window.location.reload();
-          }
-        }}
+            loginWithRedirect()};
+          }}
         
         
       >
@@ -114,7 +90,7 @@ import { getUsers } from "../Redux/actions";
       {Usuario.length > 1 && (
         <Link to="/admin">
           <MenuItem
-            color="gray.600"
+            color="yellow.600"
             fontSize="md"
             px="3"
             py="2"

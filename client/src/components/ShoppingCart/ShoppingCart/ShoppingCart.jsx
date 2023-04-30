@@ -70,33 +70,37 @@ export default function ShoppingCart() {
    bg= "none">
                 Home
               </Button>
+             
               
-          <Text fontSize="2xl" fontWeight="bold" mb={6}>
+          <Text fontSize={{base:"18px",md:"2xl"}} fontWeight="bold" mb={6}>
             Mi Carrito de Compras 
-            <Button marginLeft= "13rem" onClick={clearCart}>
+            <Button display={{base:"none", md:"flex"}} marginLeft= {{base: "2rem", md:"28rem"}} onClick={clearCart}>
             Limpiar el Carrito
           </Button>
           </Text>
           
-          <Box>
+          <Box >
             {cart.map((item, index) => (
               <CartItem key={index} data={item} delFromCart={delFromCart} />
             ))}
           </Box>
           <Box>
-         
+          <Button display={{base:"flex", md:"none"}} marginTop= "2rem" onClick={clearCart}>
+            Limpiar el Carrito
+          </Button>
           </Box>
           
           
         </Box>
-        <Divider marginLeft={2} orientation="vertical" borderLeft="1px solid black" h="400px" marginTop= "6rem" />
-        <Box marginLeft="auto" marginRight={{ base: "1rem", md: "11rem" }} marginTop={{ base: "1rem", md: "9rem" }}>
+        <Divider marginLeft={1} orientation="vertical" borderLeft="1px solid black" h="600px" marginTop= "6rem" />
+        <Box marginLeft={{base:"0.5rem", md:"auto"}} marginRight={{ base: "0", md: "11rem" }} marginTop={{ base: "7rem", md: "9rem" }}>
         
           <Text fontSize="xl" fontWeight="bold">Detalle Total</Text>
           <br />
-
+          <Box>
           <Text>Precio Total: ${totalPrice()}</Text>
           <Text>Precio MercadoPago (5%): ${MercadoPago}</Text>
+          </Box>
           <br />
 
           <Divider border= "1px solid black"></Divider>
@@ -104,7 +108,7 @@ export default function ShoppingCart() {
 
           <Text fontSize= "20px" fontWeight= "bold">Total: ${MercadoPago}</Text>
           
-
+          
         </Box>
 
         
