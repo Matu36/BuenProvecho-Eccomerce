@@ -6,7 +6,6 @@ import {
   Input,
   InputGroup,
   InputLeftElement,
-  Button
 } from "@chakra-ui/react";
 import { SearchIcon } from "@chakra-ui/icons";
 import NavBar from "./NavBar";
@@ -20,10 +19,20 @@ import { useSelector, useDispatch } from "react-redux";
 import { getComidas } from "../Redux/actions";
 import MensajesUsuario from "./MensajesUsuario";
 import { CgCloseO } from "react-icons/cg";
+import { getUsers } from "../Redux/actions";
 
 
 
 export default function Home() {
+
+  let currentUser = JSON.parse(localStorage.getItem("user"));
+  
+
+  useEffect(() => {
+    dispatch(getUsers(currentUser))
+    }, []);
+
+   
   //RENDERIZADO DE CARTA EN EL FILTRO DE CATEGORIA
   const [products, setProducts] = useState([]);
 
@@ -34,6 +43,8 @@ export default function Home() {
 
   const dispatch = useDispatch();
   const Food = useSelector(state => state.comidas);
+  
+
 
 
   //AUTOCOMPLETE//

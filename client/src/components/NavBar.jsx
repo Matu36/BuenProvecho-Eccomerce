@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import DarkMode from "../utils/DarkMode";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import { CiPizza } from "react-icons/ci";
 import {
@@ -37,12 +37,21 @@ import { BiMessageDetail } from "react-icons/bi";
 import { HamburgerIcon } from "@chakra-ui/icons";
 import { GiShoppingCart } from "react-icons/gi";
 import AuthButton from "./Auth0";
+import { getUsers } from "../Redux/actions";
 
 export default function NavBar({
   setShowAbout,
   setProducts,
   handleMostrarFormulario,
 }) {
+
+  let currentUser = JSON.parse(localStorage.getItem("user"));
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getUsers(currentUser))
+    }, []);
+
   const [activeCategory, setActiveCategory] = useState(null);
 
   const FoodResponsive = useSelector((state) => state.comidas);
@@ -66,9 +75,17 @@ export default function NavBar({
     setProducts(filteredProducts);
   };
 
+  // FIN DEL FILTRADO
+
+  
+
+
+
+
   const handleAboutClick = () => {
     setShowAbout(true);
   };
+            
 
   const { isOpen, onOpen, onClose } = useDisclosure();
 

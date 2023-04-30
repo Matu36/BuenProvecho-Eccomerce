@@ -1,7 +1,10 @@
 import React, {useState, useEffect} from "react";
-import { Flex, Box, Text, IconButton, Spacer, Badge } from "@chakra-ui/react";
+import { Flex, Box, Text, IconButton, Spacer, Badge, Menu, MenuList, MenuButton,
+MenuItem } from "@chakra-ui/react";
 import { FaUser, FaBell } from "react-icons/fa";
 import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
+
 
 export default function NavBarAdmin() {
 
@@ -31,12 +34,21 @@ export default function NavBarAdmin() {
       </Box>
       <Spacer />
       <Box>
-        <IconButton
-          aria-label="Usuario"
-          icon={<FaUser />}
-          variant="ghost"
-          mr={2}
-        />
+      <Menu>
+  <MenuButton
+    as={IconButton}
+    aria-label="Usuario"
+    icon={<FaUser />}
+    variant="ghost"
+    mr={2}
+    _hover={{ bg: "none" }}
+  />
+  <MenuList style={{ backgroundColor: "white" }} variant="menu">
+    <MenuItem color="black" as={Link} to="/">Home</MenuItem>
+  </MenuList>
+</Menu>
+
+
         <IconButton
           aria-label="Notificaciones"
           icon={<FaBell />}

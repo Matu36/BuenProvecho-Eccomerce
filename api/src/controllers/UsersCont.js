@@ -1,12 +1,13 @@
 const { Users } = require("../db.js");
+// const sendEmailWithTemplate = require("../mailer/sendEmailWithTemplate");
 
 const getUsers = async (req, res) => {
   try {
-    if (!req.query?.id || !req.query?.email) throw "No query params";
+    if (!req.query?.email) throw "No query params";
 
     console.log(req.query);
     let requestUser = await Users.findOne({
-      where: { id: req.query.id, email: req.query.email },
+      where: { email: req.query.email },
     });
 
     if (!requestUser) return res.status(403).send("Wrong user");
@@ -15,7 +16,7 @@ const getUsers = async (req, res) => {
 
     if (requestUser.dataValues.role !== null)
       returnedUsers = await Users.findAll();
-    else returnedUsers = await Users.findAll({ where: { id: req.query.id } });
+    else returnedUsers = await Users.findAll({ where: { email: req.query.email } });
 
     return !returnedUsers
       ? res.status(404).send("Users Not Found")
@@ -26,6 +27,29 @@ const getUsers = async (req, res) => {
   }
 };
 
+
+
+const postUser = async (req, res) => {
+  try {
+    if (!req.body?.email) throw "No body params";
+
+    const [instance, created] = await Users.findOrCreate({
+      where: { email: req.body.email.toLowerCase() },
+    });
+
+    if (created) {
+      console.log("Usuario Creado");
+      // sendEmailWithTemplate(instance.email, "newUser");
+    }
+
+    res.send(instance);
+  } catch (error) {
+    console.log(error);
+    res.status(500).send(error);
+  }
+};
+
 module.exports = {
-    getUsers
+    getUsers,
+    postUser
 }

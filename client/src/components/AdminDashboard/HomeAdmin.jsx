@@ -1,6 +1,6 @@
 import React, {useEffect} from "react";
 import {useDispatch, useSelector} from "react-redux";
-import { Box } from "@chakra-ui/react";
+import { Box, Flex } from "@chakra-ui/react";
 import FeaturedInfo from "./FeaturedInfo";
 import Chart from "./Chart";
 import { data } from "./UserData";
@@ -15,14 +15,14 @@ import Usuarios from "./Usuarios";
 
 export default function HomeAdmin () {
 
-  // let currentUser = JSON.parse(localStorage.getItem("MANGIARE_user"));
+  let currentUser = JSON.parse(localStorage.getItem("user"));
   const dispatch = useDispatch();
   const homeShow = useSelector((state) => state.homeShow);
 
    useEffect(() => {
     dispatch(getComidas());
     dispatch(getMensajes())
-    dispatch(getUsers({id:1 , email: 'matipineda857@gmail.com'}))
+    dispatch(getUsers(currentUser))
     }, []);
 
     /*
@@ -50,7 +50,7 @@ export default function HomeAdmin () {
           {homeShow === "Mensajes" && <Mensajes />}
           {homeShow === "Usuarios" && <Usuarios />}
           {homeShow === "Home" && (
-          <Box>
+          <Box marginLeft="-7rem">
 <FeaturedInfo />
 <Chart
             data={data}
@@ -58,8 +58,14 @@ export default function HomeAdmin () {
             grid
             dataKey="Active User"
           />
+          <Flex>
+            <Box>
           <WidgetSm />
+          </Box>
+          <Box>
           <WidgetLg />
+          </Box>
+          </Flex>
           </Box>
           )}
           </Box>
