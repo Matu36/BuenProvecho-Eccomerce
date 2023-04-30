@@ -6,7 +6,8 @@ import { getUsers } from "../Redux/actions";
 import {useDispatch } from "react-redux";
 import LOGINFONDO from "../img/LOGINFONDO.jpg";
 import BuenProvecho from "../img/Provecho.png";
-import LoginFondoRespons from "../img/LOGINFONDORESPONS.png"
+import LoginFondoRespons from "../img/LOGINFONDORESPONS.png";
+import { BarLoader } from 'react-spinners';
 
 
 export default function LoggedInPage() {
@@ -24,9 +25,9 @@ const navigate = useNavigate();
 
 
  // Esperar 5 segundos antes de redirigir
-            setTimeout(() => {
+        /*     setTimeout(() => {
           navigate('/');
-        }, 4000);   
+        }, 4000);    */
 
         // Estilo de fondo para dispositivos móviles
 
@@ -62,8 +63,15 @@ sx={{
 
 <Image src={BuenProvecho} boxSize="140px" display={{base:"flex", md:"none"}} 
 marginTop= "6rem"  marginLeft= "15rem"/>
-
+<Box sx={{
+  position: 'fixed',
+  bottom: '5rem',
+  right: {base:"4rem", md:'11rem'}
+}}>
+  <BarLoader color={'#123abc'} loading={true}height={10}  />
+</Box>
 <Box display={{base:"flex", md:"none"}} marginTop= "4rem" 
+
 >
 
 </Box>
