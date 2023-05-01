@@ -44,7 +44,7 @@ const SideBarAdmin = () => {
   const textColor = colorMode === "light" ? "gray.800" : "white";
 
   return (
-    <Box
+    <Box display={{base:"none", md:"block"}}
       w="64"
       bg={bgColor}
       color={textColor}

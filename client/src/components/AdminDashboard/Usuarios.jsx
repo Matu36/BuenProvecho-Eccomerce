@@ -1,50 +1,35 @@
 import { Box } from "@chakra-ui/react";
 import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { getUsers } from "../../Redux/actions";
-import {
-    Table,
-    Thead,
-    Tbody,
-    Tr,
-    Th,
-    Td,
-     Input
-    
-  } from "@chakra-ui/react";
+import {  useSelector } from "react-redux";
+// import { getUsers } from "../../Redux/actions";
+import { Table, Thead, Tbody, Tr, Th, Td, Input } from "@chakra-ui/react";
 
-  import Paginacion from "./Paginación";
+import Paginacion from "./Paginación";
+import "./Styles.css";
 
+export default function Usuarios() {
+  // const dispatch = useDispatch();
+  const users = useSelector((state) => state.users);
 
-export default function Usuarios () {
+  const sortedusers = [...users].sort((a, b) => a.id - b.id);
+  /* useEffect(() => {
+    dispatch(getUsers({ id: 1, email: "matipineda857@gmail.com" }));
+  }, []); */
 
-    const dispatch = useDispatch ();
-    const users = useSelector (state => state.users)
-    
+  const user = sortedusers.map((u) => {
+    const role = u.role === false ? "Administrador" : "Usuario";
+    return {
+      id: u.id,
+      email: u.email,
+      address: u.address,
+      role: role,
+      createdAt: u.createdAt,
+    };
+  });
 
-    const sortedusers = [...users].sort((a, b) => a.id - b.id);
-    useEffect(() => {
-        
-        dispatch(getUsers({id:1 , email: 'matipineda857@gmail.com'}));
-        
-        }, []);
+  
 
-    const user = sortedusers.map((u) => {
-      const role = u.role === false ? 'Administrador' : 'Usuario';
-        return {
-          id: u.id,
-          email: u.email,
-          address: u.address,
-          role: role,
-          createdAt: u.createdAt,
-        };
-      });
-
-      console.log (user)
-
-      
-
-      //SEARCHBAR
+  //SEARCHBAR
   const [search, setSearch] = useState("");
   const [ingredients, setIngredients] = useState(user);
 
@@ -71,7 +56,7 @@ export default function Usuarios () {
 
   //FIN SEARCHBAR
 
-   //PAGINADO
+  //PAGINADO
 
   const [currentPage, setCurrentPage] = useState(1); //Pagina Actual seteada en 1
   const [numberOfPage, setNumberOfPage] = useState(0); //Numero de Paginas seteado en 0
@@ -97,15 +82,16 @@ export default function Usuarios () {
     { field: "id", headerName: "id", width: 5 },
     { field: "email", headerName: "email", width: 130 },
     { field: "address", headerName: "Direccion", width: 130 },
-    { field: "role", headerName: "Role", width: 130 }
-,
+    { field: "role", headerName: "Role", width: 130 },
     { field: "createdAt", headerName: "Ingreso", width: 130 },
+  ];
 
-    ]
-
-    return (
-        <Box>
-           <div style={{ display: "flex", alignItems: "center" }}>
+  return (
+    <Box
+      marginLeft={{ base: "-5rem", md: "0" }}
+      maxWidth={{ base: "90%", md: "none" }}
+    >
+      <div style={{ display: "flex", alignItems: "center" }}>
         <Input
           type="text"
           placeholder="Buscar Usuario "
@@ -116,14 +102,16 @@ export default function Usuarios () {
           background="white"
           margin="10px"
         />
-        </div>
-      <h1 className="titleIngredients">Usuarios</h1> 
-      <Box maxW="120%">
+      </div>
+      <h1 className="titleIngredients">Usuarios</h1>
+      <Box maxW={{ base: "100%", md: "100%" }}>
         <Table variant="striped" colorScheme="teal" width="100%">
           <Thead>
             <Tr>
               {columns.map((column) => (
-                <Th key={column.field}>{column.headerName}</Th>
+                <Th padding={{ base: "2px", md: "10px" }} key={column.field}>
+                  {column.headerName}
+                </Th>
               ))}
             </Tr>
           </Thead>
@@ -131,18 +119,24 @@ export default function Usuarios () {
             {totalIngredients.map((row, index) => (
               <Tr width="10%" key={index}>
                 {columns.map((column) => (
-                  <Td width="20%" id={row.id} key={`${row.id}-${column.field}`}>
-                  {row[column.field]}
-                </Td>
-                    
-                    
-                    
+                  <Td
+                    padding={{ base: "1px", md: "10px" }}
+                    width="20%"
+                    id={row.id}
+                    key={`${row.id}-${column.field}`}
+                    style={{
+                      wordBreak: "break-all",
+                      maxWidth: column.field === "email" ? "50%" : "none",
+                    }}
+                  >
+                    {row[column.field]}
+                  </Td>
                 ))}
               </Tr>
             ))}
           </Tbody>
-          </Table>
-          <Box width="100%" marginBottom="2rem">
+        </Table>
+        <Box width="100%" marginBottom="2rem">
           <br />
           {users && (
             <Paginacion
@@ -152,8 +146,7 @@ export default function Usuarios () {
             />
           )}
         </Box>
-        </Box>
-        </Box>
-
-    )
+      </Box>
+    </Box>
+  );
 }

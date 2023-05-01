@@ -1,0 +1,17 @@
+.btn {
+    font-size: 24px;
+    margin-left: -7rem;
+  }
+  
+  @media screen and (max-width: 768px) {
+    .btn {
+      margin-left: -3rem;
+    }
+  }
+
+  @media screen and (max-width: 768px) {
+    .createdAtHeader, .createdAtCell, .hideOnMobile {
+      display: none;
+    }
+  }
+  

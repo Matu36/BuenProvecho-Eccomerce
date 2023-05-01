@@ -25,9 +25,9 @@ const navigate = useNavigate();
 
 
  // Esperar 5 segundos antes de redirigir
-        /*     setTimeout(() => {
+             setTimeout(() => {
           navigate('/');
-        }, 4000);    */
+        }, 4000);    
 
         // Estilo de fondo para dispositivos móviles
 

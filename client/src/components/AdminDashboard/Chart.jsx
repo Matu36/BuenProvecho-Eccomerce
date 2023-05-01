@@ -16,6 +16,8 @@ export default function Chart({ title, data, dataKey, grid }) {
       boxShadow="2px -1px 5px 0px rgba(0,0,0,0.75)"
       p="20px"
       m="20px"
+      maxWidth={{base:"73%", md:"none"}}
+      marginLeft= {{base:"1.5rem", md:"0"}}
     >
       <Heading as="h3" mb="20px">
         {title}
