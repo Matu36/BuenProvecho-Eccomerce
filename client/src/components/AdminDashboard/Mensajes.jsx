@@ -50,16 +50,19 @@ export default function Mensajes() {
   const [buttonState, setButtonState] = useState({});
 
   return (
-    <Box bg="gray.100" p={4} borderRadius="lg">
+    
+    <Box  bg="gray.100" p={4} borderRadius="lg"  width={{base:"420px", md:"800px"}}
+    marginLeft={{base:"-6rem", md:"-5rem"}}>
       {totalIngredients.map((msg, index) => (
         <Box key={index} mb={4}>
           <Flex justify="space-between" align="center">
             <Box>
               <Text fontWeight="bold">{msg.Nombre}</Text>
-              <Text>{msg.email}</Text>
+              <Text >{msg.email}</Text>
               <Text>{msg.Mensaje}</Text>
             </Box>
-            <Button
+            <Box>
+            <Button 
               colorScheme="green"
               size="sm"
               variant={buttonState[msg.id] ? "solid" : "outline"}
@@ -73,6 +76,7 @@ export default function Mensajes() {
             >
               Marcar como leído
             </Button>
+            </Box>
           </Flex>
           <Divider my={2} borderColor="gray.300" />
         </Box>
@@ -89,5 +93,6 @@ export default function Mensajes() {
         )}
       </Box>
     </Box>
+    
   );
 }

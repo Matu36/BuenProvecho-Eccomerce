@@ -44,7 +44,7 @@ export default function WidgetLg () {
 
 */
     return (
-<Box shadow="md" p={6}>
+<Box maxWidth={{base:"80%", md:"none"}} shadow="md" p={6} >
       <Box fontSize="xl" fontWeight="semibold" mb={4}>
         Últimas Transacciones
       </Box>

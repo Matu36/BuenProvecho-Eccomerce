@@ -90,7 +90,7 @@ import { getUsers } from "../Redux/actions";
       {Usuario.length > 1 && (
         <Link to="/admin">
           <MenuItem
-            color="yellow.600"
+            color="gray.600"
             fontSize="md"
             px="3"
             py="2"
