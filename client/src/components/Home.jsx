@@ -126,7 +126,7 @@ export default function Home() {
   //FIN MENSAJES DE USUARIO
 
   return (
-    <Box >
+    <Box>
 <Box borderWidth="0px" borderLeftWidth="40px" borderRightWidth="40px" solid
       borderColor= "yellow.300"
 >
@@ -235,7 +235,7 @@ export default function Home() {
         display="flex"
         alignItems="center"
         justifyContent="center"
-        height="100vh"
+        height={{base:"110vh", md:"100vh"}}
       >
         <Box
           maxWidth={{ base: "200px", md: "400px" }}
