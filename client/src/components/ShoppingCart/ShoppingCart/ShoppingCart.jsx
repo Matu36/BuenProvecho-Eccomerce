@@ -44,7 +44,7 @@ export default function ShoppingCart() {
   };
 //Elimino todo el carrito y tambien del local storage
   const clearCart = () => {
-    dispatch({ type: CLEAR_CART });
+    dispatch({ type: CLEAR_CART});
     localStorage.removeItem('cart');
     
   };

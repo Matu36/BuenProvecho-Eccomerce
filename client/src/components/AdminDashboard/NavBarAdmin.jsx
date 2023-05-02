@@ -11,8 +11,6 @@ export default function NavBarAdmin() {
   const mensajessinleer = useSelector((state) => state.mensajesnoleidos);
   const [mensajeNoLeido, setMensajeNoLeido] = useState(0);
  
-  
-
   useEffect(() => {
     const contador = mensajessinleer.length
     setMensajeNoLeido(contador);
