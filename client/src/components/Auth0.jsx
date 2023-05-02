@@ -61,8 +61,8 @@ import { getUsers } from "../Redux/actions";
     icon={<RiUserFill />}
     title={isAuthenticated ? user.email : "Iniciar sesión"}
     aria-label={isAuthenticated ? "Cerrar sesión" : "Iniciar sesión"}
-    bg={isAuthenticated ? "red.500" : "gray.500"}
-    _hover={{ bg: isAuthenticated ? "red.600" : "gray.600" }}
+    bg={isAuthenticated ? "blue.500" : "red.500"}
+    _hover={{ bg: isAuthenticated ? "blue.600" : "red.600" }}
     onMouseEnter={() => setIsMenuOpen(true)}
     w="8"
   />

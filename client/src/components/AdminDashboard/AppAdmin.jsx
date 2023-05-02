@@ -22,7 +22,7 @@ const { isAutenticated } = useAuth0();
 
       <Flex direction="column" height="100vh">
             <NavBarAdmin/>
-            <Flex marginLeft={{ base: '6rem', md: '25rem' }} width="100%">
+            <Flex marginLeft={{ base: '6rem', md: '25rem' }} >
             <HomeAdmin />
             
             

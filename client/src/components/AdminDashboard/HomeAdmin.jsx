@@ -8,7 +8,6 @@ import WidgetSm from "./WidgetSm";
 import WidgetLg from "./WidgetLg";
 import {getComidas, getMensajes, getUsers} from "../../Redux/actions/index";
 import Productos from "./Productos";
-// import { getUsers } from "../../Redux/actions/index";
 import Mensajes from "./Mensajes";
 import Usuarios from "./Usuarios";
 

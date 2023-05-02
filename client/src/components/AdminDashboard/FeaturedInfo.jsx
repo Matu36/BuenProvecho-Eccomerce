@@ -6,7 +6,7 @@ import { BiDownArrowAlt, BiUpArrowAlt } from "react-icons/bi";
 export default function FeaturedInfo() {
   return (
     <Flex justify="space-between" alignItems="center" bg="gray.50" p="4" borderRadius="10px"
-    maxW={{ base: "80%", md: "none" }}>
+    maxW={{ base: "80%", md: "none" }} marginLeft={{base:"0", md:"6rem"}}>
       <Box flex="1" ml="1">
         <Heading as="h3" fontSize="lg" mb="2">
           Ganancias
@@ -28,7 +28,7 @@ export default function FeaturedInfo() {
       </Box>
 
       <Box flex="1" mr="4">
-        <Heading as="h3" fontSize="lg" mb="2">
+        <Heading as="h3" fontSize="lg" mb="2" marginLeft={{base:"1rem", md:"0"}}>
           Ventas
         </Heading>
         <Box display="flex" alignItems="center" mb="2">

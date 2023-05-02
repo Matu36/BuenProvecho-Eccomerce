@@ -10,7 +10,7 @@ export default function NavBarAdmin() {
 
   const mensajessinleer = useSelector((state) => state.mensajesnoleidos);
   const [mensajeNoLeido, setMensajeNoLeido] = useState(0);
-
+ 
   
 
   useEffect(() => {
@@ -38,8 +38,8 @@ export default function NavBarAdmin() {
   </Box>
   <Spacer />
   <Box>
-    <Menu>
-      <MenuButton
+    <Menu >
+      <MenuButton 
         as={IconButton}
         aria-label="Usuario"
         icon={<FaUser />}
@@ -54,20 +54,31 @@ export default function NavBarAdmin() {
       </MenuList>
     </Menu>
 
-    <IconButton
+    <IconButton 
       aria-label="Notificaciones"
       icon={<FaBell />}
       variant="ghost"
       onClick={() => {
         alert(`Tiene ${mensajeNoLeido} mensajes sin leer.`);
       }}
-    >
+    ></IconButton>
       {mensajeNoLeido > 0 && (
-        <Badge colorScheme="red" borderRadius="full" px="2" fontSize="0.8em">
-          {mensajeNoLeido}
-        </Badge>
-      )}
-    </IconButton>
+      
+       <Badge
+         colorScheme="red"
+         borderRadius="full"
+        marginTop= "1rem"
+         fontSize="0.8rem"
+        marginLeft="-1rem"
+      px={1}
+         transform="translate(50%, -50%)"
+         
+       >
+         {mensajeNoLeido}
+       </Badge>
+    
+       )}
+    
   </Box>
 </Flex>
   );
