@@ -55,7 +55,7 @@ export default function SideBarResponsive () {
     
 <Box>
       
-    <Box marginLeft="-31rem" marginTop="-3rem" >
+<Box position="absolute" top="1.5rem" left="1rem">
       {isOpen ? (
         <HamburgerIcon w={6} h={6} onClick={toggleSidebar} />
       ) : (
