@@ -4,23 +4,24 @@ import Paginacion from "./Paginación";
 import { Box, Text, Divider, Button, Flex } from "@chakra-ui/react";
 import { REMOVE_ONE_FROM_MESSAGE } from "../../Redux/actions";
 
+
 export default function Mensajes() {
   const dispatch = useDispatch();
 
   const mensajes = useSelector((state) => state.mensajes);
 
-  // const MensajesNoLeidos = useSelector((state) => state.mensajesnoleidos);
+  const MensajesNoLeidos = useSelector((state) => state.mensajesnoleidos);
 
- /*  useEffect(() => {
-    localStorage.setItem("MensajesNoLeidos", JSON.stringify(MensajesNoLeidos));
-  }, [MensajesNoLeidos]); */
+ useEffect(() => {
+    //localStorage.setItem("MensajesNoLeidos", JSON.stringify(MensajesNoLeidos));
+  }, [MensajesNoLeidos]); 
 
   
   const marcarComoLeido = (id) => {
     dispatch({ type: REMOVE_ONE_FROM_MESSAGE, payload: id });
-    // const updatedMessage = MensajesNoLeidos.filter((item) => item.id !== id);
-    // localStorage.setItem("MensajesNoLeidos", JSON.stringify(updatedMessage));
-  };
+     // const updatedMessage = MensajesNoLeidos.filter((item) => item.id !== id);
+    //  localStorage.setItem("MensajesNoLeidos", JSON.stringify(updatedMessage));
+  }; 
 
   const message = mensajes.map((product) => {
     return {

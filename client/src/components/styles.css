@@ -1,0 +1,24 @@
+.StripeElement {
+    box-sizing: border-box;
+    height: 40px;
+    padding: 10px 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: white;
+    
+  }
+
+  .StripeElement--focus {
+    border-color: blue;
+    
+    
+  }
+
+  /* Estilos para cuando el elemento de la tarjeta está inválido */
+.StripeElement--invalid {
+    border-color: #fa755a;
+  }
+
+  
+  
+

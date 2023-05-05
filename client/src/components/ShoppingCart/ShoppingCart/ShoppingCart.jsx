@@ -9,6 +9,7 @@ import CartItem from "../CartItem/CartItem";
 import { Box, Flex, Text, Button, Icon, Divider } from "@chakra-ui/react";
 import { MdOutlineArrowBackIosNew } from "react-icons/md";
 import { useAuth0 } from "@auth0/auth0-react";
+import {Link} from "react-router-dom";
 
 
 export default function ShoppingCart() {
@@ -145,8 +146,14 @@ export default function ShoppingCart() {
           <Text fontSize="20px" fontWeight="bold">
             Total: ${MercadoPago}
           </Text>
+          <br />
+          <br />
+          <Link to="/Checkout">
+      <Button> Pagar con Tarjeta </Button>
+      </Link>
         </Box>
       </Flex>
+      
     </Box>
   );
 }

@@ -81,3 +81,4 @@ export const crearMensaje = (mensaje) => async (dispatch) => {
   const { data } = await axios.post("http://localhost:3001/mensajes", mensaje);
   dispatch({ type: MENSAJE_CREADO, payload: data });
 };
+

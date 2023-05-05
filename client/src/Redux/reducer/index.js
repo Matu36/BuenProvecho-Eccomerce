@@ -31,7 +31,7 @@ const InitialState = {
 
   mensajes: [],
 
-  mensajesnoleidos: [],
+  mensajesnoleidos: JSON.parse(localStorage.getItem("MensajesNoLeidos")) || [],
 };
 
 
@@ -149,6 +149,8 @@ function rootReducer(state = InitialState, action) {
           (objeto) => objeto.id !== action.payload
         ),
       };
+
+     
 
     default:
       return state;
