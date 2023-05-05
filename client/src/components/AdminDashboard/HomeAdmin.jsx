@@ -10,6 +10,7 @@ import {getComidas, getMensajes, getUsers} from "../../Redux/actions/index";
 import Productos from "./Productos";
 import Mensajes from "./Mensajes";
 import Usuarios from "./Usuarios";
+import Ventas from "./Ventas";
 
 
 export default function HomeAdmin () {
@@ -48,6 +49,7 @@ export default function HomeAdmin () {
           {homeShow === "Productos" && <Productos />}
           {homeShow === "Mensajes" && <Mensajes />}
           {homeShow === "Usuarios" && <Usuarios />}
+          {homeShow === "Ventas" && <Ventas />}
           {homeShow === "Home" && (
           <Box marginLeft="-7rem">
 <FeaturedInfo />

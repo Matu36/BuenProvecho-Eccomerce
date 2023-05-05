@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { loadStripe } from "@stripe/stripe-js";
 import {
   Elements,
@@ -11,7 +11,8 @@ import axios from "axios";
 import { BarLoader } from "react-spinners";
 import "./styles.css";
 import { Box, Button, FormControl, Text } from "@chakra-ui/react";
-
+import Swal from "sweetalert2";
+import { useDispatch, useSelector } from "react-redux";
 /* Ir a la pagina de stripe, crear cuenta;  ir de la pestaña desarroladres, claves Api (Esto
 es para la fase de desarrollo; para la fase de producción hay que activar cuenta)
 Importo loadStripe y dentro le pego la clave publica (esta no hay problema que se vea)
@@ -26,6 +27,11 @@ const CheckoutForm = () => {
   const Elements = useElements(); //con esto manipulamos lo que viene de strip
   const [loading, setLoading] = useState(false);
 
+  const carro = useSelector((state) => state.cart);
+  const totalEfectivo = carro.reduce((total, producto) => total + producto.Efectivo, 0);
+  const carroNombre = carro.map((product) => product.Nombre);
+
+  
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -42,14 +48,35 @@ const CheckoutForm = () => {
           "http://localhost:3001/api/checkout",
           {
             id,
-            amount: 10000.0, //aca va el precio de la sumatoria del carrito (fijarse tema centavos, dolares)
+            amount: totalEfectivo,  //aca va el precio de la sumatoria del carrito (fijarse tema centavos, dolares)
+            Producto: carroNombre,
+            
           }
         );
+
+        Swal.fire({
+          title: "El pago ha sido realizado con éxito",
+          position: "center",
+          icon: "success",
+          confirmButtonText: "Ok",
+        });
+
         console.log(data); //el data se envia al backend
 
         Elements.getElement(CardElement).clear();
       } catch (error) {
         console.log(error);
+        if (
+          error.response &&
+          (error.response.status === 400 || error.response.status === 500)
+        ) {
+          Swal.fire({
+            position: "center",
+            icon: "error",
+            title: "El pago ha sido rechazado",
+            showConfirmButton: true,
+          });
+        }
       }
       setLoading(false);
     }
@@ -78,7 +105,6 @@ const CheckoutForm = () => {
         backgroundColor="white"
         marginLeft="2rem"
       >
-        
         <Text>DATOS DEL CLIENTE // DATOS DE LA COMPRA</Text>
 
         <form onSubmit={handleSubmit}>
