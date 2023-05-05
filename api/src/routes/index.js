@@ -3,6 +3,8 @@ const {getComidas, putComidas, createComida, deleteComida} = require ("../contro
 const { getUsers, postUser } = require('../controllers/UsersCont');
 const {postMensaje, obtenerMensajes} = require ("../controllers/UserMensajesCont")
 const {getOrders, postOrder} = require ("../controllers/OrderCont");
+const {checkOut} = require ("../controllers/Stripe");
+
 
 
 const router = Router();
@@ -18,6 +20,7 @@ router.post ("/mensajes", postMensaje)
 router.get ("/mensajes", obtenerMensajes)
 router.get ("/orders", getOrders)
 router.post ("/orders", postOrder)
+router.post("/api/checkout", checkOut);
 
 /*
 

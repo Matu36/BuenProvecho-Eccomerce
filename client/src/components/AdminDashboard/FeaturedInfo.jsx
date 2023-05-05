@@ -5,13 +5,14 @@ import { BiDownArrowAlt, BiUpArrowAlt } from "react-icons/bi";
 
 export default function FeaturedInfo() {
   return (
-    <Flex justify="space-between" alignItems="center" bg="gray.50" p="4" borderRadius="10px">
-      <Box flex="1" mr="4">
+    <Flex justify="space-between" alignItems="center" bg="gray.50" p="4" borderRadius="10px"
+    maxW={{ base: "80%", md: "none" }} marginLeft={{base:"0", md:"6rem"}}>
+      <Box flex="1" ml="1">
         <Heading as="h3" fontSize="lg" mb="2">
           Ganancias
         </Heading>
         <Box display="flex" alignItems="center" mb="2">
-          <Text fontSize="2xl" fontWeight="semibold" mr="2">
+          <Text fontSize="2xl" fontWeight="semibold" mr="0">
             $2,415
           </Text>
           <Box display="flex" alignItems="center" color="red.500">
@@ -27,11 +28,11 @@ export default function FeaturedInfo() {
       </Box>
 
       <Box flex="1" mr="4">
-        <Heading as="h3" fontSize="lg" mb="2">
+        <Heading as="h3" fontSize="lg" mb="2" marginLeft={{base:"1rem", md:"0"}}>
           Ventas
         </Heading>
         <Box display="flex" alignItems="center" mb="2">
-          <Text fontSize="2xl" fontWeight="semibold" mr="2">
+          <Text fontSize="2xl" fontWeight="semibold" mr="0">
             $4,415
           </Text>
           <Box display="flex" alignItems="center" color="red.500">

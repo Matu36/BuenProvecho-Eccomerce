@@ -18,6 +18,7 @@ import {
 } from "@chakra-ui/react";
 import { CgCloseO } from "react-icons/cg";
 import { DeleteIcon } from "@chakra-ui/icons";
+import './Styles.css';
 
 export default function Productos() {
   let dispatch = useDispatch();
@@ -35,6 +36,8 @@ export default function Productos() {
       MercadoPago: product.MercadoPago,
     };
   });
+
+  
 
   //MOSTRANDO EL FORMULARIO DE CREACION //
 
@@ -150,7 +153,7 @@ export default function Productos() {
   ];
 
   return (
-    <Box>
+    <Box maxWidth= {{base:"90%", md:"none"}} marginLeft={{base:"-5rem", md:"0"}}>
       <div style={{ display: "flex", alignItems: "center" }}>
         <Input
           type="text"
@@ -162,17 +165,18 @@ export default function Productos() {
           background="white"
           margin="10px"
         />
-        <Button marginLeft="5rem" onClick={handleMostrarFormulario}>
+        
+      </div>
+      <Button marginLeft={{base:"12rem", md:"35em"}} onClick={handleMostrarFormulario}>
           Agregar Comida
         </Button>
-      </div>
       <h1 className="titleIngredients">Productos</h1>
       {mostrarFormulario && (
         <div
           style={{
             position: "fixed",
-            top: "50%",
-            left: "62%",
+            top: "45%",
+            left: "45%",
             transform: "translate(-50%, -50%)",
             backgroundColor: "white",
             padding: "10px",
@@ -191,7 +195,7 @@ export default function Productos() {
           <Thead>
             <Tr>
               {columns.map((column) => (
-                <Th key={column.field}>{column.headerName}</Th>
+                <Th padding={{ base: "5px", md: "10px" }} key={column.field}>{column.headerName}</Th>
               ))}
             </Tr>
           </Thead>
@@ -199,7 +203,7 @@ export default function Productos() {
             {totalIngredients.map((row, index) => (
               <Tr width="10%" key={index}>
                 {columns.map((column) => (
-                  <Td width="20%" id={row.id} key={`${row.id}-${column.field}`}>
+                  <Td padding={{base:"8px", md:"10px"}} width="20%" id={row.id} key={`${row.id}-${column.field}`}>
                     {column.field === "Efectivo" &&
                     editPrice !== null &&
                     editIndex === row.id ? (
@@ -253,7 +257,7 @@ export default function Productos() {
                         <div>{row[column.field]}</div>
                         {column.field === "Efectivo" && (
                           <Box ml="auto">
-                            <button
+                            <button 
                               style={{ fontSize: "24px" }}
                               onClick={() =>
                                 column.field === "Efectivo"
@@ -268,8 +272,8 @@ export default function Productos() {
 
                         {column.field === "Acciones" && (
                           <Box ml="auto">
-                            <button
-                              style={{ fontSize: "24px", marginLeft: "-5rem" }}
+                            <button className="btn"
+                              // style={{ fontSize: "24px", marginLeft: "-7rem" }}
                               onClick={() => handleDelete(row.id)} // aquí se pasa el ID
                             >
                               <DeleteIcon />
@@ -284,10 +288,10 @@ export default function Productos() {
             ))}
           </Tbody>
         </Table>
-        <Box width="100%" marginBottom="2rem">
+        <Box width="100%" marginBottom="2rem" >
           <br />
           {productos && (
-            <Paginacion
+            <Paginacion 
               currentPage={currentPage}
               numberOfPage={numberOfPage}
               handlePageNumber={handlePageNumber}

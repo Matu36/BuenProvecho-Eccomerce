@@ -4,14 +4,24 @@ import Paginacion from "./Paginación";
 import { Box, Text, Divider, Button, Flex } from "@chakra-ui/react";
 import { REMOVE_ONE_FROM_MESSAGE } from "../../Redux/actions";
 
+
 export default function Mensajes() {
   const dispatch = useDispatch();
 
   const mensajes = useSelector((state) => state.mensajes);
 
+  const MensajesNoLeidos = useSelector((state) => state.mensajesnoleidos);
+
+ useEffect(() => {
+    //localStorage.setItem("MensajesNoLeidos", JSON.stringify(MensajesNoLeidos));
+  }, [MensajesNoLeidos]); 
+
+  
   const marcarComoLeido = (id) => {
     dispatch({ type: REMOVE_ONE_FROM_MESSAGE, payload: id });
-  };
+     // const updatedMessage = MensajesNoLeidos.filter((item) => item.id !== id);
+    //  localStorage.setItem("MensajesNoLeidos", JSON.stringify(updatedMessage));
+  }; 
 
   const message = mensajes.map((product) => {
     return {
@@ -50,7 +60,13 @@ export default function Mensajes() {
   const [buttonState, setButtonState] = useState({});
 
   return (
-    <Box bg="gray.100" p={4} borderRadius="lg">
+    <Box
+      bg="gray.100"
+      p={4}
+      borderRadius="lg"
+      width={{ base: "420px", md: "800px" }}
+      marginLeft={{ base: "-6rem", md: "-5rem" }}
+    >
       {totalIngredients.map((msg, index) => (
         <Box key={index} mb={4}>
           <Flex justify="space-between" align="center">
@@ -59,20 +75,22 @@ export default function Mensajes() {
               <Text>{msg.email}</Text>
               <Text>{msg.Mensaje}</Text>
             </Box>
-            <Button
-              colorScheme="green"
-              size="sm"
-              variant={buttonState[msg.id] ? "solid" : "outline"}
-              isDisabled={buttonState[msg.id]}
-              onClick={() => {
-                setButtonState({ ...buttonState, [msg.id]: true });
-                setClickedButton(msg.id); // Actualizamos el estado local del botón que se ha clicado
-                marcarComoLeido(msg.id);
-                // Llamamos a la función marcarComoLeido para cambiar el estado global
-              }}
-            >
-              Marcar como leído
-            </Button>
+            <Box>
+              <Button
+                colorScheme="green"
+                size="sm"
+                variant={buttonState[msg.id] ? "solid" : "outline"}
+                isDisabled={buttonState[msg.id]}
+                onClick={() => {
+                  setButtonState({ ...buttonState, [msg.id]: true });
+                  setClickedButton(msg.id); // Actualizamos el estado local del botón que se ha clicado
+                  marcarComoLeido(msg.id);
+                  // Llamamos a la función marcarComoLeido para cambiar el estado global
+                }}
+              >
+                Marcar como leído
+              </Button>
+            </Box>
           </Flex>
           <Divider my={2} borderColor="gray.300" />
         </Box>

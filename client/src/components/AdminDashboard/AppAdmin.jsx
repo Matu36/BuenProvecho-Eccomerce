@@ -3,6 +3,7 @@ import { Flex} from "@chakra-ui/react";
 import SideBarAdmin from "./SideBarAdmin";
 import NavBarAdmin from "./NavBarAdmin";
 import HomeAdmin from "./HomeAdmin";
+import SideBarResponsive from "./SideBarResponsive";
 
 
 
@@ -20,13 +21,15 @@ const { isAutenticated } = useAuth0();
     return (
 
       <Flex direction="column" height="100vh">
-            <NavBarAdmin />
-            <Flex marginLeft={{ base: '0', md: '25rem' }} width="100%">
+            <NavBarAdmin/>
+            <Flex marginLeft={{ base: '6rem', md: '25rem' }} >
             <HomeAdmin />
             
             
-          
-<SideBarAdmin />
+            <SideBarResponsive />
+            <SideBarAdmin  />
+            
+
 </Flex>
     </Flex>
   

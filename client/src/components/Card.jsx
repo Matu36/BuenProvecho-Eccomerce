@@ -5,7 +5,7 @@ import { useDispatch } from "react-redux";
 import { ADD_TO_CART } from "../Redux/actions";
 import {AiOutlineCloseCircle} from "react-icons/ai";
 
-export default function Card ({id, Imagen, Nombre, Efectivo, onClose }) {
+export default function Card ({id, Imagen, Nombre, Efectivo, onClose, }) {
   const dispatch = useDispatch();
   const [showAlert, setShowAlert] = useState(false);
 

@@ -6,6 +6,7 @@ import ShoppingCart from "../src/components/ShoppingCart/ShoppingCart/ShoppingCa
 import AppAdmin from './components/AdminDashboard/AppAdmin';
 import { Auth0Provider } from "@auth0/auth0-react";
 import LoginUser from "../src/components/LoginUser";
+import Stripe from "../src/components/Stripe";
 
 
 export const Auth0ProviderConfig = {
@@ -26,6 +27,7 @@ return (
       <Route exact path={"/Scart"} element={<ShoppingCart />} />
       <Route exact path={"/admin"} element= {<AppAdmin/>} />
       <Route exact path={"/Logued"} element= {<LoginUser/>} />
+      <Route exact path={"/Checkout"} element= {<Stripe/>} />
     </Routes>
     </Auth0Provider>
   );

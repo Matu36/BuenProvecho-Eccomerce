@@ -1,6 +1,6 @@
 import React, {useEffect} from "react";
 import {useDispatch, useSelector} from "react-redux";
-import { Box, Flex } from "@chakra-ui/react";
+import { Box, Flex, Stack } from "@chakra-ui/react";
 import FeaturedInfo from "./FeaturedInfo";
 import Chart from "./Chart";
 import { data } from "./UserData";
@@ -8,7 +8,6 @@ import WidgetSm from "./WidgetSm";
 import WidgetLg from "./WidgetLg";
 import {getComidas, getMensajes, getUsers} from "../../Redux/actions/index";
 import Productos from "./Productos";
-// import { getUsers } from "../../Redux/actions/index";
 import Mensajes from "./Mensajes";
 import Usuarios from "./Usuarios";
 
@@ -58,14 +57,14 @@ export default function HomeAdmin () {
             grid
             dataKey="Active User"
           />
-          <Flex>
+          <Stack direction={{ base: "column", md: "row" }} >
             <Box>
           <WidgetSm />
           </Box>
-          <Box>
-          <WidgetLg />
+          <Box >
+          <WidgetLg/>
           </Box>
-          </Flex>
+          </Stack>
           </Box>
           )}
           </Box>

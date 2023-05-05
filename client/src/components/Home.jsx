@@ -10,7 +10,7 @@ import {
 import { SearchIcon } from "@chakra-ui/icons";
 import NavBar from "./NavBar";
 import RandomSlider from "./randomSlider";
-import Logo from "../img/LOGO.png";
+import Logo from "../img/Provecho.png";
 import Sidebar from "./Sidebar";
 import About from "./About";
 import Card from "./Card";
@@ -20,7 +20,6 @@ import { getComidas } from "../Redux/actions";
 import MensajesUsuario from "./MensajesUsuario";
 import { CgCloseO } from "react-icons/cg";
 import { getUsers } from "../Redux/actions";
-
 
 
 export default function Home() {
@@ -44,9 +43,8 @@ export default function Home() {
   const dispatch = useDispatch();
   const Food = useSelector(state => state.comidas);
   
-
-
-
+ 
+ 
   //AUTOCOMPLETE//
 
   const [searchTerm, setSearchTerm] = useState("");
@@ -128,7 +126,7 @@ export default function Home() {
   //FIN MENSAJES DE USUARIO
 
   return (
-    <Box >
+    <Box>
 <Box borderWidth="0px" borderLeftWidth="40px" borderRightWidth="40px" solid
       borderColor= "yellow.300"
 >
@@ -237,7 +235,7 @@ export default function Home() {
         display="flex"
         alignItems="center"
         justifyContent="center"
-        height="100vh"
+        height={{base:"110vh", md:"100vh"}}
       >
         <Box
           maxWidth={{ base: "200px", md: "400px" }}
@@ -246,6 +244,7 @@ export default function Home() {
         >
           <Image
             src={Logo}
+            marginTop="-2.5rem"
             alt="Logo de la empresa"
             width="100%"
             height="100%"
@@ -260,7 +259,7 @@ export default function Home() {
       <Box
       
         marginLeft={{ base: "2rem", md: "17rem" }}
-        marginTop={{ base: "-18rem", md: "-9rem" }}
+        marginTop={{ base: "-17rem", md: "-9rem" }}
         maxW={{ base: "80%" }}
       >
         {RandomSlider()}
