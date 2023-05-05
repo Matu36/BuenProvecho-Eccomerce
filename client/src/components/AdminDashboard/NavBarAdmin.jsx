@@ -14,6 +14,7 @@ export default function NavBarAdmin() {
   useEffect(() => {
     const contador = mensajessinleer.length
     setMensajeNoLeido(contador);
+    
   }, [mensajessinleer]);
   
   return (
