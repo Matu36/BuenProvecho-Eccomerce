@@ -1,9 +1,8 @@
 import { Box } from "@chakra-ui/react";
 import React, { useEffect, useState } from "react";
-import {  useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 // import { getUsers } from "../../Redux/actions";
 import { Table, Thead, Tbody, Tr, Th, Td, Input } from "@chakra-ui/react";
-
 import Paginacion from "./Paginación";
 import "./Styles.css";
 
@@ -26,8 +25,6 @@ export default function Usuarios() {
       createdAt: u.createdAt,
     };
   });
-
-  
 
   //SEARCHBAR
   const [search, setSearch] = useState("");
