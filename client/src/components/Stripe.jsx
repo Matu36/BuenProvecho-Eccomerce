@@ -13,6 +13,8 @@ import "./styles.css";
 import { Box, Button, FormControl, Text } from "@chakra-ui/react";
 import Swal from "sweetalert2";
 import { useDispatch, useSelector } from "react-redux";
+import { getUsers } from "../Redux/actions";
+import { useAuth0 } from "@auth0/auth0-react";
 /* Ir a la pagina de stripe, crear cuenta;  ir de la pestaña desarroladres, claves Api (Esto
 es para la fase de desarrollo; para la fase de producción hay que activar cuenta)
 Importo loadStripe y dentro le pego la clave publica (esta no hay problema que se vea)
@@ -27,8 +29,22 @@ const CheckoutForm = () => {
   const Elements = useElements(); //con esto manipulamos lo que viene de strip
   const [loading, setLoading] = useState(false);
 
+  const {user } = useAuth0();
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getUsers(user));
+  }, [user]);
+
+  const Usuario = user.email;
+//   const Usuarios = useSelector (state => state.users);
+  
   const carro = useSelector((state) => state.cart);
+
+  //Suma los precios de todos los productos del carrito
   const totalEfectivo = carro.reduce((total, producto) => total + producto.Efectivo, 0);
+  //Manda los nombres de los productos elegidos en el carrito en un array
   const carroNombre = carro.map((product) => product.Nombre);
 
   
@@ -49,8 +65,11 @@ const CheckoutForm = () => {
           {
             id,
             amount: totalEfectivo,  //aca va el precio de la sumatoria del carrito (fijarse tema centavos, dolares)
-            Producto: carroNombre,
-            
+            Producto: carroNombre,  //esta es la description
+            metadata: {
+                user: {
+                  email: Usuario
+                }}
           }
         );
 

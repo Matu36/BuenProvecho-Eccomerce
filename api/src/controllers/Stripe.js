@@ -7,13 +7,15 @@ const stripe = new Stripe(
 
 const checkOut = async (req, res) => {
   try {
-    const { id, amount, Producto } = req.body;
+    const { id, amount, Producto, metadata } = req.body;
     const payment = await stripe.paymentIntents.create({
       amount,
       currency: "USD",
       description: JSON.stringify(Producto),
       payment_method: id,
       confirm: true,
+      metadata: {user_email: metadata.user.email // agrega el email del usuario a la metadata
+  }
     });
     console.log(payment);
 
