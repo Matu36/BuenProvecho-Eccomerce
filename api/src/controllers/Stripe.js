@@ -1,5 +1,6 @@
 const Stripe = require("stripe");
 
+
 //instancio a stripe // la clave va con variable de entorno
 const stripe = new Stripe(
   "sk_test_51N42BCBSrEQZgu90tmmqu1XosIWVVDIqXPNgr9VRjhfgEXc8oIEukd9Nzu7D7GgCXmHtp9db49YJBwDS12yF9xrB00diqyimcv"

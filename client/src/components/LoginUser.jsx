@@ -29,7 +29,7 @@ const navigate = useNavigate();
           navigate('/');
         }, 4000);    
 
-        // Estilo de fondo para dispositivos móviles
+       
 
 
 return (

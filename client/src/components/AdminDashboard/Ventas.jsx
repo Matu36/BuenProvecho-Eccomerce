@@ -1,6 +1,17 @@
 import React, { useState, useEffect } from "react";
 import Stripe from "stripe";
-import { Table, Thead, Tbody, Tr, Th, Td, Box, Text } from "@chakra-ui/react";
+import {
+  Table,
+  Thead,
+  Tbody,
+  Tr,
+  Th,
+  Td,
+  Box,
+  HStack,
+  Button,
+} from "@chakra-ui/react";
+import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 
 const stripe = new Stripe(
   "sk_test_51N42BCBSrEQZgu90tmmqu1XosIWVVDIqXPNgr9VRjhfgEXc8oIEukd9Nzu7D7GgCXmHtp9db49YJBwDS12yF9xrB00diqyimcv"
@@ -16,40 +27,87 @@ export default function ListaDeCargos() {
     }
 
     obtenerCargos();
-    
   }, []);
 
   
+  //PAGINADO
+
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 10; // número de elementos por página
+  const totalPages = Math.ceil(cargos.length / itemsPerPage); // número total de páginas
+
+  const getPageItems = () => {
+    const startIndex = (currentPage - 1) * itemsPerPage;
+    const endIndex = startIndex + itemsPerPage;
+    return cargos.slice(startIndex, endIndex);
+  };
+
+  // FIN PAGINADO
+
   return (
     <>
-      <Box>
-        <Text> Ventas con Tarjeta</Text>
-      </Box>
+      <Box></Box>
       <Table variant="striped" colorScheme="teal" maxWidth="90%">
         <Thead>
-          <Tr padding={{ base: "2px", md: "6px" }}>
-            <Th>Id Compra</Th>
-            <Th>Email</Th>
-            <Th>Moneda</Th>
-            <Th>Precio</Th>
-            <Th>Producto</Th>
+          <Tr padding={{ base: "2px", md: "2px" }}>
+            <Th style={{ paddingBottom: "0.5rem" }}>Id Compra</Th>
+            <Th style={{ paddingBottom: "0.5rem", paddingLeft: "0.5rem" }}>
+              Email
+            </Th>
+            <Th style={{ paddingBottom: "0.5rem", paddingLeft: "0.5rem" }}>
+              Moneda
+            </Th>
+            <Th style={{ paddingBottom: "0.5rem", paddingLeft: "0.5rem" }}>
+              Precio
+            </Th>
+            <Th style={{ paddingBottom: "0.5rem", paddingLeft: "0.5rem" }}>
+              Producto
+            </Th>
           </Tr>
         </Thead>
         <Tbody>
-          {cargos.map((cargo) => (
-            <Tr padding={{ base: "1px", md: "6px" }} key={cargo.id} style={{
-                wordBreak: "break-all",
-                maxWidth: "40%" 
-              }}>
-              <Td >{cargo.id} </Td>
-              <Td>{cargo.metadata.user_email}</Td>
-              <Td>{cargo.currency}</Td>
-              <Td>{cargo.amount}</Td>
-              <Td>{cargo.description}</Td>
+          {getPageItems().map((cargo) => (
+            <Tr
+              paddingLeft={{ base: "1px", md: "0px" }}
+              key={cargo.id}
+              style={{ wordBreak: "break-all", maxWidth: "40%" }}
+            >
+              <Td>{cargo.id} </Td>
+              <Td paddingLeft="0.5rem">{cargo.metadata.user_email}</Td>
+              <Td paddingLeft="0.5rem">{cargo.currency}</Td>
+              <Td paddingLeft="0.5rem">{cargo.amount}</Td>
+              <Td paddingLeft="0.5rem">{cargo.description}</Td>
             </Tr>
           ))}
         </Tbody>
       </Table>
+      <Box mt="4">
+        <HStack>
+          <Button
+            disabled={currentPage === 1}
+            onClick={() => setCurrentPage(currentPage - 1)}
+            leftIcon={<FaChevronLeft />}
+          >
+            Anterior
+          </Button>
+          {Array.from({ length: totalPages }).map((_, i) => (
+            <Button
+              key={i}
+              variant={currentPage === i + 1 ? "solid" : "ghost"}
+              onClick={() => setCurrentPage(i + 1)}
+            >
+              {i + 1}
+            </Button>
+          ))}
+          <Button
+            disabled={currentPage === totalPages}
+            onClick={() => setCurrentPage(currentPage + 1)}
+            rightIcon={<FaChevronRight />}
+          >
+            Siguiente
+          </Button>
+        </HStack>
+      </Box>
     </>
   );
 }
