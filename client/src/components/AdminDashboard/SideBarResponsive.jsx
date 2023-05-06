@@ -7,7 +7,7 @@ import {
     Icon,
     useColorMode,
   } from "@chakra-ui/react";
-  import { HamburgerIcon, CloseIcon } from "@chakra-ui/icons";
+  import { HamburgerIcon } from "@chakra-ui/icons";
   import {
     MdShoppingBasket,
     MdPerson,

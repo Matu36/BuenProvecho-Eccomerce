@@ -6,19 +6,10 @@ import { MdCancel } from "react-icons/md";
 import { updateComida, deleteComida } from "../../Redux/actions/index";
 import { Button, Input } from "@chakra-ui/react";
 import FormProduct from "./FormProduct";
-import {
-  Table,
-  Thead,
-  Tbody,
-  Tr,
-  Th,
-  Td,
-  Box,
-  
-} from "@chakra-ui/react";
+import { Table, Thead, Tbody, Tr, Th, Td, Box } from "@chakra-ui/react";
 import { CgCloseO } from "react-icons/cg";
 import { DeleteIcon } from "@chakra-ui/icons";
-import './Styles.css';
+import "./Styles.css";
 
 export default function Productos() {
   let dispatch = useDispatch();
@@ -36,8 +27,6 @@ export default function Productos() {
       MercadoPago: product.MercadoPago,
     };
   });
-
-  
 
   //MOSTRANDO EL FORMULARIO DE CREACION //
 
@@ -153,7 +142,10 @@ export default function Productos() {
   ];
 
   return (
-    <Box maxWidth= {{base:"90%", md:"none"}} marginLeft={{base:"-5rem", md:"0"}}>
+    <Box
+      maxWidth={{ base: "90%", md: "none" }}
+      marginLeft={{ base: "-5rem", md: "0" }}
+    >
       <div style={{ display: "flex", alignItems: "center" }}>
         <Input
           type="text"
@@ -165,11 +157,13 @@ export default function Productos() {
           background="white"
           margin="10px"
         />
-        
       </div>
-      <Button marginLeft={{base:"12rem", md:"35em"}} onClick={handleMostrarFormulario}>
-          Agregar Comida
-        </Button>
+      <Button
+        marginLeft={{ base: "12rem", md: "35em" }}
+        onClick={handleMostrarFormulario}
+      >
+        Agregar Comida
+      </Button>
       <h1 className="titleIngredients">Productos</h1>
       {mostrarFormulario && (
         <div
@@ -195,7 +189,9 @@ export default function Productos() {
           <Thead>
             <Tr>
               {columns.map((column) => (
-                <Th padding={{ base: "5px", md: "10px" }} key={column.field}>{column.headerName}</Th>
+                <Th padding={{ base: "5px", md: "10px" }} key={column.field}>
+                  {column.headerName}
+                </Th>
               ))}
             </Tr>
           </Thead>
@@ -203,7 +199,12 @@ export default function Productos() {
             {totalIngredients.map((row, index) => (
               <Tr width="10%" key={index}>
                 {columns.map((column) => (
-                  <Td padding={{base:"8px", md:"10px"}} width="20%" id={row.id} key={`${row.id}-${column.field}`}>
+                  <Td
+                    padding={{ base: "8px", md: "10px" }}
+                    width="20%"
+                    id={row.id}
+                    key={`${row.id}-${column.field}`}
+                  >
                     {column.field === "Efectivo" &&
                     editPrice !== null &&
                     editIndex === row.id ? (
@@ -257,7 +258,7 @@ export default function Productos() {
                         <div>{row[column.field]}</div>
                         {column.field === "Efectivo" && (
                           <Box ml="auto">
-                            <button 
+                            <button
                               style={{ fontSize: "24px" }}
                               onClick={() =>
                                 column.field === "Efectivo"
@@ -272,7 +273,8 @@ export default function Productos() {
 
                         {column.field === "Acciones" && (
                           <Box ml="auto">
-                            <button className="btn"
+                            <button
+                              className="btn"
                               // style={{ fontSize: "24px", marginLeft: "-7rem" }}
                               onClick={() => handleDelete(row.id)} // aquí se pasa el ID
                             >
@@ -288,10 +290,10 @@ export default function Productos() {
             ))}
           </Tbody>
         </Table>
-        <Box width="100%" marginBottom="2rem" >
+        <Box width="100%" marginBottom="2rem">
           <br />
           {productos && (
-            <Paginacion 
+            <Paginacion
               currentPage={currentPage}
               numberOfPage={numberOfPage}
               handlePageNumber={handlePageNumber}

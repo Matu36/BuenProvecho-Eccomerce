@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect} from "react";
 import {
   CLEAR_CART,
   REMOVE_ALL_FROM_CART,
@@ -10,6 +10,7 @@ import { Box, Flex, Text, Button, Icon, Divider } from "@chakra-ui/react";
 import { MdOutlineArrowBackIosNew } from "react-icons/md";
 import { useAuth0 } from "@auth0/auth0-react";
 import {Link} from "react-router-dom";
+import BotonMP from "../../MercadoPago/BotonMP";
 
 
 export default function ShoppingCart() {
@@ -151,6 +152,10 @@ export default function ShoppingCart() {
           <Link to="/Checkout">
       <Button> Pagar con Tarjeta </Button>
       </Link>
+     <br />
+     <br />
+     
+      <BotonMP />
         </Box>
       </Flex>
       
