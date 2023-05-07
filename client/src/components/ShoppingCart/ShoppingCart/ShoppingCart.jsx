@@ -11,6 +11,7 @@ import { MdOutlineArrowBackIosNew } from "react-icons/md";
 import { useAuth0 } from "@auth0/auth0-react";
 import {Link} from "react-router-dom";
 import BotonMP from "../../MercadoPago/BotonMP";
+import AuthButton from "../../Auth0";
 
 
 export default function ShoppingCart() {
@@ -71,6 +72,9 @@ export default function ShoppingCart() {
       solid
       borderColor="yellow.300"
     >
+      
+
+
       <Flex>
         <Box
           marginLeft={{ base: "1rem", md: "4rem" }}
@@ -150,12 +154,19 @@ export default function ShoppingCart() {
           <br />
           <br />
           <Link to="/Checkout">
-      <Button> Pagar con Tarjeta </Button>
+      <Button fontSize={{base:"12px", md:"16px"}}> Pagar con Tarjeta </Button>
       </Link>
      <br />
      <br />
      
       <BotonMP />
+      <br />
+      <br />
+      <Text color="gray.300" marginLeft="1rem" fontWeight="bold"> Te podés loguear aca </Text>
+      <br />
+      <Box marginLeft={{base:"2.5rem", md:"5rem"}}>
+      <AuthButton />
+      </Box>
         </Box>
       </Flex>
       

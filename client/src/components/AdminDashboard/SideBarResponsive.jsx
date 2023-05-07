@@ -28,7 +28,7 @@ export default function SideBarResponsive () {
         { label: "Productos", icon: MdShoppingBasket},
         { label: "Usuarios", icon: MdPerson},
         { label: "Ventas", icon: MdAttachMoney},
-        { label: "Ordenes", icon: MdAssignment},
+        { label: "MercadoPago", icon: MdAssignment},
         { label: "Mensajes", icon: MdMail },
       ];
     

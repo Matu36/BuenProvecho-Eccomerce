@@ -143,7 +143,7 @@ Gracias por elegirnos </Text>
             <Text>{user.name}</Text>
           </Box>
 
-          <Box marginLeft="3rem">
+          <Box marginLeft={{base:"3rem", md:"9rem"}}>
             <Text> Total a Pagar: ${totalEfectivo} </Text>
           </Box>
         </Flex>
