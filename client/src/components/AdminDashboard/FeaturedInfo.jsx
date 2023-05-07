@@ -7,12 +7,12 @@ export default function FeaturedInfo() {
   return (
     <Flex justify="space-between" alignItems="center" bg="gray.50" p="4" borderRadius="10px"
     maxW={{ base: "80%", md: "none" }} marginLeft={{base:"0", md:"6rem"}}>
-      <Box flex="1" ml="1">
-        <Heading as="h3" fontSize="lg" mb="2">
+      <Box flex="1" ml="1" backgroundColor="blue.400" marginLeft={{base:"0", md:"-5rem"}}>
+        <Heading as="h3"color="white" fontSize="lg" mb="2" marginLeft={{base:"1rem", md:"5rem"}}>
           Ganancias
         </Heading>
         <Box display="flex" alignItems="center" mb="2">
-          <Text fontSize="2xl" fontWeight="semibold" mr="0">
+          <Text color="white" fontSize="2xl" fontWeight="semibold" mr="0"marginLeft={{base:"0", md:"4rem"}}>
             $2,415
           </Text>
           <Box display="flex" alignItems="center" color="red.500">
@@ -22,17 +22,17 @@ export default function FeaturedInfo() {
             <BiDownArrowAlt />
           </Box>
         </Box>
-        <Text fontSize="md" color="gray.500">
+        <Text  backgroundColor="blue.600" textAlign="center" fontSize="md" color="white" marginLeft={{base:"0", md:"0rem"}}>
           Comparado con el mes pasado
         </Text>
       </Box>
 
-      <Box flex="1" mr="4">
-        <Heading as="h3" fontSize="lg" mb="2" marginLeft={{base:"1rem", md:"0"}}>
+      <Box flex="1" mr="2" backgroundColor="green.200">
+        <Heading as="h3" color="white" fontSize="lg" mb="2" marginLeft={{base:"2rem", md:"6rem"}}>
           Ventas
         </Heading>
         <Box display="flex" alignItems="center" mb="2">
-          <Text fontSize="2xl" fontWeight="semibold" mr="0">
+          <Text color="white" fontSize="2xl" fontWeight="semibold" mr="0" marginLeft={{base:"0.5rem", md:"5rem"}}>
             $4,415
           </Text>
           <Box display="flex" alignItems="center" color="red.500">
@@ -42,27 +42,27 @@ export default function FeaturedInfo() {
             <BiDownArrowAlt />
           </Box>
         </Box>
-        <Text fontSize="md" color="gray.500">
+        <Text align="center"  backgroundColor="green.500" fontSize="md" color="white" marginLeft={{base:"0", md:"0rem"}}>
         Comparado con el mes pasado
         </Text>
       </Box>
 
-      <Box flex="1">
-        <Heading as="h3" fontSize="lg" mb="2">
+      <Box flex="1" backgroundColor="yellow.200" marginLeft="-0.5rem">
+        <Heading textAlign="center" as="h3" fontSize="lg" mb="2" color="white">
           Costos
         </Heading>
         <Box display="flex" alignItems="center" mb="2">
-          <Text fontSize="2xl" fontWeight="semibold" mr="2">
+          <Text color="white" fontSize="2xl" fontWeight="semibold" mr="2"marginLeft={{base:"0rem", md:"5rem"}}>
             $2,225
           </Text>
           <Box display="flex" alignItems="center" color="green.500">
-            <Text mr="2" fontSize="md">
-              +2.4
+            <Text mr="1" fontSize="md">
+      +2.4
             </Text>
             <BiUpArrowAlt />
           </Box>
         </Box>
-        <Text fontSize="md" color="gray.500">
+        <Text fontSize="md" color="white" textAlign="center" backgroundColor="yellow.500">
         Comparado con el mes pasado
         </Text>
       </Box>

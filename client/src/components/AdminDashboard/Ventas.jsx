@@ -82,11 +82,14 @@ export default function ListaDeCargos() {
         </Tbody>
       </Table>
       <Box mt="4">
-        <HStack>
+      <HStack spacing={{base:0, md:2}} mt={{base:0, md:4}}>
           <Button
             disabled={currentPage === 1}
             onClick={() => setCurrentPage(currentPage - 1)}
             leftIcon={<FaChevronLeft />}
+            size="sm"
+        variant="ghost"
+        colorScheme="gray"
           >
             Anterior
           </Button>
@@ -94,7 +97,9 @@ export default function ListaDeCargos() {
             <Button
               key={i}
               variant={currentPage === i + 1 ? "solid" : "ghost"}
+              colorScheme={currentPage === i + 1 ? "purple" : "gray"}
               onClick={() => setCurrentPage(i + 1)}
+              size="sm"
             >
               {i + 1}
             </Button>
@@ -103,6 +108,9 @@ export default function ListaDeCargos() {
             disabled={currentPage === totalPages}
             onClick={() => setCurrentPage(currentPage + 1)}
             rightIcon={<FaChevronRight />}
+            size="sm"
+        variant="ghost"
+        colorScheme="gray"
           >
             Siguiente
           </Button>

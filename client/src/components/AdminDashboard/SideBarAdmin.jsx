@@ -12,7 +12,8 @@ import {
   MdPerson,
   MdAttachMoney,
   MdAssignment,
-  MdMail,
+  MdMail, 
+  MdOutlineEditCalendar
 } from "react-icons/md";
 import { FaHome } from 'react-icons/fa';
 import { useDispatch } from "react-redux";
@@ -32,8 +33,9 @@ const SideBarAdmin = () => {
     { label: "Productos", icon: MdShoppingBasket},
     { label: "Usuarios", icon: MdPerson},
     { label: "Ventas", icon: MdAttachMoney},
-    { label: "Ordenes", icon: MdAssignment},
+    { label: "MercadoPago", icon: MdAssignment},
     { label: "Mensajes", icon: MdMail },
+    { label: "Calendario", icon: MdOutlineEditCalendar },
   ];
 
   const { colorMode } = useColorMode();

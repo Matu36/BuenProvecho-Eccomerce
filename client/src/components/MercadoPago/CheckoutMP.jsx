@@ -1,10 +1,11 @@
 import React, { useEffect } from "react";
-import { Box } from "@chakra-ui/react";
+import { Box, Image } from "@chakra-ui/react";
 import { BarLoader } from "react-spinners";
 import Swal from "sweetalert2";
 import { useDispatch, useSelector } from "react-redux";
 import { getUsers } from "../../Redux/actions";
 import { useAuth0 } from "@auth0/auth0-react";
+import mercadopagoimg from "../../img/mercpago.jpg";
 
 
 /*
@@ -43,7 +44,17 @@ const CheckoutMP = () => {
 
   return (
   
-<Box>Hola</Box>
+<Box backgroundImage={{
+        base: "none",
+        md: `linear-gradient(to bottom, rgba(0,0,0,0) 40%,rgba(0,0,0,0) 90%,rgba(1,0,5,3) 100%), url(${mercadopagoimg})`,
+      }}backgroundRepeat="no-repeat"
+      backgroundSize="contain"
+      height="100vh">
+
+        
+
+
+</Box>
 
 
 
