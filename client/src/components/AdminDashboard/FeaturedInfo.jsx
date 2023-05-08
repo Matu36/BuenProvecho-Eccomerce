@@ -1,49 +1,115 @@
-import React from "react";
-
+import React, { useState, useEffect } from "react";
 import { Flex, Box, Text, Heading } from "@chakra-ui/react";
-import { BiDownArrowAlt, BiUpArrowAlt } from "react-icons/bi";
+import Stripe from "stripe";
+import { useSelector } from "react-redux";
+
+const stripe = new Stripe(
+  "sk_test_51N42BCBSrEQZgu90tmmqu1XosIWVVDIqXPNgr9VRjhfgEXc8oIEukd9Nzu7D7GgCXmHtp9db49YJBwDS12yF9xrB00diqyimcv"
+);
 
 export default function FeaturedInfo() {
+  const [cargos, setCargos] = useState([]);
+
+  useEffect(() => {
+    async function obtenerCargos() {
+      const resultado = await stripe.charges.list({ limit: 100 });
+      setCargos(resultado.data);
+    }
+
+    obtenerCargos();
+  }, []);
+
+  //FUNCION QUE SUMA TODAS LAS PROPIEDADES AMOUNT DE CARGOS
+  const totalAmount = cargos.reduce(
+    (accumulator, currentCharge) => accumulator + currentCharge.amount,
+    0
+  );
+
+  const productos = useSelector((state) => state.comidas);
+
+  const totalCostos = productos.reduce(
+    (accumulator, currentCharge) => accumulator + currentCharge.MercadoPago,
+    0
+  );
+
+  const ganancias = totalAmount - totalCostos;
+
   return (
-    <Flex justify="space-between" alignItems="center" bg="gray.50" p="4" borderRadius="10px"
-    maxW={{ base: "80%", md: "none" }} marginLeft={{base:"0", md:"6rem"}}>
-      <Box flex="1" ml="1" backgroundColor="blue.400" marginLeft={{base:"0", md:"-5rem"}}>
-        <Heading as="h3"color="white" fontSize="lg" mb="2" marginLeft={{base:"1rem", md:"5rem"}}>
+    <Flex
+      justify="space-between"
+      alignItems="center"
+      bg="gray.50"
+      p="4"
+      borderRadius="10px"
+      maxW={{ base: "100%", md: "none" }}
+      marginLeft={{ base: "0", md: "6rem" }}
+    >
+      <Box
+        flex="1"
+        ml="1"
+        backgroundColor="blue.400"
+        marginLeft={{ base: "0", md: "-5rem" }}
+      >
+        <Heading
+          as="h3"
+          color="white"
+          fontSize="lg"
+          mb="2"
+          marginLeft={{ base: "1rem", md: "7rem" }}
+        >
           Ganancias
         </Heading>
         <Box display="flex" alignItems="center" mb="2">
-          <Text color="white" fontSize="2xl" fontWeight="semibold" mr="0"marginLeft={{base:"0", md:"4rem"}}>
-            $2,415
+          <Text
+            color="white"
+            fontSize={{ base: "16px", md: "2xl" }}
+            fontWeight="semibold"
+            mr="0"
+            marginLeft={{ base: "1.5rem", md: "6rem" }}
+          >
+            $ {ganancias}
           </Text>
-          <Box display="flex" alignItems="center" color="red.500">
-            <Text mr="2" fontSize="md">
-              -11.4
-            </Text>
-            <BiDownArrowAlt />
-          </Box>
         </Box>
-        <Text  backgroundColor="blue.600" textAlign="center" fontSize="md" color="white" marginLeft={{base:"0", md:"0rem"}}>
-          Comparado con el mes pasado
+        <Text
+          backgroundColor="blue.600"
+          textAlign="center"
+          fontSize="md"
+          color="white"
+          marginLeft={{ base: "0", md: "0rem" }}
+        >
+          Ganancias totales
         </Text>
       </Box>
 
       <Box flex="1" mr="2" backgroundColor="green.200">
-        <Heading as="h3" color="white" fontSize="lg" mb="2" marginLeft={{base:"2rem", md:"6rem"}}>
+        <Heading
+          as="h3"
+          color="white"
+          fontSize="lg"
+          mb="2"
+          marginLeft={{ base: "2rem", md: "7rem" }}
+        >
           Ventas
         </Heading>
         <Box display="flex" alignItems="center" mb="2">
-          <Text color="white" fontSize="2xl" fontWeight="semibold" mr="0" marginLeft={{base:"0.5rem", md:"5rem"}}>
-            $4,415
+          <Text
+            color="white"
+            fontSize={{ base: "16px", md: "2xl" }}
+            fontWeight="semibold"
+            mr="0"
+            marginLeft={{ base: "1.5rem", md: "6rem" }}
+          >
+            $ {totalAmount}
           </Text>
-          <Box display="flex" alignItems="center" color="red.500">
-            <Text mr="2" fontSize="md">
-              -1.4
-            </Text>
-            <BiDownArrowAlt />
-          </Box>
         </Box>
-        <Text align="center"  backgroundColor="green.500" fontSize="md" color="white" marginLeft={{base:"0", md:"0rem"}}>
-        Comparado con el mes pasado
+        <Text
+          align="center"
+          backgroundColor="green.500"
+          fontSize="md"
+          color="white"
+          marginLeft={{ base: "0", md: "0rem" }}
+        >
+          Ventas totales
         </Text>
       </Box>
 
@@ -52,18 +118,24 @@ export default function FeaturedInfo() {
           Costos
         </Heading>
         <Box display="flex" alignItems="center" mb="2">
-          <Text color="white" fontSize="2xl" fontWeight="semibold" mr="2"marginLeft={{base:"0rem", md:"5rem"}}>
-            $2,225
+          <Text
+            color="white"
+            fontSize={{ base: "16px", md: "2xl" }}
+            fontWeight="semibold"
+            mr="2"
+            marginLeft={{ base: "2rem", md: "7rem" }}
+          >
+            $ {totalCostos}
           </Text>
-          <Box display="flex" alignItems="center" color="green.500">
-            <Text mr="1" fontSize="md">
-      +2.4
-            </Text>
-            <BiUpArrowAlt />
-          </Box>
+          {totalCostos < totalAmount}
         </Box>
-        <Text fontSize="md" color="white" textAlign="center" backgroundColor="yellow.500">
-        Comparado con el mes pasado
+        <Text
+          fontSize="md"
+          color="white"
+          textAlign="center"
+          backgroundColor="yellow.500"
+        >
+          Costos totales
         </Text>
       </Box>
     </Flex>

@@ -5,7 +5,7 @@ import pvacio from "../../img/pvacio.png";
 
 export default function WidgetSm() {
   const users = useSelector((state) => state.users);
-  const usersSlice = users.slice(-5);
+  const usersSlice = users.slice(0, 5);
 
   return (
     <Box
@@ -13,10 +13,10 @@ export default function WidgetSm() {
       borderRadius="10%"
       boxShadow="sm"
       p="4"
-      marginLeft={{ base: "2rem", md: "0" }}
+      marginLeft={{ base: "3rem", md: "0" }}
       backgroundColor="red.400"
-      maxWidth={{base:"80%", md:"100%"}}
-      
+      // maxWidth={{base:"80%", md:"120%"}}
+      width="320px"
     >
       <Heading as="h3" size="sm" mb="2" marginLeft={{base:"3rem", md:"1.5rem"}} fontSize="20px"
       fontWeight="bold" color="white">

@@ -67,8 +67,8 @@ export default function FormProduct(props) {
       ingredient.Nombre &&
       ingredient.Efectivo &&
       ingredient.Categoria &&
-      ingredient.Imagen 
-      // ingredient.MercadoPago 
+      ingredient.Imagen &&
+      ingredient.MercadoPago 
     ) {
       const newIngredient = {
         ...ingredient,
@@ -87,7 +87,7 @@ export default function FormProduct(props) {
         Efectivo: "",
         Categoria: "",
         Imagen: "",
-        // MercadoPago: "",
+        MercadoPago: "",
       });
     } else {
       Swal.fire({
@@ -183,15 +183,15 @@ export default function FormProduct(props) {
               />
             </FormControl>
 
-             {/* <FormControl>
-              <FormLabel>MercadoPago</FormLabel>
+              <FormControl>
+              <FormLabel>Costo</FormLabel>
               <InputGroup>
                 <InputLeftAddon children="$" />
                 <NumberInput
                   name="MercadoPago"
                   value={ingredient.MercadoPago}
                   autoComplete="off"
-                  placeholder="MercadoPago "
+                  placeholder="Costo "
                   onChange={(value) =>
                     setIngredient({
                       ...ingredient,
@@ -202,7 +202,7 @@ export default function FormProduct(props) {
                   <NumberInputField />
                 </NumberInput>
               </InputGroup>
-            </FormControl>  */}
+            </FormControl> 
           </Box>
         </HStack>
         <Center marginTop="20px">

@@ -15,6 +15,7 @@ export const GET_USERS = "GET_USERS";
 export const GET_MENSAJES = "GET_MENSAJES";
 export const MENSAJE_CREADO = "MENSAJE_CREADO";
 export const REMOVE_ONE_FROM_MESSAGE = "REMOVE_ONE_FROM_MESSAGE";
+export const UPDATE_USER = "UPDATE_USER";
 
 export const changeHomeAdminShow = (payload) => async (dispatch) => {
   return dispatch({ type: HOME_ADMIN_SHOW, payload: payload });
@@ -70,6 +71,22 @@ export const getUsers = (currentUser) => {
       .then((response) =>
         dispatch({ type: GET_USERS, payload: response.data })
       );
+};
+
+export const updateUser = (user) => {
+  return (dispatch) => {
+    axios
+      .put("http://localhost:3001/users", user)
+      .then((res) => {
+        dispatch({
+          type: UPDATE_USER,
+          payload: { ...user },
+        });
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
 };
 
 export const getMensajes = () => async (dispatch) => {
