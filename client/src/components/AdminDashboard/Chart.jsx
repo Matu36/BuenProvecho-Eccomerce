@@ -68,11 +68,11 @@ for (const [key, value] of Object.entries(usuariosPorMes)) {
       boxShadow="2px -1px 5px 0px rgba(0,0,0,0.75)"
       p="20px"
       m="20px"
-      maxWidth={{ base: "85%", md: "none" }}
+      maxWidth={{ base: "90%", md: "none" }}
       marginLeft={{ base: "1.1rem", md: "3rem" }}
       borderRadius="10%"
     >
-      <Heading as="h3" mb="20px" marginLeft={{base:"2rem", md:"10rem"}}>
+      <Heading as="h3" mb="20px" marginLeft={{base:"2rem", md:"13rem"}}>
         {title}
       </Heading>
       <ResponsiveContainer width="100%" aspect={4 / 1}>

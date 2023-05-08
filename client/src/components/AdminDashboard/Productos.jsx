@@ -126,10 +126,41 @@ export default function Productos() {
 
   //FIN EDITAR PRECIO
 
+  //EDITAR COSTOS
+
+  const [editStock, setEditStock] = useState(null);
+
+  const handleEditStock = (index, MercadoPago) => {
+    setEditIndex(index);
+    setEditStock(MercadoPago);
+  };
+
+  const handleStockChange = (MercadoPago) => {
+    setEditStock(MercadoPago);
+  };
+
+  const handleSaveStock = (id) => {
+    const updatedCosto = {
+      id: id,
+      MercadoPago: editStock,
+    };
+    dispatch(updateComida(updatedCosto));
+    setEditIndex(null);
+    setEditStock(null);
+  };
+
+  const handleCancelStock = () => {
+    setEditIndex(null);
+    setEditStock(null);
+  };
+
+  //FIN EDITAR COSTOS
+
   const columns = [
     { field: "id", headerName: "id", width: 5 },
     { field: "Nombre", headerName: "Nombre", width: 130 },
     { field: "Efectivo", headerName: "Efectivo", width: 130 },
+    { field: "MercadoPago", headerName: "Costos", width: 130 },
     { field: "Categoria", headerName: "Categoria", width: 130 },
     {
       field: "Acciones",
@@ -143,8 +174,8 @@ export default function Productos() {
 
   return (
     <Box
-      maxWidth={{ base: "90%", md: "none" }}
-      marginLeft={{ base: "-5rem", md: "0" }}
+      maxWidth={{ base: "80%", md: "none" }}
+      marginLeft={{ base: "-6rem", md: "0" }}
     >
       <div style={{ display: "flex", alignItems: "center" }}>
         <Input
@@ -205,8 +236,8 @@ export default function Productos() {
                     id={row.id}
                     key={`${row.id}-${column.field}`}
                   >
-                    {column.field === "Efectivo" &&
-                    editPrice !== null &&
+                    {((column.field === "Efectivo" && editPrice !== null) ||
+                      (column.field === "MercadoPago" && editStock !== null)) &&
                     editIndex === row.id ? (
                       <div
                         style={{
@@ -216,11 +247,13 @@ export default function Productos() {
                       >
                         <Input
                           type="number"
-                          value={column.field === "Efectivo" ? editPrice : null}
+                          value={
+                            column.field === "Efectivo" ? editPrice : editStock
+                          }
                           onChange={(e) =>
                             column.field === "Efectivo"
                               ? handlePriceChange(e.target.value)
-                              : null
+                              : handleStockChange(e.target.value)
                           }
                         />
 
@@ -230,9 +263,9 @@ export default function Productos() {
                           onClick={() =>
                             column.field === "Efectivo"
                               ? handleSave(row.id)
-                              : null
+                              : handleSaveStock(row.id)
                           }
-                          title="Guardar"
+                          title="Save"
                         >
                           <BiSave />
                         </button>
@@ -241,9 +274,11 @@ export default function Productos() {
                           type="button"
                           style={{ fontSize: "24px" }}
                           onClick={
-                            column.field === "Efectivo" ? handleCancel : null
+                            column.field === "Efectivo"
+                              ? handleCancel
+                              : handleCancelStock
                           }
-                          title="Cancelar"
+                          title="Cancel"
                         >
                           <MdCancel />
                         </button>
@@ -256,14 +291,15 @@ export default function Productos() {
                         }}
                       >
                         <div>{row[column.field]}</div>
-                        {column.field === "Efectivo" && (
+                        {(column.field === "Efectivo" ||
+                          column.field === "MercadoPago") && (
                           <Box ml="auto">
                             <button
                               style={{ fontSize: "24px" }}
                               onClick={() =>
                                 column.field === "Efectivo"
                                   ? handleEdit(row.id, row.Efectivo)
-                                  : null
+                                  : handleEditStock(row.id, row.MercadoPago)
                               }
                             >
                               <BiEditAlt />

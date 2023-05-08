@@ -1,6 +1,6 @@
 const { Router } = require('express');
 const {getComidas, putComidas, createComida, deleteComida} = require ("../controllers/ComidasCont");
-const { getUsers, postUser } = require('../controllers/UsersCont');
+const { getUsers, postUser, putUser } = require('../controllers/UsersCont');
 const {postMensaje, obtenerMensajes} = require ("../controllers/UserMensajesCont")
 const {getOrders, postOrder} = require ("../controllers/OrderCont");
 const {checkOut} = require ("../controllers/Stripe");
@@ -16,6 +16,7 @@ router.post ("/comidas", createComida)
 router.delete("/comidas", deleteComida);
 router.get("/users", getUsers);
 router.post("/users", postUser);
+router.put ("/users", putUser);
 router.post ("/mensajes", postMensaje)
 router.get ("/mensajes", obtenerMensajes)
 router.get ("/orders", getOrders)

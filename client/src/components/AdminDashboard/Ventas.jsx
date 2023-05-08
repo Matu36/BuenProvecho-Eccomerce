@@ -46,7 +46,7 @@ export default function ListaDeCargos() {
 
   return (
     <>
-      <Box></Box>
+      <Box marginLeft= {{base:"-8rem", md:"0"}}>
       <Table variant="striped" colorScheme="teal" maxWidth="90%">
         <Thead>
           <Tr padding={{ base: "2px", md: "2px" }}>
@@ -81,7 +81,11 @@ export default function ListaDeCargos() {
           ))}
         </Tbody>
       </Table>
+      </Box>
+      <Box width="100%" marginBottom="2rem">
+          <br />
       <Box mt="4">
+        
       <HStack spacing={{base:0, md:2}} mt={{base:0, md:4}}>
           <Button
             disabled={currentPage === 1}
@@ -115,6 +119,7 @@ export default function ListaDeCargos() {
             Siguiente
           </Button>
         </HStack>
+      </Box>
       </Box>
     </>
   );
