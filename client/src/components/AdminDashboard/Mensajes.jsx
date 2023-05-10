@@ -64,8 +64,8 @@ export default function Mensajes() {
       bg="gray.100"
       p={4}
       borderRadius="lg"
-      width={{ base: "420px", md: "800px" }}
-      marginLeft={{ base: "-6rem", md: "-5rem" }}
+      width={{ base: "400px", md: "800px" }}
+      marginLeft={{ base: "-6rem", md: "-3rem" }}
     >
       {totalIngredients.map((msg, index) => (
         <Box key={index} mb={4}>

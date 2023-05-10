@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState} from "react";
 import {
   CLEAR_CART,
   REMOVE_ALL_FROM_CART,
@@ -10,6 +10,9 @@ import { Box, Flex, Text, Button, Icon, Divider } from "@chakra-ui/react";
 import { MdOutlineArrowBackIosNew } from "react-icons/md";
 import { useAuth0 } from "@auth0/auth0-react";
 import {Link} from "react-router-dom";
+import BotonMP from "../../MercadoPago/BotonMP";
+import AuthButton from "../../Auth0";
+import Swal from "sweetalert2";
 
 
 export default function ShoppingCart() {
@@ -20,6 +23,19 @@ export default function ShoppingCart() {
   const { user, isAuthenticated } = useAuth0();
 
   const dispatch = useDispatch();
+
+const [logueado, setLogueado] = useState();
+
+const sinLoguear = () => {
+  if (!logueado) {
+    Swal.fire({
+      title: "Debes iniciar sesión para realizar pagos",
+      position: "center",
+      
+    });
+  }
+};
+ 
 
   //LOCALSTORAGE
 
@@ -70,6 +86,9 @@ export default function ShoppingCart() {
       solid
       borderColor="yellow.300"
     >
+      
+
+
       <Flex>
         <Box
           marginLeft={{ base: "1rem", md: "4rem" }}
@@ -148,9 +167,29 @@ export default function ShoppingCart() {
           </Text>
           <br />
           <br />
+
+          {isAuthenticated ? (
           <Link to="/Checkout">
-      <Button> Pagar con Tarjeta </Button>
+      <Button fontSize={{base:"12px", md:"16px"}}> Pagar con Tarjeta </Button>
       </Link>
+      ):(<Button onClick={sinLoguear} fontSize={{base:"12px", md:"16px"}}> Pagar con Tarjeta </Button>
+
+      )}
+     <br />
+     <br />
+     
+      <BotonMP />
+      <br />
+      <br />
+      {!isAuthenticated ?  (
+        <>
+      <Text color="gray.300" marginLeft="1rem" fontWeight="bold"> Te podés loguear aca </Text>
+      <br />
+      <Box marginLeft={{base:"2.5rem", md:"5rem"}}>
+      <AuthButton />
+      </Box>
+      </>) : ( null )}
+      
         </Box>
       </Flex>
       

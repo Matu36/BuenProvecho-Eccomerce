@@ -6,7 +6,6 @@ import HomeAdmin from "./HomeAdmin";
 import SideBarResponsive from "./SideBarResponsive";
 
 
-
 export default function AppAdmin () {
 
 //va el navbar, la sidebar, el home (los widgets);
@@ -22,7 +21,7 @@ const { isAutenticated } = useAuth0();
 
       <Flex direction="column" height="100vh">
             <NavBarAdmin/>
-            <Flex marginLeft={{ base: '6rem', md: '25rem' }} >
+            <Flex marginLeft={{ base: '6.7rem', md: '24rem' }} >
             <HomeAdmin />
             
             

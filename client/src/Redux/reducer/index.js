@@ -13,6 +13,7 @@ import {
   GET_MENSAJES,
   MENSAJE_CREADO,
   REMOVE_ONE_FROM_MESSAGE,
+  UPDATE_USER
 } from "../actions/index";
 
 
@@ -131,6 +132,16 @@ function rootReducer(state = InitialState, action) {
         ...state,
         users: action.payload,
       };
+
+      case UPDATE_USER:
+      const updatedUser = state.users.map((user) => {
+        if (user.id === action.payload.id) {
+          return { ...user, ...action.payload };
+        }
+        return user;
+      });
+
+      return { ...state, users: updatedUser };
 
     case GET_MENSAJES:
       return {

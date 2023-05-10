@@ -6,8 +6,8 @@ import { IconButton,  MenuItem,
 import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
-import { useSelector, useDispatch } from "react-redux";
-import { getUsers } from "../Redux/actions";
+import { useSelector } from "react-redux";
+
 
   const AuthButton = () => {
   const { isAuthenticated, loginWithRedirect, logout, user } = useAuth0();
@@ -26,6 +26,8 @@ import { getUsers } from "../Redux/actions";
       localStorage.removeItem("user");
     }
 }, [isAuthenticated, user]);
+
+
 
 
   // FIN LOCAL STORAGE

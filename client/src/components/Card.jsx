@@ -19,7 +19,7 @@ export default function Card ({id, Imagen, Nombre, Efectivo, onClose, }) {
   
   return (
     <Box 
-    maxW={{base: "80%", md:"50%"}}
+    maxW={{base: "65%", md:"50%"}}
     overflow="hidden"
     boxShadow="md"
     mx="auto"
@@ -41,10 +41,11 @@ export default function Card ({id, Imagen, Nombre, Efectivo, onClose, }) {
             <Image src= {Imagen}
               maxH="100%"
               maxW="100%"
-              marginTop= "-2.5rem"
+      
+
               width="100%"
               height="200px"
-              objectFit="cover"
+              objectFit= "cover"
               borderRadius="lg"
              
             />

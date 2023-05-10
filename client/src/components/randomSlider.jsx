@@ -32,8 +32,8 @@ const RandomSlider = () => {
        
         {randomProducts.map(product => (
           <Box key={product.id} display="flex" alignItems="center" justifyContent="center" textAlign="center" w="100%">
-          <Box p="2" shadow="md" borderWidth="1px" borderRadius="md" maxW="sm">
-          <Box display="flex" alignItems="center" justifyContent="center" overflow="hidden" w="600px" h="300px" borderWidth="1px" borderRadius="md" borderColor="gray.200" boxShadow="lg">
+          <Box p="2"  borderRadius="md" maxW="sm">
+          <Box display="flex" alignItems="center" justifyContent="center" overflow="hidden" w="600px" h="300px"  borderRadius="md">
             <Image src={product.Imagen} alt="imagen" objectFit="cover" w="100%" h="100%"
              />
           </Box>

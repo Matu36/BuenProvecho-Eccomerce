@@ -6,19 +6,10 @@ import { MdCancel } from "react-icons/md";
 import { updateComida, deleteComida } from "../../Redux/actions/index";
 import { Button, Input } from "@chakra-ui/react";
 import FormProduct from "./FormProduct";
-import {
-  Table,
-  Thead,
-  Tbody,
-  Tr,
-  Th,
-  Td,
-  Box,
-  
-} from "@chakra-ui/react";
+import { Table, Thead, Tbody, Tr, Th, Td, Box } from "@chakra-ui/react";
 import { CgCloseO } from "react-icons/cg";
 import { DeleteIcon } from "@chakra-ui/icons";
-import './Styles.css';
+import "./Styles.css";
 
 export default function Productos() {
   let dispatch = useDispatch();
@@ -36,8 +27,6 @@ export default function Productos() {
       MercadoPago: product.MercadoPago,
     };
   });
-
-  
 
   //MOSTRANDO EL FORMULARIO DE CREACION //
 
@@ -137,10 +126,41 @@ export default function Productos() {
 
   //FIN EDITAR PRECIO
 
+  //EDITAR COSTOS
+
+  const [editStock, setEditStock] = useState(null);
+
+  const handleEditStock = (index, MercadoPago) => {
+    setEditIndex(index);
+    setEditStock(MercadoPago);
+  };
+
+  const handleStockChange = (MercadoPago) => {
+    setEditStock(MercadoPago);
+  };
+
+  const handleSaveStock = (id) => {
+    const updatedCosto = {
+      id: id,
+      MercadoPago: editStock,
+    };
+    dispatch(updateComida(updatedCosto));
+    setEditIndex(null);
+    setEditStock(null);
+  };
+
+  const handleCancelStock = () => {
+    setEditIndex(null);
+    setEditStock(null);
+  };
+
+  //FIN EDITAR COSTOS
+
   const columns = [
     { field: "id", headerName: "id", width: 5 },
     { field: "Nombre", headerName: "Nombre", width: 130 },
     { field: "Efectivo", headerName: "Efectivo", width: 130 },
+    { field: "MercadoPago", headerName: "Costos", width: 130 },
     { field: "Categoria", headerName: "Categoria", width: 130 },
     {
       field: "Acciones",
@@ -153,8 +173,11 @@ export default function Productos() {
   ];
 
   return (
-    <Box maxWidth= {{base:"90%", md:"none"}} marginLeft={{base:"-5rem", md:"0"}}>
-      <div style={{ display: "flex", alignItems: "center" }}>
+    <Box
+      maxWidth={{ base: "70%", md: "none" }}
+      marginLeft={{ base: "-6.5rem", md: "0" }}
+    >
+      <Box display="flex" alignItems="center">
         <Input
           type="text"
           placeholder="Buscar Comida "
@@ -165,11 +188,13 @@ export default function Productos() {
           background="white"
           margin="10px"
         />
-        
-      </div>
-      <Button marginLeft={{base:"12rem", md:"35em"}} onClick={handleMostrarFormulario}>
-          Agregar Comida
-        </Button>
+      </Box>
+      <Button
+        marginLeft={{ base: "12rem", md: "35em" }}
+        onClick={handleMostrarFormulario}
+      >
+        Agregar Comida
+      </Button>
       <h1 className="titleIngredients">Productos</h1>
       {mostrarFormulario && (
         <div
@@ -195,7 +220,9 @@ export default function Productos() {
           <Thead>
             <Tr>
               {columns.map((column) => (
-                <Th padding={{ base: "5px", md: "10px" }} key={column.field}>{column.headerName}</Th>
+                <Th padding={{ base: "5px", md: "10px" }} key={column.field}>
+                  {column.headerName}
+                </Th>
               ))}
             </Tr>
           </Thead>
@@ -203,9 +230,14 @@ export default function Productos() {
             {totalIngredients.map((row, index) => (
               <Tr width="10%" key={index}>
                 {columns.map((column) => (
-                  <Td padding={{base:"8px", md:"10px"}} width="20%" id={row.id} key={`${row.id}-${column.field}`}>
-                    {column.field === "Efectivo" &&
-                    editPrice !== null &&
+                  <Td
+                    padding={{ base: "8px", md: "10px" }}
+                    width="20%"
+                    id={row.id}
+                    key={`${row.id}-${column.field}`}
+                  >
+                    {((column.field === "Efectivo" && editPrice !== null) ||
+                      (column.field === "MercadoPago" && editStock !== null)) &&
                     editIndex === row.id ? (
                       <div
                         style={{
@@ -215,11 +247,13 @@ export default function Productos() {
                       >
                         <Input
                           type="number"
-                          value={column.field === "Efectivo" ? editPrice : null}
+                          value={
+                            column.field === "Efectivo" ? editPrice : editStock
+                          }
                           onChange={(e) =>
                             column.field === "Efectivo"
                               ? handlePriceChange(e.target.value)
-                              : null
+                              : handleStockChange(e.target.value)
                           }
                         />
 
@@ -229,9 +263,9 @@ export default function Productos() {
                           onClick={() =>
                             column.field === "Efectivo"
                               ? handleSave(row.id)
-                              : null
+                              : handleSaveStock(row.id)
                           }
-                          title="Guardar"
+                          title="Save"
                         >
                           <BiSave />
                         </button>
@@ -240,9 +274,11 @@ export default function Productos() {
                           type="button"
                           style={{ fontSize: "24px" }}
                           onClick={
-                            column.field === "Efectivo" ? handleCancel : null
+                            column.field === "Efectivo"
+                              ? handleCancel
+                              : handleCancelStock
                           }
-                          title="Cancelar"
+                          title="Cancel"
                         >
                           <MdCancel />
                         </button>
@@ -255,14 +291,15 @@ export default function Productos() {
                         }}
                       >
                         <div>{row[column.field]}</div>
-                        {column.field === "Efectivo" && (
+                        {(column.field === "Efectivo" ||
+                          column.field === "MercadoPago") && (
                           <Box ml="auto">
-                            <button 
+                            <button
                               style={{ fontSize: "24px" }}
                               onClick={() =>
                                 column.field === "Efectivo"
                                   ? handleEdit(row.id, row.Efectivo)
-                                  : null
+                                  : handleEditStock(row.id, row.MercadoPago)
                               }
                             >
                               <BiEditAlt />
@@ -271,8 +308,9 @@ export default function Productos() {
                         )}
 
                         {column.field === "Acciones" && (
-                          <Box ml="auto">
-                            <button className="btn"
+                          <Box ml={{base:"auto", md:"7rem"}}>
+                            <button
+                              className="btn"
                               // style={{ fontSize: "24px", marginLeft: "-7rem" }}
                               onClick={() => handleDelete(row.id)} // aquí se pasa el ID
                             >
@@ -288,10 +326,10 @@ export default function Productos() {
             ))}
           </Tbody>
         </Table>
-        <Box width="100%" marginBottom="2rem" >
+        <Box width="100%" marginBottom="2rem">
           <br />
           {productos && (
-            <Paginacion 
+            <Paginacion
               currentPage={currentPage}
               numberOfPage={numberOfPage}
               handlePageNumber={handlePageNumber}

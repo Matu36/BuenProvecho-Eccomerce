@@ -1,9 +1,8 @@
 import { Box } from "@chakra-ui/react";
 import React, { useEffect, useState } from "react";
-import {  useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 // import { getUsers } from "../../Redux/actions";
 import { Table, Thead, Tbody, Tr, Th, Td, Input } from "@chakra-ui/react";
-
 import Paginacion from "./Paginación";
 import "./Styles.css";
 
@@ -26,8 +25,6 @@ export default function Usuarios() {
       createdAt: u.createdAt,
     };
   });
-
-  
 
   //SEARCHBAR
   const [search, setSearch] = useState("");
@@ -80,16 +77,15 @@ export default function Usuarios() {
 
   const columns = [
     { field: "id", headerName: "id", width: 5 },
-    { field: "email", headerName: "email", width: 130 },
-    { field: "address", headerName: "Direccion", width: 130 },
-    { field: "role", headerName: "Role", width: 130 },
+    { field: "email", headerName: "Email", width: 130 },
+    { field: "role", headerName: "Rol", width: 130 },
     { field: "createdAt", headerName: "Ingreso", width: 130 },
   ];
 
   return (
     <Box
-      marginLeft={{ base: "-5rem", md: "0" }}
-      maxWidth={{ base: "90%", md: "none" }}
+      marginLeft={{ base: "-6.5rem", md: "0" }}
+      maxWidth={{ base: "100%", md: "100%" }}
     >
       <div style={{ display: "flex", alignItems: "center" }}>
         <Input
@@ -125,7 +121,7 @@ export default function Usuarios() {
                     id={row.id}
                     key={`${row.id}-${column.field}`}
                     style={{
-                      wordBreak: "break-all",
+                      wordBreak: column.field === "createdAt" ? "break-all": "none",
                       maxWidth: column.field === "email" ? "50%" : "none",
                     }}
                   >

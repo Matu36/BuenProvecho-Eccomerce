@@ -7,13 +7,14 @@ import {
     Icon,
     useColorMode,
   } from "@chakra-ui/react";
-  import { HamburgerIcon, CloseIcon } from "@chakra-ui/icons";
+  import { HamburgerIcon } from "@chakra-ui/icons";
   import {
     MdShoppingBasket,
     MdPerson,
     MdAttachMoney,
     MdAssignment,
     MdMail,
+    MdOutlineEditCalendar
   } from "react-icons/md";
   import { FaHome } from 'react-icons/fa';
   import { useDispatch } from "react-redux";
@@ -28,8 +29,9 @@ export default function SideBarResponsive () {
         { label: "Productos", icon: MdShoppingBasket},
         { label: "Usuarios", icon: MdPerson},
         { label: "Ventas", icon: MdAttachMoney},
-        { label: "Ordenes", icon: MdAssignment},
+        { label: "MercadoPago", icon: MdAssignment},
         { label: "Mensajes", icon: MdMail },
+        { label: "Calendario", icon: MdOutlineEditCalendar },
       ];
     
       const { colorMode } = useColorMode();
