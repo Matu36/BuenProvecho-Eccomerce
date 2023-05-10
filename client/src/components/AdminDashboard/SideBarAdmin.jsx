@@ -6,6 +6,7 @@ import {
   Stack,
   Icon,
   useColorMode,
+  Image
   
 } from "@chakra-ui/react";
 import {
@@ -21,6 +22,7 @@ import { useDispatch } from "react-redux";
 import { changeHomeAdminShow } from "../../Redux/actions";
 import { useAuth0 } from "@auth0/auth0-react";
 import { useSelector } from "react-redux";
+import chef from "../../img/chef.jpg"
 
 
 const SideBarAdmin = () => {
@@ -83,12 +85,13 @@ const SideBarAdmin = () => {
        </Box>
        <Box>
         {user.name}
+        
         </Box>
-       
+        
         </Box>
       </Flex>
-      <img style={{width:"50px", marginLeft:"6rem", borderRadius:"50%"}} src={user.picture} alt="" />
-      <Box flex="1" overflowY="auto" mt="8">
+     <Image src={chef} alt="chef" marginTop="-0.8rem" width="50px" height="50px" borderRadius="50%" mx="auto"/>
+      <Box flex="1" overflowY="auto" mt="0">
         
         <Stack spacing="4" mt="4" align="stretch">
           {categories.map((category) => (

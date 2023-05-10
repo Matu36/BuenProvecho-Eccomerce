@@ -10,7 +10,7 @@ import Tarjetas from "../img/Tarjetas2.jpg";
 import axios from "axios";
 import { BarLoader } from "react-spinners";
 import "./styles.css";
-import { Box, Button, FormControl, Text, Flex, Image } from "@chakra-ui/react";
+import { Box, Button, FormControl, Text, Flex } from "@chakra-ui/react";
 import Swal from "sweetalert2";
 import { useDispatch, useSelector } from "react-redux";
 import { getUsers } from "../Redux/actions";

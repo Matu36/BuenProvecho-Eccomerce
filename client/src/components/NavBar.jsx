@@ -40,17 +40,17 @@ import AuthButton from "./Auth0";
 import { getUsers } from "../Redux/actions";
 
 export default function NavBar({
-  setShowAbout,
+  setShowAbout, 
   setProducts,
   handleMostrarFormulario,
+  HandleCancelAbout
 }) {
-
   let currentUser = JSON.parse(localStorage.getItem("user"));
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(getUsers(currentUser))
-    }, []);
+    dispatch(getUsers(currentUser));
+  }, []);
 
   const [activeCategory, setActiveCategory] = useState(null);
 
@@ -77,15 +77,9 @@ export default function NavBar({
 
   // FIN DEL FILTRADO
 
-  
-
-
-
-
   const handleAboutClick = () => {
     setShowAbout(true);
   };
-            
 
   const { isOpen, onOpen, onClose } = useDisclosure();
 
@@ -332,9 +326,9 @@ export default function NavBar({
                   color="white"
                 />
                 {carritoCount > 0 && (
-                  <Badge 
-                  marginLeft= "-1rem"
-                  marginTop= "1rem"
+                  <Badge
+                    marginLeft="-1rem"
+                    marginTop="1rem"
                     bg="red"
                     borderRadius="50%"
                     color="white"

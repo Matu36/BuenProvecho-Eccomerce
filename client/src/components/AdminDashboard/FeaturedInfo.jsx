@@ -38,7 +38,6 @@ export default function FeaturedInfo() {
     <Flex
       justify="space-between"
       alignItems="center"
-      bg="gray.50"
       p="4"
       borderRadius="10px"
       maxW={{ base: "100%", md: "none" }}

@@ -28,6 +28,8 @@ import { useSelector } from "react-redux";
 }, [isAuthenticated, user]);
 
 
+
+
   // FIN LOCAL STORAGE
 
   //redirige el usuario creado a nuestra propia base de datos; La prpiedad
