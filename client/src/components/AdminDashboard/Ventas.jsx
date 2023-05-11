@@ -13,8 +13,10 @@ import {
 } from "@chakra-ui/react";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 
+const STRIPE = process.env.REACT_APP_STRIPE;
+
 const stripe = new Stripe(
-  "sk_test_51N42BCBSrEQZgu90tmmqu1XosIWVVDIqXPNgr9VRjhfgEXc8oIEukd9Nzu7D7GgCXmHtp9db49YJBwDS12yF9xrB00diqyimcv"
+  STRIPE
 );
 
 export default function ListaDeCargos() {
@@ -46,17 +48,15 @@ export default function ListaDeCargos() {
 
   return (
     <>
-      <Box marginLeft= {{base:"-8rem", md:"0"}}>
-      <Table variant="striped" colorScheme="teal" maxWidth="90%">
+      <Box marginLeft= {{base:"-6rem", md:"0"}}>
+      <Table variant="striped" colorScheme="teal" maxWidth={{base:"97%", md:"90%"}}>
         <Thead>
           <Tr padding={{ base: "2px", md: "2px" }}>
             <Th style={{ paddingBottom: "0.5rem" }}>Id Compra</Th>
             <Th style={{ paddingBottom: "0.5rem", paddingLeft: "0.5rem" }}>
               Email
             </Th>
-            <Th style={{ paddingBottom: "0.5rem", paddingLeft: "0.5rem" }}>
-              Moneda
-            </Th>
+            
             <Th style={{ paddingBottom: "0.5rem", paddingLeft: "0.5rem" }}>
               Precio
             </Th>
@@ -70,33 +70,24 @@ export default function ListaDeCargos() {
             <Tr
               paddingLeft={{ base: "1px", md: "0px" }}
               key={cargo.id}
-              style={{ wordBreak: "break-all", maxWidth: "40%" }}
+              style={{ wordBreak: "break-all" }}
             >
               <Td>{cargo.id} </Td>
               <Td paddingLeft="0.5rem">{cargo.metadata.user_email}</Td>
-              <Td paddingLeft="0.5rem">{cargo.currency}</Td>
-              <Td paddingLeft="0.5rem">{cargo.amount}</Td>
+              
+              <Td paddingLeft="0.5rem">${cargo.amount}</Td>
               <Td paddingLeft="0.5rem">{cargo.description}</Td>
             </Tr>
           ))}
         </Tbody>
       </Table>
       </Box>
-      <Box width="100%" marginBottom="2rem">
+      <Box width="100%" marginBottom="2rem" marginLeft={{base:"-5rem", md:"5rem"}}>
           <br />
       <Box mt="4">
         
       <HStack spacing={{base:0, md:2}} mt={{base:0, md:4}}>
-          <Button
-            disabled={currentPage === 1}
-            onClick={() => setCurrentPage(currentPage - 1)}
-            leftIcon={<FaChevronLeft />}
-            size="sm"
-        variant="ghost"
-        colorScheme="gray"
-          >
-            Anterior
-          </Button>
+          
           {Array.from({ length: totalPages }).map((_, i) => (
             <Button
               key={i}
@@ -108,16 +99,7 @@ export default function ListaDeCargos() {
               {i + 1}
             </Button>
           ))}
-          <Button
-            disabled={currentPage === totalPages}
-            onClick={() => setCurrentPage(currentPage + 1)}
-            rightIcon={<FaChevronRight />}
-            size="sm"
-        variant="ghost"
-        colorScheme="gray"
-          >
-            Siguiente
-          </Button>
+          
         </HStack>
       </Box>
       </Box>

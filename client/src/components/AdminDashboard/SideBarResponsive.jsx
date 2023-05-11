@@ -14,6 +14,7 @@ import {
     MdAttachMoney,
     MdAssignment,
     MdMail,
+    MdOutlineEditCalendar
   } from "react-icons/md";
   import { FaHome } from 'react-icons/fa';
   import { useDispatch } from "react-redux";
@@ -30,6 +31,7 @@ export default function SideBarResponsive () {
         { label: "Ventas", icon: MdAttachMoney},
         { label: "MercadoPago", icon: MdAssignment},
         { label: "Mensajes", icon: MdMail },
+        { label: "Calendario", icon: MdOutlineEditCalendar },
       ];
     
       const { colorMode } = useColorMode();

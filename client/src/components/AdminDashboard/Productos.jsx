@@ -174,10 +174,10 @@ export default function Productos() {
 
   return (
     <Box
-      maxWidth={{ base: "80%", md: "none" }}
-      marginLeft={{ base: "-6rem", md: "0" }}
+      maxWidth={{ base: "70%", md: "none" }}
+      marginLeft={{ base: "-6.5rem", md: "0" }}
     >
-      <div style={{ display: "flex", alignItems: "center" }}>
+      <Box display="flex" alignItems="center">
         <Input
           type="text"
           placeholder="Buscar Comida "
@@ -188,7 +188,7 @@ export default function Productos() {
           background="white"
           margin="10px"
         />
-      </div>
+      </Box>
       <Button
         marginLeft={{ base: "12rem", md: "35em" }}
         onClick={handleMostrarFormulario}
@@ -308,7 +308,7 @@ export default function Productos() {
                         )}
 
                         {column.field === "Acciones" && (
-                          <Box ml="auto">
+                          <Box ml={{base:"auto", md:"7rem"}}>
                             <button
                               className="btn"
                               // style={{ fontSize: "24px", marginLeft: "-7rem" }}

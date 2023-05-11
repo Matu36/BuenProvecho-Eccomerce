@@ -65,7 +65,7 @@ export default function Calendario() {
   }
 
   return (
-    <div>
+    <Box marginTop="3rem" maxWidth={{base:"100%"}} marginLeft={{base:"-3.5rem", md:"4rem"}} border="solid 3px gray" borderRadius="5%">
       <Calendar
         localizer={localizer}
         events={events}
@@ -76,6 +76,6 @@ export default function Calendario() {
         messages={messages}
       />
       <AddEventForm onAddEvent={handleAddEvent} />
-    </div>
+    </Box>
   );
 }

@@ -19,6 +19,28 @@
     border-color: #fa755a;
   }
 
+  @font-face {
+    font-family: 'Rayada';
+    src: url("../fonts/Zeyada-Regular.ttf");
+    font-weight: normal;
+    font-style: normal;
+  }
+
+  .Titulo {
+    font-family: 'Rayada', sans-serif;
+    margin-left: 23rem;
+    font-size: 5rem;
+  }
+
+  @media (max-width: 768px) {
+    .Titulo {
+      font-size: 3rem;
+      margin-left: 3rem; 
+      margin-top: 4.5rem;
+    }
+  }
+  
+
   
   
 
