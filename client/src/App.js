@@ -9,10 +9,13 @@ import LoginUser from "../src/components/LoginUser";
 import Stripe from "../src/components/Stripe";
 import CheckoutMP from './components/MercadoPago/CheckoutMP';
 
+const auth0Domain = process.env.REACT_APP_AUTH0_DOMAIN;
+const auth0Client = process.env.REACT_APP_AUTH0_CLIENT;
 
 export const Auth0ProviderConfig = {
-  domain: "dev-kpt3n5qs35pzlkke.us.auth0.com",
-  clientId: "g4Cw4zVyvVGWDkq8HCFfWL2J451RRgzG",
+  domain: auth0Domain,     
+  clientId: auth0Client, 
+  
   redirectUri: `http://localhost:3000/Logued`
 };
 
