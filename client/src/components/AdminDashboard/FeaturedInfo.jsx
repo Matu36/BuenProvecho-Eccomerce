@@ -3,8 +3,10 @@ import { Flex, Box, Text, Heading } from "@chakra-ui/react";
 import Stripe from "stripe";
 import { useSelector } from "react-redux";
 
+const STRIPE = process.env.REACT_APP_STRIPE;
+
 const stripe = new Stripe(
-  "sk_test_51N42BCBSrEQZgu90tmmqu1XosIWVVDIqXPNgr9VRjhfgEXc8oIEukd9Nzu7D7GgCXmHtp9db49YJBwDS12yF9xrB00diqyimcv"
+  STRIPE
 );
 
 export default function FeaturedInfo() {

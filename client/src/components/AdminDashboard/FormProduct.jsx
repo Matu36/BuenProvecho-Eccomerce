@@ -14,6 +14,8 @@ import {
   Center,
 } from "@chakra-ui/react";
 import Swal from "sweetalert2";
+const Clouddinary = process.env.REACT_APP_CLOUDINARY_URL;
+console.log(Clouddinary)
 
 export default function FormProduct(props) {
   const dispatch = useDispatch();
@@ -32,7 +34,7 @@ export default function FormProduct(props) {
     data.append("upload_preset", "Images"); //Images es el folder que cree en cDinary
     setLoading(true);
     const res = await fetch(
-      "https://api.cloudinary.com/v1_1/dmfzplfra/image/upload",   //dmfzplfra es mi n de usuario
+      Clouddinary,   
       {
         method: "POST",
         body: data,
