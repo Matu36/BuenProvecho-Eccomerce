@@ -40,8 +40,6 @@ const createComida = async (req, res) => {
     if (!req.body?.Nombre || !req.body?.Efectivo || !req.body?.Imagen || !req.body?.Categoria) 
     throw "No body params";
 
-    const { Nombre, Efectivo, Categoria, Imagen, MercadoPago } = req.body;
-
     const generateNewId = async () => {
       const maxId = await Comidas.max("id");
       const newId = maxId ? maxId + 1 : 1;
