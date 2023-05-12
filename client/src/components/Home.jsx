@@ -260,7 +260,7 @@ export default function Home() {
                   borderRadius="50%"
                   marginLeft={{base:"1rem", md:"10rem"}}
                   src={chef}
-                  marginTop={{ base: "-8rem", md: "-4.5rem" }}
+                  marginTop={{ base: "-6rem", md: "-4.5rem" }}
                   alt="Logo de la empresa"
                   width={{base:"80%", md:"50%"}}
                   height={{base:"80%", md:"50%"}}
