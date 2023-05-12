@@ -141,7 +141,7 @@ export default function Home() {
 
         <Box
           marginTop={{ base: "-3rem", md: "-3.5rem" }}
-          marginLeft={{ base: "2rem", md: "22rem" }}
+          marginLeft={{ base: "2rem", md: "20.5rem" }}
           maxWidth={{ base: "70%", md: "35%" }}
         >
           <InputGroup borderRadius="5%">
@@ -258,12 +258,12 @@ export default function Home() {
               >
                 <Image
                   borderRadius="50%"
-                  mx="auto"
+                  marginLeft={{base:"1rem", md:"10rem"}}
                   src={chef}
-                  marginTop={{ base: "-6rem", md: "-5.5rem" }}
+                  marginTop={{ base: "-8rem", md: "-4.5rem" }}
                   alt="Logo de la empresa"
-                  width="50%"
-                  height="50%"
+                  width={{base:"80%", md:"50%"}}
+                  height={{base:"80%", md:"50%"}}
                   objectFit="contain"
                 />
                 

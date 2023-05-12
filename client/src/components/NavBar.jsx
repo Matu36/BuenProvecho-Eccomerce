@@ -312,7 +312,7 @@ export default function NavBar({
             {/* <SearchBar /> */}
           </Box>
 
-          <Box display="flex" alignItems="center" mr={{ base: -11, md: 14 }}>
+          <Box display="flex" alignItems="center" mr={{ base: -11, md: 10.5 }}>
             <Box display="flex" alignItems="center">
               <Link to="/sCart">
                 <IconButton
@@ -400,7 +400,7 @@ export default function NavBar({
           <Box
             display={{ base: "none", md: "flex" }}
             position="absolute"
-            ml="67rem"
+            ml="56rem"
             mt="0.5rem"
           >
             <AuthButton />
@@ -408,7 +408,7 @@ export default function NavBar({
           <Box
             display={{ base: "flex", md: "none" }}
             position="absolute"
-            ml="18rem"
+            ml="17rem"
             mt="0.5rem"
           >
             <AuthButton />

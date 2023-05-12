@@ -7,6 +7,7 @@ import { ChakraProvider, ColorModeScript } from "@chakra-ui/react";
 import {store} from "../src/Redux/store/index";
 import { Provider } from "react-redux";
 
+//PAGINAS QUE MODIFIQUE PARA EL DEPLOY= ACTIONS, DB, STRIPE, AUTH0BOTON.
 
 //DOMINIO BACK= pymes-software-integration-production.up.railway.app
 
