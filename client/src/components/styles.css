@@ -28,14 +28,14 @@
 
   .Titulo {
     font-family: 'Rayada', sans-serif;
-    margin-left: 23rem;
+    margin-left: 20rem;
     font-size: 5rem;
   }
 
   @media (max-width: 768px) {
     .Titulo {
       font-size: 3rem;
-      margin-left: 3rem; 
+      margin-left: 2rem; 
       margin-top: 4.5rem;
     }
   }
