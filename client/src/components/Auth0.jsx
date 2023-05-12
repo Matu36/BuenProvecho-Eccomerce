@@ -37,7 +37,7 @@ import { useSelector } from "react-redux";
   useEffect(() => {
     if (isAuthenticated && user) {
       // Enviar el correo electrónico del usuario autenticado a tu propia API
-      axios.post("http://localhost:3001/users", {
+      axios.post(`https://pymes-software-integration-production.up.railway.app/users`, {
         email: user.email,
       });
     }
