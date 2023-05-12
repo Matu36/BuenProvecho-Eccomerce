@@ -245,7 +245,7 @@ export default function Home() {
               <h1>Buen Provecho!</h1>
             </div>
             <Box
-              mt={{ base: "-20rem", md: "-10rem" }}
+              mt={{ base: "-17rem", md: "-10rem" }}
               display="flex"
               alignItems="center"
               justifyContent="center"
@@ -265,6 +265,7 @@ export default function Home() {
                   width={{base:"80%", md:"50%"}}
                   height={{base:"80%", md:"50%"}}
                   objectFit="contain"
+                  
                 />
                 
               </Box>
