@@ -10,7 +10,6 @@ import {
 import { SearchIcon } from "@chakra-ui/icons";
 import NavBar from "./NavBar";
 import RandomSlider from "./randomSlider";
-import Logo from "../img/Provecho.png";
 import Sidebar from "./Sidebar";
 import About from "./About";
 import Card from "./Card";
