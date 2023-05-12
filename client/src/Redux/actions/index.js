@@ -16,6 +16,7 @@ export const GET_MENSAJES = "GET_MENSAJES";
 export const MENSAJE_CREADO = "MENSAJE_CREADO";
 export const REMOVE_ONE_FROM_MESSAGE = "REMOVE_ONE_FROM_MESSAGE";
 export const UPDATE_USER = "UPDATE_USER";
+export const GET_MERCADOPAGO = "GET_MERCADOPAGO";
 
 export const changeHomeAdminShow = (payload) => async (dispatch) => {
   return dispatch({ type: HOME_ADMIN_SHOW, payload: payload });
@@ -99,3 +100,7 @@ export const crearMensaje = (mensaje) => async (dispatch) => {
   dispatch({ type: MENSAJE_CREADO, payload: data });
 };
 
+export const getMercadoPago = () => async (dispatch) => {
+  let response = await axios.get("http://localhost:3001/paymentDBLOCAL");
+  return dispatch({ type: GET_MERCADOPAGO, payload: response.data });
+};

@@ -65,7 +65,23 @@ const CheckoutMP = () => {
         price: totalEfectivo,
         
     
-}).then((res) => window.location.href = res.data.response.body.init_point)
+}).then((res) => window.location.href = res.data.response.body.init_point);
+// Segunda solicitud
+axios.post('http://localhost:3001/paymentDBLOCAL', {
+  Nombre: carroNombre.toString(),
+  Useremail: isAuthenticated ? user.email : "sinemail@hotmail.com",
+  Precio:totalEfectivo
+}).then((res) => {
+  // Manejar la respuesta de la segunda solicitud
+  console.log("Pago Realizado", res.data);
+  // ...
+}).catch((error) => {
+  // Manejar el error de la segunda solicitud
+  console.error("No se completo la transacción", error);
+  // ...
+});
+
+
 }}>Pagar</Button>
 
 </Box>

@@ -1,3 +1,4 @@
+const {MercPago} = require ("../db.js")
 const mercadopago = require ('mercadopago');
 const MercadoPagoAccesToken = process.env.REACT_APP_MERCADOPAGO_ACCESS_TOKEN;
 
@@ -25,6 +26,38 @@ binary_mode: true
 mercadopago.preferences.create(preference).then ((response) => res.status(200).send ({response})).catch((error) => res.status(400).send ({error: error.message})) 
 }
 
+//ESTO VA A LA BASE DE DATOS LOCAL
+const postVentaMercadoPago = async (req, res, next) => {
+    
+    const {Nombre,  Useremail, Precio, FechaDeVenta } = req.body;
+          
+    try {
+        const nuevaVenta = await MercPago.create({Nombre, Useremail, Precio, FechaDeVenta });
+        res.status(201).json({ mensaje: 'Mensaje creado exitosamente', data: nuevaVenta });
+      } catch (error) {
+        next(error);
+      }
+    };
+
+    const getMercadoPago = async (req, res) => {
+        try{
+          let com = await MercPago.findAll();
+          
+          return (!com)
+            ? res.status(404).send('No hay Ventas')
+            : res.send(com.map(({id, Nombre, Useremail, Precio, createdAt}) => 
+            ({id, Nombre, Useremail, Precio, createdAt})));
+      
+        }
+        catch(error) {
+          console.log(error);
+          return res.status(404).send('Error 404');
+        }
+    };
+
+
 module.exports = {
-    Payment
+    Payment,
+    postVentaMercadoPago,
+    getMercadoPago
 }
