@@ -35,8 +35,10 @@
   @media (max-width: 768px) {
     .Titulo {
       font-size: 3rem;
-      margin-left: 2rem; 
+      margin-left: 3rem; 
       margin-top: 1rem;
+      z-index: 1;
+      position: absolute; 
     }
   }
   
