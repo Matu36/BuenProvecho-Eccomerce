@@ -13,7 +13,8 @@ import {
   GET_MENSAJES,
   MENSAJE_CREADO,
   REMOVE_ONE_FROM_MESSAGE,
-  UPDATE_USER
+  UPDATE_USER,
+  GET_MERCADOPAGO
 } from "../actions/index";
 
 
@@ -33,6 +34,8 @@ const InitialState = {
   mensajes: [],
 
   mensajesnoleidos: JSON.parse(localStorage.getItem("MensajesNoLeidos")) || [],
+
+  mercadopago: [],
 };
 
 
@@ -160,6 +163,9 @@ function rootReducer(state = InitialState, action) {
           (objeto) => objeto.id !== action.payload
         ),
       };
+
+      case GET_MERCADOPAGO:
+      return { ...state, mercadopago: action.payload };
 
      
 

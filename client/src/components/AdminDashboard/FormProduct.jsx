@@ -15,7 +15,7 @@ import {
 } from "@chakra-ui/react";
 import Swal from "sweetalert2";
 const Clouddinary = process.env.REACT_APP_CLOUDINARY_URL;
-console.log(Clouddinary)
+
 
 export default function FormProduct(props) {
   const dispatch = useDispatch();

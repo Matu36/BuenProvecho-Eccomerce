@@ -175,7 +175,7 @@ export default function Productos() {
   return (
     <Box
       maxWidth={{ base: "70%", md: "none" }}
-      marginLeft={{ base: "-6.5rem", md: "0" }}
+      marginLeft={{ base: "-6.5rem", md: "-2rem" }}
     >
       <Box display="flex" alignItems="center">
         <Input

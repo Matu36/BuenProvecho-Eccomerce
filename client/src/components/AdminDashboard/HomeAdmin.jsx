@@ -13,6 +13,7 @@ import Usuarios from "./Usuarios";
 import Ventas from "./Ventas";
 import MercadoPago from "../AdminDashboard/MercadoPago";
 import Calendario from "./Calendario";
+import { getMercadoPago } from "../../Redux/actions/index";
 
 
 export default function HomeAdmin() {
@@ -24,6 +25,7 @@ export default function HomeAdmin() {
     dispatch(getComidas());
     dispatch(getMensajes());
     dispatch(getUsers(currentUser));
+    dispatch(getMercadoPago());
   }, []);
 
   return (
