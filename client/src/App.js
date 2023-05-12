@@ -16,7 +16,7 @@ export const Auth0ProviderConfig = {
   domain: auth0Domain,     
   clientId: auth0Client, 
   
-  redirectUri: 'https://buenprovecho.onrender.com/Logued/'
+  redirectUri: `https://buenprovecho.onrender.com/Logued/`
 };
 
 
