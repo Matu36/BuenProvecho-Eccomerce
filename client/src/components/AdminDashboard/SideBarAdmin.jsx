@@ -21,20 +21,14 @@ import { FaHome } from 'react-icons/fa';
 import { useDispatch } from "react-redux";
 import { changeHomeAdminShow } from "../../Redux/actions";
 import { useAuth0 } from "@auth0/auth0-react";
-import { useSelector } from "react-redux";
 import chef from "../../img/chef.jpg"
 
 
 const SideBarAdmin = () => {
-  const {user} = useAuth0();
+  const {user, isAuthenticated} = useAuth0();
   const dispatch = useDispatch();
 
-  const usuarios = useSelector(state => state.users);
-
-  const Usuario = usuarios.map ((user) => user.address, user.id);
-  console.log(Usuario);
   
-
   const handleHomeAdmin = (e) => {
     dispatch(changeHomeAdminShow(e.target.textContent));
   };
@@ -83,10 +77,9 @@ const SideBarAdmin = () => {
         <Box>
        <Text color="gray.500" marginLeft="2.5rem"> Admin </Text>
        </Box>
-       <Box>
-        {user.name}
-        
-        </Box>
+       {isAuthenticated ? (
+ <Box> {user.name} </Box> 
+) : null }
         
         </Box>
       </Flex>

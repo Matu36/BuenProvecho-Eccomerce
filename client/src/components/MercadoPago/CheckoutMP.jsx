@@ -1,11 +1,12 @@
 import React, { useEffect } from "react";
-import { Box, Image } from "@chakra-ui/react";
+import { Box, Button, Flex } from "@chakra-ui/react";
 import { BarLoader } from "react-spinners";
 import Swal from "sweetalert2";
 import { useDispatch, useSelector } from "react-redux";
 import { getUsers } from "../../Redux/actions";
 import { useAuth0 } from "@auth0/auth0-react";
 import mercadopagoimg from "../../img/mercpago.jpg";
+import axios from "axios";
 
 
 /*
@@ -13,23 +14,17 @@ Primero crear una aplicacion en MercadoPago, luego ir a esta pagina https://www.
 Fijarse en credenciales de Prueba; ahi estan nuestro acces token y api key;
 Poner en variables de entorno:
 
-PUBLIC KEY
-TEST-4cba5a08-8f0c-482c-8d72-23b4a3f8bb39
-
-ACCES TOKEN
-TEST-1759500393190306-050614-e2dc1d133a4d3a14a529c3e1c1352114-95879648
-
 */
 
 const CheckoutMP = () => {
-  const { user } = useAuth0();
+  const { user, isAuthenticated } = useAuth0();
 
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getUsers(user));
   }, [user]);
 
-  const Usuario = user.email;
+  // const Usuario = user.name;
 
   const carro = useSelector((state) => state.cart);
 
@@ -40,8 +35,7 @@ const CheckoutMP = () => {
   );
   //Manda los nombres de los productos elegidos en el carrito en un array
   const carroNombre = carro.map((product) => product.Nombre);
-
-
+  
   return (
   
 <Box backgroundImage={{
@@ -51,8 +45,28 @@ const CheckoutMP = () => {
       backgroundSize="contain"
       height="100vh">
 
-        
+<Flex>
 
+{isAuthenticated ? (
+ <Box> {user.name} </Box> 
+) : null }
+
+<Box> Total a Pagar {totalEfectivo}</Box>
+
+
+</Flex>
+
+<Button onClick={() => {
+  axios.post ('http://localhost:3001/payment', {
+        
+        // id:123,
+        title: "Productos",
+        description: carroNombre,
+        price: totalEfectivo,
+        
+    
+}).then((res) => window.location.href = res.data.response.body.init_point)
+}}>Pagar</Button>
 
 </Box>
 
