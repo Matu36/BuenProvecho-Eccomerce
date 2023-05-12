@@ -4,6 +4,7 @@ const { getUsers, postUser, putUser } = require('../controllers/UsersCont');
 const {postMensaje, obtenerMensajes} = require ("../controllers/UserMensajesCont")
 const {getOrders, postOrder} = require ("../controllers/OrderCont");
 const {checkOut} = require ("../controllers/Stripe");
+const { Payment } = require('../controllers/MercadoPago');
 
 
 
@@ -22,11 +23,7 @@ router.get ("/mensajes", obtenerMensajes)
 router.get ("/orders", getOrders)
 router.post ("/orders", postOrder)
 router.post("/api/checkout", checkOut);
-
-/*
-
-router.post ("/createMedico", postMedico);
-router.delete ("borrarMedico/:id", deleteMedico); */
+router.post("/payment", Payment)
 
 
 

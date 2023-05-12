@@ -31,7 +31,7 @@ const CheckoutForm = () => {
   const Elements = useElements(); //con esto manipulamos lo que viene de strip
   const [loading, setLoading] = useState(false);
 
-  const { user } = useAuth0();
+  const { user, isAuthenticated } = useAuth0();
 
   const dispatch = useDispatch();
 
@@ -39,7 +39,7 @@ const CheckoutForm = () => {
     dispatch(getUsers(user));
   }, [user]);
 
-  const Usuario = user.email;
+ 
   //   const Usuarios = useSelector (state => state.users);
 
   const carro = useSelector((state) => state.cart);
@@ -72,7 +72,8 @@ const CheckoutForm = () => {
             Producto: carroNombre, //esta es la description
             metadata: {
               user: {
-                email: Usuario,
+                email: user.email,
+                
               },
             },
           }
@@ -140,7 +141,9 @@ Gracias por elegirnos </Text>
       >
         <Flex fontWeight="bold" fontSize={{ base: "12px", md: "18px" }}>
           <Box marginLeft={{ base: "1rem", md: "3rem" }}>
-            <Text>{user.name}</Text>
+          {isAuthenticated ? (
+ <Text> {user.name} </Text> 
+) : null }
           </Box>
 
           <Box marginLeft={{base:"3rem", md:"9rem"}}>
