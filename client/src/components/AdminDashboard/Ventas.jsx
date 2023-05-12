@@ -48,7 +48,7 @@ export default function ListaDeCargos() {
 
   return (
     <>
-      <Box marginLeft= {{base:"-6rem", md:"0"}}>
+      <Box marginLeft= {{base:"-6rem", md:"-2rem"}}>
       <Table variant="striped" colorScheme="teal" maxWidth={{base:"97%", md:"90%"}}>
         <Thead>
           <Tr padding={{ base: "2px", md: "2px" }}>
