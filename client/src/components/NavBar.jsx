@@ -408,7 +408,7 @@ export default function NavBar({
           <Box
             display={{ base: "flex", md: "none" }}
             position="absolute"
-            ml="17rem"
+            ml="17.5rem"
             mt="0.5rem"
           >
             <AuthButton />
