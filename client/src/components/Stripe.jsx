@@ -65,7 +65,7 @@ const CheckoutForm = () => {
 
       try {
         const { data } = await axios.post(
-          "http://localhost:3001/api/checkout",
+          `https://pymes-software-integration-production.up.railway.app/api/checkout`,
           {
             id,
             amount: totalEfectivo, //aca va el precio de la sumatoria del carrito (fijarse tema centavos, dolares)

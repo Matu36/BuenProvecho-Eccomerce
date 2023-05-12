@@ -8,6 +8,8 @@ import {store} from "../src/Redux/store/index";
 import { Provider } from "react-redux";
 
 
+//DOMINIO BACK= pymes-software-integration-production.up.railway.app
+
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>

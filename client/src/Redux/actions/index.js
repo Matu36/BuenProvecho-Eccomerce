@@ -26,14 +26,14 @@ export const resetHomeAdminShow = () => async (dispatch) => {
 };
 
 export const getComidas = () => async (dispatch) => {
-  let response = await axios.get("http://localhost:3001/comidas");
+  let response = await axios.get(`https://pymes-software-integration-production.up.railway.app/comidas`);
   return dispatch({ type: GET_COMIDAS, payload: response.data });
 };
 
 export const updateComida = (comida) => {
   return (dispatch) => {
     axios
-      .put("http://localhost:3001/comidas", comida)
+      .put(`https://pymes-software-integration-production.up.railway.app/comidas`, comida)
       .then((res) => {
         dispatch({
           type: UPDATE_COMIDA,
@@ -50,7 +50,7 @@ export const createComida =
   ({ Nombre, Efectivo, Categoria, Imagen, MercadoPago }) =>
   (dispatch) =>
     axios
-      .post("http://localhost:3001/comidas", {
+      .post(`https://pymes-software-integration-production.up.railway.app/comidas`, {
         Nombre,
         Efectivo,
         Categoria,
@@ -60,7 +60,7 @@ export const createComida =
       .then((payload) => dispatch({ type: CREATE_COMIDA, payload }));
 
 export const deleteComida = (id) => async (dispatch) => {
-  return await axios.delete("http://localhost:3001/comidas", { data: { id } });
+  return await axios.delete(`https://pymes-software-integration-production.up.railway.app/comidas`, { data: { id } });
 };
 
 export const getUsers = (currentUser) => {
@@ -68,7 +68,7 @@ export const getUsers = (currentUser) => {
 
   return (dispatch) =>
     axios
-      .get("http://localhost:3001/users", { params: currentUser })
+      .get(`https://pymes-software-integration-production.up.railway.app/users`, { params: currentUser })
       .then((response) =>
         dispatch({ type: GET_USERS, payload: response.data })
       );
@@ -77,7 +77,7 @@ export const getUsers = (currentUser) => {
 export const updateUser = (user) => {
   return (dispatch) => {
     axios
-      .put("http://localhost:3001/users", user)
+      .put(`https://pymes-software-integration-production.up.railway.app/users`, user)
       .then((res) => {
         dispatch({
           type: UPDATE_USER,
@@ -91,16 +91,16 @@ export const updateUser = (user) => {
 };
 
 export const getMensajes = () => async (dispatch) => {
-  let response = await axios.get("http://localhost:3001/mensajes");
+  let response = await axios.get(`https://pymes-software-integration-production.up.railway.app/mensajes`);
   return dispatch({ type: GET_MENSAJES, payload: response.data });
 };
 
 export const crearMensaje = (mensaje) => async (dispatch) => {
-  const { data } = await axios.post("http://localhost:3001/mensajes", mensaje);
+  const { data } = await axios.post(`https://pymes-software-integration-production.up.railway.app/mensajes`, mensaje);
   dispatch({ type: MENSAJE_CREADO, payload: data });
 };
 
 export const getMercadoPago = () => async (dispatch) => {
-  let response = await axios.get("http://localhost:3001/paymentDBLOCAL");
+  let response = await axios.get(`https://pymes-software-integration-production.up.railway.app/paymentDBLOCAL`);
   return dispatch({ type: GET_MERCADOPAGO, payload: response.data });
 };
