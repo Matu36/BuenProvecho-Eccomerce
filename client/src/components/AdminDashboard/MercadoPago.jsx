@@ -1,15 +1,32 @@
-import React, {useState, useEffect} from 'react';
-import axios from 'axios';
+import React from 'react';
 import { Table, Tbody, Td, Th, Thead, Tr} from "@chakra-ui/react";
-const MercadoPagoAccesToken = process.env.REACT_APP_MERCADOPAGO_ACCESS_TOKEN;
+import { useSelector } from 'react-redux';
+
+//TODO LO QUE ESTA COMENTADO ERA PARA TRAER LA BASE DE DATOS DIRECTAMENTE DE MERPAGO
+
+
+/* const MercadoPagoAccesToken = process.env.REACT_APP_MERCADOPAGO_ACCESS_TOKEN;
 
 const baseUrl = 'https://api.mercadopago.com';
-const accessToken = MercadoPagoAccesToken;
+const accessToken = MercadoPagoAccesToken; */
 
 const MercadoPago = () => {
-  const [ventasCombinadas, setVentasCombinadas] = useState([]);
+  // const [ventasCombinadas, setVentasCombinadas] = useState([]);
 
-  useEffect(() => {
+const DBMERCADOPAGO = useSelector ((state) => state.mercadopago);
+  
+  const VentasDB = DBMERCADOPAGO.map (db => {
+    return {
+      Email: db.Useremail,
+      Producto: db.Nombre,
+      Precio: db.Precio,
+      Fecha: db.createdAt
+
+    }
+    
+  })
+  
+  /* useEffect(() => {
     // Realizar la solicitud para obtener la información de las ventas
     axios
       .get(`${baseUrl}/checkout/preferences`, {
@@ -38,21 +55,25 @@ const MercadoPago = () => {
         // Maneja los errores de la solicitud
         console.error(error);
       });
-  }, []);
+  }, []); */
 
   return (
     <Table variant="striped" colorScheme="teal" width="100%">
       <Thead>
         <Tr>
           <Th>Cliente</Th>
+          <Th>Producto</Th>
+          <Th>Precio</Th>
           <Th>Fecha</Th>
         </Tr>
       </Thead>
       <Tbody>
-        {ventasCombinadas.map((venta, index) => (
+        {VentasDB.map((venta, index) => (
           <Tr key={index}>
-            <Td>{venta.client_id}</Td>
-            <Td>{venta.date_created}</Td>
+            <Td>{venta.Email}</Td>
+            <Td>{venta.Producto}</Td>
+            <Td>{venta.Precio}</Td>
+            <Td>{venta.Fecha}</Td>
           </Tr>
         ))}
       </Tbody>
