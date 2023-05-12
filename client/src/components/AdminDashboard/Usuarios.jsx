@@ -84,7 +84,7 @@ export default function Usuarios() {
 
   return (
     <Box
-      marginLeft={{ base: "-6.5rem", md: "0" }}
+      marginLeft={{ base: "-6.5rem", md: "-2rem" }}
       maxWidth={{ base: "100%", md: "100%" }}
     >
       <div style={{ display: "flex", alignItems: "center" }}>
