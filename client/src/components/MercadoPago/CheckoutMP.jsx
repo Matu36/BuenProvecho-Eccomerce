@@ -108,7 +108,7 @@ const CheckoutMP = () => {
           paddingBottom="5px"
           onClick={() => {
             axios
-              .post(`pymes-software-integration-production.up.railway.app/payment`, {
+              .post(`https://pymes-software-integration-production.up.railway.app/payment`, {
                 // id:123,
                 title: "Productos",
                 description: carroNombre,
@@ -120,7 +120,7 @@ const CheckoutMP = () => {
               );
             // Segunda solicitud
             axios
-              .post(`pymes-software-integration-production.up.railway.app/paymentDBLOCAL`, {
+              .post(`https://pymes-software-integration-production.up.railway.app/paymentDBLOCAL`, {
                 Nombre: carroNombre.toString(),
                 Useremail: isAuthenticated
                   ? user.email
