@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import { crearMensaje } from "../Redux/actions/index"
+import { crearMensaje } from "../Redux/actions/index";
 import { Input, FormLabel, Button } from "@chakra-ui/react";
 import { Box, HStack, FormControl, Center } from "@chakra-ui/react";
 import Swal from "sweetalert2";
@@ -28,7 +28,7 @@ export default function MensajesUsuario() {
       setEmailValido(false);
       return;
     }
-  
+
     setEmailValido(true);
 
     if (mensaje.Nombre && mensaje.email && mensaje.Mensaje) {
@@ -43,13 +43,12 @@ export default function MensajesUsuario() {
         showConfirmButton: false,
         timer: 3000,
       });
-      
+
       setMensaje({
         Nombre: "",
         email: "",
         Mensaje: "",
       });
-
     } else {
       Swal.fire({
         position: "center",

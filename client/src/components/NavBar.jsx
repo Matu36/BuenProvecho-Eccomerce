@@ -40,10 +40,9 @@ import AuthButton from "./Auth0";
 import { getUsers } from "../Redux/actions";
 
 export default function NavBar({
-  setShowAbout, 
+  setShowAbout,
   setProducts,
   handleMostrarFormulario,
-  HandleCancelAbout
 }) {
   let currentUser = JSON.parse(localStorage.getItem("user"));
   const dispatch = useDispatch();

@@ -16,45 +16,41 @@ import {
 import Swal from "sweetalert2";
 const Clouddinary = process.env.REACT_APP_CLOUDINARY_URL;
 
-
 export default function FormProduct(props) {
   const dispatch = useDispatch();
   const comidas = useSelector((state) => state.comidas);
   const categorias = [...new Set(comidas.map((comida) => comida.Categoria))];
 
-                                      //CLOUDDINARY//
+  //CLOUDDINARY//
 
   const [image, setImage] = useState("");
   const [loading, setLoading] = useState(false);
 
-    const uploadImage = async (e) => {
+  const uploadImage = async (e) => {
     const files = e.target.files;
     const data = new FormData();
     data.append("file", files[0]);
     data.append("upload_preset", "Images"); //Images es el folder que cree en cDinary
     setLoading(true);
-    const res = await fetch(
-      Clouddinary,   
-      {
-        method: "POST",
-        body: data,
-      }
-    );
+    const res = await fetch(Clouddinary, {
+      method: "POST",
+      body: data,
+    });
 
     const file = await res.json();
-  console.log(res);
-  setImage(file.secure_url);
-  setLoading(false);
-  setIngredient({
-    ...ingredient,
-    Imagen: file.secure_url,
-  });
-};
+    console.log(res);
+    setImage(file.secure_url);
+    setLoading(false);
+    setComida({
+      ...comida,
+      Imagen: file.secure_url,
+    });
+  };
 
-                                    //CLOUDDINARY//
+  //CLOUDDINARY//
 
-  //CREACION DE INGREDIENTE //
-  const [ingredient, setIngredient] = useState({
+  //CREACION DE COMIDA //
+  const [comida, setComida] = useState({
     Nombre: "",
     Efectivo: "",
     Categoria: "",
@@ -66,16 +62,16 @@ export default function FormProduct(props) {
     e.preventDefault();
 
     if (
-      ingredient.Nombre &&
-      ingredient.Efectivo &&
-      ingredient.Categoria &&
-      ingredient.Imagen &&
-      ingredient.MercadoPago 
+      comida.Nombre &&
+      comida.Efectivo &&
+      comida.Categoria &&
+      comida.Imagen &&
+      comida.MercadoPago
     ) {
-      const newIngredient = {
-        ...ingredient,
+      const newComida = {
+        ...comida,
       };
-      dispatch(createComida(newIngredient));
+      dispatch(createComida(newComida));
       await Swal.fire({
         position: "center",
         icon: "success",
@@ -84,7 +80,7 @@ export default function FormProduct(props) {
         timer: 4000,
       });
       window.location.reload();
-      setIngredient({
+      setComida({
         Nombre: "",
         Efectivo: "",
         Categoria: "",
@@ -118,8 +114,6 @@ export default function FormProduct(props) {
         opacity="0.9"
         borderBlockEndColor="ActiveBorder"
       >
-  
-
         <HStack spacing="24px">
           <Box>
             <FormControl>
@@ -127,11 +121,11 @@ export default function FormProduct(props) {
               <Input
                 type="text"
                 name="nombre"
-                value={ingredient.Nombre}
+                value={comida.Nombre}
                 autoComplete="off"
                 placeholder="Nombre"
                 onChange={(e) =>
-                  setIngredient({ ...ingredient, Nombre: e.target.value })
+                  setComida({ ...comida, Nombre: e.target.value })
                 }
               />
             </FormControl>
@@ -140,9 +134,9 @@ export default function FormProduct(props) {
               <FormLabel>Categoria</FormLabel>
               <Select
                 name="categoria"
-                value={ingredient.Categoria}
+                value={comida.Categoria}
                 onChange={(e) =>
-                  setIngredient({ ...ingredient, Categoria: e.target.value })
+                  setComida({ ...comida, Categoria: e.target.value })
                 }
                 placeholder="Selecciona una categoria"
               >
@@ -160,12 +154,12 @@ export default function FormProduct(props) {
                 <InputLeftAddon children="$" />
                 <NumberInput
                   name="Efectivo"
-                  value={ingredient.Efectivo}
+                  value={comida.Efectivo}
                   autoComplete="off"
                   placeholder="Precio "
                   onChange={(value) =>
-                    setIngredient({
-                      ...ingredient,
+                    setComida({
+                      ...comida,
                       Efectivo: parseInt(value) || "",
                     })
                   }
@@ -185,18 +179,18 @@ export default function FormProduct(props) {
               />
             </FormControl>
 
-              <FormControl>
+            <FormControl>
               <FormLabel>Costo</FormLabel>
               <InputGroup>
                 <InputLeftAddon children="$" />
                 <NumberInput
                   name="MercadoPago"
-                  value={ingredient.MercadoPago}
+                  value={comida.MercadoPago}
                   autoComplete="off"
                   placeholder="Costo "
                   onChange={(value) =>
-                    setIngredient({
-                      ...ingredient,
+                    setComida({
+                      ...comida,
                       MercadoPago: parseInt(value) || "",
                     })
                   }
@@ -204,7 +198,7 @@ export default function FormProduct(props) {
                   <NumberInputField />
                 </NumberInput>
               </InputGroup>
-            </FormControl> 
+            </FormControl>
           </Box>
         </HStack>
         <Center marginTop="20px">

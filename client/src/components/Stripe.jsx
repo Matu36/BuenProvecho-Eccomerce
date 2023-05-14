@@ -39,7 +39,6 @@ const CheckoutForm = () => {
     dispatch(getUsers(user));
   }, [user]);
 
- 
   //   const Usuarios = useSelector (state => state.users);
 
   const carro = useSelector((state) => state.cart);
@@ -73,7 +72,6 @@ const CheckoutForm = () => {
             metadata: {
               user: {
                 email: user.email,
-                
               },
             },
           }
@@ -124,10 +122,17 @@ const CheckoutForm = () => {
         base: "none",
         md: `linear-gradient(to bottom, rgba(0,0,0,0) 40%,rgba(0,0,0,0) 90%,rgba(1,0,5,3) 100%), url(${Tarjetas})`,
       }}
->  <Text display={{base:"flex", md:"none"}} fontSize="2rem"
-marginTop="4rem" justifyContent="center" color="white"> 
-Gracias por elegirnos </Text>
-    
+    >
+      {" "}
+      <Text
+        display={{ base: "flex", md: "none" }}
+        fontSize="2rem"
+        marginTop="4rem"
+        justifyContent="center"
+        color="white"
+      >
+        Gracias por elegirnos{" "}
+      </Text>
       <Box
         p="6"
         maxW={{ base: "80%", md: "50%" }}
@@ -141,12 +146,10 @@ Gracias por elegirnos </Text>
       >
         <Flex fontWeight="bold" fontSize={{ base: "12px", md: "18px" }}>
           <Box marginLeft={{ base: "1rem", md: "3rem" }}>
-          {isAuthenticated ? (
- <Text> {user.name} </Text> 
-) : null }
+            {isAuthenticated ? <Text> {user.name} </Text> : null}
           </Box>
 
-          <Box marginLeft={{base:"3rem", md:"9rem"}}>
+          <Box marginLeft={{ base: "3rem", md: "9rem" }}>
             <Text> Total a Pagar: ${totalEfectivo} </Text>
           </Box>
         </Flex>

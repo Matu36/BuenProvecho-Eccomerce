@@ -15,11 +15,17 @@ export default function WidgetSm() {
       p="4"
       marginLeft={{ base: "3rem", md: "0" }}
       backgroundColor="red.400"
-      // maxWidth={{base:"80%", md:"120%"}}
       width="320px"
     >
-      <Heading as="h3" size="sm" mb="2" marginLeft={{base:"3rem", md:"1.5rem"}} fontSize="20px"
-      fontWeight="bold" color="white">
+      <Heading
+        as="h3"
+        size="sm"
+        mb="2"
+        marginLeft={{ base: "3rem", md: "1.5rem" }}
+        fontSize="20px"
+        fontWeight="bold"
+        color="white"
+      >
         Últimos usuarios registrados
       </Heading>
       <List styleType="none" m="0" p="0">

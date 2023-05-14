@@ -21,9 +21,9 @@ export default function LoggedInPage() {
   }, [user]);
 
   // Esperar 5 segundos antes de redirigir
-   setTimeout(() => {
-          navigate('/');
-        }, 4000);   
+  setTimeout(() => {
+    navigate("/");
+  }, 4000);
 
   return (
     isAuthenticated && (
@@ -34,10 +34,10 @@ export default function LoggedInPage() {
         <Flex justifyContent="center" alignItems="center">
           <Box
             textAlign="center"
-            marginTop={{base:"15rem", md:"10rem"}}
+            marginTop={{ base: "15rem", md: "10rem" }}
             border="solid 1px gray"
             borderRadius="5%"
-            padding={{base:"5px", md: "25px"}}
+            padding={{ base: "5px", md: "25px" }}
             alignItems="center"
           >
             <Image

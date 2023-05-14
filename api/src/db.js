@@ -40,7 +40,7 @@ sequelize.models = Object.fromEntries(capsEntries);
 const { Comidas, Users, Mensajes, MercPago } = sequelize.models;
 
 // Aca vendrian las relaciones
-// Product.hasMany(Review
+
 MercPago
 Comidas
 Users

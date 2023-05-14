@@ -308,7 +308,7 @@ export default function Productos() {
                         )}
 
                         {column.field === "Acciones" && (
-                          <Box ml={{base:"auto", md:"7rem"}}>
+                          <Box ml={{ base: "auto", md: "7rem" }}>
                             <button
                               className="btn"
                               // style={{ fontSize: "24px", marginLeft: "-7rem" }}

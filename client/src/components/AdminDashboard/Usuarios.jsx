@@ -1,19 +1,14 @@
 import { Box } from "@chakra-ui/react";
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-// import { getUsers } from "../../Redux/actions";
 import { Table, Thead, Tbody, Tr, Th, Td, Input } from "@chakra-ui/react";
 import Paginacion from "./Paginación";
 import "./Styles.css";
 
 export default function Usuarios() {
-  // const dispatch = useDispatch();
   const users = useSelector((state) => state.users);
 
   const sortedusers = [...users].sort((a, b) => a.id - b.id);
-  /* useEffect(() => {
-    dispatch(getUsers({ id: 1, email: "matipineda857@gmail.com" }));
-  }, []); */
 
   const user = sortedusers.map((u) => {
     const role = u.role === false ? "Administrador" : "Usuario";
@@ -121,7 +116,8 @@ export default function Usuarios() {
                     id={row.id}
                     key={`${row.id}-${column.field}`}
                     style={{
-                      wordBreak: column.field === "createdAt" ? "break-all": "none",
+                      wordBreak:
+                        column.field === "createdAt" ? "break-all" : "none",
                       maxWidth: column.field === "email" ? "50%" : "none",
                     }}
                   >

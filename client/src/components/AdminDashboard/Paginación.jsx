@@ -32,8 +32,9 @@ export default function Paginations(props) {
   const hasMultiplePages = numberOfPage > 1;
 
   return (
-    <HStack spacing={{base:0, md:2}} mt={{base:0, md:4}}>
-      <Button display={{base:"none", md:"flex"}}
+    <HStack spacing={{ base: 0, md: 2 }} mt={{ base: 0, md: 4 }}>
+      <Button
+        display={{ base: "none", md: "flex" }}
         isDisabled={isFirstPage || !hasMultiplePages}
         size="sm"
         variant="ghost"
@@ -43,7 +44,8 @@ export default function Paginations(props) {
         Primera
       </Button>
 
-      <Button display={{base:"none", md:"flex"}}
+      <Button
+        display={{ base: "none", md: "flex" }}
         isDisabled={isFirstPage || !hasMultiplePages}
         size="sm"
         variant="ghost"
@@ -55,7 +57,8 @@ export default function Paginations(props) {
 
       {renderPageNumbers()}
 
-      <Button display={{base:"none", md:"flex"}}
+      <Button
+        display={{ base: "none", md: "flex" }}
         isDisabled={isLastPage || !hasMultiplePages}
         size="sm"
         variant="ghost"
@@ -65,7 +68,8 @@ export default function Paginations(props) {
         Siguiente
       </Button>
 
-      <Button display={{base:"none", md:"flex"}}
+      <Button
+        display={{ base: "none", md: "flex" }}
         isDisabled={isLastPage || !hasMultiplePages}
         size="sm"
         variant="ghost"

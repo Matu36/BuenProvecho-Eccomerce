@@ -1,70 +1,56 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
+import { Box, Flex, Text, Stack, Icon, useColorMode } from "@chakra-ui/react";
+import { HamburgerIcon } from "@chakra-ui/icons";
 import {
-    Box,
-    Flex,
-    Text,
-    Stack,
-    Icon,
-    useColorMode,
-  } from "@chakra-ui/react";
-  import { HamburgerIcon } from "@chakra-ui/icons";
-  import {
-    MdShoppingBasket,
-    MdPerson,
-    MdAttachMoney,
-    MdAssignment,
-    MdMail,
-    MdOutlineEditCalendar
-  } from "react-icons/md";
-  import { FaHome } from 'react-icons/fa';
-  import { useDispatch } from "react-redux";
-  import { changeHomeAdminShow } from "../../Redux/actions";
+  MdShoppingBasket,
+  MdPerson,
+  MdAttachMoney,
+  MdAssignment,
+  MdMail,
+  MdOutlineEditCalendar,
+} from "react-icons/md";
+import { FaHome } from "react-icons/fa";
+import { useDispatch } from "react-redux";
+import { changeHomeAdminShow } from "../../Redux/actions";
 
-export default function SideBarResponsive () {
-    const dispatch = useDispatch();
-    const [isOpen, setIsOpen] = useState(false);
-    const toggleSidebar = () => setIsOpen(!isOpen);
-    const categories = [
-        { label: "Home", icon: FaHome },
-        { label: "Productos", icon: MdShoppingBasket},
-        { label: "Usuarios", icon: MdPerson},
-        { label: "Ventas", icon: MdAttachMoney},
-        { label: "MercadoPago", icon: MdAssignment},
-        { label: "Mensajes", icon: MdMail },
-        { label: "Calendario", icon: MdOutlineEditCalendar },
-      ];
-    
-      const { colorMode } = useColorMode();
-      const [activeCategory, setActiveCategory] = useState(categories[0]);
-      const bgColor = colorMode === "light" ? "blue.400" : "gray.800";
-      const hoverBgColor = colorMode === "light" ? "gray.100" : "gray.600";
-      const activeBgColor = "orange.400";
-      const textColor = colorMode === "light" ? "gray.800" : "white";
-      
+export default function SideBarResponsive() {
+  const dispatch = useDispatch();
+  const [isOpen, setIsOpen] = useState(false);
+  const toggleSidebar = () => setIsOpen(!isOpen);
+  const categories = [
+    { label: "Home", icon: FaHome },
+    { label: "Productos", icon: MdShoppingBasket },
+    { label: "Usuarios", icon: MdPerson },
+    { label: "Ventas", icon: MdAttachMoney },
+    { label: "MercadoPago", icon: MdAssignment },
+    { label: "Mensajes", icon: MdMail },
+    { label: "Calendario", icon: MdOutlineEditCalendar },
+  ];
 
-      
-      const handleHomeAdmin = (e) => {
-        dispatch(changeHomeAdminShow(e.target.textContent));
-        setActiveCategory(categories);
-        setIsOpen(false);
-      };
+  const { colorMode } = useColorMode();
+  const [activeCategory, setActiveCategory] = useState(categories[0]);
+  const bgColor = colorMode === "light" ? "blue.400" : "gray.800";
+  const hoverBgColor = colorMode === "light" ? "gray.100" : "gray.600";
+  const activeBgColor = "orange.400";
+  const textColor = colorMode === "light" ? "gray.800" : "white";
 
+  const handleHomeAdmin = (e) => {
+    dispatch(changeHomeAdminShow(e.target.textContent));
+    setActiveCategory(categories);
+    setIsOpen(false);
+  };
 
-    return (
+  return (
+    <Box display={{ md: "none" }}>
+      <Box>
+        <Box position="absolute" top="1.5rem" left="1rem">
+          {isOpen ? (
+            <HamburgerIcon w={6} h={6} onClick={toggleSidebar} />
+          ) : (
+            <HamburgerIcon w={6} h={6} onClick={toggleSidebar} />
+          )}
+        </Box>
 
-        <Box display={{md:"none"}}>
-            
-    
-<Box>
-      
-<Box position="absolute" top="1.5rem" left="1rem">
-      {isOpen ? (
-        <HamburgerIcon w={6} h={6} onClick={toggleSidebar} />
-      ) : (
-        <HamburgerIcon w={6} h={6} onClick={toggleSidebar} />
-      )}
-    </Box>
-  
         {isOpen && (
           <Box
             w="64"
@@ -109,9 +95,7 @@ export default function SideBarResponsive () {
             </Box>
           </Box>
         )}
-      
       </Box>
-
     </Box>
-    )
+  );
 }

@@ -1,4 +1,4 @@
-import React, { useEffect, useState} from "react";
+import React, { useEffect, useState } from "react";
 import {
   CLEAR_CART,
   REMOVE_ALL_FROM_CART,
@@ -9,46 +9,43 @@ import CartItem from "../CartItem/CartItem";
 import { Box, Flex, Text, Button, Icon, Divider } from "@chakra-ui/react";
 import { MdOutlineArrowBackIosNew } from "react-icons/md";
 import { useAuth0 } from "@auth0/auth0-react";
-import {Link} from "react-router-dom";
+import { Link } from "react-router-dom";
 import BotonMP from "../../MercadoPago/BotonMP";
 import AuthButton from "../../Auth0";
 import Swal from "sweetalert2";
-
 
 export default function ShoppingCart() {
   const { cart } = useSelector((state) =>
     state ? state : { comidas: [], cart: [] }
   );
-  
+
   const { user, isAuthenticated } = useAuth0();
 
   const dispatch = useDispatch();
 
-const [logueado, setLogueado] = useState();
+  const [logueado, setLogueado] = useState();
 
-const sinLoguear = () => {
-  if (!logueado) {
-    Swal.fire({
-      title: "Debes iniciar sesión para realizar pagos",
-      position: "center",
-      
-    });
-  }
-};
- 
+  const sinLoguear = () => {
+    if (!logueado) {
+      Swal.fire({
+        title: "Debes iniciar sesión para realizar pagos",
+        position: "center",
+      });
+    }
+  };
 
   //LOCALSTORAGE
 
   //En el estado global Cart, en el reducer traigo las cosas del carrito (es lo que muestro);
   //Tambien se modifico la funcion que agrega cosas en el carrito para que tambien las
   //agregue en el local storage.
-   //traigo todo el carrito actualizado.
+  //traigo todo el carrito actualizado.
 
   useEffect(() => {
-    localStorage.setItem('cart', JSON.stringify(cart));
+    localStorage.setItem("cart", JSON.stringify(cart));
   }, [cart, user, isAuthenticated]);
 
-   //Elimino las cosas del carrito y tambien del local storage
+  //Elimino las cosas del carrito y tambien del local storage
   const delFromCart = (id, all = false) => {
     console.log(id, all);
     if (all) {
@@ -57,13 +54,12 @@ const sinLoguear = () => {
       dispatch({ type: REMOVE_ONE_FROM_CART, payload: id });
     }
     const updatedCart = cart.filter((item) => item.id !== id);
-    localStorage.setItem('cart', JSON.stringify(updatedCart));
+    localStorage.setItem("cart", JSON.stringify(updatedCart));
   };
-//Elimino todo el carrito y tambien del local storage
+  //Elimino todo el carrito y tambien del local storage
   const clearCart = () => {
-    dispatch({ type: CLEAR_CART});
-    localStorage.removeItem('cart');
-    
+    dispatch({ type: CLEAR_CART });
+    localStorage.removeItem("cart");
   };
 
   //FIN LOCAL STORAGE
@@ -86,9 +82,6 @@ const sinLoguear = () => {
       solid
       borderColor="yellow.300"
     >
-      
-
-
       <Flex>
         <Box
           marginLeft={{ base: "1rem", md: "4rem" }}
@@ -169,30 +162,41 @@ const sinLoguear = () => {
           <br />
 
           {isAuthenticated ? (
-          <Link to="/Checkout">
-      <Button fontSize={{base:"12px", md:"16px"}}> Pagar con Tarjeta </Button>
-      </Link>
-      ):(<Button onClick={sinLoguear} fontSize={{base:"12px", md:"16px"}}> Pagar con Tarjeta </Button>
+            <Link to="/Checkout">
+              <Button fontSize={{ base: "12px", md: "16px" }}>
+                {" "}
+                Pagar con Tarjeta{" "}
+              </Button>
+            </Link>
+          ) : (
+            <Button
+              onClick={sinLoguear}
+              fontSize={{ base: "12px", md: "16px" }}
+            >
+              {" "}
+              Pagar con Tarjeta{" "}
+            </Button>
+          )}
+          <br />
+          <br />
 
-      )}
-     <br />
-     <br />
-     
-      <BotonMP />
-      <br />
-      <br />
-      {!isAuthenticated ?  (
-        <>
-      <Text color="gray.300" marginLeft="1rem" fontWeight="bold"> Te podés loguear aca </Text>
-      <br />
-      <Box marginLeft={{base:"2.5rem", md:"5rem"}}>
-      <AuthButton />
-      </Box>
-      </>) : ( null )}
-      
+          <BotonMP />
+          <br />
+          <br />
+          {!isAuthenticated ? (
+            <>
+              <Text color="gray.300" marginLeft="1rem" fontWeight="bold">
+                {" "}
+                Te podés loguear aca{" "}
+              </Text>
+              <br />
+              <Box marginLeft={{ base: "2.5rem", md: "5rem" }}>
+                <AuthButton />
+              </Box>
+            </>
+          ) : null}
         </Box>
       </Flex>
-      
     </Box>
   );
 }

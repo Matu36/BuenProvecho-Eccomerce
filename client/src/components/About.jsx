@@ -9,22 +9,23 @@ export default function About({ HandleCancelAbout }) {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 2 }}
-      
     >
       <Flex flexDirection="column" height="100%">
-        <Flex justifyContent="flex-end" pr={{base:3, md:20}} pt={{base:5, md:2}}>
+        <Flex
+          justifyContent="flex-end"
+          pr={{ base: 3, md: 20 }}
+          pt={{ base: 5, md: 2 }}
+        >
           <Button
             _hover={{ color: "blue" }}
             background="none"
             fontSize={{ base: "14", md: "18px" }}
             onClick={HandleCancelAbout}
-            
-            
           >
             Cerrar
           </Button>
         </Flex>
-        <Box  py={5} px={8} >
+        <Box py={5} px={8}>
           <Text
             textAlign="center"
             fontSize="3xl"
@@ -48,8 +49,8 @@ export default function About({ HandleCancelAbout }) {
               mt={8}
             >
               Somos unos capos en la gastronomía y queremos brindarte la mejor
-              experiencia culinaria.
-              Contamos con un excelente staff de Cocineros altamente especializados en divesas áreas de la cocina;
+              experiencia culinaria. Contamos con un excelente staff de
+              Cocineros altamente especializados en divesas áreas de la cocina;
               Que tengas buen Provecho!
             </Text>
           </Flex>

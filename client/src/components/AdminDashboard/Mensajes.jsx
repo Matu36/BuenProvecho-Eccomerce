@@ -4,26 +4,24 @@ import Paginacion from "./Paginación";
 import { Box, Text, Divider, Button, Flex } from "@chakra-ui/react";
 import { REMOVE_ONE_FROM_MESSAGE } from "../../Redux/actions";
 
-
 export default function Mensajes() {
   const dispatch = useDispatch();
 
-  const mensajes = useSelector((state) => state.mensajes);
+  const mensajess = useSelector((state) => state.mensajes);
 
   const MensajesNoLeidos = useSelector((state) => state.mensajesnoleidos);
 
- useEffect(() => {
+  useEffect(() => {
     //localStorage.setItem("MensajesNoLeidos", JSON.stringify(MensajesNoLeidos));
-  }, [MensajesNoLeidos]); 
+  }, [MensajesNoLeidos]);
 
-  
   const marcarComoLeido = (id) => {
     dispatch({ type: REMOVE_ONE_FROM_MESSAGE, payload: id });
-     // const updatedMessage = MensajesNoLeidos.filter((item) => item.id !== id);
+    // const updatedMessage = MensajesNoLeidos.filter((item) => item.id !== id);
     //  localStorage.setItem("MensajesNoLeidos", JSON.stringify(updatedMessage));
-  }; 
+  };
 
-  const message = mensajes.map((product) => {
+  const message = mensajess.map((product) => {
     return {
       id: product.id,
       email: product.email,
@@ -32,13 +30,13 @@ export default function Mensajes() {
     };
   });
 
-  const [ingredients, setIngredients] = useState(message);
+  const [mensajes, setMensajes] = useState(message);
 
   //PAGINADO
 
   const [currentPage, setCurrentPage] = useState(1); //Pagina Actual seteada en 1
   const [numberOfPage, setNumberOfPage] = useState(0); //Numero de Paginas seteado en 0
-  const [totalIngredients, setTotalIngredients] = useState(message);
+  const [totalMensajes, setTotalMensajes] = useState(message);
 
   const indexFirstPageIngredient = () => (currentPage - 1) * 9; // Indice del primer Elemento
   const indexLastPageIngredient = () => indexFirstPageIngredient() + 9; //Indice del segundo elemento
@@ -48,11 +46,11 @@ export default function Mensajes() {
   };
 
   useEffect(() => {
-    setTotalIngredients(
-      ingredients.slice(indexFirstPageIngredient(), indexLastPageIngredient())
+    setTotalMensajes(
+      mensajes.slice(indexFirstPageIngredient(), indexLastPageIngredient())
     );
-    setNumberOfPage(Math.ceil(ingredients.length / 9)); // cambiando el estado local de numeros de paginas a renderiza
-  }, [ingredients, currentPage]);
+    setNumberOfPage(Math.ceil(mensajes.length / 9)); // cambiando el estado local de numeros de paginas a renderiza
+  }, [mensajes, currentPage]);
 
   //FIN PAGINADO
 
@@ -67,7 +65,7 @@ export default function Mensajes() {
       width={{ base: "400px", md: "800px" }}
       marginLeft={{ base: "-6rem", md: "-3rem" }}
     >
-      {totalIngredients.map((msg, index) => (
+      {totalMensajes.map((msg, index) => (
         <Box key={index} mb={4}>
           <Flex justify="space-between" align="center">
             <Box>

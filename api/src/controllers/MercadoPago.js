@@ -17,8 +17,8 @@ items: [{
     unit_price: prod.price
 }],
 back_urls: 
-{success:"htto://localhost:3000", 
-failure:"htto://localhost:3000", 
+{success: `https://buenprovecho.vercel.app`, 
+failure:  `https://buenprovecho.vercel.app`, 
 },
 auto_return: 'approved',
 binary_mode: true
@@ -33,7 +33,7 @@ const postVentaMercadoPago = async (req, res, next) => {
           
     try {
         const nuevaVenta = await MercPago.create({Nombre, Useremail, Precio, FechaDeVenta });
-        res.status(201).json({ mensaje: 'Mensaje creado exitosamente', data: nuevaVenta });
+        res.status(201).json({ mensaje: 'Venta creada exitosamente', data: nuevaVenta });
       } catch (error) {
         next(error);
       }

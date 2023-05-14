@@ -21,7 +21,6 @@ const CheckoutMP = () => {
     dispatch(getUsers(user));
   }, [user]);
 
-
   const carro = useSelector((state) => state.cart);
 
   //Suma los precios de todos los productos del carrito
@@ -108,25 +107,31 @@ const CheckoutMP = () => {
           paddingBottom="5px"
           onClick={() => {
             axios
-              .post(`https://pymes-software-integration-production.up.railway.app/payment`, {
-                // id:123,
-                title: "Productos",
-                description: carroNombre,
-                price: totalEfectivo,
-              })
+              .post(
+                `https://pymes-software-integration-production.up.railway.app/payment`,
+                {
+                  // id:123,
+                  title: "Productos",
+                  description: carroNombre,
+                  price: totalEfectivo,
+                }
+              )
               .then(
                 (res) =>
                   (window.location.href = res.data.response.body.init_point)
               );
             // Segunda solicitud
             axios
-              .post(`https://pymes-software-integration-production.up.railway.app/paymentDBLOCAL`, {
-                Nombre: carroNombre.toString(),
-                Useremail: isAuthenticated
-                  ? user.email
-                  : "sinemail@hotmail.com",
-                Precio: totalEfectivo,
-              })
+              .post(
+                `https://pymes-software-integration-production.up.railway.app/paymentDBLOCAL`,
+                {
+                  Nombre: carroNombre.toString(),
+                  Useremail: isAuthenticated
+                    ? user.email
+                    : "sinemail@hotmail.com",
+                  Precio: totalEfectivo,
+                }
+              )
               .then((res) => {
                 // Manejar la respuesta de la segunda solicitud
                 console.log("Pago Realizado", res.data);

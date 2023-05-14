@@ -18,7 +18,7 @@ export const Auth0ProviderConfig = {
   
   redirectUri: `https://buenprovecho.vercel.app/Logued`
 };
-
+ //https://buenprovecho.vercel.app/ => dominio
 
 function App() {
 

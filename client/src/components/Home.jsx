@@ -241,7 +241,7 @@ export default function Home() {
           <About HandleCancelAbout={HandleCancelAbout} />
         ) : (
           <>
-             <div className="Titulo">
+            <div className="Titulo">
               <h1>Buen Provecho!</h1>
             </div>
             <Box
@@ -258,20 +258,17 @@ export default function Home() {
               >
                 <Image
                   borderRadius="50%"
-                  marginLeft={{base:"1rem", md:"10rem"}}
+                  marginLeft={{ base: "1rem", md: "10rem" }}
                   src={chef}
                   marginTop={{ base: "-6rem", md: "-4.5rem" }}
                   alt="Logo de la empresa"
-                  width={{base:"80%", md:"50%"}}
-                  height={{base:"80%", md:"50%"}}
+                  width={{ base: "80%", md: "50%" }}
+                  height={{ base: "80%", md: "50%" }}
                   objectFit="contain"
-                  
                 />
-                
               </Box>
-             
             </Box>
-            
+
             <Box
               marginLeft={{ base: "2rem", md: "16rem" }}
               marginTop={{ base: "-22rem", md: "-13rem" }}

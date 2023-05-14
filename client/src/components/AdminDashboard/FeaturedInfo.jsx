@@ -5,9 +5,7 @@ import { useSelector } from "react-redux";
 
 const STRIPE = process.env.REACT_APP_STRIPE;
 
-const stripe = new Stripe(
-  STRIPE
-);
+const stripe = new Stripe(STRIPE);
 
 export default function FeaturedInfo() {
   const [cargos, setCargos] = useState([]);

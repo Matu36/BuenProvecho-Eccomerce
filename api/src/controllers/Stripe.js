@@ -1,7 +1,7 @@
 const Stripe = require("stripe");
 
 const STRIPE = process.env.REACT_APP_STRIPE;
-//instancio a stripe // la clave va con variable de entorno
+//instancio a stripe // 
 const stripe = new Stripe(
   STRIPE
 );

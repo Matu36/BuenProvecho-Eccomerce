@@ -30,7 +30,6 @@ export default function Card({ id, Imagen, Nombre, Efectivo, onClose }) {
         boxShadow: "xl",
         transform: "scale(1.05)",
         cursor: "pointer",
-        // Agrega un fondo con opacidad para el texto
         bg: "rgba(255, 255, 255, 0.8)",
       }}
     >
@@ -61,16 +60,12 @@ export default function Card({ id, Imagen, Nombre, Efectivo, onClose }) {
       />
       <Box
         p="4"
-        // Agrega un texto con una tipografía adecuada
         fontFamily="Montserrat, sans-serif"
         fontWeight="bold"
         fontSize="xl"
         textAlign="center"
-        // Agrega un color de fondo para el texto
         bg="#F6E05E"
-        // Agrega una sombra para dar profundidad
         boxShadow="md"
-        // Agrega una opacidad para el fondo del texto
         opacity="0.9"
       >
         {Nombre}
