@@ -230,7 +230,7 @@ export default function Home() {
           top="160"
           left="0"
           bottom="0"
-          width="13rem"
+          width="15rem"
           overflow="auto"
         >
           <Sidebar setProducts={setProducts} />
