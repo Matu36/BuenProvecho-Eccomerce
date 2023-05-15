@@ -26,25 +26,37 @@ const RandomSlider = () => {
   const randomProducts = sortedDB.slice(0, 10);
 
   return (
-    <Box>
+    <Box
+      paddingLeft={{ base: "0", md: "20%" }}
+      paddingTop="5%"
+      width="100%"
+      maxWidth="1200px"
+    >
       <Slider {...settings}>
         {randomProducts.map((product) => (
           <Box
+            width="100%"
+            maxWidth="1200px"
             key={product.id}
             display="flex"
             alignItems="center"
             justifyContent="center"
             textAlign="center"
-            w="100%"
           >
-            <Box p="2" borderRadius="md" maxW="sm">
+            <Box
+              p="2"
+              borderRadius="md"
+              maxW="sm"
+              width="100%"
+              maxWidth="1200px"
+            >
               <Box
+                width="100%"
+                maxWidth="1200px"
                 display="flex"
                 alignItems="center"
                 justifyContent="center"
                 overflow="hidden"
-                w="600px"
-                h="300px"
                 borderRadius="md"
               >
                 <Image

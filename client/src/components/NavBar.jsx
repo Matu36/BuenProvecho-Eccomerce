@@ -36,7 +36,6 @@ import {
 import { BiMessageDetail } from "react-icons/bi";
 import { HamburgerIcon } from "@chakra-ui/icons";
 import { GiShoppingCart } from "react-icons/gi";
-import AuthButton from "./Auth0";
 import { getUsers } from "../Redux/actions";
 
 export default function NavBar({
@@ -88,7 +87,7 @@ export default function NavBar({
         <Flex
           bg="yellow.300"
           color="white"
-          py={{ base: 2, md: 4 }}
+          py={{ base: 2, md: 2 }}
           px={8}
           display={{ base: "flex", md: "flex" }}
           justifyContent={{ base: "space-between" }}
@@ -97,7 +96,7 @@ export default function NavBar({
             {/* Responsivo icon hamburguer */}
             <Box>
               <IconButton
-                marginLeft={{ base: "-4.5rem" }}
+                marginLeft={{ base: "-2rem" }}
                 marginTop={{ base: "0rem" }}
                 aria-label="Abrir menú"
                 icon={<HamburgerIcon />}
@@ -264,7 +263,7 @@ export default function NavBar({
             </Box>
             {/* Fin Responsivo icon hamburguer */}
           </Box>
-          <Box marginLeft="-2rem">
+          <Box marginLeft="-2rem" paddingRight="5%">
             <DarkMode display={{ base: "none", md: "inline-flex" }} />
             <Button
               variant="ghost"
@@ -394,24 +393,11 @@ export default function NavBar({
                 variant="ghost"
                 color="white"
               />
+             
             </Box>
           </Box>
-          <Box
-            display={{ base: "none", md: "flex" }}
-            position="absolute"
-            ml="56rem"
-            mt="0.5rem"
-          >
-            <AuthButton />
-          </Box>
-          <Box
-            display={{ base: "flex", md: "none" }}
-            position="absolute"
-            ml="17.5rem"
-            mt="0.5rem"
-          >
-            <AuthButton />
-          </Box>
+          
+        
         </Flex>
       </Box>
     </Box>

@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import {
   Text,
   Box,
-  Image,
   Input,
   InputGroup,
   InputLeftElement,
@@ -20,7 +19,8 @@ import MensajesUsuario from "./MensajesUsuario";
 import { CgCloseO } from "react-icons/cg";
 import { getUsers } from "../Redux/actions";
 import "./styles.css";
-import chef from "../img/chef.jpg";
+import NavBar2 from "./NavBar2";
+import CardOfert from "./CardOfert";
 
 export default function Home() {
   let currentUser = JSON.parse(localStorage.getItem("user"));
@@ -124,13 +124,10 @@ export default function Home() {
 
   return (
     <Box>
-      <Box
-        borderWidth="0px"
-        borderLeftWidth="40px"
-        borderRightWidth="40px"
-        solid
-        borderColor="yellow.300"
-      >
+      <Box>
+        <NavBar2 />
+      </Box>
+      <Box>
         <Box>
           <NavBar
             handleMostrarFormulario={handleMostrarFormulario}
@@ -140,9 +137,10 @@ export default function Home() {
         </Box>
 
         <Box
-          marginTop={{ base: "-3rem", md: "-3.5rem" }}
-          marginLeft={{ base: "2rem", md: "20.5rem" }}
-          maxWidth={{ base: "70%", md: "35%" }}
+          marginTop={{ base: "-3rem", md: "-3.2rem" }}
+          paddingLeft={{ base: "20%", md: "40%" }}
+          paddingRight={{ base: "0", md: "16%" }}
+          maxWidth={{ base: "80%", md: "80%" }}
         >
           <InputGroup borderRadius="5%">
             <InputLeftElement
@@ -228,11 +226,11 @@ export default function Home() {
           position="fixed"
           backgroundColor="#F6F6F6"
           borderRight="1px solid #F6F6F6"
-          padding="10px"
-          top="79.9"
+          padding="15px"
+          top="160"
           left="0"
           bottom="0"
-          width="10rem"
+          width="13rem"
           overflow="auto"
         >
           <Sidebar setProducts={setProducts} />
@@ -241,41 +239,30 @@ export default function Home() {
           <About HandleCancelAbout={HandleCancelAbout} />
         ) : (
           <>
-            <div className="Titulo">
-              <h1>Buen Provecho!</h1>
-            </div>
-            <Box
-              mt={{ base: "-17rem", md: "-10rem" }}
+            {/* <Box
+              
               display="flex"
               alignItems="center"
               justifyContent="center"
               height={{ base: "110vh", md: "100vh" }}
-            >
-              <Box
-                maxWidth={{ base: "200px", md: "400px" }}
-                maxHeight={{ base: "50px", md: "200px" }}
-                margin="auto"
-              >
-                <Image
-                  borderRadius="50%"
-                  marginLeft={{ base: "1rem", md: "10rem" }}
-                  src={chef}
-                  marginTop={{ base: "-6rem", md: "-4.5rem" }}
-                  alt="Logo de la empresa"
-                  width={{ base: "80%", md: "50%" }}
-                  height={{ base: "80%", md: "50%" }}
-                  objectFit="contain"
-                />
-              </Box>
-            </Box>
-
+            ></Box> */}
             <Box
-              marginLeft={{ base: "2rem", md: "16rem" }}
-              marginTop={{ base: "-22rem", md: "-13rem" }}
-              maxW={{ base: "80%" }}
+              display="flex"
+              justifyContent="center"
+              alignItems="center"
+              paddingRight="35%"
             >
-              {RandomSlider()}
+              <Text
+                fontSize={{ base: "20px", md: "30px" }}
+                fontFamily="cursive"
+                marginTop={{ base: "2rem", md: "0" }}
+              >
+                Sugerencias del Cheff
+              </Text>
             </Box>
+            <CardOfert />
+
+            {RandomSlider()}
 
             <Box
               id="Cartas"
