@@ -123,7 +123,7 @@ export default function Home() {
   //FIN MENSAJES DE USUARIO
 
   return (
-    <Box>
+    <Box backgroundColor="gray.500">
       <Box>
         <NavBar2 />
       </Box>
@@ -142,7 +142,7 @@ export default function Home() {
           paddingRight={{ base: "0", md: "16%" }}
           maxWidth={{ base: "80%", md: "80%" }}
         >
-          <InputGroup borderRadius="5%">
+          <InputGroup borderRadius="35%">
             <InputLeftElement
               pointerEvents="none"
               children={<SearchIcon color="gray.300" />}
@@ -219,14 +219,14 @@ export default function Home() {
             // </Box>
           )}
         </Box>
-
+        <Box display="flex">
         <Box
           id="About"
           display={{ base: "none", md: "flex" }}
           position="fixed"
           backgroundColor="#F6F6F6"
           borderRight="1px solid #F6F6F6"
-          padding="15px"
+          
           top="160"
           left="0"
           bottom="0"
@@ -234,6 +234,7 @@ export default function Home() {
           overflow="auto"
         >
           <Sidebar setProducts={setProducts} />
+        </Box>
         </Box>
         {showAbout ? (
           <About HandleCancelAbout={HandleCancelAbout} />
@@ -247,13 +248,19 @@ export default function Home() {
               height={{ base: "110vh", md: "100vh" }}
             ></Box> */}
             <Box
+    marginLeft={{base:"0", md:"15rem"}} // Margen izquierdo para compensar el ancho de la barra lateral
+    width={{base:"100%", md:"80%"}} // Ancho del contenido principal
+  >
+            <Box
               display="flex"
               justifyContent="center"
               alignItems="center"
-              paddingRight="35%"
+              margin="0 auto"
             >
               <Text
-                fontSize={{ base: "25px", md: "30px" }}
+                align="center"
+                justifyContent="center"
+                fontSize="30px"
                 fontFamily="cursive"
                 marginTop={{ base: "2rem", md: "0" }}
               >
@@ -263,7 +270,7 @@ export default function Home() {
             <CardOfert />
 
             {RandomSlider()}
-
+            </Box>
             <Box
               id="Cartas"
               maxW="sm"
@@ -272,6 +279,7 @@ export default function Home() {
               mx="auto"
               mt="4"
             >
+              
               {/* Renderiza los productos filtrados */}
               {products.map((product, index) => (
                 <Card

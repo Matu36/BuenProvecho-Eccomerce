@@ -27,16 +27,16 @@ const RandomSlider = () => {
 
   return (
     <Box
-      paddingLeft={{ base: "0", md: "20%" }}
+      justifyContent="center"
       paddingTop="5%"
       width="100%"
-      maxWidth="1200px"
+      
     >
       <Slider {...settings}>
         {randomProducts.map((product) => (
           <Box
             width="100%"
-            maxWidth="1200px"
+            
             key={product.id}
             display="flex"
             alignItems="center"

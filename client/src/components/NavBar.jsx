@@ -85,8 +85,8 @@ export default function NavBar({
     <Box>
       <Box>
         <Flex
-          bg="yellow.300"
-          color="white"
+          bg="white"
+          color="gray"
           py={{ base: 2, md: 2 }}
           px={8}
           display={{ base: "flex", md: "flex" }}
@@ -103,7 +103,7 @@ export default function NavBar({
                 size="md"
                 fontSize="24px"
                 variant="ghost"
-                color="white"
+                color="gray"
                 onClick={onOpen}
                 display={{ md: "none" }} // Sólo muestra el botón en modo responsivo
               />
@@ -113,7 +113,7 @@ export default function NavBar({
                 variant="ghost"
                 marginLeft="-1rem"
                 marginTop="0.5rem"
-                color="white"
+                color="gray"
                 fontSize="24px"
                 onClick={() => window.location.reload()}
               >
@@ -267,7 +267,7 @@ export default function NavBar({
             <DarkMode display={{ base: "none", md: "inline-flex" }} />
             <Button
               variant="ghost"
-              color="white"
+              color="gray"
               title="Envianos tu Mensaje!"
               fontSize="22px"
               display={{ base: "none", md: "inline" }}
@@ -282,7 +282,7 @@ export default function NavBar({
               display={{ base: "none", md: "inline-flex" }}
               variant="ghost"
               fontSize="22px"
-              color="white"
+              color="gray"
               mr={2}
               onClick={() => window.location.reload()}
             >
@@ -293,7 +293,7 @@ export default function NavBar({
               href="#About"
               display={{ base: "none", md: "inline-flex" }}
               variant="ghost"
-              color="white"
+              color="gray"
               mr={2}
               onClick={handleAboutClick}
             >
@@ -321,7 +321,7 @@ export default function NavBar({
                   mr={{ base: 0, md: 2 }}
                   title="Carrito de Compras"
                   variant="ghost"
-                  color="white"
+                  color="gray"
                 />
                 {carritoCount > 0 && (
                   <Badge
@@ -353,7 +353,7 @@ export default function NavBar({
                 mr={2}
                 title="Instagram"
                 variant="ghost"
-                color="white"
+                color="gray"
               />
               <IconButton
                 display={{ base: "none", md: "inline-flex" }}
@@ -366,7 +366,7 @@ export default function NavBar({
                 title="Facebook"
                 mr={2}
                 variant="ghost"
-                color="white"
+                color="gray"
               />
               <IconButton
                 display={{ base: "none", md: "inline-flex" }}
@@ -379,7 +379,7 @@ export default function NavBar({
                 icon={<FaMapMarkerAlt />}
                 mr={2}
                 variant="ghost"
-                color="white"
+                color="gray"
               />
               <IconButton
                 display={{ base: "none", md: "inline-flex" }}
@@ -391,7 +391,7 @@ export default function NavBar({
                 icon={<FaWhatsapp />}
                 title="Whatsapp"
                 variant="ghost"
-                color="white"
+                color="gray"
               />
              
             </Box>

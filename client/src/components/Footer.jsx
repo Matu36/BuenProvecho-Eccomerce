@@ -16,7 +16,7 @@ export default function Footer({ setShowAbout, handleMostrarFormulario }) {
     setShowAbout(true);
   };
   return (
-    <Box backgroundColor="yellow.300">
+    <Box backgroundColor="red.500">
       <Box>
         <Box display="flex" alignItems="center" flexDirection="column">
           <Box display="flex" alignItems="center">
