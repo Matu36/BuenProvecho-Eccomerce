@@ -1,13 +1,15 @@
-import tallarines from "../img/tallarines.jpg"
-import ñoquis from "../img/ñoquis.jpg"
-import ravioles from "../img/ravioles.jpg"
-import fritas from "../img/fritas.jpg"
-import vacio from "../img/vacio.jpg"
-import caesar from "../img/caesar.jpg"
-import bdechorizo from "../img/bdechorizo.jpg"
-import pecdecerdo from "../img/pecdecerdo.jpg"
-import asado from "../img/asado.jpg"
-import pollo from "../img/pollo.jpg"
+import arrollado from "../img/1arrolladodepollo.jpg";
+import asado from "../img/1asado.jpg";
+import canelones from "../img/1CANELONES.jpg";
+import cerdo from "../img/1cerdo.jpg";
+import hamburguesa from "../img/1HAMBURGUESA.jpg";
+import matambrepizza from "../img/1matambrealapizza.jpg";
+import milacaballo from "../img/1milaacaballo.jpg";
+import pizza from "../img/1PIZZA.png";
+import pecdecerdo from "../img/1pecdecerdo.jpg";
+import milapollonapo from "../img/1miladepollonapo.jpeg";
+
+
 
 export const DB = [{
 id: 1,
@@ -21,8 +23,8 @@ MercadoPago: "1700 kg"
 {
     id: 2,
     Categoría: "Carnes",
-    Imagen: pollo,
-    Nombre: "Pollo",
+    Imagen: arrollado,
+    Nombre: "Arrollado de pollo",
     Efectivo: 1100,
     MercadoPago: "$1300 kg"
 
@@ -30,8 +32,8 @@ MercadoPago: "1700 kg"
 {
     id: 3,
     Categoría: "Carnes",
-    Imagen: bdechorizo,
-    Nombre: "Bife de Chorizo",
+    Imagen: hamburguesa,
+    Nombre: "Hamburguesa",
     Efectivo: 1800,
     MercadoPago: "$2000 kg"
 
@@ -39,8 +41,8 @@ MercadoPago: "1700 kg"
 {
     id: 4,
     Categoría: "Carnes",
-    Imagen: vacio,
-    Nombre: "Vacío",
+    Imagen: cerdo,
+    Nombre: "Costillas de Cerdo",
     Efectivo: 1700,
     MercadoPago: "$1900 kg"
 
@@ -48,17 +50,17 @@ MercadoPago: "1700 kg"
 {
     id: 5,
     Categoría: "Carnes",
-    Imagen: pecdecerdo,
-    Nombre: "Pechito de cerdo",
+    Imagen: matambrepizza,
+    Nombre: "Matambre a la Pizza",
     Efectivo: 1900,
     MercadoPago: "$2100 kg"
 
 },
 {
     id: 6,
-    Categoría: "Pasta",
-    Imagen: tallarines,
-    Nombre: "Tallarines",
+    Categoría: "Carnes",
+    Imagen: milacaballo,
+    Nombre: "Milanesa a Caballo",
     Efectivo: 800,
     MercadoPago: "$1000 "
 
@@ -66,8 +68,8 @@ MercadoPago: "1700 kg"
 {
     id: 7,
     Categoría: "Pasta",
-    Imagen: ravioles,
-    Nombre: "Ravioles",
+    Imagen: pizza,
+    Nombre: "Pizza",
     Efectivo: 900,
     MercadoPago: "$1100"
 
@@ -75,26 +77,26 @@ MercadoPago: "1700 kg"
 {
     id: 8,
     Categoría: "Pasta",
-    Imagen: ñoquis,
-    Nombre: "Ñoquis",
+    Imagen: canelones,
+    Nombre: "Canelones",
     Efectivo: 1500,
     MercadoPago: "2000 kg"
 
 },
 {
     id: 9,
-    Categoría: "Ensaladas",
-    Imagen: caesar,
-    Nombre: "Caesar",
+    Categoría: "Carnes",
+    Imagen: pecdecerdo,
+    Nombre: "Pechito de Cerdo",
     Efectivo: 700,
     MercadoPago: "$900"
 
 },
 {
     id: 10,
-    Categoría: "Minutas",
-    Imagen: fritas,
-    Nombre: "Papas fritas",
+    Categoría: "Carnes",
+    Imagen: milapollonapo,
+    Nombre: "Milanesa de pollo napolitana",
     Efectivo: 700,
     MercadoPago: "$900 porción"
 

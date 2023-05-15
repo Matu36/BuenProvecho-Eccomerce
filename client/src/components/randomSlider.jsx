@@ -30,13 +30,14 @@ const RandomSlider = () => {
       justifyContent="center"
       paddingTop="5%"
       width="100%"
+      margin="0 auto"
       
     >
       <Slider {...settings}>
         {randomProducts.map((product) => (
           <Box
             width="100%"
-            
+            maxWidth="1200px"
             key={product.id}
             display="flex"
             alignItems="center"
@@ -49,6 +50,7 @@ const RandomSlider = () => {
               maxW="sm"
               width="100%"
               maxWidth="1200px"
+              height="300px"
             >
               <Box
                 width="100%"
