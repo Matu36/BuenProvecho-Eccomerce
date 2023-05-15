@@ -9,12 +9,12 @@ const CardOfert = () => {
     <Box
       display="flex"
       flexDirection="row"
-      justifyContent={{base:"center", md: "flex-end"}}
+      justifyContent={{ base: "center", md: "flex-end" }}
       paddingTop={{ base: "15%", md: "7%" }}
       paddingRight="14%"
     >
       {products.map((product) => (
-        <Box display="flex" key={product.id} paddingLeft="12%">
+        <Box display="flex" key={product.id} paddingLeft={{base:"4%", md:"12%"}}>
           <Box
             p="2"
             borderRadius="10%"
@@ -39,11 +39,13 @@ const CardOfert = () => {
                 w="100%"
                 h="100%"
               />
-              
             </Box>
             <Box>
-            <Text zIndex={1} color="black"> {product.Nombre}</Text>
-            <Text>  $ {product.Efectivo} </Text>
+              <Text zIndex={1} color="black">
+                {" "}
+                {product.Nombre}
+              </Text>
+              <Text> $ {product.Efectivo} </Text>
             </Box>
           </Box>
         </Box>

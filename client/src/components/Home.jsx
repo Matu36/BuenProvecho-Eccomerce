@@ -253,7 +253,7 @@ export default function Home() {
               paddingRight="35%"
             >
               <Text
-                fontSize={{ base: "20px", md: "30px" }}
+                fontSize={{ base: "25px", md: "30px" }}
                 fontFamily="cursive"
                 marginTop={{ base: "2rem", md: "0" }}
               >
