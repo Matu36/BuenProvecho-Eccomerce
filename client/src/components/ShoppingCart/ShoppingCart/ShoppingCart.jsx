@@ -7,7 +7,6 @@ import {
 import { useDispatch, useSelector } from "react-redux";
 import CartItem from "../CartItem/CartItem";
 import { Box, Flex, Text, Button, Icon, Divider } from "@chakra-ui/react";
-import { MdOutlineArrowBackIosNew } from "react-icons/md";
 import { useAuth0 } from "@auth0/auth0-react";
 import { Link } from "react-router-dom";
 import BotonMP from "../../MercadoPago/BotonMP";
@@ -76,45 +75,43 @@ export default function ShoppingCart() {
 
   return (
     <Box
-      borderWidth="40px"
-      borderLeftWidth="40px"
-      borderRightWidth="40px"
+      borderWidth="20px"
+      borderLeftWidth="20px"
+      borderRightWidth="20px"
       solid
-      borderColor="red.500"
+      borderColor="gray.500"
     >
+      <Box justifyContent="center" alignItems="center" textAlign="center">
+        <Text fontSize="2rem" fontWeight="bold">
+          {" "}
+          Mi carrito de Compras{" "}
+        </Text>
+      </Box>
       <Flex>
         <Box
           marginLeft={{ base: "1rem", md: "4rem" }}
           marginTop={{ base: "1rem", md: "3rem" }}
+          sx={{
+            // Estilos específicos para el rango 768px - 1000px
+            "@media (min-width: 768px) and (max-width: 1000px)": {
+              maxWidth: "55%", marginTop:"3rem"
+            },
+            "@media (min-width: 0px) and (max-width: 410px)": {
+              maxWidth: "40%", marginTop:"3rem" 
+            },
+           
+          }} 
         >
-          <Button
-            as="a"
-            background="none"
-            _hover={{ background: "none" }}
-            href="/"
-            leftIcon={<Icon as={MdOutlineArrowBackIosNew} />}
-            color="#0077CC"
-            fontSize="20px"
-            marginLeft={{ base: "0", md: "-1rem" }}
-            marginTop={{ base: "-1rem", md: "-5rem" }}
-            padding="5px"
-            borderRadius="5px"
-            bg="none"
-          >
-            Home
-          </Button>
-
-          <Text fontSize={{ base: "18px", md: "2xl" }} fontWeight="bold" mb={6}>
-            Mi Carrito de Compras
-            <Button
+          
+            <Button 
               display={{ base: "none", md: "flex" }}
               marginLeft={{ base: "2rem", md: "28rem" }}
               onClick={clearCart}
             >
               Limpiar el Carrito
             </Button>
-          </Text>
-
+         
+<br />
           <Box>
             {cart.map((item, index) => (
               <CartItem key={index} data={item} delFromCart={delFromCart} />
