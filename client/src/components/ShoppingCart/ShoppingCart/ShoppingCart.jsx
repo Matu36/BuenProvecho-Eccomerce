@@ -82,12 +82,12 @@ export default function ShoppingCart() {
       borderColor="gray.500"
     >
       <Box justifyContent="center" alignItems="center" textAlign="center">
-        <Text fontSize="2rem" fontFamily="heading" fontWeight="bold" marginTop="1rem" backgroundColor="gray.400" color="white">
+        <Text fontSize="2rem" fontFamily="heading" fontWeight="bold" marginTop="1rem" >
           {" "}
           Mi carrito de Compras{" "}
         </Text>
       </Box>
-      <Flex marginTop= "-3.5rem">
+      <Flex marginTop= {{base:"-5rem", md:"-3.5rem"}}>
         <Box
           marginLeft={{ base: "0rem", md: "4rem" }}
           marginTop={{ base: "6rem", md: "5rem" }}
