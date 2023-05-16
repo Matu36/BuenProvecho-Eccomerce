@@ -89,15 +89,15 @@ export default function ShoppingCart() {
       </Box>
       <Flex>
         <Box
-          marginLeft={{ base: "1rem", md: "4rem" }}
-          marginTop={{ base: "1rem", md: "3rem" }}
+          marginLeft={{ base: "0rem", md: "4rem" }}
+          marginTop={{ base: "6rem", md: "3rem" }}
           sx={{
             // Estilos específicos para el rango 768px - 1000px
             "@media (min-width: 768px) and (max-width: 1000px)": {
               maxWidth: "55%", marginTop:"3rem"
             },
             "@media (min-width: 0px) and (max-width: 410px)": {
-              maxWidth: "40%", marginTop:"3rem" 
+              maxWidth: "40%", marginTop:"8rem" 
             },
            
           }} 
