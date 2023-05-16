@@ -6,7 +6,7 @@ import { AiOutlineMail } from "react-icons/ai";
 
 const Footer2 = () => {
   return (
-    <Box marginLeft={{base:"0", md:"15rem"}}
+    <Box 
     alignContent="center"
     justifyContent="center"
     margin="auto"

@@ -33,23 +33,10 @@ export default function Card({ id, Imagen, Nombre, Efectivo, onClose }) {
         bg: "rgba(255, 255, 255, 0.8)",
       }}
     >
-      {onClose && (
-        <Button
-          display="flex"
-          background="none"
-          flexDirection="row-reverse"
-          alignContent="flex-end"
-          justifyContent="flex-start"
-          _hover={{ background: "none", color: "white" }}
-          fontSize="30px"
-          marginLeft="10.8rem"
-          onClick={onClose}
-        >
-          <AiOutlineCloseCircle />
-        </Button>
-      )}
-
+      
+<Box position="relative">
       <Image
+      
         src={Imagen}
         maxH="100%"
         maxW="100%"
@@ -58,6 +45,25 @@ export default function Card({ id, Imagen, Nombre, Efectivo, onClose }) {
         objectFit="cover"
         borderRadius="lg"
       />
+      {onClose && (
+        <Button
+        position="absolute"
+        top="-1"
+        right="-4"
+        mt="0"
+        mr="0"
+        color="white"
+        background="none"
+          _hover={{ background: "none", color: "red" }}
+          fontSize="30px"
+          zIndex="999"
+          onClick={onClose}
+          
+        >
+          <AiOutlineCloseCircle />
+        </Button>
+      )}
+      </Box>
       <Box
         p="4"
         fontFamily="Montserrat, sans-serif"

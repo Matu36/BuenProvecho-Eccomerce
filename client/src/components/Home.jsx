@@ -165,7 +165,7 @@ export default function Home() {
                   background="white"
                   width="100%"
                   paddingLeft="1rem"
-                  zIndex="1"
+                  zIndex="9999"
                   fontWeight="bold"
                   fontSize={{ base: "12px", md: "16px" }}
                   key={comida.id}
@@ -199,26 +199,25 @@ export default function Home() {
             </div>
           )}
         </Box>
-        <Box
-          maxWidth={{ base: "85%", md: "40%" }}
-          marginTop={{ base: "-3rem", md: "0" }}
-          marginLeft={{ base: "1.5rem", md: "20rem" }}
-          zIndex="2"
-        >
-          {selectedComida && (
-            // <Box marginTop= "3rem">
-
-            <Card
-              id={selectedComida.id}
-              Imagen={selectedComida.Imagen}
-              alt={selectedComida.Nombre}
-              Nombre={selectedComida.Nombre}
-              Efectivo={selectedComida.Efectivo}
-              onClose={handleResetComidaSeleccionada}
-            />
-
-            // </Box>
-          )}
+        <Box marginLeft={{ base: "0", md: "15rem" }}>
+          <Box
+            maxWidth={{ base: "85%", md: "340px" }}
+            marginTop={{ base: "-3rem", md: "0" }}
+            mx="auto"
+            paddingBottom={{ base: "0", md: "2rem" }}
+            zIndex="2"
+          >
+            {selectedComida && (
+              <Card
+                id={selectedComida.id}
+                Imagen={selectedComida.Imagen}
+                alt={selectedComida.Nombre}
+                Nombre={selectedComida.Nombre}
+                Efectivo={selectedComida.Efectivo}
+                onClose={handleResetComidaSeleccionada}
+              />
+            )}
+          </Box>
         </Box>
         <Box display="flex">
           <Box
@@ -240,38 +239,7 @@ export default function Home() {
           <About HandleCancelAbout={HandleCancelAbout} />
         ) : (
           <>
-            {/* <Box
-              
-              display="flex"
-              alignItems="center"
-              justifyContent="center"
-              height={{ base: "110vh", md: "100vh" }}
-            ></Box> */}
-            <Box
-              marginLeft={{ base: "0", md: "15rem" }} // Margen izquierdo para compensar el ancho de la barra lateral
-              width={{ base: "100%", md: "80%" }} // Ancho del contenido principal
-            >
-              <Box
-                display="flex"
-                justifyContent="center"
-                alignItems="center"
-                margin="0 auto"
-              >
-                <Text
-                  align="center"
-                  justifyContent="center"
-                  fontSize="30px"
-                  fontFamily="cursive"
-                  marginTop={{ base: "2rem", md: "0" }}
-                >
-                  Sugerencias del Cheff
-                </Text>
-              </Box>
-              <CardOfert />
-
-              {RandomSlider()}
-            </Box>
-            <Box
+          <Box
               marginLeft={{ base: "0", md: "15rem" }}
               id="Cartas"
               overflow="hidden"
@@ -296,12 +264,39 @@ export default function Home() {
                 />
               ))}
             </Box>
+            <Box
+              marginLeft={{ base: "0", md: "15rem" }} // Margen izquierdo para compensar el ancho de la barra lateral
+              width={{ base: "100%", md: "80%" }} // Ancho del contenido principal
+            >
+              <Box
+                display="flex"
+                justifyContent="center"
+                alignItems="center"
+                margin="0 auto"
+              >
+                <Text
+                  align="center"
+                  justifyContent="center"
+                  fontSize="30px"
+                  fontFamily="cursive"
+                  marginTop={{ base: "0", md: "-5rem" }}
+                >
+                  Sugerencias del Cheff
+                </Text>
+              </Box>
+              <CardOfert />
+              
+              {RandomSlider()}
+            </Box>
+            
+            <Box marginLeft={{ base: "0", md: "15rem" }}>
+          <Footer2 />
+        </Box>
           </>
         )}
+        
       </Box>
-<Box>
-  <Footer2 />
-</Box>
+
       <Box display={{ md: "none" }}>
         <Footer
           setShowAbout={setShowAbout}

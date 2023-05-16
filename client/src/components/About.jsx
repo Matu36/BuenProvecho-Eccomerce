@@ -5,12 +5,13 @@ import { motion } from "framer-motion";
 
 export default function About({ HandleCancelAbout }) {
   return (
-    <motion.div
+    <motion.div 
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 2 }}
     >
-      <Flex flexDirection="column" height="100%">
+      <Flex flexDirection="column" height="100%" backgroundColor="white" 
+      marginLeft={{base:"0", md:"15rem"}}>
         <Flex
           justifyContent="flex-end"
           pr={{ base: 3, md: 20 }}
