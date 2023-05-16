@@ -5,7 +5,7 @@ import pvacio from "../../img/pvacio.png";
 
 export default function WidgetSm() {
   const users = useSelector((state) => state.users);
-  const usersSlice = users.slice(0, 5);
+  const usersSlice = users.slice(-5);
 
   return (
     <Box

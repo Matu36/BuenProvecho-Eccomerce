@@ -30,6 +30,7 @@ const CardOfert = () => {
               h={{ base: "100px", md: "150px" }}
               borderRadius="50%"
               marginTop="-4rem"
+              
             >
               <img
                 src={product.Imagen}
@@ -40,7 +41,7 @@ const CardOfert = () => {
               />
             </Box>
             <Box>
-              <Text zIndex={1} color="black">
+              <Text color="black">
                 {product.Nombre}
               </Text>
               <Text> $ {product.Efectivo} </Text>

@@ -6,6 +6,7 @@ import { getUsers } from "../Redux/actions";
 import { useDispatch } from "react-redux";
 import chef from "../img/chef.jpg";
 import { BarLoader } from "react-spinners";
+import "./styles.css"
 
 export default function LoggedInPage() {
   const { user, isAuthenticated } = useAuth0();
@@ -21,14 +22,14 @@ export default function LoggedInPage() {
   }, [user]);
 
   // Esperar 5 segundos antes de redirigir
-  setTimeout(() => {
+   setTimeout(() => {
     navigate("/");
-  }, 4000);
+  }, 4000); 
 
   return (
-    isAuthenticated && (
+     isAuthenticated && (
       <Box
-        background="linear-gradient(to bottom, #0d47a1, #000080)"
+        background="linear-gradient(to bottom, #FF0000, #800000);"
         height="100vh"
       >
         <Flex justifyContent="center" alignItems="center">
@@ -57,12 +58,15 @@ export default function LoggedInPage() {
               fontFamily="unset"
               alignItems="center"
             >
-              Bienvenido {user.name}
+              {/* Bienvenido {user.name} */}
             </Text>
           </Box>
-          <Box></Box>
+          
         </Flex>
-
+        <br />
+        <div className="TituloLoguin">
+              <h1>Buen Provecho!</h1>
+            </div>
         <Box
           sx={{
             position: "fixed",
@@ -70,10 +74,10 @@ export default function LoggedInPage() {
             right: { base: "4rem", md: "11rem" },
           }}
         >
-          <BarLoader color={"#123abc"} loading={true} height={10} />
+          <BarLoader color={"red"} loading={true} height={10} />
         </Box>
         <Box display={{ base: "flex", md: "none" }} marginTop="4rem"></Box>
       </Box>
     )
-  );
+   );
 }

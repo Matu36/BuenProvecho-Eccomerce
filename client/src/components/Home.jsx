@@ -220,21 +220,20 @@ export default function Home() {
           )}
         </Box>
         <Box display="flex">
-        <Box
-          id="About"
-          display={{ base: "none", md: "flex" }}
-          position="fixed"
-          backgroundColor="#F6F6F6"
-          borderRight="1px solid #F6F6F6"
-          
-          top="160"
-          left="0"
-          bottom="0"
-          width="15rem"
-          overflow="auto"
-        >
-          <Sidebar setProducts={setProducts} />
-        </Box>
+          <Box
+            id="About"
+            display={{ base: "none", md: "flex" }}
+            position="fixed"
+            backgroundColor="#F6F6F6"
+            borderRight="1px solid #F6F6F6"
+            top="160"
+            left="0"
+            bottom="0"
+            width="15rem"
+            overflow="auto"
+          >
+            <Sidebar setProducts={setProducts} />
+          </Box>
         </Box>
         {showAbout ? (
           <About HandleCancelAbout={HandleCancelAbout} />
@@ -248,38 +247,42 @@ export default function Home() {
               height={{ base: "110vh", md: "100vh" }}
             ></Box> */}
             <Box
-    marginLeft={{base:"0", md:"15rem"}} // Margen izquierdo para compensar el ancho de la barra lateral
-    width={{base:"100%", md:"80%"}} // Ancho del contenido principal
-  >
-            <Box
-              display="flex"
-              justifyContent="center"
-              alignItems="center"
-              margin="0 auto"
+              marginLeft={{ base: "0", md: "15rem" }} // Margen izquierdo para compensar el ancho de la barra lateral
+              width={{ base: "100%", md: "80%" }} // Ancho del contenido principal
             >
-              <Text
-                align="center"
+              <Box
+                display="flex"
                 justifyContent="center"
-                fontSize="30px"
-                fontFamily="cursive"
-                marginTop={{ base: "2rem", md: "0" }}
+                alignItems="center"
+                margin="0 auto"
               >
-                Sugerencias del Cheff
-              </Text>
-            </Box>
-            <CardOfert />
+                <Text
+                  align="center"
+                  justifyContent="center"
+                  fontSize="30px"
+                  fontFamily="cursive"
+                  marginTop={{ base: "2rem", md: "0" }}
+                >
+                  Sugerencias del Cheff
+                </Text>
+              </Box>
+              <CardOfert />
 
-            {RandomSlider()}
+              {RandomSlider()}
             </Box>
             <Box
+              marginLeft={{ base: "0", md: "15rem" }}
               id="Cartas"
-              maxW="sm"
               overflow="hidden"
-              boxShadow="md"
               mx="auto"
               mt="4"
+              display="grid"
+              gridTemplateColumns={{
+                base: "1fr",
+                md: "repeat(auto-fit, minmax(250px, 1fr))",
+              }}
+              gridGap="1rem"
             >
-              
               {/* Renderiza los productos filtrados */}
               {products.map((product, index) => (
                 <Card

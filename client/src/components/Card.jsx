@@ -19,7 +19,7 @@ export default function Card({ id, Imagen, Nombre, Efectivo, onClose }) {
 
   return (
     <Box
-      maxW={{ base: "65%", md: "50%" }}
+      maxW={{ base: "50%", md: "60%" }}
       overflow="hidden"
       boxShadow="md"
       mx="auto"
@@ -53,7 +53,7 @@ export default function Card({ id, Imagen, Nombre, Efectivo, onClose }) {
         src={Imagen}
         maxH="100%"
         maxW="100%"
-        width="100%"
+        width={{ base: "100%", md: "200px" }}
         height="200px"
         objectFit="cover"
         borderRadius="lg"
@@ -64,7 +64,7 @@ export default function Card({ id, Imagen, Nombre, Efectivo, onClose }) {
         fontWeight="bold"
         fontSize="xl"
         textAlign="center"
-        bg="#F6E05E"
+        bg="red.500"
         boxShadow="md"
         opacity="0.9"
       >
@@ -78,7 +78,7 @@ export default function Card({ id, Imagen, Nombre, Efectivo, onClose }) {
             target="_blank"
             aria-label="Whatsapp"
             leftIcon={<Icon as={GiMoneyStack} />}
-            color="#0077CC"
+            color="black"
             textDecor="none"
             padding="5px"
             borderRadius="5px"
@@ -90,7 +90,7 @@ export default function Card({ id, Imagen, Nombre, Efectivo, onClose }) {
         <Box>
           <Button
             leftIcon={<Icon as={GiShoppingCart} />}
-            color="#0077CC"
+            color="black"
             textDecor="none"
             padding="5px"
             borderRadius="5px"
