@@ -18,7 +18,7 @@ export default function CartItem({ data, delFromCart }) {
   let { id, Imagen, Nombre, Efectivo, quantity } = data;
 
   return (
-    <Box marginTop={{ base: "-1rem", md: "0" }}>
+    <Box marginTop={{ base: "-1rem", md: "1rem" }}>
       <Flex backgroundColor="gray.100">
         
         <Box

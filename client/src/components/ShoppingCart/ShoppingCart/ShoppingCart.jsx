@@ -82,15 +82,15 @@ export default function ShoppingCart() {
       borderColor="gray.500"
     >
       <Box justifyContent="center" alignItems="center" textAlign="center">
-        <Text fontSize="2rem" fontWeight="bold">
+        <Text fontSize="2rem" fontFamily="heading" fontWeight="bold" marginTop="1rem" backgroundColor="gray.400" color="white">
           {" "}
           Mi carrito de Compras{" "}
         </Text>
       </Box>
-      <Flex>
+      <Flex marginTop= "-3.5rem">
         <Box
           marginLeft={{ base: "0rem", md: "4rem" }}
-          marginTop={{ base: "6rem", md: "3rem" }}
+          marginTop={{ base: "6rem", md: "5rem" }}
           sx={{
             // Estilos específicos para el rango 768px - 1000px
             "@media (min-width: 768px) and (max-width: 1000px)": {
@@ -103,13 +103,13 @@ export default function ShoppingCart() {
           }} 
         >
           
-            <Button 
+            {/* <Button 
               display={{ base: "none", md: "flex" }}
               marginLeft={{ base: "2rem", md: "28rem" }}
               onClick={clearCart}
             >
               Limpiar el Carrito
-            </Button>
+            </Button> */}
          
 <br />
           <Box>
@@ -119,7 +119,7 @@ export default function ShoppingCart() {
           </Box>
           <Box>
             <Button
-              display={{ base: "flex", md: "none" }}
+              // display={{ base: "flex", md: "none" }}
               marginTop="2rem"
               onClick={clearCart}
             >
