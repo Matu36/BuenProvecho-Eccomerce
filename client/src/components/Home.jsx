@@ -276,6 +276,7 @@ export default function Home() {
               id="Cartas"
               overflow="hidden"
               mx="auto"
+              paddingBottom="3rem"
               mt="4"
               display="grid"
               gridTemplateColumns={{

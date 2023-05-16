@@ -257,9 +257,12 @@ export default function NavBar({
                     >
                       Postres
                     </Button>
+                   
                   </DrawerBody>
+                  
                 </DrawerContent>
               </Drawer>
+              
             </Box>
             {/* Fin Responsivo icon hamburguer */}
           </Box>
