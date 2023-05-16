@@ -58,7 +58,7 @@ export default function LoggedInPage() {
               fontFamily="unset"
               alignItems="center"
             >
-              {/* Bienvenido {user.name} */}
+              Bienvenido {user.name} 
             </Text>
           </Box>
           

@@ -80,7 +80,7 @@ export default function ShoppingCart() {
       borderLeftWidth="40px"
       borderRightWidth="40px"
       solid
-      borderColor="yellow.300"
+      borderColor="red.500"
     >
       <Flex>
         <Box
