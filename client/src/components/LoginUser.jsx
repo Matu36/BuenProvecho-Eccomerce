@@ -29,13 +29,13 @@ export default function LoggedInPage() {
   return (
      isAuthenticated && (
       <Box
-        background="linear-gradient(to bottom, #FF0000, #800000);"
+        background= "linear(to bottom, gray.100, gray.500)"
         height="100vh"
       >
         <Flex justifyContent="center" alignItems="center">
           <Box
             textAlign="center"
-            marginTop={{ base: "15rem", md: "10rem" }}
+            marginTop={{ base: "10rem", md: "10rem" }}
             border="solid 1px gray"
             borderRadius="5%"
             padding={{ base: "5px", md: "25px" }}

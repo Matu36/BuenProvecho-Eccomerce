@@ -43,6 +43,12 @@ const RandomSlider = () => {
             alignItems="center"
             justifyContent="center"
             textAlign="center"
+            sx={{
+              // Estilos específicos para el rango 768px - 1000px
+              "@media (min-width: 768px) and (max-width: 1000px)": {
+                maxWidth: "85%", marginTop:"3rem"
+              },
+            }} 
           >
             <Box
               p="2"

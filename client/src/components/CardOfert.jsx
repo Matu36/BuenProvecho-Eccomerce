@@ -11,7 +11,17 @@ const CardOfert = () => {
       flexDirection="row"
       justifyContent={{ base: "center", md: "space-between" }}
       paddingTop={{ base: "15%", md: "5%" }}
+      sx={{
+        // Estilos específicos para el rango 768px - 1000px
+        "@media (min-width: 768px) and (max-width: 1000px)": {
+          maxWidth: "10%", marginTop:"3rem"
+        },
+        "@media (min-width: 798px) and (max-width: 850px)": {
+          maxWidth: "35%", marginTop:"3rem"
+        },
+      }} 
     >
+      
       {products.map((product) => (
         <Box display="flex" key={product.id} padding={{ base: "2%", md: "5%" }}>
           <Box
@@ -22,12 +32,15 @@ const CardOfert = () => {
             boxShadow="inset 0px -4px 4px -2px rgba(0, 0, 0, 0.5)"
             paddingBottom="10%"
             backgroundColor="white"
+           
           >
             <Box
               display="flex"
               overflow="hidden"
               w={{ base: "100px", md: "150px" }}
               h={{ base: "100px", md: "150px" }}
+             
+            
               borderRadius="50%"
               marginTop="-4rem"
               

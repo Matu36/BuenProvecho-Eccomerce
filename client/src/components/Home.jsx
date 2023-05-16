@@ -21,6 +21,7 @@ import { getUsers } from "../Redux/actions";
 import "./styles.css";
 import NavBar2 from "./NavBar2";
 import CardOfert from "./CardOfert";
+import Footer2 from "./Footer2";
 
 export default function Home() {
   let currentUser = JSON.parse(localStorage.getItem("user"));
@@ -297,7 +298,9 @@ export default function Home() {
           </>
         )}
       </Box>
-
+<Box>
+  <Footer2 />
+</Box>
       <Box display={{ md: "none" }}>
         <Footer
           setShowAbout={setShowAbout}
