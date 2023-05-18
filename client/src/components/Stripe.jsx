@@ -16,6 +16,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getUsers } from "../Redux/actions";
 import { useAuth0 } from "@auth0/auth0-react";
 import SliderDBTarjetas from "../utils/DBIMGTARJETAS";
+import { Player } from '@lottiefiles/react-lottie-player';
 
 /* Ir a la pagina de stripe, crear cuenta;  ir de la pestaña desarroladres, claves Api (Esto
 es para la fase de desarrollo; para la fase de producción hay que activar cuenta)
@@ -106,45 +107,46 @@ const CheckoutForm = () => {
   };
 
   return (
-    <Box
-      borderWidth="0px"
-      borderBottomWidth="10px"
-      borderLeftWidth="10px"
-      borderRightWidth="10px"
-      borderTopWidth="10px"
-      borderRadius="5%"
-      solid
-      backgroundColor={{ base: "blue.700", md: "none" }}
-      backgroundRepeat="no-repeat"
-      backgroundSize="cover"
-      height="100vh"
-      backgroundImage={{
-        base: "none",
-        md: `linear-gradient(to bottom, rgba(0,0,0,0) 40%,rgba(0,0,0,0) 90%,rgba(1,0,5,3) 100%), url(${Tarjetas})`,
-      }}
-    >
-      {" "}
-      <Text
-        display={{ base: "flex", md: "none" }}
-        fontSize="2rem"
-        marginTop="4rem"
-        justifyContent="center"
-        color="white"
-      >
-        Gracias por elegirnos{" "}
-      </Text>
-      <Box
-        p="6"
-        maxW={{ base: "80%", md: "50%" }}
-        mx="auto"
-        height={{ base: "35%", md: "50%" }}
-        borderRadius={{ base: "5%", md: "none" }}
-        Box
-        marginTop={{ base: "4rem", md: "8rem" }}
-        backgroundColor={{ base: "blue.400", md: "white" }}
-        marginLeft={{ base: "2.5rem", md: "1rem" }}
-      >
-        <Flex fontWeight="bold" fontSize={{ base: "12px", md: "18px" }}>
+    <Box 
+  borderWidth="20px"
+  borderLeftWidth="20px"
+  borderRightWidth="20px"
+  solid
+  borderColor="gray.500"
+  display="flex"
+  flexDirection={{ base: "column", md: "row" }}
+  alignItems="center"
+  justifyContent="center"
+  paddingBlockEnd="1rem"
+  height={{base:"none", md:"100vh"}}
+  
+>
+  <Text 
+    fontSize="2rem"
+    marginTop={{base:"2rem", md:"1rem"}}
+    justifyContent="center"
+    color="black"
+    textDecoration="underline"
+    alignSelf={{base:"center", md:"flex-start" }}
+    textAlign="center" 
+    position={{base:"relative", md:"absolute" }}
+    top="10%" 
+    transform="translateY(-50%)" 
+    fontFamily="sans-serif"
+  >
+    Check Out
+  </Text>
+  <Box
+    p="6"
+    width={{ base: "80%", md: "100%" }}
+    mx="auto"
+    marginTop={{ base: "4rem", md: "6rem" }}
+    marginLeft={{ base: "2.5rem", md: "1rem" }}
+    backgroundColor= "gray.200"
+    borderRadius={{ base: "5%", md: "5%" }}
+    
+  >
+        <Flex fontWeight="bold" fontSize={{ base: "15px", md: "18px" }}>
           <Box marginLeft={{ base: "1rem", md: "3rem" }}>
             {isAuthenticated ? <Text> {user.name} </Text> : null}
           </Box>
@@ -168,18 +170,38 @@ const CheckoutForm = () => {
 
           <Button
             type="submit"
-            colorScheme="green"
+            colorScheme="orange"
             disabled={!stripe}
-            marginLeft={{ base: "2rem", md: "4rem" }}
-            marginTop="3rem"
-            width={{ base: "200px", md: "400px" }}
+           
+            marginTop="8rem"
+            width={{ base: "100%", md: "100%" }}
+            
           >
             {loading ? <BarLoader /> : <Text>Comprar</Text>}
           </Button>
         </form>
+        
       </Box>
-      <SliderDBTarjetas />
-    </Box>
+      
+      <Box maxWidth="40%" marginTop={{ base: "3rem", md: "0" }}>
+      <Player 
+        src= 'https://assets2.lottiefiles.com/packages/lf20_tsmRqX.json'
+        className="player"
+        loop
+        autoplay
+      />
+      </Box>
+      <Box maxWidth="40%" marginTop={{ base: "3rem", md: "0" }}>
+      <Player 
+        src= 'https://assets2.lottiefiles.com/packages/lf20_cdHr9R.json'
+        className="player"
+        loop
+        autoplay
+      />
+      </Box>
+     
+  </Box>
+   
   );
 };
 
