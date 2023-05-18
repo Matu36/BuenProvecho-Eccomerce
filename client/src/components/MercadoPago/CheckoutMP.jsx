@@ -114,7 +114,7 @@ const CheckoutMP = () => {
               <br />
               <Box
                 paddingBlockEnd="2rem"
-                marginLeft={{ base: "4rem", md: "8rem" }}
+                marginLeft={{ base: "5rem", md: "8rem" }}
                 sx={{
                   "@media (min-width: 0px) and (max-width: 380px)": {
                     justifyContent: "center",
