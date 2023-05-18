@@ -11,7 +11,7 @@ export default function About({ HandleCancelAbout }) {
       transition={{ duration: 2 }}
     >
       <Flex flexDirection="column" height="100%" backgroundColor="white" 
-      marginLeft={{base:"0", md:"15rem"}}>
+      marginLeft={{base:"0", md:"15rem"}} marginTop={{base:"0", md:"-5rem"}}>
         <Flex
           justifyContent="flex-end"
           pr={{ base: 3, md: 20 }}
