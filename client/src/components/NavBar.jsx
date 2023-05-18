@@ -111,7 +111,7 @@ export default function NavBar({
               <Button
                 display={{ md: "none" }}
                 variant="ghost"
-                marginLeft="-1rem"
+                marginLeft="-0.5rem"
                 marginTop="0.5rem"
                 color="gray"
                 fontSize="24px"
