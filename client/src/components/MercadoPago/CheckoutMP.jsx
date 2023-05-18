@@ -1,9 +1,9 @@
 import React, { useEffect } from "react";
-import { Box, Button, Flex, Text, Center } from "@chakra-ui/react";
+import { Box, Button, Flex, Text, Image } from "@chakra-ui/react";
 import { useDispatch, useSelector } from "react-redux";
 import { getUsers } from "../../Redux/actions";
 import { useAuth0 } from "@auth0/auth0-react";
-import mercadopagoimg from "../../img/mercpago.jpg";
+import mercadopagoimg from "../../img/MercadoPago_Logo.png";
 import axios from "axios";
 
 /*
@@ -33,19 +33,39 @@ const CheckoutMP = () => {
 
   return (
     <Box
-      backgroundImage={{
-        base: `linear-gradient(to bottom, rgba(0,0,0,0) 40%,rgba(0,0,0,0) 90%,rgba(1,0,5,3) 100%), url(${mercadopagoimg})`,
-        md: `linear-gradient(to bottom, rgba(0,0,0,0) 40%,rgba(0,0,0,0) 90%,rgba(1,0,5,3) 100%), url(${mercadopagoimg})`,
-      }}
-      backgroundRepeat="no-repeat"
-      backgroundSize={{ base: "cover", md: "contain" }}
-      height="100vh"
+      borderWidth="20px"
+      borderLeftWidth="20px"
+      borderRightWidth="20px"
+      solid
+      borderColor="gray.500"
+      display={{ base: "row", md: "flex" }}
+      justifyContent="center"
     >
+      <Box
+        marginTop={{ base: "2rem", md: "5rem" }}
+        maxWidth={{ md: "100%" }}
+        marginLeft={{ base: "4rem", md: "0" }}
+      >
+        <Image src={mercadopagoimg} width={{ base: "80%", md: "100%" }}></Image>
+      </Box>
+
       <Flex justifyContent="center">
-        <Box>
+        <Box
+          marginLeft={{ base: "0", md: "10rem" }}
+          sx={{
+            "@media (min-width: 0px) and (max-width: 499px)": {
+              maxWidth: "80%",
+              marginTop: "1.5rem",
+            },
+          }}
+        >
           <Text
-            fontSize={{ base: "2rem", md: "3rem" }}
-            marginTop={{ base: "19rem", md: "3rem" }}
+            fontSize={{ base: "1.3rem", md: "2rem" }}
+            marginTop={{ base: "-2rem", md: "1rem" }}
+            marginRight="4rem"
+            fontFamily="sans-serif"
+            textDecoration="underline"
+            textDecorationThickness="from-font"
           >
             {" "}
             El detalle de tu compra{" "}
@@ -73,80 +93,87 @@ const CheckoutMP = () => {
               </Flex>
             </Box>
           ))}
+          <br />
+          <Flex>
+            <Box
+              marginRight={{ base: "0", md: "12rem" }}
+              justifyContent="space-between"
+            >
+              {isAuthenticated ? (
+                <Text fontSize="16px" color="gray.600" fontWeight="bold">
+                  {" "}
+                  Cliente: {user.name}{" "}
+                </Text>
+              ) : null}
+
+              <Text fontSize="16px" fontWeight="bold" color="gray.600">
+                {" "}
+                Total a Pagar: $ {totalEfectivo}
+              </Text>
+              <br />
+              <br />
+              <Box
+                paddingBlockEnd="2rem"
+                marginLeft={{ base: "6rem", md: "8rem" }}
+                sx={{
+                  "@media (min-width: 0px) and (max-width: 380px)": {
+                    justifyContent: "center",
+                    margin: "auto",
+                  },
+                }}
+              >
+                <Button
+                  bgGradient="linear(to-r, #FF6700, #FF9900)"
+                  color="white"
+                  fontSize="30px"
+                  paddingBottom="5px"
+                  onClick={() => {
+                    axios
+                      .post(
+                        `https://pymes-software-integration-production.up.railway.app/payment`,
+                        {
+                          // id:123,
+                          title: "Productos",
+                          description: carroNombre,
+                          price: totalEfectivo,
+                        }
+                      )
+                      .then(
+                        (res) =>
+                          (window.location.href =
+                            res.data.response.body.init_point)
+                      );
+                    // Segunda solicitud
+                    axios
+                      .post(
+                        `https://pymes-software-integration-production.up.railway.app/paymentDBLOCAL`,
+                        {
+                          Nombre: carroNombre.toString(),
+                          Useremail: isAuthenticated
+                            ? user.email
+                            : "sinemail@hotmail.com",
+                          Precio: totalEfectivo,
+                        }
+                      )
+                      .then((res) => {
+                        // Manejar la respuesta de la segunda solicitud
+                        console.log("Pago Realizado", res.data);
+                        // ...
+                      })
+                      .catch((error) => {
+                        // Manejar el error de la segunda solicitud
+                        console.error("No se completo la transacción", error);
+                        // ...
+                      });
+                  }}
+                >
+                  Pagar
+                </Button>
+              </Box>
+            </Box>
+          </Flex>
         </Box>
       </Flex>
-      <br />
-      <br />
-      <Flex justifyContent="center">
-        <Box
-          background="gray.200"
-          padding={{ base: "15px", md: "15px" }}
-          paddingRight={{ base: "3.5rem", md: "13.5rem" }}
-        >
-          {isAuthenticated ? (
-            <Text fontSize="16px" color="gray.600" fontWeight="bold">
-              {" "}
-              Nombre del cliente: {user.name}{" "}
-            </Text>
-          ) : null}
-
-          <Text fontSize="16px" fontWeight="bold" color="gray.600">
-            {" "}
-            Total a Pagar: $ {totalEfectivo}
-          </Text>
-        </Box>
-      </Flex>
-      <br />
-      <br />
-
-      <Center>
-        <Button
-          bgGradient="linear(to-r, #FF6700, #FF9900)"
-          color="white"
-          fontSize="30px"
-          paddingBottom="5px"
-          onClick={() => {
-            axios
-              .post(
-                `https://pymes-software-integration-production.up.railway.app/payment`,
-                {
-                  // id:123,
-                  title: "Productos",
-                  description: carroNombre,
-                  price: totalEfectivo,
-                }
-              )
-              .then(
-                (res) =>
-                  (window.location.href = res.data.response.body.init_point)
-              );
-            // Segunda solicitud
-            axios
-              .post(
-                `https://pymes-software-integration-production.up.railway.app/paymentDBLOCAL`,
-                {
-                  Nombre: carroNombre.toString(),
-                  Useremail: isAuthenticated
-                    ? user.email
-                    : "sinemail@hotmail.com",
-                  Precio: totalEfectivo,
-                }
-              )
-              .then((res) => {
-                // Manejar la respuesta de la segunda solicitud
-                console.log("Pago Realizado", res.data);
-                // ...
-              })
-              .catch((error) => {
-                // Manejar el error de la segunda solicitud
-                console.error("No se completo la transacción", error);
-                // ...
-              });
-          }}
-        >
-          Pagar
-        </Button>
-      </Center>
     </Box>
   );
 };

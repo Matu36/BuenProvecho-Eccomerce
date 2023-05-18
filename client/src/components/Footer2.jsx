@@ -19,8 +19,8 @@ const Footer2 = () => {
       <Box display="flex" alignItems="center" justifyContent="center">
         <MdOutlineEditCalendar size={24} />
       </Box>
-      <Text> Domingos a jueves de 12 a 00</Text>
-      <Text> Viernes y Sábados de 12 a 1:30</Text>
+      <Text> Domingos a jueves de 12pm a 00am </Text>
+      <Text> Viernes y Sábados de 12pm a 1:30am </Text>
     </Box>
     <br />
     <Box>

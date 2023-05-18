@@ -6,7 +6,7 @@ import {
 } from "../../../Redux/actions/index";
 import { useDispatch, useSelector } from "react-redux";
 import CartItem from "../CartItem/CartItem";
-import { Box, Flex, Text, Button, Icon, Divider } from "@chakra-ui/react";
+import { Box, Flex, Text, Button, Divider } from "@chakra-ui/react";
 import { useAuth0 } from "@auth0/auth0-react";
 import { Link } from "react-router-dom";
 import BotonMP from "../../MercadoPago/BotonMP";
@@ -82,47 +82,40 @@ export default function ShoppingCart() {
       borderColor="gray.500"
     >
       <Box justifyContent="center" alignItems="center" textAlign="center">
-        <Text fontSize="2rem" fontFamily="heading" fontWeight="bold" marginTop="1rem" >
+        <Text
+          fontSize="2rem"
+          fontFamily="heading"
+          fontWeight="bold"
+          marginTop="1rem"
+        >
           {" "}
           Mi carrito de Compras{" "}
         </Text>
       </Box>
-      <Flex marginTop= {{base:"-5rem", md:"-3.5rem"}}>
+      <Flex marginTop={{ base: "-5rem", md: "-3.5rem" }}>
         <Box
           marginLeft={{ base: "0rem", md: "4rem" }}
           marginTop={{ base: "6rem", md: "5rem" }}
           sx={{
             // Estilos específicos para el rango 768px - 1000px
             "@media (min-width: 768px) and (max-width: 1000px)": {
-              maxWidth: "55%", marginTop:"3rem"
+              maxWidth: "55%",
+              marginTop: "3rem",
             },
             "@media (min-width: 0px) and (max-width: 410px)": {
-              maxWidth: "40%", marginTop:"8rem" 
+              maxWidth: "40%",
+              marginTop: "8rem",
             },
-           
-          }} 
+          }}
         >
-          
-            {/* <Button 
-              display={{ base: "none", md: "flex" }}
-              marginLeft={{ base: "2rem", md: "28rem" }}
-              onClick={clearCart}
-            >
-              Limpiar el Carrito
-            </Button> */}
-         
-<br />
+          <br />
           <Box>
             {cart.map((item, index) => (
               <CartItem key={index} data={item} delFromCart={delFromCart} />
             ))}
           </Box>
           <Box>
-            <Button
-              // display={{ base: "flex", md: "none" }}
-              marginTop="2rem"
-              onClick={clearCart}
-            >
+            <Button marginTop="2rem" onClick={clearCart}>
               Limpiar el Carrito
             </Button>
           </Box>

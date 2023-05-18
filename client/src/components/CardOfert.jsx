@@ -13,11 +13,18 @@ const CardOfert = () => {
       paddingTop={{ base: "15%", md: "5%" }}
       sx={{
         // Estilos específicos para el rango 768px - 1000px
-        "@media (min-width: 768px) and (max-width: 1000px)": {
-          maxWidth: "10%", marginTop:"3rem"
+
+        "@media (min-width: 768px) and (max-width: 802px)": {
+          maxWidth: "5%", marginTop:"3rem"
         },
-        "@media (min-width: 798px) and (max-width: 850px)": {
-          maxWidth: "35%", marginTop:"3rem"
+        "@media (min-width: 802px) and (max-width: 836px)": {
+          maxWidth: "20%", marginTop:"3rem"
+        },
+        "@media (min-width: 836px) and (max-width: 898px)": {
+          maxWidth: "40%", marginTop:"3rem"
+        },
+        "@media (min-width: 898px) and (max-width: 950px)": {
+          maxWidth: "70%", marginTop:"3rem"
         },
       }} 
     >

@@ -288,8 +288,9 @@ export default function Home() {
               
               {RandomSlider()}
             </Box>
-            
-            <Box marginLeft={{ base: "0", md: "15rem" }}>
+            <br />
+            <br />
+            <Box marginLeft={{ base: "0", md: "15rem" }} paddingBlockEnd="2rem">
           <Footer2 />
         </Box>
           </>
