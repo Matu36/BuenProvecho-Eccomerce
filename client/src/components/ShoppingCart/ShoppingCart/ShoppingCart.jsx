@@ -151,14 +151,14 @@ export default function ShoppingCart() {
           <br />
           <br />
 
-          {/* {isAuthenticated ? ( */}
+          {isAuthenticated ? ( 
             <Link to="/Checkout">
               <Button fontSize={{ base: "12px", md: "16px" }}>
                 {" "}
                 Pagar con Tarjeta{" "}
               </Button>
             </Link>
-          {/* ) : ( */}
+          ) : ( 
             <Button
               onClick={sinLoguear}
               fontSize={{ base: "12px", md: "16px" }}
@@ -166,7 +166,7 @@ export default function ShoppingCart() {
               {" "}
               Pagar con Tarjeta{" "}
             </Button>
-          {/* )} */}
+           )} 
           <br />
           <br />
 

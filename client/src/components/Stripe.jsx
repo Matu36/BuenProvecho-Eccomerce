@@ -140,7 +140,7 @@ const CheckoutForm = () => {
     p="6"
     width={{ base: "80%", md: "100%" }}
     mx="auto"
-    marginTop={{ base: "4rem", md: "6rem" }}
+    marginTop={{ base: "1rem", md: "6rem" }}
     marginLeft={{ base: "2.5rem", md: "1rem" }}
     backgroundColor= "gray.200"
     borderRadius={{ base: "5%", md: "5%" }}
@@ -173,7 +173,7 @@ const CheckoutForm = () => {
             colorScheme="orange"
             disabled={!stripe}
            
-            marginTop="8rem"
+            marginTop={{base:"3rem", md:"8rem"}}
             width={{ base: "100%", md: "100%" }}
             
           >
