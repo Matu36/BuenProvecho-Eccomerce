@@ -191,7 +191,7 @@ const CheckoutForm = () => {
         autoplay
       />
       </Box>
-      <Box maxWidth="40%" marginTop={{ base: "-1rem", md: "0" }}>
+      <Box maxWidth="40%" marginTop={{ base: "-1rem", md: "0" }} paddingBlockEnd={{base:"2rem", md:"0"}}>
       <Player 
         src= 'https://assets2.lottiefiles.com/packages/lf20_cdHr9R.json'
         className="player"
