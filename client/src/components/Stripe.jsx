@@ -126,7 +126,7 @@ const CheckoutForm = () => {
     marginTop={{base:"2rem", md:"1rem"}}
     justifyContent="center"
     color="black"
-    textDecoration="underline"
+    
     alignSelf={{base:"center", md:"flex-start" }}
     textAlign="center" 
     position={{base:"relative", md:"absolute" }}
@@ -140,7 +140,7 @@ const CheckoutForm = () => {
     p="6"
     width={{ base: "80%", md: "100%" }}
     mx="auto"
-    marginTop={{ base: "1rem", md: "6rem" }}
+    marginTop={{ base: "0", md: "6rem" }}
     marginLeft={{ base: "2.5rem", md: "1rem" }}
     backgroundColor= "gray.200"
     borderRadius={{ base: "5%", md: "5%" }}
@@ -183,7 +183,7 @@ const CheckoutForm = () => {
         
       </Box>
       
-      <Box maxWidth="40%" marginTop={{ base: "3rem", md: "0" }}>
+      <Box maxWidth="40%" marginTop={{ base: "-1rem", md: "0" }}>
       <Player 
         src= 'https://assets2.lottiefiles.com/packages/lf20_tsmRqX.json'
         className="player"
@@ -191,7 +191,7 @@ const CheckoutForm = () => {
         autoplay
       />
       </Box>
-      <Box maxWidth="40%" marginTop={{ base: "3rem", md: "0" }}>
+      <Box maxWidth="40%" marginTop={{ base: "-1rem", md: "0" }}>
       <Player 
         src= 'https://assets2.lottiefiles.com/packages/lf20_cdHr9R.json'
         className="player"
