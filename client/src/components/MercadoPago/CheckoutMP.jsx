@@ -40,6 +40,8 @@ const CheckoutMP = () => {
       borderColor="gray.500"
       display={{ base: "row", md: "flex" }}
       justifyContent="center"
+      backgroundColor= "gray.300"
+    
     >
       <Box
         marginTop={{ base: "2rem", md: "5rem" }}
@@ -52,6 +54,7 @@ const CheckoutMP = () => {
       <Flex justifyContent="center">
         <Box
           marginLeft={{ base: "0", md: "10rem" }}
+          
           sx={{
             "@media (min-width: 0px) and (max-width: 499px)": {
               maxWidth: "80%",
@@ -66,9 +69,10 @@ const CheckoutMP = () => {
             fontFamily="sans-serif"
             textDecoration="underline"
             textDecorationThickness="from-font"
+            marginLeft="4rem"
           >
             {" "}
-            El detalle de tu compra{" "}
+            Detalle de tu compra{" "}
           </Text>
           <br />
           <br />
@@ -125,7 +129,7 @@ const CheckoutMP = () => {
                 <Button
                   bgGradient="linear(to-r, #FF6700, #FF9900)"
                   color="white"
-                  fontSize="30px"
+                  fontSize={{base:"24px", md:"30px"}}
                   paddingBottom="5px"
                   onClick={() => {
                     axios

@@ -20,7 +20,7 @@ const BotonMP = () => {
 
   return (
     <Box>
-       {isAuthenticated ? ( 
+       {isAuthenticated ? (  
         <Link to="/CheckoutMP">
           <Button
             fontSize={{ base: "9px", md: "18px" }}
@@ -31,7 +31,7 @@ const BotonMP = () => {
             Pagar con MercadoPago
           </Button>
         </Link>
-       ) : ( 
+       ) : (  
         <Button
           onClick={sinLoguear}
           fontSize={{ base: "9px", md: "18px" }}
@@ -41,7 +41,7 @@ const BotonMP = () => {
         >
           Pagar con MercadoPago
         </Button>
-      )} 
+      )}  
     </Box>
   );
 };
