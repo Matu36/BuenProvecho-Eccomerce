@@ -97,7 +97,7 @@ export default function NavBar({
             <Box>
               <IconButton
                 marginLeft={{ base: "-2rem" }}
-                marginTop={{ base: "0rem" }}
+                marginTop={{ base: "0.3rem" }}
                 aria-label="Abrir menú"
                 icon={<HamburgerIcon />}
                 size="md"
