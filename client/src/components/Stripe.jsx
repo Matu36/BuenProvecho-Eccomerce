@@ -6,7 +6,7 @@ import {
   useStripe,
   useElements,
 } from "@stripe/react-stripe-js";
-import Tarjetas from "../img/Tarjetas2.jpg";
+
 import axios from "axios";
 import { BarLoader } from "react-spinners";
 import "./styles.css";
@@ -15,7 +15,7 @@ import Swal from "sweetalert2";
 import { useDispatch, useSelector } from "react-redux";
 import { getUsers } from "../Redux/actions";
 import { useAuth0 } from "@auth0/auth0-react";
-import SliderDBTarjetas from "../utils/DBIMGTARJETAS";
+
 import { Player } from '@lottiefiles/react-lottie-player';
 
 /* Ir a la pagina de stripe, crear cuenta;  ir de la pestaña desarroladres, claves Api (Esto
@@ -118,35 +118,23 @@ const CheckoutForm = () => {
   alignItems="center"
   justifyContent="center"
   paddingBlockEnd="1rem"
-  height={{base:"none", md:"100vh"}}
+  height={{base:"100vh", md:"100vh"}}
+  backgroundColor="gray.200"
   
 >
-  <Text 
-    fontSize="2rem"
-    marginTop={{base:"2rem", md:"1rem"}}
-    justifyContent="center"
-    color="black"
-    
-    alignSelf={{base:"center", md:"flex-start" }}
-    textAlign="center" 
-    position={{base:"relative", md:"absolute" }}
-    top="10%" 
-    transform="translateY(-50%)" 
-    fontFamily="sans-serif"
-  >
-    Check Out
-  </Text>
+
   <Box
     p="6"
-    width={{ base: "80%", md: "100%" }}
+    width={{ base: "90%", md: "100%" }}
     mx="auto"
-    marginTop={{ base: "0", md: "6rem" }}
-    marginLeft={{ base: "2.5rem", md: "1rem" }}
-    backgroundColor= "gray.200"
+    marginTop={{ base: "8rem", md: "6rem" }}
+    marginLeft={{ base: "1rem", md: "1rem" }}
+    backgroundColor= "gray.300"
     borderRadius={{ base: "5%", md: "5%" }}
     
   >
-        <Flex fontWeight="bold" fontSize={{ base: "15px", md: "18px" }}>
+    
+        <Flex fontWeight="bold" fontSize={{ base: "15px", md: "18px" }} >
           <Box marginLeft={{ base: "1rem", md: "3rem" }}>
             {isAuthenticated ? <Text> {user.name} </Text> : null}
           </Box>
@@ -199,7 +187,7 @@ const CheckoutForm = () => {
         autoplay
       />
       </Box>
-     
+     <br /><br /><br /> <br /> 
   </Box>
    
   );
