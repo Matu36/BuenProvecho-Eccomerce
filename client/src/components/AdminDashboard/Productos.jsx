@@ -74,8 +74,8 @@ export default function Productos() {
     }
   };
 
-  const Ofertas = () => {
-dispatch(postOfertas());
+  const Ofertas = (id) => {
+  dispatch(postOfertas(id));
   }
 
   //PAGINADO
