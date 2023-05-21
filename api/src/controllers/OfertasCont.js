@@ -5,8 +5,8 @@ try {
     let ofertas = await Ofertas.findAll();
 
     return (!ofertas)? res.status(404).send("No hay Ofertas"):
-    res.send (ofertas.map(({Nombre, Efectivo, Imagen}) => ({
-Nombre, Efectivo, Imagen})))
+    res.send (ofertas.map(({id, Nombre, Efectivo, Imagen}) => ({
+id, Nombre, Efectivo, Imagen})))
     }
 
 catch(error) {
