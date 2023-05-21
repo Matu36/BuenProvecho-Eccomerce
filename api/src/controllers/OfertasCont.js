@@ -15,25 +15,15 @@ catch(error) {
 }
 };
 
-const postOfertas = async (req, res) => {
+const postOfertas = async (req, res, next) => {
+    
+    const {Imagen, Nombre, Efectivo} = req.body;
+          
     try {
-        if (!req.body?.Nombre || !req.body?.Efectivo || !req.body?.Imagen) 
-        throw "No body params";
-    
-        const generateNewId = async () => {
-          const maxId = await Comidas.max("id");
-          const newId = maxId ? maxId + 1 : 1;
-          return newId;
-        };
-    
-        let id = await generateNewId();
-    
-        let postOfert = await Ofertas.create({ id, ...req.body });
-    
-        return res.status(201).send(postOfert);
-      } catch (e) {
-        console.log(e);
-        return res.status(400).send(e);
+        const nuevaOferta = await Mensajes.create({ Imagen, Nombre, Efectivo });
+        res.status(201).json({ mensaje: 'Oferta creada exitosamente', data: nuevaOferta });
+      } catch (error) {
+        next(error);
       }
     };
 
