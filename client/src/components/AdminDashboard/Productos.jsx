@@ -74,9 +74,9 @@ export default function Productos() {
     }
   };
 
-  const Ofertas = (id) => {
-  dispatch(postOfertas(id));
-  }
+  const Ofertas = (id, Nombre, Efectivo, Imagen) => {
+    dispatch(postOfertas(Nombre, Efectivo, Imagen));
+  };
 
   //PAGINADO
 
@@ -321,7 +321,7 @@ export default function Productos() {
                             >
                               <DeleteIcon />
                             </button>
-                            <button className="btn" onClick={()=> Ofertas(row.id)}> Ofertas </button>
+                            <button className="btn" onClick={() => Ofertas(row.id, row.Nombre, row.Efectivo, row.Imagen)}>Ofertas</button>;
                           </Box>
                         )}
                       </div>
