@@ -150,4 +150,4 @@ export const postOfertas =
           Imagen,
         }
       )
-      .then((payload) => dispatch({ type: GET_OFERTAS, payload }));
+      .then((payload) => dispatch({ type: POST_OFERTAS, payload }));
