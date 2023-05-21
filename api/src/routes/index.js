@@ -24,7 +24,7 @@ router.post("/payment", Payment)
 router.post("/paymentDBLOCAL", postVentaMercadoPago)
 router.get("/paymentDBLOCAL", getMercadoPago);
 router.get("/ofertas", getOfertas)
-router.post("ofertas", postOfertas)
+router.post("/ofertas", postOfertas)
 
 
 module.exports = router;
