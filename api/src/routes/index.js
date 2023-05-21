@@ -4,7 +4,7 @@ const { getUsers, postUser, putUser } = require('../controllers/UsersCont');
 const {postMensaje, obtenerMensajes} = require ("../controllers/UserMensajesCont")
 const {checkOut} = require ("../controllers/Stripe");
 const { Payment, postVentaMercadoPago, getMercadoPago } = require('../controllers/MercadoPago');
-
+const {getOfertas, postOfertas} = require ("../controllers/OfertasCont");
 
 
 const router = Router();
@@ -23,6 +23,8 @@ router.post("/api/checkout", checkOut);
 router.post("/payment", Payment)
 router.post("/paymentDBLOCAL", postVentaMercadoPago)
 router.get("/paymentDBLOCAL", getMercadoPago);
+router.get("/ofertas", getOfertas)
+router.post("ofertas", postOfertas)
 
 
 module.exports = router;
