@@ -20,7 +20,7 @@ const postOfertas = async (req, res, next) => {
     const {Imagen, Nombre, Efectivo} = req.body;
           
     try {
-        const nuevaOferta = await Mensajes.create({ Imagen, Nombre, Efectivo });
+        const nuevaOferta = await Ofertas.create({ Imagen, Nombre, Efectivo });
         res.status(201).json({ mensaje: 'Oferta creada exitosamente', data: nuevaOferta });
       } catch (error) {
         next(error);
