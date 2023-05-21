@@ -1,9 +1,21 @@
 import { Box, Text } from "@chakra-ui/react";
-import React from "react";
+import React, {useEffect} from "react";
+import { getOfertas } from "../Redux/actions";
 import { DB } from "../utils/DB";
+import { useSelector, useDispatch } from "react-redux";
 
 const CardOfert = () => {
+  
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getOfertas());
+  }, []);
+
+  const Ofertas = useSelector (state => state.ofertas)
   const products = DB.slice(0, 3);
+
 
   return (
     <Box

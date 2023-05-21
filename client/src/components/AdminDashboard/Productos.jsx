@@ -10,6 +10,7 @@ import { Table, Thead, Tbody, Tr, Th, Td, Box } from "@chakra-ui/react";
 import { CgCloseO } from "react-icons/cg";
 import { DeleteIcon } from "@chakra-ui/icons";
 import "./Styles.css";
+import { postOfertas } from "../../Redux/actions/index";
 
 export default function Productos() {
   let dispatch = useDispatch();
@@ -72,6 +73,10 @@ export default function Productos() {
       window.location.reload();
     }
   };
+
+  const Ofertas = () => {
+dispatch(postOfertas());
+  }
 
   //PAGINADO
 
@@ -316,6 +321,7 @@ export default function Productos() {
                             >
                               <DeleteIcon />
                             </button>
+                            <button className="btn" onClick={()=> Ofertas(row.id)}> Ofertas </button>
                           </Box>
                         )}
                       </div>
