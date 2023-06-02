@@ -8,6 +8,7 @@ import { Auth0Provider } from "@auth0/auth0-react";
 import LoginUser from "../src/components/LoginUser";
 import Stripe from "../src/components/Stripe";
 import CheckoutMP from './components/MercadoPago/CheckoutMP';
+import Carta from './components/Carta';
 
 const auth0Domain = process.env.REACT_APP_AUTH0_DOMAIN;
 const auth0Client = process.env.REACT_APP_AUTH0_CLIENT;
@@ -33,6 +34,7 @@ return (
       <Route exact path={"/Logued"} element= {<LoginUser/>} />
       <Route exact path={"/Checkout"} element= {<Stripe/>} />
       <Route exact path={"/CheckoutMP"} element= {<CheckoutMP/>} />
+      <Route exact path={"/Carta"} element= {<Carta/>} />
     </Routes>
     </Auth0Provider>
   );

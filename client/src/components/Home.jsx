@@ -4,7 +4,7 @@ import {
   Box,
   Input,
   InputGroup,
-  InputLeftElement,
+  InputLeftElement, Button
 } from "@chakra-ui/react";
 import { SearchIcon } from "@chakra-ui/icons";
 import NavBar from "./NavBar";
@@ -22,6 +22,7 @@ import "./styles.css";
 import NavBar2 from "./NavBar2";
 import CardOfert from "./CardOfert";
 import Footer2 from "./Footer2";
+import { Link } from "react-router-dom";
 
 export default function Home() {
   let currentUser = JSON.parse(localStorage.getItem("user"));
@@ -178,7 +179,12 @@ export default function Home() {
             </ul>
           </Box>
         </Box>
-
+        <Link to="/Carta">
+          <Button background="yellow" fontWeight="bold" fontFamily="sans-serif"
+          border="solid 2px black" float="right" position="fixed" top="56%" borderRadius="10%"
+          right="0"
+          transform="translateY(-50%)" zIndex="999" _hover={{ background: "black", color:"yellow" }}> Carta </Button>
+        </Link>
         <Box>
           {mostrarFormulario && (
             <div

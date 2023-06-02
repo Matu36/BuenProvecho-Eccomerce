@@ -75,9 +75,15 @@ export default function Productos() {
     }
   };
 
-  const Ofertas = (id, Nombre, Efectivo, Imagen) => {
-     dispatch(postOfertas(id, Nombre, Efectivo, Imagen));
-   };
+   //Creamos la oferta para enviarla al estado global ofertas
+
+   const ofertas = (Nombre, Imagen, Efectivo) => {
+    console.log(Nombre, Efectivo, Imagen);
+    dispatch(
+      postOfertas({ Nombre: Nombre, Imagen: Imagen, Efectivo: Efectivo })
+    );
+    alert("La oferta ha sido creada");
+  };
 
   //PAGINADO
 
@@ -322,16 +328,22 @@ export default function Productos() {
                             >
                               <DeleteIcon />
                             </button>
-                            <button style={{marginLeft:"1rem", 
-                            }}
-                              className="btn"
-                              title="Agregar a Ofertas"
-                               onClick={() =>
-                                 Ofertas(row.id, row.Nombre, row.Efectivo, row.Imagen)
-                              }
+                            <div
+                              style={{
+                                marginLeft: "2rem",
+                                marginTop: "-1.5rem",
+                              }}
                             >
-                              <GoSmiley />
-                            </button> 
+                              <button
+                                className="btn"
+                                title="Agregar a Ofertas"
+                                onClick={() =>
+                                  ofertas(row.Nombre, row.Imagen, row.Efectivo)
+                                }
+                              >
+                                <GoSmiley />
+                              </button>
+                            </div>
                             
                           </Box>
                         )}
