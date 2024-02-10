@@ -1,9 +1,10 @@
 import React, { useEffect } from "react";
-import { Box, Text } from "@chakra-ui/react";
+import { Box, Text, Button, Flex } from "@chakra-ui/react";
 import { useSelector, useDispatch } from "react-redux";
 import { getComidas } from "../Redux/actions";
+import chef from "../img/CHEFICONO.png";
 
-const Carta = () => {
+const Carta = ({ handleCerrarCarta }) => {
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -17,15 +18,29 @@ const Carta = () => {
   );
 
   return (
-    <Box backgroundColor="blackAlpha.900">
-      <Box border="solid 2px yellow" marginLeft="1rem" marginRight="1rem">
-        <br />
+    <Box backgroundColor="black">
+      <Box border="solid 10px darkRed" marginLeft="1rem" marginRight="1rem">
+        <Flex
+          justifyContent="flex-end"
+          pr={{ base: 3, md: 20 }}
+          pt={{ base: 5, md: 2 }}
+        >
+          <Button
+            _hover={{ color: "gray" }}
+            background="none"
+            fontSize={{ base: "14", md: "18px" }}
+            onClick={handleCerrarCarta}
+            color="white"
+          >
+            Cerrar
+          </Button>
+        </Flex>
 
-        <div className="TituloCarta">
-          <h1>MENÚ</h1>
-        </div>
         <div className="TituloLoguin">
-          <h1>Buen Provecho!</h1>
+          <img src={chef} alt="" style={{ width: "200px" }} />
+        </div>
+        <div className="TituloCarta">
+          <h1 className="colorMenu">MENÚ</h1>
         </div>
         <div style={{ columns: "2", columnGap: "2rem" }}>
           {categoriasUnicas.map((categoria) => (
@@ -58,6 +73,7 @@ const Carta = () => {
             </Box>
           ))}
         </div>
+        <br />
       </Box>
     </Box>
   );

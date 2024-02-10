@@ -20,20 +20,9 @@ const BotonMP = () => {
 
   return (
     <Box>
-       {isAuthenticated ? (  
-        <Link to="/CheckoutMP">
-          <Button
-            fontSize={{ base: "9px", md: "18px" }}
-            backgroundColor="#009ee3"
-            color="#fff"
-            _hover={{ backgroundColor: "#0077b3" }}
-          >
-            Pagar con MercadoPago
-          </Button>
-        </Link>
-       ) : (  
+      {/* {isAuthenticated ? (   */}
+      <Link to="/CheckoutMP">
         <Button
-          onClick={sinLoguear}
           fontSize={{ base: "9px", md: "18px" }}
           backgroundColor="#009ee3"
           color="#fff"
@@ -41,7 +30,18 @@ const BotonMP = () => {
         >
           Pagar con MercadoPago
         </Button>
-      )}  
+      </Link>
+      {/* ) : (   */}
+      <Button
+        onClick={sinLoguear}
+        fontSize={{ base: "9px", md: "18px" }}
+        backgroundColor="#009ee3"
+        color="#fff"
+        _hover={{ backgroundColor: "#0077b3" }}
+      >
+        Pagar con MercadoPago
+      </Button>
+      {/* )}   */}
     </Box>
   );
 };

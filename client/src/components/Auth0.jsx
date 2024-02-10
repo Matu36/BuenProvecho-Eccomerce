@@ -65,8 +65,8 @@ const AuthButton = () => {
         icon={<RiUserFill />}
         title={isAuthenticated ? user.email : "Iniciar sesión"}
         aria-label={isAuthenticated ? "Cerrar sesión" : "Iniciar sesión"}
-        bg={isAuthenticated ? "blue.500" : "red.500"}
-        _hover={{ bg: isAuthenticated ? "blue.600" : "red.600" }}
+        bg={isAuthenticated ? "gray.300" : "gray.300"}
+        _hover={{ bg: isAuthenticated ? "blue.800" : "red.800" }}
         onMouseEnter={() => setIsMenuOpen(true)}
         w="8"
       />

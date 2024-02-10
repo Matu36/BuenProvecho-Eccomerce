@@ -29,7 +29,8 @@ export const resetHomeAdminShow = () => async (dispatch) => {
 
 export const getComidas = () => async (dispatch) => {
   let response = await axios.get(
-    `https://pymes-software-integration-production.up.railway.app/comidas`
+    "http://localhost:3001/comidas"
+    // `https://pymes-software-integration-production.up.railway.app/comidas`
   );
   return dispatch({ type: GET_COMIDAS, payload: response.data });
 };
@@ -38,7 +39,8 @@ export const updateComida = (comida) => {
   return (dispatch) => {
     axios
       .put(
-        `https://pymes-software-integration-production.up.railway.app/comidas`,
+        "http://localhost:3001/comidas",
+        // `https://pymes-software-integration-production.up.railway.app/comidas`,
         comida
       )
       .then((res) => {
@@ -58,7 +60,8 @@ export const createComida =
   (dispatch) =>
     axios
       .post(
-        `https://pymes-software-integration-production.up.railway.app/comidas`,
+        "http://localhost:3001/comidas",
+        // `https://pymes-software-integration-production.up.railway.app/comidas`,
         {
           Nombre,
           Efectivo,
@@ -71,7 +74,8 @@ export const createComida =
 
 export const deleteComida = (id) => async (dispatch) => {
   return await axios.delete(
-    `https://pymes-software-integration-production.up.railway.app/comidas`,
+    "http://localhost:3001/comidas",
+    // `https://pymes-software-integration-production.up.railway.app/comidas`,
     { data: { id } }
   );
 };
@@ -82,7 +86,8 @@ export const getUsers = (currentUser) => {
   return (dispatch) =>
     axios
       .get(
-        `https://pymes-software-integration-production.up.railway.app/users`,
+        "http://localhost:3001/users",
+        // `https://pymes-software-integration-production.up.railway.app/users`,
         { params: currentUser }
       )
       .then((response) =>
@@ -94,7 +99,8 @@ export const updateUser = (user) => {
   return (dispatch) => {
     axios
       .put(
-        `https://pymes-software-integration-production.up.railway.app/users`,
+        "http://localhost:3001/users",
+        // `https://pymes-software-integration-production.up.railway.app/users`,
         user
       )
       .then((res) => {
@@ -110,16 +116,20 @@ export const updateUser = (user) => {
 };
 
 export const getMensajes = () => async (dispatch) => {
-  let response = await axios.get(
-    `https://pymes-software-integration-production.up.railway.app/mensajes`
-  );
+  // let response = await axios.get(
+  //   `https://pymes-software-integration-production.up.railway.app/mensajes`
+
+  // );
+  let response = await axios.get("http://localhost:3001/mensajes");
   return dispatch({ type: GET_MENSAJES, payload: response.data });
 };
 
 export const crearMensaje = (mensaje) => async (dispatch) => {
   const { data } = await axios.post(
-    `https://pymes-software-integration-production.up.railway.app/mensajes`,
+    "http://localhost:3001/mensajes",
     mensaje
+    // `https://pymes-software-integration-production.up.railway.app/mensajes`,
+    // mensaje
   );
   dispatch({ type: MENSAJE_CREADO, payload: data });
 };
@@ -133,7 +143,8 @@ export const getMercadoPago = () => async (dispatch) => {
 
 export const getOfertas = () => async (dispatch) => {
   let response = await axios.get(
-    `https://pymes-software-integration-production.up.railway.app/ofertas`
+    "http://localhost:3001/ofertas"
+    // `https://pymes-software-integration-production.up.railway.app/ofertas`
   );
   return dispatch({ type: GET_OFERTAS, payload: response.data });
 };
@@ -143,7 +154,8 @@ export const postOfertas =
   (dispatch) =>
     axios
       .post(
-        `https://pymes-software-integration-production.up.railway.app/ofertas`,
+        "http://localhost:3001/ofertas",
+        // `https://pymes-software-integration-production.up.railway.app/ofertas`,
         {
           Nombre,
           Efectivo,

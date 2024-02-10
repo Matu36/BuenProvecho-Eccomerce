@@ -28,159 +28,65 @@ export default function Sidebar({ setProducts }) {
   };
 
   return (
-    <Box>
-      <Menu flexDirection="column" alignItems="flex-start">
-        <Button
-          as="a"
-          href="#Cartas"
-          leftIcon={<Icon as={GiChickenOven} />}
-          onClick={() => handleClick("Carnes")}
-          color="#0077CC"
-          textDecor="none"
-          marginLeft="10px"
-          padding="5px"
-          borderRadius="5px"
-          bg="none"
-        >
-          Carnes
-        </Button>
-        <br />
-        <Button
-          as="a"
-          href="#Cartas"
-          leftIcon={<Icon as={GiChickenLeg} />}
-          onClick={() => handleClick("Pollo")}
-          color="#0077CC"
-          textDecor="none"
-          marginLeft="10px"
-          padding="5px"
-          borderRadius="5px"
-          bg="none"
-        >
-          Pollo
-        </Button>
-        <br />
-        <Button
-          as="a"
-          href="#Cartas"
-          leftIcon={<Icon as={GiFullPizza} />}
-          onClick={() => handleClick("Pasta")}
-          color="#0077CC"
-          textDecor="none"
-          marginLeft="10px"
-          padding="5px"
-          borderRadius="5px"
-          bg="none"
-        >
-          Pastas
-        </Button>
-        <br />
-        <Button
-          as="a"
-          href="#Cartas"
-          leftIcon={<Icon as={CiPizza} />}
-          onClick={() => handleClick("Pizzas")}
-          color="#0077CC"
-          textDecor="none"
-          marginLeft="10px"
-          padding="5px"
-          borderRadius="5px"
-          bg="none"
-        >
-          Pizzas
-        </Button>
-        <br />
-
-        <Button
-          as="a"
-          href="#Cartas"
-          leftIcon={<Icon as={GiFishEggs} />}
-          onClick={() => handleClick("Pescados")}
-          color="#0077CC"
-          textDecor="none"
-          marginLeft="10px"
-          padding="5px"
-          borderRadius="5px"
-          bg="none"
-        >
-          Pescados
-        </Button>
-        <br />
-        <Button
-          as="a"
-          href="#Cartas"
-          leftIcon={<Icon as={TbSalad} />}
-          onClick={() => handleClick("Ensaladas")}
-          color="#0077CC"
-          textDecor="none"
-          marginLeft="10px"
-          padding="5px"
-          borderRadius="5px"
-          bg="none"
-        >
-          Ensaladas
-        </Button>
-        <br />
-        <Button
-          as="a"
-          href="#Cartas"
-          leftIcon={<Icon as={GiFrenchFries} />}
-          onClick={() => handleClick("Guarniciones")}
-          color="#0077CC"
-          textDecor="none"
-          marginLeft="10px"
-          padding="5px"
-          borderRadius="5px"
-          bg="none"
-        >
-          Guarniciones
-        </Button>
-        <br />
-        <Button
-          as="a"
-          href="#Cartas"
-          leftIcon={<Icon as={BiDish} />}
-          onClick={() => handleClick("Platos frios")}
-          color="#0077CC"
-          textDecor="none"
-          marginLeft="10px"
-          padding="5px"
-          borderRadius="5px"
-          bg="none"
-        >
-          Platos Frios
-        </Button>
-        <br />
-        <Button
-          as="a"
-          href="#Cartas"
-          leftIcon={<Icon as={BiDrink} />}
-          onClick={() => handleClick("Bebidas")}
-          color="#0077CC"
-          textDecor="none"
-          marginLeft="10px"
-          padding="5px"
-          borderRadius="5px"
-          bg="none"
-        >
-          Bebidas
-        </Button>
-        <br />
-        <Button
-          as="a"
-          href="#Cartas"
-          leftIcon={<Icon as={TbIceCream} />}
-          onClick={() => handleClick("Postres")}
-          color="#0077CC"
-          textDecor="none"
-          marginLeft="10px"
-          padding="5px"
-          borderRadius="5px"
-          bg="none"
-        >
-          Postres
-        </Button>
-      </Menu>
-    </Box>
+    <div className="contenedor">
+      <button style={{ padding: "1rem" }} onClick={() => handleClick("Carnes")}>
+        <GiChickenOven />
+        Carnes
+      </button>
+      <button style={{ padding: "1rem" }} onClick={() => handleClick("Pollo")}>
+        <GiChickenLeg />
+        Pollo
+      </button>
+      <button style={{ padding: "1rem" }} onClick={() => handleClick("Pasta")}>
+        <GiFullPizza />
+        Pastas
+      </button>
+      <button style={{ padding: "1rem" }} onClick={() => handleClick("Pizzas")}>
+        <CiPizza />
+        Pizzas
+      </button>
+      <button
+        style={{ padding: "1rem" }}
+        onClick={() => handleClick("Pescados")}
+      >
+        <GiFishEggs />
+        Pescados
+      </button>
+      <button
+        style={{ padding: "1rem" }}
+        onClick={() => handleClick("Ensaladas")}
+      >
+        <TbSalad />
+        Ensaladas
+      </button>
+      <button
+        style={{ padding: "1rem" }}
+        onClick={() => handleClick("Guarniciones")}
+      >
+        <GiFrenchFries />
+        Guarniciones
+      </button>
+      <button
+        style={{ padding: "1rem" }}
+        onClick={() => handleClick("Platos frios")}
+      >
+        <BiDish />
+        Platos Frios
+      </button>
+      <button
+        style={{ padding: "1rem" }}
+        onClick={() => handleClick("Bebidas")}
+      >
+        <BiDrink />
+        Bebidas
+      </button>
+      <button
+        style={{ padding: "1rem" }}
+        onClick={() => handleClick("Postres")}
+      >
+        <TbIceCream />
+        Postres
+      </button>
+    </div>
   );
 }

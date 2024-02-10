@@ -3,13 +3,9 @@ import DarkMode from "../utils/DarkMode";
 import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import { CiPizza } from "react-icons/ci";
-import {
-  FaInstagram,
-  FaFacebook,
-  FaMapMarkerAlt,
-  FaWhatsapp,
-  FaHome,
-} from "react-icons/fa";
+import { FaHome } from "react-icons/fa";
+import chef from "../img/CHEFICONO.png";
+import { FaWhatsapp } from "react-icons/fa";
 import {
   GiChickenOven,
   GiFishEggs,
@@ -32,16 +28,21 @@ import {
   DrawerBody,
   Button,
   Badge,
+  Image,
+  Text,
 } from "@chakra-ui/react";
 import { BiMessageDetail } from "react-icons/bi";
 import { HamburgerIcon } from "@chakra-ui/icons";
 import { GiShoppingCart } from "react-icons/gi";
 import { getUsers } from "../Redux/actions";
+import AuthButton from "./Auth0";
 
 export default function NavBar({
   setShowAbout,
+  handleMostrarAbout,
   setProducts,
   handleMostrarFormulario,
+  handleMostrarCarta,
 }) {
   let currentUser = JSON.parse(localStorage.getItem("user"));
   const dispatch = useDispatch();
@@ -83,253 +84,186 @@ export default function NavBar({
 
   return (
     <Box>
+      <Flex
+        display={{ base: "flex", md: "none" }}
+        alignItems="center"
+        justifyContent="flex-end"
+      >
+        <Link
+          to="/sCart"
+          style={{
+            position: "relative",
+            display: "inline-block",
+            marginRight: "2rem",
+            marginTop: "2rem",
+          }}
+        >
+          <IconButton
+            aria-label="ShoppingCart"
+            fontSize={{ base: "28px", md: "28px" }}
+            icon={<GiShoppingCart />}
+            title="Carrito de Compras"
+            variant="ghost"
+            color="gray"
+          />
+          {carritoCount > 0 && (
+            <Badge
+              position="absolute"
+              top="-0.5rem"
+              right="-0.5rem"
+              bg="red"
+              borderRadius="50%"
+              color="white"
+              fontSize="sm"
+              fontWeight="bold"
+              lineHeight="1"
+              minW="1.25rem"
+              minH="1.25rem"
+              textAlign="center"
+            >
+              {carritoCount}
+            </Badge>
+          )}
+        </Link>
+        <Box marginTop={{ base: "1rem", md: "0" }} marginRight="1rem">
+          <AuthButton />
+        </Box>
+      </Flex>
       <Box>
         <Flex
-          bg="white"
+          bg="black"
           color="gray"
           py={{ base: 2, md: 2 }}
-          px={8}
-          display={{ base: "flex", md: "flex" }}
-          justifyContent={{ base: "space-between" }}
+          px={{ base: 0, md: 8 }}
+          justifyContent={{ base: "center", md: "space-between" }}
+          flexDirection={{ base: "column", md: "row" }}
+          alignItems={{ base: "center", md: "center" }}
         >
-          <Box display="flex" alignItems="center">
-            {/* Responsivo icon hamburguer */}
-            <Box>
-              <IconButton
-                marginLeft={{ base: "-2rem" }}
-                marginTop={{ base: "0.3rem" }}
-                aria-label="Abrir menú"
-                icon={<HamburgerIcon />}
-                size="md"
-                fontSize="24px"
-                variant="ghost"
-                color="gray"
-                onClick={onOpen}
-                display={{ md: "none" }} // Sólo muestra el botón en modo responsivo
-              />
+          <Box>
+            <Image
+              src={chef}
+              alt="chef"
+              maxW="8rem"
+              maxH="8rem"
+              borderRadius="50%"
+              margin="0 15px"
+            />
+          </Box>
 
+          {/* Responsivo icon hamburguer */}
+          {/* ... Código del menú hamburguesa aquí ... */}
+
+          <Flex
+            display={{ base: "flex", md: "flex" }}
+            flexWrap="wrap"
+            alignItems={{ base: "center", md: "flex-start" }}
+            justifyContent="center"
+            margin="auto"
+          >
+            <Box padding="15px">
               <Button
-                display={{ md: "none" }}
+                title="Home"
+                display="inline-flex"
                 variant="ghost"
-                marginLeft="-0.5rem"
-                marginTop="0.5rem"
+                fontSize="22px"
                 color="gray"
-                fontSize="24px"
                 onClick={() => window.location.reload()}
               >
-                {<FaHome />}
+                {/* <FaHome /> */}
+                Home
               </Button>
-
-              <Drawer isOpen={isOpen} placement="left" onClose={onClose}>
-                <DrawerOverlay />
-                <DrawerContent bg="red.400" p="9" size="xs" maxW="50vw">
-                  <DrawerCloseButton />
-                  <DrawerHeader color="white">Menú</DrawerHeader>
-                  <DrawerBody marginLeft="-2rem">
-                    <Button
-                      as="a"
-                      href="#Cartas"
-                      onClick={() => {
-                        handleClick("Carnes");
-                        onClose();
-                      }}
-                      variant="ghost"
-                      color="white"
-                      leftIcon={<GiChickenOven />}
-                    >
-                      Carnes
-                    </Button>
-
-                    <Button
-                      as="a"
-                      href="#Cartas"
-                      onClick={() => {
-                        handleClick("Pollo");
-                        onClose();
-                      }}
-                      variant="ghost"
-                      color="white"
-                      leftIcon={<GiChickenLeg />}
-                    >
-                      Pollo
-                    </Button>
-                    <Button
-                      as="a"
-                      href="#Cartas"
-                      onClick={() => {
-                        handleClick("Pasta");
-                        onClose();
-                      }}
-                      variant="ghost"
-                      color="white"
-                      leftIcon={<GiFullPizza />}
-                    >
-                      Pastas
-                    </Button>
-                    <Button
-                      as="a"
-                      href="#Cartas"
-                      onClick={() => {
-                        handleClick("Pizzas");
-                        onClose();
-                      }}
-                      variant="ghost"
-                      color="white"
-                      leftIcon={<CiPizza />}
-                    >
-                      Pizzas
-                    </Button>
-                    <Button
-                      as="a"
-                      href="#Cartas"
-                      onClick={() => {
-                        handleClick("Pescados");
-                        onClose();
-                      }}
-                      variant="ghost"
-                      color="white"
-                      leftIcon={<GiFishEggs />}
-                    >
-                      Pescados
-                    </Button>
-                    <Button
-                      as="a"
-                      href="#Cartas"
-                      onClick={() => {
-                        handleClick("Ensaladas");
-                        onClose();
-                      }}
-                      variant="ghost"
-                      color="white"
-                      leftIcon={<TbSalad />}
-                    >
-                      Ensaladas
-                    </Button>
-                    <Button
-                      as="a"
-                      href="#Cartas"
-                      onClick={() => {
-                        handleClick("Guarniciones");
-                        onClose();
-                      }}
-                      variant="ghost"
-                      color="white"
-                      leftIcon={<GiFrenchFries />}
-                    >
-                      Guarniciones
-                    </Button>
-                    <Button
-                      as="a"
-                      href="#Cartas"
-                      onClick={() => {
-                        handleClick("Platos frios");
-                        onClose();
-                      }}
-                      variant="ghost"
-                      color="white"
-                      leftIcon={<BiDish />}
-                    >
-                      Platos Frios
-                    </Button>
-                    <Button
-                      as="a"
-                      href="#Cartas"
-                      onClick={() => {
-                        handleClick("Bebidas");
-                        onClose();
-                      }}
-                      variant="ghost"
-                      color="white"
-                      leftIcon={<BiDrink />}
-                    >
-                      Bebidas
-                    </Button>
-                    <Button
-                      as="a"
-                      href="#Cartas"
-                      onClick={() => {
-                        handleClick("Postres");
-                        onClose();
-                      }}
-                      variant="ghost"
-                      color="white"
-                      leftIcon={<TbIceCream />}
-                    >
-                      Postres
-                    </Button>
-                   
-                  </DrawerBody>
-                  
-                </DrawerContent>
-              </Drawer>
-              
             </Box>
-            {/* Fin Responsivo icon hamburguer */}
-          </Box>
-          <Box marginLeft="-2rem" paddingRight="5%">
-            <DarkMode display={{ base: "none", md: "inline-flex" }} />
-            <Button
-              variant="ghost"
-              color="gray"
-              title="Envianos tu Mensaje!"
-              fontSize="22px"
-              display={{ base: "none", md: "inline" }}
-              marginLeft={{ base: "none", md: "inline-flex" }}
-              onClick={handleMostrarFormulario}
-            >
-              <BiMessageDetail />
-            </Button>
 
-            <Button
-              title="Home"
-              display={{ base: "none", md: "inline-flex" }}
-              variant="ghost"
-              fontSize="22px"
-              color="gray"
-              mr={2}
-              onClick={() => window.location.reload()}
-            >
-              <FaHome />
-            </Button>
-            <Button
-              as="a"
-              href="#About"
-              display={{ base: "none", md: "inline-flex" }}
-              variant="ghost"
-              color="gray"
-              mr={2}
-              onClick={handleAboutClick}
-            >
-              Sobre Nosotros
-            </Button>
-          </Box>
+            <Box padding="15px">
+              <Button
+                variant="ghost"
+                color="gray"
+                title="Envianos tu Mensaje!"
+                fontSize="22px"
+                onClick={handleMostrarFormulario}
+              >
+                {/* <BiMessageDetail /> */}
+                SendMessage
+              </Button>
+            </Box>
+            <Box padding="15px">
+              <Button
+                display="inline-flex"
+                variant="ghost"
+                color="gray"
+                onClick={handleMostrarAbout}
+              >
+                About
+              </Button>
+              {/* <DarkMode /> */}
+            </Box>
+            {/* ... Otros botones y enlaces ... */}
 
-          <Box
-            flex="1"
-            ml="auto"
-            mr="auto"
-            maxWidth={{ base: "100px", md: "400px" }}
+            <Box padding="15px">
+              <Button
+                onClick={handleMostrarCarta}
+                display="inline-flex"
+                variant="ghost"
+                color="gray"
+              >
+                {" "}
+                Menú
+              </Button>
+            </Box>
+            <Box padding="15px">
+              <Button
+                display="inline-flex"
+                variant="ghost"
+                color="gray"
+                as="a"
+                href="https://www.instagram.com/"
+                target="_blank"
+                aria-label="Instagram"
+              >
+                INSTA{" "}
+              </Button>
+            </Box>
+            <Box padding="15px">
+              {/* IconButton con el texto "WHATS" */}
+              <IconButton
+                display="inline-flex"
+                as="a"
+                href="https://wa.me/5492215704647?text=Hola,%20quisiera%20hacerte%20un%20pedido"
+                target="_blank"
+                fontSize={{ base: "28px", md: "22px" }}
+                aria-label="Whatsapp"
+                title="Whatsapp"
+                variant="ghost"
+                color="gray"
+                icon={<Text>WHATS</Text>} // Reemplaza el icono con el texto "WHATS"
+              />
+            </Box>
+          </Flex>
+
+          <Flex
+            alignItems="center"
+            justifyContent="center"
+            margin="auto"
+            display={{ base: "none", md: "flex" }}
           >
-            {/* <SearchBar /> */}
-          </Box>
-
-          <Box display="flex" alignItems="center" mr={{ base: -11, md: 10.5 }}>
             <Box display="flex" alignItems="center">
-              <Link to="/sCart">
+              <Link
+                to="/sCart"
+                style={{ position: "relative", display: "inline-block" }}
+              >
                 <IconButton
-                  target="_blank"
                   aria-label="ShoppingCart"
                   fontSize={{ base: "28px", md: "28px" }}
                   icon={<GiShoppingCart />}
-                  mr={{ base: 0, md: 2 }}
                   title="Carrito de Compras"
                   variant="ghost"
                   color="gray"
                 />
                 {carritoCount > 0 && (
                   <Badge
-                    marginLeft="-1rem"
-                    marginTop="1rem"
+                    position="absolute"
+                    top="-0.5rem"
+                    right="-0.5rem"
                     bg="red"
                     borderRadius="50%"
                     color="white"
@@ -345,62 +279,11 @@ export default function NavBar({
                 )}
               </Link>
 
-              <IconButton
-                display={{ base: "none", md: "inline-flex" }}
-                as="a"
-                href="https://www.instagram.com/"
-                target="_blank"
-                aria-label="Instagram"
-                fontSize={{ base: "28px", md: "22px" }}
-                icon={<FaInstagram />}
-                mr={2}
-                title="Instagram"
-                variant="ghost"
-                color="gray"
-              />
-              <IconButton
-                display={{ base: "none", md: "inline-flex" }}
-                as="a"
-                href="https://www.facebook.com/"
-                target="_blank"
-                aria-label="Facebook"
-                fontSize={{ base: "28px", md: "22px" }}
-                icon={<FaFacebook />}
-                title="Facebook"
-                mr={2}
-                variant="ghost"
-                color="gray"
-              />
-              <IconButton
-                display={{ base: "none", md: "inline-flex" }}
-                as="a"
-                href="https://maps.google.com/"
-                target="_blank"
-                fontSize={{ base: "28px", md: "22px" }}
-                aria-label="Geolocalización"
-                title="Geolocalización"
-                icon={<FaMapMarkerAlt />}
-                mr={2}
-                variant="ghost"
-                color="gray"
-              />
-              <IconButton
-                display={{ base: "none", md: "inline-flex" }}
-                as="a"
-                href="https://wa.me/5492215704647?text=Hola,%20quisiera%20hacerte%20un%20pedido"
-                target="_blank"
-                fontSize={{ base: "28px", md: "22px" }}
-                aria-label="Whatsapp"
-                icon={<FaWhatsapp />}
-                title="Whatsapp"
-                variant="ghost"
-                color="gray"
-              />
-             
+              <Box marginLeft="35px">
+                <AuthButton />
+              </Box>
             </Box>
-          </Box>
-          
-        
+          </Flex>
         </Flex>
       </Box>
     </Box>

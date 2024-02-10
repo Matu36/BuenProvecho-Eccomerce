@@ -33,36 +33,33 @@ export default function Card({ id, Imagen, Nombre, Efectivo, onClose }) {
         bg: "rgba(255, 255, 255, 0.8)",
       }}
     >
-      
-<Box position="relative">
-      <Image
-      
-        src={Imagen}
-        maxH="100%"
-        maxW="100%"
-        width={{ base: "100%", md: "200px" }}
-        height="200px"
-        objectFit="cover"
-        borderRadius="lg"
-      />
-      {onClose && (
-        <Button
-        position="absolute"
-        top="-1"
-        right="-4"
-        mt="0"
-        mr="0"
-        color="white"
-        background="none"
-          _hover={{ background: "none", color: "red" }}
-          fontSize="30px"
-          zIndex="999"
-          onClick={onClose}
-          
-        >
-          <AiOutlineCloseCircle />
-        </Button>
-      )}
+      <Box position="relative">
+        <Image
+          src={Imagen}
+          maxH="100%"
+          maxW="100%"
+          width={{ base: "100%", md: "200px" }}
+          height="200px"
+          objectFit="cover"
+          borderRadius="lg"
+        />
+        {onClose && (
+          <Button
+            position="absolute"
+            top="-1"
+            right="-4"
+            mt="0"
+            mr="0"
+            color="white"
+            background="none"
+            _hover={{ background: "none", color: "red" }}
+            fontSize="30px"
+            zIndex="999"
+            onClick={onClose}
+          >
+            <AiOutlineCloseCircle />
+          </Button>
+        )}
       </Box>
       <Box
         p="4"
@@ -84,7 +81,7 @@ export default function Card({ id, Imagen, Nombre, Efectivo, onClose }) {
             target="_blank"
             aria-label="Whatsapp"
             leftIcon={<Icon as={GiMoneyStack} />}
-            color="black"
+            color="white"
             textDecor="none"
             padding="5px"
             borderRadius="5px"
@@ -96,7 +93,7 @@ export default function Card({ id, Imagen, Nombre, Efectivo, onClose }) {
         <Box>
           <Button
             leftIcon={<Icon as={GiShoppingCart} />}
-            color="black"
+            color="white"
             textDecor="none"
             padding="5px"
             borderRadius="5px"

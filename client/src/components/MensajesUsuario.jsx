@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { crearMensaje } from "../Redux/actions/index";
 import { Input, FormLabel, Button } from "@chakra-ui/react";
-import { Box, HStack, FormControl, Center } from "@chakra-ui/react";
+import { Box, VStack, FormControl, Textarea } from "@chakra-ui/react";
 import Swal from "sweetalert2";
 
 export default function MensajesUsuario() {
@@ -65,65 +65,78 @@ export default function MensajesUsuario() {
         display="flex"
         flexDirection="column"
         alignItems="center"
-        border="4px solid"
+        border="2px solid"
         borderColor="gray.400"
-        borderRadius="lg"
-        boxShadow="md"
-        p={1}
-        width="100%"
-        padding="5px"
-        backgroundColor="white"
+        borderRadius="xl"
+        boxShadow="lg"
+        p={6}
+        width={{ base: "100%", md: "100%" }}
+        backgroundColor="red.900"
         opacity="0.9"
-        borderBlockEndColor="ActiveBorder"
       >
-        <HStack spacing="24px">
-          <Box>
-            <FormControl>
-              <FormLabel>Nombre</FormLabel>
-              <Input
-                type="text"
-                name="nombre"
-                value={mensaje.Nombre}
-                autoComplete="off"
-                placeholder="Nombre"
-                onChange={(e) =>
-                  setMensaje({ ...mensaje, Nombre: e.target.value })
-                }
-              />
-            </FormControl>
+        <VStack spacing={4} width="100%">
+          <FormControl>
+            <FormLabel>Nombre</FormLabel>
+            <Input
+              type="text"
+              name="nombre"
+              value={mensaje.Nombre}
+              autoComplete="off"
+              placeholder="Nombre"
+              onChange={(e) =>
+                setMensaje({ ...mensaje, Nombre: e.target.value })
+              }
+              borderRadius="md"
+              borderColor="gray.300"
+              _hover={{ borderColor: "gray.500" }}
+              _focus={{ borderColor: "blue.500" }}
+            />
+          </FormControl>
 
-            <FormControl>
-              <FormLabel>Email</FormLabel>
-              <Input
-                type="email"
-                name="email"
-                value={mensaje.email}
-                autoComplete="off"
-                placeholder="Email"
-                onChange={(e) =>
-                  setMensaje({ ...mensaje, email: e.target.value })
-                }
-              />
-            </FormControl>
+          <FormControl>
+            <FormLabel>Email</FormLabel>
+            <Input
+              type="email"
+              name="email"
+              value={mensaje.email}
+              autoComplete="off"
+              placeholder="Email"
+              onChange={(e) =>
+                setMensaje({ ...mensaje, email: e.target.value })
+              }
+              borderRadius="md"
+              borderColor="gray.300"
+              _hover={{ borderColor: "gray.500" }}
+              _focus={{ borderColor: "blue.500" }}
+            />
+          </FormControl>
 
-            <FormControl>
-              <FormLabel>Dejanos tu comentario</FormLabel>
-              <Input
-                type="text"
-                name="nombre"
-                value={mensaje.Mensaje}
-                autoComplete="off"
-                placeholder="Dejanos tu comentario"
-                onChange={(e) =>
-                  setMensaje({ ...mensaje, Mensaje: e.target.value })
-                }
-              />
-            </FormControl>
-          </Box>
-        </HStack>
-        <Center marginTop="20px">
-          <Button type="submit">Enviar Mensaje</Button>
-        </Center>
+          <FormControl>
+            <FormLabel>Dejanos tu comentario</FormLabel>
+            <Textarea
+              name="mensaje"
+              value={mensaje.Mensaje}
+              placeholder="Dejanos tu comentario"
+              onChange={(e) =>
+                setMensaje({ ...mensaje, Mensaje: e.target.value })
+              }
+              borderRadius="md"
+              borderColor="gray.300"
+              _hover={{ borderColor: "gray.500" }}
+              _focus={{ borderColor: "blue.500" }}
+            />
+          </FormControl>
+        </VStack>
+        <br />
+        <Button
+          type="submit"
+          mt={4}
+          borderRadius="md"
+          colorScheme="purple"
+          _hover={{ bg: "blue.800" }}
+        >
+          Enviar Mensaje
+        </Button>
       </Box>
     </form>
   );

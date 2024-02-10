@@ -5,23 +5,33 @@ import { motion } from "framer-motion";
 
 export default function About({ HandleCancelAbout }) {
   return (
-    <motion.div 
+    <motion.div
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 2 }}
     >
-      <Flex flexDirection="column" height="100%" backgroundColor="white" 
-      marginLeft={{base:"0", md:"15rem"}} marginTop={{base:"0", md:"-5rem"}}>
+      <Flex
+        flexDirection="column"
+        height="100%"
+        backgroundColor="red.900"
+        zIndex="1999"
+        maxWidth="90%"
+        margin="auto"
+        border="solid 5px white"
+        borderRadius="15px"
+        color="gray"
+      >
         <Flex
           justifyContent="flex-end"
           pr={{ base: 3, md: 20 }}
           pt={{ base: 5, md: 2 }}
         >
           <Button
-            _hover={{ color: "blue" }}
+            _hover={{ color: "gray" }}
             background="none"
             fontSize={{ base: "14", md: "18px" }}
             onClick={HandleCancelAbout}
+            color="white"
           >
             Cerrar
           </Button>
@@ -32,6 +42,7 @@ export default function About({ HandleCancelAbout }) {
             fontSize="3xl"
             fontFamily="heading"
             fontWeight="bold"
+            color="white"
           >
             Sobre Nosotros
           </Text>
@@ -48,11 +59,16 @@ export default function About({ HandleCancelAbout }) {
               fontFamily="body"
               maxWidth="60ch"
               mt={8}
+              color="white"
             >
-              Somos unos capos en la gastronomía y queremos brindarte la mejor
-              experiencia culinaria. Contamos con un excelente staff de
-              Cocineros altamente especializados en divesas áreas de la cocina;
-              Que tengas buen Provecho!
+              ¡Bienvenidos a Buen Provecho! Somos una empresa apasionada por la
+              gastronomía y la excelencia en el servicio. Nuestro equipo está
+              compuesto por chefs talentosos y apasionados por la cocina,
+              comprometidos a ofrecer experiencias culinarias únicas. Desde
+              platos exquisitos hasta un servicio impecable, en Buen Provecho
+              nos esforzamos por hacer que cada comida sea memorable. ¡Descubre
+              el placer de sabores auténticos y momentos inolvidables con
+              nosotros!
             </Text>
           </Flex>
         </Box>

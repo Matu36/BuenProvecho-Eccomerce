@@ -12,6 +12,7 @@ import { Link } from "react-router-dom";
 import BotonMP from "../../MercadoPago/BotonMP";
 import AuthButton from "../../Auth0";
 import Swal from "sweetalert2";
+import cartImage from "../../../img/cartImage.png";
 
 export default function ShoppingCart() {
   const { cart } = useSelector((state) =>
@@ -75,36 +76,28 @@ export default function ShoppingCart() {
 
   return (
     <Box
-      borderWidth="20px"
-      borderLeftWidth="20px"
-      borderRightWidth="20px"
-      solid
-      borderColor="gray.500"
+      style={{
+        backgroundImage: `url(${cartImage})`,
+        backgroundSize: "cover",
+        backgroundRepeat: "no-repeat",
+        backgroundPosition: "center",
+        width: "100%",
+        minHeight: "100vh",
+      }}
     >
-      <Box justifyContent="center" alignItems="center" textAlign="center">
-        <Text
-          fontSize="2rem"
-          fontFamily="heading"
-          fontWeight="bold"
-          marginTop="1rem"
-        >
-          {" "}
-          Mi carrito de Compras{" "}
-        </Text>
-      </Box>
-      <Flex marginTop={{ base: "-5rem", md: "-3.5rem" }}>
+      <Box justifyContent="center" alignItems="center" textAlign="center"></Box>
+      <Flex justify="space-between">
         <Box
-          marginLeft={{ base: "0rem", md: "4rem" }}
-          marginTop={{ base: "6rem", md: "5rem" }}
+          marginLeft={{ base: "2rem", md: "8rem" }}
+          marginTop={{ base: "1rem", md: "1rem" }}
           sx={{
-            // Estilos específicos para el rango 768px - 1000px
-            "@media (min-width: 768px) and (max-width: 1000px)": {
-              maxWidth: "55%",
-              marginTop: "3rem",
+            // Estilos específicos para el rango 765px - 1022px
+            "@media(max-width: 1022px)": {
+              maxWidth: "50%",
             },
-            "@media (min-width: 0px) and (max-width: 410px)": {
-              maxWidth: "40%",
-              marginTop: "8rem",
+            // Estilos específicos para el rango hasta 530px
+            "@media (max-width: 530px)": {
+              maxWidth: "30%",
             },
           }}
         >
@@ -114,23 +107,36 @@ export default function ShoppingCart() {
               <CartItem key={index} data={item} delFromCart={delFromCart} />
             ))}
           </Box>
-          <Box>
-            <Button marginTop="2rem" onClick={clearCart}>
-              Limpiar el Carrito
-            </Button>
-          </Box>
+          {cart < 1 ? (
+            <Text fontSize="30px" fontWeight="bold">
+              {" "}
+              El carrito esta vacio
+            </Text>
+          ) : (
+            <Box display="flex" justifyContent="flex-end">
+              <Button
+                marginTop="2rem"
+                onClick={clearCart}
+                background="red.400"
+                color="white"
+                _hover={{ background: "red", color: "white" }}
+                fontSize={{ base: "12px", md: "" }}
+              >
+                Limpiar el Carrito
+              </Button>
+            </Box>
+          )}
         </Box>
-        <Divider
-          marginLeft={1}
-          orientation="vertical"
-          borderLeft="1px solid black"
-          h="600px"
-          marginTop="6rem"
-        />
+
         <Box
-          marginLeft={{ base: "0.5rem", md: "auto" }}
-          marginRight={{ base: "0", md: "11rem" }}
-          marginTop={{ base: "7rem", md: "9rem" }}
+          display="flex"
+          flexDirection="column"
+          justifyContent="flex-end"
+          position="fixed"
+          top="14"
+          right="10"
+          marginRight="0"
+          overflow="hidden"
         >
           <Text fontSize="xl" fontWeight="bold">
             Detalle Total
@@ -138,7 +144,8 @@ export default function ShoppingCart() {
           <br />
           <Box>
             <Text>Precio Total: ${totalPrice()}</Text>
-            <Text>Precio MercadoPago (5%): ${MercadoPago}</Text>
+            <Text>Precio MercadoPago (5%):</Text>
+            <Text>${MercadoPago}</Text>
           </Box>
           <br />
 
@@ -151,31 +158,33 @@ export default function ShoppingCart() {
           <br />
           <br />
 
-          {isAuthenticated ? (  
-            <Link to="/Checkout">
-              <Button fontSize={{ base: "12px", md: "16px" }}>
-                {" "}
-                Pagar con Tarjeta{" "}
-              </Button>
-            </Link>
-          ) : (  
+          {/* {isAuthenticated ? ( */}
+          <Link to="/Checkout">
             <Button
-              onClick={sinLoguear}
-              fontSize={{ base: "12px", md: "16px" }}
+              fontSize={{ base: "9px", md: "18px" }}
+              maxW={{ base: "55%", md: "100%" }}
             >
               {" "}
               Pagar con Tarjeta{" "}
             </Button>
-          )}  
-          <br />
+          </Link>
+          {/* ) : ( */}
+          <Button
+            onClick={sinLoguear}
+            fontSize={{ base: "9px", md: "18px" }}
+            maxW={{ base: "55%", md: "100%" }}
+          >
+            {" "}
+            Pagar con Tarjeta{" "}
+          </Button>
+          {/* )} */}
           <br />
 
           <BotonMP />
           <br />
-          <br />
           {!isAuthenticated ? (
             <>
-              <Text color="gray.300" marginLeft="1rem" fontWeight="bold">
+              <Text color="white" marginLeft="1rem" fontWeight="bold">
                 {" "}
                 Te podés loguear aca{" "}
               </Text>

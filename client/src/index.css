@@ -11,3 +11,109 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+@font-face {
+  font-family: "perma";
+  src: url("../src/fonts/PermanentMarker-Regular.ttf");
+  font-weight: normal;
+  font-style: normal;
+}
+
+/* SliderModels.css */
+
+.sliderContainer {
+  margin: auto;
+   max-width: 86%;
+ }
+ 
+ .custom-slider {
+   margin: 0 -50px;
+   margin-top: 1rem;
+ }
+ 
+ @media (max-width: 800px) {
+   .custom-slider {
+     width: 100%;
+     margin-left: 0.1rem;
+   }
+ }
+ 
+
+
+ @media (max-width: 764px) {
+  .sliderContainer {
+  margin-bottom: 5rem;
+  margin-top: 5rem;
+  }
+}
+ 
+ .slider-item {
+   padding: 10px;
+   border: 1px solid #ddd;
+   background-color: #f5f5f5;
+ }
+ 
+ .slider-item img {
+   width: 100%;
+   height: auto;
+ }
+
+ .contenedor {
+  display: flex;
+  flex-wrap: wrap; /* Permite que los botones se envuelvan a la siguiente línea si no hay espacio suficiente */
+  font-family: "perma", sans-serif;
+  justify-content: space-around;
+  color: white;
+}
+
+button {
+  margin: 5px; 
+  padding: 80px; 
+  background-color: white; 
+  border: none; 
+  border-radius: 5px; 
+  color: #0077CC; 
+  text-decoration: none; 
+  cursor: pointer; 
+}
+
+
+@media screen and (max-width: 600px) {
+  button {
+    font-size: 14px; 
+  }
+}
+
+.appetizers {
+  display: flex;
+  justify-content: center;
+  
+}
+
+.appetizers img {
+  width: 80%; 
+  max-width: 800px; 
+  height: auto; 
+}
+
+/* Estilos para el componente YourComponent */
+.main-container {
+  background-color: black;
+  color: white;
+ 
+}
+
+.TituloLoguin {
+  max-width:"100%"
+}
+
+.colorMenu{
+  color:brown
+}
+
+
+
+
+
+
+

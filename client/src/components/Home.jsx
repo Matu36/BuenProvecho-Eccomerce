@@ -4,7 +4,8 @@ import {
   Box,
   Input,
   InputGroup,
-  InputLeftElement, Button
+  InputLeftElement,
+  Button,
 } from "@chakra-ui/react";
 import { SearchIcon } from "@chakra-ui/icons";
 import NavBar from "./NavBar";
@@ -23,6 +24,9 @@ import NavBar2 from "./NavBar2";
 import CardOfert from "./CardOfert";
 import Footer2 from "./Footer2";
 import { Link } from "react-router-dom";
+import SliderCarrousel from "./SliderCarrousel";
+import appetizer from "../img/Appetizers.png";
+import Carta from "./Carta";
 
 export default function Home() {
   let currentUser = JSON.parse(localStorage.getItem("user"));
@@ -36,6 +40,10 @@ export default function Home() {
 
   //About
   const [showAbout, setShowAbout] = useState(false);
+
+  const handleMostrarAbout = () => {
+    setShowAbout(true);
+  };
 
   function HandleCancelAbout() {
     setShowAbout(false);
@@ -67,7 +75,6 @@ export default function Home() {
       return comida.Nombre.toLowerCase().includes(value.toLowerCase());
     }).slice(0, 3);
 
-    console.log(comidas);
     setAutocompleteOptions(options);
   };
 
@@ -124,25 +131,41 @@ export default function Home() {
 
   //FIN MENSAJES DE USUARIO
 
+  //MOSTRAR CARTA //
+
+  const [mostrarCarta, setMostrarCarta] = useState(false);
+
+  const handleMostrarCarta = () => {
+    setMostrarCarta(true);
+  };
+
+  const handleCerrarCarta = () => {
+    setMostrarCarta(false);
+  };
+
   return (
-    <Box backgroundColor="gray.500">
-      <Box>
+    <Box backgroundColor="black">
+      {/* <Box>
         <NavBar2 />
-      </Box>
+      </Box> */}
       <Box>
         <Box>
           <NavBar
             handleMostrarFormulario={handleMostrarFormulario}
             setShowAbout={setShowAbout}
+            handleMostrarAbout={handleMostrarAbout}
             setProducts={setProducts}
+            handleCerrarCarta={handleCerrarCarta}
+            handleMostrarCarta={handleMostrarCarta}
           />
         </Box>
-
         <Box
-          marginTop={{ base: "-3rem", md: "-3.2rem" }}
-          paddingLeft={{ base: "20%", md: "40%" }}
-          paddingRight={{ base: "0", md: "16%" }}
-          maxWidth={{ base: "80%", md: "80%" }}
+          display="flex"
+          flexDirection="column"
+          alignItems="center"
+          justifyContent="center"
+          maxWidth={{ base: "80%", md: "30%" }}
+          margin="0 auto" // Centra el contenedor horizontalmente
         >
           <InputGroup borderRadius="35%">
             <InputLeftElement
@@ -152,6 +175,7 @@ export default function Home() {
             <Input
               backgroundColor="white"
               placeholder="Buscar Comida"
+              color="black"
               type="text"
               value={searchTerm}
               onChange={handleInputChange}
@@ -159,13 +183,15 @@ export default function Home() {
             />
           </InputGroup>
           <button onClick={handleSearch}></button>
-          <Box marginTop="-1em" height="30px" overflow-y="auto" zIndex="1">
+          <Box marginTop="1rem" height="30px" overflow-y="auto" zIndex="1">
             <ul>
               {autocompleteOptions.map((comida) => (
                 <Text
+                  borderRadius="10px"
                   background="white"
+                  color="black"
                   width="100%"
-                  paddingLeft="1rem"
+                  padding="0.5rem"
                   zIndex="9999"
                   fontWeight="bold"
                   fontSize={{ base: "12px", md: "16px" }}
@@ -179,33 +205,18 @@ export default function Home() {
             </ul>
           </Box>
         </Box>
-        <Link to="/Carta">
-          <Button background="yellow" fontWeight="bold" fontFamily="sans-serif"
-          border="solid 2px black" float="right" position="fixed" top="56%" borderRadius="10%"
-          right="0"
-          transform="translateY(-50%)" zIndex="999" _hover={{ background: "black", color:"yellow" }}> Carta </Button>
-        </Link>
-        <Box>
-          {mostrarFormulario && (
-            <div
-              style={{
-                position: "fixed",
-                top: "50%",
-                left: "50%",
-                transform: "translate(-50%, -50%)",
-                backgroundColor: "white",
-                padding: "10px",
-                zIndex: "999",
-              }}
-            >
-              <button fontSize="2rem" onClick={handleCerrarFormulario}>
-                <CgCloseO />
-              </button>
-              <MensajesUsuario />
-            </div>
+        <Box zIndex="1500">
+          {showAbout && (
+            <About
+              HandleCancelAbout={HandleCancelAbout}
+              handleMostrarAbout={handleMostrarAbout}
+            />
           )}
         </Box>
-        <Box marginLeft={{ base: "0", md: "15rem" }}>
+        <Box zIndex="1500">
+          {mostrarCarta && <Carta handleCerrarCarta={handleCerrarCarta} />}
+        </Box>
+        <Box>
           <Box
             maxWidth={{ base: "85%", md: "340px" }}
             marginTop={{ base: "-3rem", md: "0" }}
@@ -225,91 +236,78 @@ export default function Home() {
             )}
           </Box>
         </Box>
-        <Box display="flex">
-          <Box
-            id="About"
-            display={{ base: "none", md: "flex" }}
-            position="fixed"
-            backgroundColor="#F6F6F6"
-            borderRight="1px solid #F6F6F6"
-            top="160"
-            left="0"
-            bottom="0"
-            width="15rem"
-            overflow="auto"
-          >
-            <Sidebar setProducts={setProducts} />
-          </Box>
-        </Box>
-        {showAbout ? (
-          <About HandleCancelAbout={HandleCancelAbout} />
-        ) : (
-          <>
-          <Box
-              marginLeft={{ base: "0", md: "15rem" }}
-              id="Cartas"
-              overflow="hidden"
-              mx="auto"
-              paddingBottom="3rem"
-              mt="4"
-              display="grid"
-              gridTemplateColumns={{
-                base: "1fr",
-                md: "repeat(auto-fit, minmax(250px, 1fr))",
+        <div className="sliderContainer">
+          <SliderCarrousel />
+        </div>
+        <br />
+        <Box>
+          {mostrarFormulario && (
+            <div
+              style={{
+                position: "fixed",
+                top: "50%",
+                left: "50%",
+                transform: "translate(-50%, -50%)",
+                backgroundColor: "gray",
+                padding: "10px",
+                zIndex: "999",
+                borderRadius: "15px",
+                maxWidth: "80%",
+                color: "white",
               }}
-              gridGap="1rem"
             >
-              {/* Renderiza los productos filtrados */}
-              {products.map((product, index) => (
-                <Card
-                  id={product.id}
-                  key={index}
-                  Imagen={product.Imagen}
-                  Nombre={product.Nombre}
-                  Efectivo={product.Efectivo}
-                />
-              ))}
-            </Box>
-            <Box
-              marginLeft={{ base: "0", md: "15rem" }} // Margen izquierdo para compensar el ancho de la barra lateral
-              width={{ base: "100%", md: "80%" }} // Ancho del contenido principal
-            >
-              <Box
-                display="flex"
-                justifyContent="center"
-                alignItems="center"
-                margin="0 auto"
-              >
-                <Text
-                  align="center"
-                  justifyContent="center"
-                  fontSize="30px"
-                  fontFamily="cursive"
-                  marginTop={{ base: "0", md: "-5rem" }}
-                >
-                  Sugerencias del Cheff
-                </Text>
-              </Box>
-              <CardOfert />
-              
-              {RandomSlider()}
-            </Box>
-            <br />
-            <br />
-            <Box marginLeft={{ base: "0", md: "15rem" }} paddingBlockEnd="2rem">
-          <Footer2 />
+              <button onClick={handleCerrarFormulario}>
+                <CgCloseO fontSize="1.5rem" />
+              </button>
+              <MensajesUsuario />
+            </div>
+          )}
         </Box>
-          </>
-        )}
-        
+      </Box>
+      <Sidebar setProducts={setProducts} />
+
+      <Box
+        id="Cartas"
+        overflow="hidden"
+        mx="auto"
+        paddingBottom="3rem"
+        mt="4"
+        display="grid"
+        gridTemplateColumns={{
+          base: "1fr",
+          md: "repeat(auto-fit, minmax(250px, 1fr))",
+        }}
+        gridGap="1rem"
+      >
+        {/* Renderiza los productos filtrados */}
+        {products.map((product, index) => (
+          <Card
+            id={product.id}
+            key={index}
+            Imagen={product.Imagen}
+            Nombre={product.Nombre}
+            Efectivo={product.Efectivo}
+          />
+        ))}
       </Box>
 
-      <Box display={{ md: "none" }}>
-        <Footer
-          setShowAbout={setShowAbout}
-          handleMostrarFormulario={handleMostrarFormulario}
-        />
+      <Box width={{ base: "100%", md: "80%" }}>
+        <Box
+          display="flex"
+          justifyContent="center"
+          alignItems="center"
+          margin="0 auto"
+        ></Box>
       </Box>
+      <div className="appetizers">
+        <img src={appetizer} alt="" />
+      </div>
+      <br />
+      <br />
+
+      <Footer2 />
+
+      <br />
     </Box>
   );
 }
