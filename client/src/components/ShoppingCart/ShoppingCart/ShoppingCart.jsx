@@ -97,7 +97,7 @@ export default function ShoppingCart() {
             },
             // Estilos específicos para el rango hasta 530px
             "@media (max-width: 530px)": {
-              maxWidth: "30%",
+              maxWidth: "35%",
             },
           }}
         >
@@ -158,26 +158,26 @@ export default function ShoppingCart() {
           <br />
           <br />
 
-          {/* {isAuthenticated ? ( */}
-          <Link to="/Checkout">
+          {isAuthenticated ? (
+            <Link to="/Checkout">
+              <Button
+                fontSize={{ base: "9px", md: "18px" }}
+                maxW={{ base: "55%", md: "100%" }}
+              >
+                {" "}
+                Pagar con Tarjeta{" "}
+              </Button>
+            </Link>
+          ) : (
             <Button
+              onClick={sinLoguear}
               fontSize={{ base: "9px", md: "18px" }}
               maxW={{ base: "55%", md: "100%" }}
             >
               {" "}
               Pagar con Tarjeta{" "}
             </Button>
-          </Link>
-          {/* ) : ( */}
-          <Button
-            onClick={sinLoguear}
-            fontSize={{ base: "9px", md: "18px" }}
-            maxW={{ base: "55%", md: "100%" }}
-          >
-            {" "}
-            Pagar con Tarjeta{" "}
-          </Button>
-          {/* )} */}
+          )}
           <br />
 
           <BotonMP />

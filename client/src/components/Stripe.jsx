@@ -6,6 +6,7 @@ import {
   useStripe,
   useElements,
 } from "@stripe/react-stripe-js";
+import tarjeta from "../img/tarjeta1.png";
 
 import axios from "axios";
 import { BarLoader } from "react-spinners";
@@ -16,7 +17,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getUsers } from "../Redux/actions";
 import { useAuth0 } from "@auth0/auth0-react";
 
-import { Player } from '@lottiefiles/react-lottie-player';
+import { Player } from "@lottiefiles/react-lottie-player";
 
 /* Ir a la pagina de stripe, crear cuenta;  ir de la pestaña desarroladres, claves Api (Esto
 es para la fase de desarrollo; para la fase de producción hay que activar cuenta)
@@ -107,45 +108,48 @@ const CheckoutForm = () => {
   };
 
   return (
-    <Box 
-  borderWidth="20px"
-  borderLeftWidth="20px"
-  borderRightWidth="20px"
-  solid
-  borderColor="gray.500"
-  display="flex"
-  flexDirection={{ base: "column", md: "row" }}
-  alignItems="center"
-  justifyContent="center"
-  paddingBlockEnd="1rem"
-  height={{base:"100vh", md:"100vh"}}
-  backgroundColor="gray.200"
-  
->
-
-  <Box
-    p="6"
-    width={{ base: "90%", md: "100%" }}
-    mx="auto"
-    marginTop={{ base: "8rem", md: "6rem" }}
-    marginLeft={{ base: "1rem", md: "1rem" }}
-    backgroundColor= "gray.300"
-    borderRadius={{ base: "5%", md: "5%" }}
-    
-  >
-    
-        <Flex fontWeight="bold" fontSize={{ base: "15px", md: "18px" }} >
-          <Box marginLeft={{ base: "1rem", md: "3rem" }}>
+    <Box
+      style={{
+        backgroundImage: `url(${tarjeta})`,
+        backgroundSize: "cover",
+        backgroundRepeat: "no-repeat",
+        backgroundPosition: "center top",
+        width: "100%",
+        minHeight: "100vh",
+      }}
+    >
+      <Box
+        position="absolute"
+        top="50%"
+        left="50%"
+        transform="translate(-50%, -50%)"
+        width={{ base: "90%", md: "50%" }}
+      >
+        <Flex fontWeight="bold" fontSize={{ base: "15px", md: "18px" }}>
+          <Box alignItems="center" justifyContent="center">
             {isAuthenticated ? <Text> {user.name} </Text> : null}
           </Box>
 
-          <Box marginLeft={{ base: "3rem", md: "9rem" }}>
-            <Text> Total a Pagar: ${totalEfectivo} </Text>
+          <Box
+            margin="auto"
+            padding="1rem"
+            backgroundColor="rgba(255, 255, 255, 0.8)"
+            borderRadius="10px"
+            boxShadow="0 0 10px rgba(0, 0, 0, 0.1)"
+            border="solid 4px darkRed"
+          >
+            <Text fontSize={{ base: "18px", md: "20px" }} fontWeight="bold">
+              Total a Pagar: ${totalEfectivo}
+            </Text>
           </Box>
         </Flex>
 
         <form onSubmit={handleSubmit}>
-          <FormControl marginTop="3rem">
+          <FormControl
+            marginTop="3rem"
+            border="solid 4px darkRed"
+            marginBottom="2rem"
+          >
             <CardElement
               options={{
                 style: {
@@ -160,36 +164,17 @@ const CheckoutForm = () => {
             type="submit"
             colorScheme="orange"
             disabled={!stripe}
-           
-            marginTop={{base:"3rem", md:"8rem"}}
-            width={{ base: "100%", md: "100%" }}
-            
+            marginTop={{ base: "5rem", md: "8rem" }}
+            display="flex"
+            justifyContent="center"
+            margin="auto"
+            width="50%"
           >
             {loading ? <BarLoader /> : <Text>Comprar</Text>}
           </Button>
         </form>
-        
       </Box>
-      
-      <Box maxWidth="40%" marginTop={{ base: "1rem", md: "0" }}>
-      <Player 
-        src= 'https://assets2.lottiefiles.com/packages/lf20_tsmRqX.json'
-        className="player"
-        loop
-        autoplay
-      />
-      </Box>
-      <Box maxWidth="40%" marginTop={{ base: "-1rem", md: "0" }} paddingBlockEnd={{base:"2rem", md:"0"}}>
-      <Player 
-        src= 'https://assets2.lottiefiles.com/packages/lf20_cdHr9R.json'
-        className="player"
-        loop
-        autoplay
-      />
-      </Box>
-     <br /><br /><br /> <br /> 
-  </Box>
-   
+    </Box>
   );
 };
 
