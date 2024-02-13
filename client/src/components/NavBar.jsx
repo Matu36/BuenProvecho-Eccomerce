@@ -125,7 +125,7 @@ export default function NavBar({
             </Badge>
           )}
         </Link>
-        <Box marginTop={{ base: "1rem", md: "0" }} marginRight="1rem">
+        <Box marginTop={{ base: "2rem", md: "0" }} marginRight="1rem">
           <AuthButton />
         </Box>
       </Flex>

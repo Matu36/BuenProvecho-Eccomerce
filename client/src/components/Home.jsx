@@ -27,6 +27,7 @@ import { Link } from "react-router-dom";
 import SliderCarrousel from "./SliderCarrousel";
 import appetizer from "../img/Appetizers.png";
 import Carta from "./Carta";
+import AvisoLogin from "./AvisoLogin";
 
 export default function Home() {
   let currentUser = JSON.parse(localStorage.getItem("user"));
@@ -145,6 +146,7 @@ export default function Home() {
 
   return (
     <Box backgroundColor="black">
+      <AvisoLogin />
       {/* <Box>
         <NavBar2 />
       </Box> */}
@@ -205,6 +207,7 @@ export default function Home() {
             </ul>
           </Box>
         </Box>
+
         <Box zIndex="1500">
           {showAbout && (
             <About
@@ -291,14 +294,14 @@ export default function Home() {
         ))}
       </Box>
 
-      <Box width={{ base: "100%", md: "80%" }}>
+      {/* <Box width={{ base: "100%", md: "80%" }}>
         <Box
           display="flex"
           justifyContent="center"
           alignItems="center"
           margin="0 auto"
         ></Box>
-      </Box>
+      </Box> */}
       <div className="appetizers">
         <img src={appetizer} alt="" />
       </div>

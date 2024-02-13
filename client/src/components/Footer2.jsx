@@ -28,7 +28,7 @@ const Footer2 = () => {
       <Box
         flex="1"
         width={{ base: "100%", md: "auto" }}
-        marginLeft={{ base: "0", md: "13rem" }}
+        marginLeft={{ base: "0", md: "10rem" }}
       >
         <Box width="100%">
           <Box
@@ -46,7 +46,7 @@ const Footer2 = () => {
         <Box width="100%">
           <Box display="flex" alignItems="center" justifyContent="center">
             <IconButton
-              display={{ base: "none", md: "inline-flex" }}
+              display="inline-flex"
               as="a"
               href="https://maps.google.com/"
               target="_blank"
@@ -75,7 +75,7 @@ const Footer2 = () => {
         <Box width="100%">
           <Box display="flex" alignItems="center" justifyContent="center">
             <IconButton
-              display={{ base: "none", md: "inline-flex" }}
+              display="inline-flex"
               as="a"
               href="https://www.facebook.com/"
               target="_blank"
@@ -95,15 +95,13 @@ const Footer2 = () => {
         display="flex"
         alignItems="center"
         justifyContent="center"
-        marginTop={{ base: "1rem", md: 0 }}
+        marginTop={{ base: "2rem", md: 0 }}
       >
         <img
+          className="footerImage"
           src={apetit}
-          alt=""
-          style={{
-            maxWidth: "50%",
-            borderRadius: "15px",
-          }}
+          alt="imagen"
+          style={{ borderRadius: "15px" }}
         />
       </Box>
     </Box>

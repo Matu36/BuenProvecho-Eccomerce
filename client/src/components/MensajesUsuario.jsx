@@ -74,7 +74,11 @@ export default function MensajesUsuario() {
         backgroundColor="red.900"
         opacity="0.9"
       >
-        <VStack spacing={4} width="100%">
+        <VStack
+          spacing={4}
+          width={{ base: "450px", md: "600px" }}
+          maxW={{ base: "100%", md: "600px" }}
+        >
           <FormControl>
             <FormLabel>Nombre</FormLabel>
             <Input

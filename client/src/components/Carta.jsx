@@ -51,6 +51,7 @@ const Carta = ({ handleCerrarCarta }) => {
                 fontSize="xl"
                 display="flex"
                 marginLeft="1rem"
+                fontFamily="perma"
               >
                 {categoria}
               </Text>
@@ -60,6 +61,7 @@ const Carta = ({ handleCerrarCarta }) => {
                     key={item.Nombre}
                     display="flex"
                     justifyContent="space-between"
+                    fontFamily="perma"
                   >
                     <Text color="white" marginLeft="1rem">
                       {item.Nombre}
