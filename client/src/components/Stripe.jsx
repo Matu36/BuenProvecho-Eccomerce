@@ -7,7 +7,7 @@ import {
   useElements,
 } from "@stripe/react-stripe-js";
 import tarjeta from "../img/tarjeta1.png";
-
+import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { BarLoader } from "react-spinners";
 import "./styles.css";
@@ -16,8 +16,7 @@ import Swal from "sweetalert2";
 import { useDispatch, useSelector } from "react-redux";
 import { getUsers } from "../Redux/actions";
 import { useAuth0 } from "@auth0/auth0-react";
-
-import { Player } from "@lottiefiles/react-lottie-player";
+import { TiArrowBack } from "react-icons/ti";
 
 /* Ir a la pagina de stripe, crear cuenta;  ir de la pestaña desarroladres, claves Api (Esto
 es para la fase de desarrollo; para la fase de producción hay que activar cuenta)
@@ -32,6 +31,12 @@ const CheckoutForm = () => {
   const stripe = useStripe(); //Llamos a la conexion de stripe
   const Elements = useElements(); //con esto manipulamos lo que viene de strip
   const [loading, setLoading] = useState(false);
+
+  const navigate = useNavigate();
+
+  const handleGoBack = () => {
+    navigate(-1);
+  };
 
   const { user, isAuthenticated } = useAuth0();
 
@@ -118,6 +123,17 @@ const CheckoutForm = () => {
         minHeight: "100vh",
       }}
     >
+      <Link to="#" onClick={handleGoBack}>
+        <Box
+          position="absolute"
+          top="5"
+          left="8"
+          fontSize="30px"
+          color="darkred"
+        >
+          <TiArrowBack />
+        </Box>
+      </Link>
       <Box
         position="absolute"
         top="50%"
@@ -125,11 +141,14 @@ const CheckoutForm = () => {
         transform="translate(-50%, -50%)"
         width={{ base: "90%", md: "50%" }}
       >
-        <Flex fontWeight="bold" fontSize={{ base: "15px", md: "18px" }}>
-          <Box alignItems="center" justifyContent="center">
-            {isAuthenticated ? <Text> {user.name} </Text> : null}
-          </Box>
+        {isAuthenticated ? (
+          <>
+            <Text color="white">Gourmet</Text>
+            <Text color="white">{user.name}</Text>
+          </>
+        ) : null}
 
+        <Flex fontWeight="bold" fontSize={{ base: "15px", md: "18px" }}>
           <Box
             margin="auto"
             padding="1rem"

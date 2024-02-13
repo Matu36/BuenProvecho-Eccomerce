@@ -5,6 +5,8 @@ import { getUsers } from "../../Redux/actions";
 import { useAuth0 } from "@auth0/auth0-react";
 import mercadopagoimg from "../../img/MercadoPago_Logo.png";
 import axios from "axios";
+import { TiArrowBack } from "react-icons/ti";
+import { Link, useNavigate } from "react-router-dom";
 
 /*
 Primero crear una aplicacion en MercadoPago, luego ir a esta pagina https://www.mercadopago.com.ar/developers/panel/app;
@@ -21,6 +23,11 @@ const CheckoutMP = () => {
     dispatch(getUsers(user));
   }, [user]);
 
+  const navigate = useNavigate();
+
+  const handleGoBack = () => {
+    navigate(-1);
+  };
   const carro = useSelector((state) => state.cart);
 
   //Suma los precios de todos los productos del carrito
@@ -43,6 +50,17 @@ const CheckoutMP = () => {
       backgroundColor="black"
       minHeight="100vh"
     >
+      <Link to="#" onClick={handleGoBack}>
+        <Box
+          position="absolute"
+          top="5"
+          left="8"
+          fontSize="30px"
+          color="darkred"
+        >
+          <TiArrowBack />
+        </Box>
+      </Link>
       <Box maxWidth={{ md: "100%" }} display="flex" justifyContent="center">
         <Image src={mercadopagoimg} width={{ base: "80%", md: "100%" }}></Image>
       </Box>
@@ -101,7 +119,7 @@ const CheckoutMP = () => {
               {isAuthenticated ? (
                 <Text fontSize="16px" color="gray.600" fontWeight="bold">
                   {" "}
-                  Cliente: {user.name}{" "}
+                  Gourmet: {user.name}{" "}
                 </Text>
               ) : null}
 

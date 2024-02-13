@@ -23,9 +23,10 @@ const BotonMP = () => {
       {isAuthenticated ? (
         <Link to="/CheckoutMP">
           <Button
-            fontSize={{ base: "9px", md: "18px" }}
+            fontSize="18px"
             backgroundColor="#009ee3"
             color="#fff"
+            maxW={{ base: "90%", md: "90%" }}
             _hover={{ backgroundColor: "#0077b3" }}
           >
             Pagar con MercadoPago
@@ -34,9 +35,10 @@ const BotonMP = () => {
       ) : (
         <Button
           onClick={sinLoguear}
-          fontSize={{ base: "9px", md: "18px" }}
+          fontSize="18px"
           backgroundColor="#009ee3"
           color="#fff"
+          maxW={{ base: "90%", md: "90%" }}
           _hover={{ backgroundColor: "#0077b3" }}
         >
           Pagar con MercadoPago

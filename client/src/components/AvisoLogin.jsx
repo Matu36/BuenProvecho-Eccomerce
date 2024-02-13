@@ -3,19 +3,25 @@ import chef from "../img/CHEFICONO.png";
 import { useAuth0 } from "@auth0/auth0-react";
 
 export default function AvisoLogin() {
-  const [visible, setVisible] = useState(true);
-
+  const [visible, setVisible] = useState(false);
   const { user, isAuthenticated } = useAuth0();
 
   useEffect(() => {
-    const timeout = setTimeout(() => {
+    const hasBeenShown = localStorage.getItem("avisoShown");
+
+    if (!hasBeenShown) {
+      const timeout = setTimeout(() => {
+        setVisible(false);
+        localStorage.setItem("avisoShown", "true");
+      }, 5000);
+
+      return () => clearTimeout(timeout);
+    } else {
       setVisible(false);
-    }, 5000);
+    }
+  }, [user]);
 
-    return () => clearTimeout(timeout);
-  }, []);
-
-  return visible ? (
+  return isAuthenticated && visible ? (
     <div className="aviso-login show">
       <img src={chef} className="imagenAviso" alt="" />
       <div className="textoCentrado">
