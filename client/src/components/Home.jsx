@@ -294,14 +294,14 @@ export default function Home() {
         ))}
       </Box>
 
-      {/* <Box width={{ base: "100%", md: "80%" }}>
+      <Box width={{ base: "100%", md: "80%" }}>
         <Box
           display="flex"
           justifyContent="center"
           alignItems="center"
           margin="0 auto"
         ></Box>
-      </Box> */}
+      </Box>
       <div className="appetizers">
         <img src={appetizer} alt="" />
       </div>
