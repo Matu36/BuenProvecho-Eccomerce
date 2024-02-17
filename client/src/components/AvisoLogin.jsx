@@ -11,13 +11,7 @@ export default function AvisoLogin() {
 
     if (isAuthenticated && !hasBeenShown) {
       setVisible(true);
-
-      const timeout = setTimeout(() => {
-        setVisible(false);
-        localStorage.setItem("avisoShown", "true");
-      }, 5000);
-
-      return () => clearTimeout(timeout);
+      localStorage.setItem("avisoShown", "true");
     }
   }, [isAuthenticated]);
 
