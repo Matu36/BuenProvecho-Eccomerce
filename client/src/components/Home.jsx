@@ -6,6 +6,7 @@ import {
   InputGroup,
   InputLeftElement,
   Button,
+  useStatStyles,
 } from "@chakra-ui/react";
 import { SearchIcon } from "@chakra-ui/icons";
 import NavBar from "./NavBar";
@@ -35,6 +36,13 @@ export default function Home() {
   useEffect(() => {
     dispatch(getUsers(currentUser));
   }, []);
+
+  const [showAvisoLogin, setShowAvisoLogin] = useState(false);
+
+  if (currentUser) {
+    // Mostrar AvisoLogin solo si hay información del usuario en localStorage
+    setShowAvisoLogin(true);
+  }
 
   //RENDERIZADO DE CARTA EN EL FILTRO DE CATEGORIA
   const [products, setProducts] = useState([]);
@@ -146,7 +154,7 @@ export default function Home() {
 
   return (
     <Box backgroundColor="black">
-      <AvisoLogin />
+      {showAvisoLogin && <AvisoLogin />}
       {/* <Box>
         <NavBar2 />
       </Box> */}
