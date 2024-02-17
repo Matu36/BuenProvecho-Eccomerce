@@ -17,7 +17,7 @@ export const Auth0ProviderConfig = {
   domain: auth0Domain,
   clientId: auth0Client,
 
-  redirectUri: `https://buenprovecho.vercel.app/`,
+  redirectUri: `https://buenprovecho.vercel.app/Logued/`,
 };
 //https://buenprovecho.vercel.app/ => dominio
 
@@ -29,7 +29,7 @@ function App() {
         <Route exact path={"/"} element={<NavBar />} />
         <Route exact path={"/Scart"} element={<ShoppingCart />} />
         <Route exact path={"/admin"} element={<AppAdmin />} />
-        {/* <Route exact path={"/Logued"} element= {<LoginUser/>} /> */}
+        <Route exact path={"/Logued"} element={<LoginUser />} />
         <Route exact path={"/Checkout"} element={<Stripe />} />
         <Route exact path={"/CheckoutMP"} element={<CheckoutMP />} />
         <Route exact path={"/Carta"} element={<Carta />} />

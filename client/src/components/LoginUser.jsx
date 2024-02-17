@@ -21,59 +21,20 @@ export default function LoggedInPage() {
     dispatch(getUsers(user));
   }, [user]);
 
-  // Esperar 5 segundos antes de redirigir
+  // Esperar 4 segundos antes de redirigir
   setTimeout(() => {
     navigate("/");
   }, 4000);
 
   return (
     isAuthenticated && (
-      <Box background="gray.500" height="100vh">
-        <Flex justifyContent="center" alignItems="center">
-          <Box
-            textAlign="center"
-            marginTop={{ base: "10rem", md: "10rem" }}
-            border="solid 1px gray"
-            borderRadius="5%"
-            padding={{ base: "5px", md: "25px" }}
-            alignItems="center"
-          >
-            <Image
-              src={chef}
-              mx="auto"
-              height="100px"
-              width="100px"
-              borderRadius="50%"
-              alignItems="center"
-            ></Image>
-            <br />
-            <Text
-              fontSize={{ base: "1.5rem", md: "2xl" }}
-              color="white"
-              fontWeight="bold"
-              mb={4}
-              fontFamily="unset"
-              alignItems="center"
-            >
-              Bienvenido {user.name}
-            </Text>
-          </Box>
-        </Flex>
-        <br />
-        <div className="TituloLoguin">
-          <h1>Buen Provecho!</h1>
+      <div className="aviso-login show">
+        <img src={chef} className="imagenAviso" alt="" />
+        <div className="textoCentrado">
+          <p>Bienvenido!</p>
+          {user && <p>{user.name}</p>}
         </div>
-        <Box
-          sx={{
-            position: "fixed",
-            bottom: "5rem",
-            right: { base: "4rem", md: "11rem" },
-          }}
-        >
-          <BarLoader color={"white"} loading={true} height={10} />
-        </Box>
-        <Box display={{ base: "flex", md: "none" }} marginTop="4rem"></Box>
-      </Box>
+      </div>
     )
   );
 }

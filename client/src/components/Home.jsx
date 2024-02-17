@@ -28,31 +28,13 @@ import { Link } from "react-router-dom";
 import SliderCarrousel from "./SliderCarrousel";
 import appetizer from "../img/Appetizers.png";
 import Carta from "./Carta";
-import AvisoLogin from "./AvisoLogin";
+import LoginUser from "../components/LoginUser";
 
 export default function Home() {
   let currentUser = JSON.parse(localStorage.getItem("user"));
 
   useEffect(() => {
     dispatch(getUsers(currentUser));
-  }, []);
-
-  const [showAvisoLogin, setShowAvisoLogin] = useState(false);
-
-  useEffect(() => {
-    const currentUser = JSON.parse(localStorage.getItem("user"));
-
-    if (currentUser) {
-      setShowAvisoLogin(true);
-
-      const timeoutId = setTimeout(() => {
-        setShowAvisoLogin(false);
-      }, 5000);
-
-      return () => {
-        clearTimeout(timeoutId);
-      };
-    }
   }, []);
 
   //RENDERIZADO DE CARTA EN EL FILTRO DE CATEGORIA
@@ -165,7 +147,7 @@ export default function Home() {
 
   return (
     <Box backgroundColor="black">
-      {showAvisoLogin && <AvisoLogin />}
+      <LoginUser />
       {/* <Box>
         <NavBar2 />
       </Box> */}
