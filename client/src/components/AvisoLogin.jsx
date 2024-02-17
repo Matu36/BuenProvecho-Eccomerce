@@ -9,13 +9,19 @@ export default function AvisoLogin() {
   useEffect(() => {
     const hasBeenShown = localStorage.getItem("avisoShown");
 
-    if (isAuthenticated && !hasBeenShown) {
-      setVisible(true);
-      localStorage.setItem("avisoShown", "true");
-    }
-  }, [isAuthenticated]);
+    if (!hasBeenShown) {
+      const timeout = setTimeout(() => {
+        setVisible(false);
+        localStorage.setItem("avisoShown", "true");
+      }, 5000);
 
-  return visible ? (
+      return () => clearTimeout(timeout);
+    } else {
+      setVisible(false);
+    }
+  }, [user]);
+
+  return isAuthenticated && visible ? (
     <div className="aviso-login show">
       <img src={chef} className="imagenAviso" alt="" />
       <div className="textoCentrado">
