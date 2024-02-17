@@ -111,22 +111,29 @@ button {
   color:brown
 }
 
+.contain {
+  background-color: black;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh; 
+}
+
 .aviso-login {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+
   padding: 20px;
   background-color: darkred; 
   color: white;
   border-radius: 5px;
   opacity: 0;
-  animation: fade-in 2.5s ease-in-out forwards; /* Ajusta la duración */
-z-index: 2500;
+  animation: fade-in 2.5s ease-in-out forwards;
+  z-index: 2500;
   font-size: large;
   border-radius: 15px;
-  
 }
+
+/* Resto de los estilos... */
+
 
 /* Definir la animación */
 @keyframes fade-in {
@@ -154,8 +161,8 @@ z-index: 2500;
 
 @media screen and (max-width: 577px) {
   .imagenAviso {
-    width: 500px; 
-    height: 200px; 
+    width: 350px; 
+    height: 350px; 
   }
 }
 

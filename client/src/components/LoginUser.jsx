@@ -27,7 +27,8 @@ export default function LoggedInPage() {
   }, 4000);
 
   return (
-    isAuthenticated && (
+    // isAuthenticated && (
+    <div className="contain">
       <div className="aviso-login show">
         <img src={chef} className="imagenAviso" alt="" />
         <div className="textoCentrado">
@@ -36,6 +37,7 @@ export default function LoggedInPage() {
           <BarLoader color={"white"} loading={true} height={10} />
         </div>
       </div>
-    )
+    </div>
   );
+  // );
 }
