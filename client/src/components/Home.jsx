@@ -40,19 +40,28 @@ export default function Home() {
   const [showAvisoLogin, setShowAvisoLogin] = useState(false);
 
   useEffect(() => {
-    const currentUser = JSON.parse(localStorage.getItem("user"));
+    const waitAndCheckUser = async () => {
+      // Esperar 2 segundos antes de verificar el localStorage
+      await new Promise((resolve) => setTimeout(resolve, 2000));
 
-    if (currentUser) {
-      setShowAvisoLogin(true);
+      const currentUser = JSON.parse(localStorage.getItem("user"));
 
-      const timeoutId = setTimeout(() => {
-        setShowAvisoLogin(false);
-      }, 5000);
+      if (currentUser) {
+        setShowAvisoLogin(true);
 
-      return () => {
-        clearTimeout(timeoutId);
-      };
-    }
+        // Después de 5 segundos, ocultar el aviso
+        const timeoutId = setTimeout(() => {
+          setShowAvisoLogin(false);
+        }, 5000);
+
+        return () => {
+          // Limpiar el temporizador si el componente se desmonta antes de que pasen 5 segundos
+          clearTimeout(timeoutId);
+        };
+      }
+    };
+
+    waitAndCheckUser();
   }, []);
 
   //RENDERIZADO DE CARTA EN EL FILTRO DE CATEGORIA
