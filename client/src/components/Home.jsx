@@ -37,12 +37,23 @@ export default function Home() {
     dispatch(getUsers(currentUser));
   }, []);
 
-  // const [showAvisoLogin, setShowAvisoLogin] = useState(false);
+  const [showAvisoLogin, setShowAvisoLogin] = useState(false);
 
-  // if (currentUser) {
-  //   // Mostrar AvisoLogin solo si hay información del usuario en localStorage
-  //   setShowAvisoLogin(true);
-  // }
+  useEffect(() => {
+    const currentUser = JSON.parse(localStorage.getItem("user"));
+
+    if (currentUser) {
+      setShowAvisoLogin(true);
+
+      const timeoutId = setTimeout(() => {
+        setShowAvisoLogin(false);
+      }, 5000);
+
+      return () => {
+        clearTimeout(timeoutId);
+      };
+    }
+  }, []);
 
   //RENDERIZADO DE CARTA EN EL FILTRO DE CATEGORIA
   const [products, setProducts] = useState([]);
@@ -154,7 +165,7 @@ export default function Home() {
 
   return (
     <Box backgroundColor="black">
-      {/* {showAvisoLogin && <AvisoLogin />} */}
+      {showAvisoLogin && <AvisoLogin />}
       {/* <Box>
         <NavBar2 />
       </Box> */}
