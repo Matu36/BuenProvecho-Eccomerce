@@ -21,7 +21,7 @@ export default function LoggedInPage() {
     dispatch(getUsers(user));
   }, [user]);
 
-  // Esperar 4 segundos antes de redirigir
+  // Esperar 5 segundos antes de redirigir
   setTimeout(() => {
     navigate("/");
   }, 4000);
@@ -34,6 +34,7 @@ export default function LoggedInPage() {
           <p>Bienvenido!</p>
           {user && <p>{user.name}</p>}
         </div>
+        <BarLoader />
       </div>
     )
   );

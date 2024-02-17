@@ -28,7 +28,6 @@ import { Link } from "react-router-dom";
 import SliderCarrousel from "./SliderCarrousel";
 import appetizer from "../img/Appetizers.png";
 import Carta from "./Carta";
-import LoginUser from "../components/LoginUser";
 
 export default function Home() {
   let currentUser = JSON.parse(localStorage.getItem("user"));
@@ -147,7 +146,6 @@ export default function Home() {
 
   return (
     <Box backgroundColor="black">
-      <LoginUser />
       {/* <Box>
         <NavBar2 />
       </Box> */}
