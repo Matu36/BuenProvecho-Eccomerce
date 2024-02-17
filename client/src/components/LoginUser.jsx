@@ -4,7 +4,7 @@ import { useAuth0 } from "@auth0/auth0-react";
 import { Box, Text, Image, Flex } from "@chakra-ui/react";
 import { getUsers } from "../Redux/actions";
 import { useDispatch } from "react-redux";
-import chef from "../img/chef.jpg";
+import chef from "../img/CHEFICONO.png";
 import { BarLoader } from "react-spinners";
 import "./styles.css";
 
@@ -21,7 +21,7 @@ export default function LoggedInPage() {
     dispatch(getUsers(user));
   }, [user]);
 
-  // Esperar 5 segundos antes de redirigir
+  // Esperar 4 segundos antes de redirigir
   setTimeout(() => {
     navigate("/");
   }, 4000);
@@ -33,8 +33,8 @@ export default function LoggedInPage() {
         <div className="textoCentrado">
           <p>Bienvenido!</p>
           {user && <p>{user.name}</p>}
+          <BarLoader color={"white"} loading={true} height={10} />
         </div>
-        <BarLoader />
       </div>
     )
   );
