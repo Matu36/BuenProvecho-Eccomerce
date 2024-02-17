@@ -205,7 +205,7 @@ export default function ShoppingCart() {
                   Te podés loguear aca{" "}
                 </Text>
                 <br />
-                <Box marginLeft={{ base: "2.5rem", md: "5rem" }}>
+                <Box marginLeft={{ base: "4.5rem", md: "5rem" }}>
                   <AuthButton />
                 </Box>
               </>

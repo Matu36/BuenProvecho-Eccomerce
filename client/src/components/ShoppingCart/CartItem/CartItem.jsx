@@ -25,14 +25,14 @@ export default function CartItem({ data, delFromCart }) {
         direction={{ base: "column", md: "row" }}
       >
         <Box
-          maxW={{ base: "50%", md: "30%" }}
-          height={{ base: "50px", md: "150px" }}
-          marginTop={{ base: "1rem", md: "1.5rem" }}
+          maxW={{ base: "60%", md: "30%" }}
+          height={{ base: "120px", md: "150px" }}
+          marginTop={{ base: "3rem", md: "1.5rem" }}
           marginBottom={{ base: "2rem", md: "0" }}
         >
           <Image
-            marginLeft={{ base: "0.5rem", md: "1rem" }}
-            boxSize={{ base: "70px", md: "150px" }}
+            marginLeft={{ base: "3rem", md: "1rem" }}
+            boxSize={{ base: "150px", md: "150px" }}
             objectFit="cover"
             src={Imagen}
             border="solid 4px darkRed"
@@ -47,7 +47,7 @@ export default function CartItem({ data, delFromCart }) {
           <Box display="flex" justifyContent="flex-end">
             <Button
               onClick={() => delFromCart(id, true)}
-              marginTop={{ base: "-6rem", md: "0" }}
+              marginTop={{ base: "-12rem", md: "0" }}
               background="none"
               _hover={{ background: "none", color: "white" }}
               fontSize="24px"
@@ -56,25 +56,28 @@ export default function CartItem({ data, delFromCart }) {
             </Button>
           </Box>
 
-          <Box marginTop={{ base: "0rem", md: "-1rem" }}>
+          <Box
+            marginTop={{ base: "0rem", md: "-1rem" }}
+            marginLeft={{ base: "3rem" }}
+          >
             <Text
               fontSize="1xl"
               fontWeight="bold"
               mb={1}
               mx={2}
-              marginLeft={{ base: "1rem", md: "2rem" }}
+              marginLeft={{ base: "0rem", md: "2rem" }}
+              sx={{ textDecoration: "underline" }}
             >
               {" "}
               {Nombre}{" "}
             </Text>
             <br />
             <br />
-
             <Box
               display={{ base: "block", md: "flex" }}
               mx={{ base: 0, md: 2 }}
               ml={{ base: 0, md: 4 }}
-              mt={{ base: -10, md: 0 }}
+              mt={{ base: -6, md: 0 }}
             >
               <Text fontSize="1xl" fontWeight="bold" mx={5}>
                 {" "}
