@@ -27,17 +27,17 @@ export default function LoggedInPage() {
   }, 4000);
 
   return (
-    // isAuthenticated && (
-    <div className="contain">
-      <div className="aviso-login show">
-        <img src={chef} className="imagenAviso" alt="" />
-        <div className="textoCentrado">
-          <p>Bienvenido!</p>
-          {user && <p>{user.name}</p>}
-          <BarLoader color={"white"} loading={true} height={10} />
+    isAuthenticated && (
+      <div className="contain">
+        <div className="aviso-login show">
+          <img src={chef} className="imagenAviso" alt="" />
+          <div className="textoCentrado">
+            <p>Bienvenido!</p>
+            {user && <p>{user.name}</p>}
+            <BarLoader color={"white"} loading={true} height={10} />
+          </div>
         </div>
       </div>
-    </div>
+    )
   );
-  // );
 }
