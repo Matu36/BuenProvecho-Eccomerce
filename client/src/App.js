@@ -33,6 +33,8 @@ function App() {
     dispatch(getUsers(user));
   }, [user]);
 
+  console.log(user);
+
   return (
     <Auth0Provider {...Auth0ProviderConfig}>
       <Routes>

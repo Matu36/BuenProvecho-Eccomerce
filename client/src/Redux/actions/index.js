@@ -81,8 +81,6 @@ export const deleteComida = (id) => async (dispatch) => {
 };
 
 export const getUsers = (currentUser) => {
-  console.log("Usuario", currentUser);
-
   return (dispatch) =>
     axios
       .get(
