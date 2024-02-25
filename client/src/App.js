@@ -9,6 +9,7 @@ import LoginUser from "../src/components/LoginUser";
 import Stripe from "../src/components/Stripe";
 import CheckoutMP from "./components/MercadoPago/CheckoutMP";
 import Carta from "./components/Carta";
+import Error from "../src/components/Error";
 
 const auth0Domain = process.env.REACT_APP_AUTH0_DOMAIN;
 const auth0Client = process.env.REACT_APP_AUTH0_CLIENT;
@@ -21,9 +22,6 @@ export const Auth0ProviderConfig = {
 
 function AuthenticatedApp() {
   const { isAuthenticated, user } = useAuth0();
-
-  console.log(isAuthenticated);
-  console.log(user);
 
   // Resto del componente
   return (
@@ -45,6 +43,7 @@ function AuthenticatedApp() {
       <Route path={"/Checkout"} element={<Stripe />} />
       <Route path={"/CheckoutMP"} element={<CheckoutMP />} />
       <Route path={"/Carta"} element={<Carta />} />
+      <Route path={"*"} element={<Error />} />
     </Routes>
   );
 }

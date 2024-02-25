@@ -34,6 +34,7 @@ export default function LoggedInPage() {
           <div className="textoCentrado">
             <p>Bienvenido!</p>
             {user && <p>{user.name}</p>}
+            <br />
             <BarLoader color={"white"} loading={true} height={10} />
           </div>
         </div>
