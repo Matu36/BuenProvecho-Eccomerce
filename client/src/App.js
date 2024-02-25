@@ -31,8 +31,10 @@ function App() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(getUsers(user));
-  }, [user]);
+    if (isAuthenticated && user) {
+      dispatch(getUsers(user));
+    }
+  }, [isAuthenticated, user]);
 
   const email = user?.email;
 
