@@ -27,7 +27,7 @@ function App() {
 
   console.log(isAuthenticated);
   console.log(user);
-  console.log(user.email);
+  console.log(user?.email);
   return (
     <Auth0Provider {...Auth0ProviderConfig}>
       <Routes>
