@@ -28,10 +28,22 @@ function App() {
   const [usuarioLocalStorage, setUsuarioLocalStorage] = useState(null);
 
   useEffect(() => {
-    const obtenerUsuarioLocalStorage = () => {
-      const usuarioGuardado = JSON.parse(localStorage.getItem("user"));
-      setUsuarioLocalStorage(usuarioGuardado);
-      console.log(usuarioGuardado);
+    const obtenerUsuarioLocalStorage = async () => {
+      let intentos = 0;
+      const maxIntentos = 5;
+      const intervaloTiempo = 500;
+
+      while (intentos < maxIntentos) {
+        const usuarioGuardado = JSON.parse(localStorage.getItem("user"));
+        if (usuarioGuardado) {
+          setUsuarioLocalStorage(usuarioGuardado);
+          console.log(usuarioGuardado);
+          break;
+        }
+
+        await new Promise((resolve) => setTimeout(resolve, intervaloTiempo));
+        intentos++;
+      }
     };
 
     obtenerUsuarioLocalStorage();
