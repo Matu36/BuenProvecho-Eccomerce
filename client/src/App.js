@@ -28,6 +28,12 @@ function App() {
   const condicionAdicionalCumplida =
     usuarioLocalStorage?.email === "matipineda857@gmail.com";
 
+  // Verifica que el usuario esté disponible antes de usar su email
+  if (usuarioLocalStorage) {
+    console.log("user:", usuarioLocalStorage);
+    // Realiza acciones adicionales con el usuario según sea necesario
+  }
+
   return (
     <Auth0Provider {...Auth0ProviderConfig}>
       <Routes>
