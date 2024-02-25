@@ -34,6 +34,7 @@ function App() {
   }, [user]);
 
   console.log(user?.email);
+  console.log(user);
 
   return (
     <Auth0Provider {...Auth0ProviderConfig}>
