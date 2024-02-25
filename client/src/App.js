@@ -32,12 +32,17 @@ function App() {
   const userFromLogin = location?.state?.user; // Obtener el usuario desde la ubicación
 
   useEffect(() => {
+    console.log("isAuthenticated:", isAuthenticated);
+    console.log("userFromLogin:", userFromLogin);
     if (userFromLogin) {
       dispatch(getUsers(userFromLogin));
     }
-  }, [userFromLogin, dispatch]);
+  }, [userFromLogin, dispatch, isAuthenticated]);
 
   const email = userFromLogin?.email;
+
+  console.log("Usuario desde ubicación:", userFromLogin);
+  console.log("Email:", email);
 
   console.log(userFromLogin);
   console.log(email);
