@@ -1,5 +1,5 @@
 import "./App.css";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Routes, Route, Navigate } from "react-router-dom";
 import NavBar from "./components/NavBar";
 import Home from "./components/Home";
@@ -25,12 +25,17 @@ export const Auth0ProviderConfig = {
 
 function App() {
   const { isAuthenticated } = useAuth0();
-  const usuarioLocalStorage = JSON.parse(localStorage.getItem("user"));
-  const condicionAdicionalCumplida =
-    usuarioLocalStorage?.email === "matipineda857@gmail.com";
+  const [usuarioLocalStorage, setUsuarioLocalStorage] = useState(null);
 
-  console.log(usuarioLocalStorage);
-  console.log(condicionAdicionalCumplida);
+  useEffect(() => {
+    const obtenerUsuarioLocalStorage = () => {
+      const usuarioGuardado = JSON.parse(localStorage.getItem("user"));
+      setUsuarioLocalStorage(usuarioGuardado);
+      console.log(usuarioGuardado);
+    };
+
+    obtenerUsuarioLocalStorage();
+  }, []);
 
   return (
     <Auth0Provider {...Auth0ProviderConfig}>
@@ -41,7 +46,8 @@ function App() {
         <Route
           path="/admin"
           element={
-            isAuthenticated && condicionAdicionalCumplida ? (
+            isAuthenticated &&
+            usuarioLocalStorage?.email === "matipineda857@gmail.com" ? (
               <AppAdmin />
             ) : (
               <Navigate to="/" />
