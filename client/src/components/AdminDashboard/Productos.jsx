@@ -343,7 +343,7 @@ export default function Productos() {
                                 marginTop: "-1.5rem",
                               }}
                             >
-                              <button
+                              {/* <button
                                 className="btn"
                                 title="Agregar a Ofertas"
                                 onClick={() =>
@@ -351,7 +351,7 @@ export default function Productos() {
                                 }
                               >
                                 <GoSmiley />
-                              </button>
+                              </button> */}
                             </div>
                           </Box>
                         )}
