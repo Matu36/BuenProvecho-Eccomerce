@@ -9,6 +9,7 @@ import LoginUser from "../src/components/LoginUser";
 import Stripe from "../src/components/Stripe";
 import CheckoutMP from "./components/MercadoPago/CheckoutMP";
 import Carta from "./components/Carta";
+import AdminRoute from "../src/components/AdminDashboard/AdminRoute";
 
 const auth0Domain = process.env.REACT_APP_AUTH0_DOMAIN;
 const auth0Client = process.env.REACT_APP_AUTH0_CLIENT;
@@ -28,7 +29,7 @@ function App() {
         <Route exact path={"/"} element={<Home />} />
         <Route exact path={"/"} element={<NavBar />} />
         <Route exact path={"/Scart"} element={<ShoppingCart />} />
-        <Route exact path={"/admin"} element={<AppAdmin />} />
+        <AdminRoute path="/admin" element={<AppAdmin />} />
         <Route exact path={"/Logued"} element={<LoginUser />} />
         <Route exact path={"/Checkout"} element={<Stripe />} />
         <Route exact path={"/CheckoutMP"} element={<CheckoutMP />} />
