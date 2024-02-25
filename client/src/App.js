@@ -1,6 +1,6 @@
 import "./App.css";
 import React, { useEffect } from "react";
-import { Routes, Route, Navigate } from "react-router-dom";
+import { Routes, Route, Navigate, useLocation } from "react-router-dom";
 import NavBar from "./components/NavBar";
 import Home from "./components/Home";
 import ShoppingCart from "../src/components/ShoppingCart/ShoppingCart/ShoppingCart";
@@ -26,19 +26,20 @@ export const Auth0ProviderConfig = {
 //https://buenprovecho.vercel.app/ => dominio
 
 function App() {
-  const { isAuthenticated, user } = useAuth0();
-
+  const location = useLocation();
+  const { isAuthenticated } = useAuth0();
   const dispatch = useDispatch();
+  const userFromLogin = location?.state?.user; // Obtener el usuario desde la ubicación
 
   useEffect(() => {
-    if (isAuthenticated && user) {
-      dispatch(getUsers(user));
+    if (userFromLogin) {
+      dispatch(getUsers(userFromLogin));
     }
-  }, [isAuthenticated, user]);
+  }, [userFromLogin, dispatch]);
 
-  const email = user?.email;
+  const email = userFromLogin?.email;
 
-  console.log(user);
+  console.log(userFromLogin);
   console.log(email);
 
   return (
@@ -50,7 +51,8 @@ function App() {
         <Route
           path="/admin"
           element={
-            isAuthenticated && user?.email === "matipineda857@gmail.com" ? (
+            isAuthenticated &&
+            userFromLogin?.email === "matipineda857@gmail.com" ? (
               <AppAdmin />
             ) : (
               <Navigate to="/" />
