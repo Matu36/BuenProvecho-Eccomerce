@@ -10,6 +10,7 @@ import Stripe from "../src/components/Stripe";
 import CheckoutMP from "./components/MercadoPago/CheckoutMP";
 import Carta from "./components/Carta";
 import { useAuth0 } from "@auth0/auth0-react";
+import { useEffect } from "react";
 
 const auth0Domain = process.env.REACT_APP_AUTH0_DOMAIN;
 const auth0Client = process.env.REACT_APP_AUTH0_CLIENT;
@@ -23,16 +24,22 @@ export const Auth0ProviderConfig = {
 //https://buenprovecho.vercel.app/ => dominio
 
 function App() {
-  const { isAuthenticated } = useAuth0();
-  const usuarioLocalStorage = JSON.parse(localStorage.getItem("user"));
-  const condicionAdicionalCumplida =
-    usuarioLocalStorage?.email === "matipineda857@gmail.com";
+  const { isAuthenticated, user, isLoading } = useAuth0();
+  useEffect(() => {
+    const obtenerUsuario = async () => {
+      try {
+        if (isAuthenticated && user?.email === "matipineda857@gmail.com") {
+          console.log("Usuario autenticado:", user);
+        }
+      } catch (error) {
+        console.error("Error al obtener usuario:", error);
+      }
+    };
 
-  // Verifica que el usuario esté disponible antes de usar su email
-  if (usuarioLocalStorage) {
-    console.log("user:", usuarioLocalStorage);
-    // Realiza acciones adicionales con el usuario según sea necesario
-  }
+    if (!isLoading) {
+      obtenerUsuario();
+    }
+  }, [isAuthenticated, user, isLoading]);
 
   return (
     <Auth0Provider {...Auth0ProviderConfig}>
@@ -43,7 +50,7 @@ function App() {
         <Route
           path="/admin"
           element={
-            isAuthenticated && condicionAdicionalCumplida ? (
+            isAuthenticated && user?.email === "matipineda857@gmail.com" ? (
               <AppAdmin />
             ) : (
               <Navigate to="/" />
