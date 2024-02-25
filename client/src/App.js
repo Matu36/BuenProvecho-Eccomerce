@@ -1,5 +1,5 @@
 import "./App.css";
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { Routes, Route, Navigate } from "react-router-dom";
 import NavBar from "./components/NavBar";
 import Home from "./components/Home";
@@ -11,6 +11,8 @@ import Stripe from "../src/components/Stripe";
 import CheckoutMP from "./components/MercadoPago/CheckoutMP";
 import Carta from "./components/Carta";
 import { useAuth0 } from "@auth0/auth0-react";
+import { getUsers } from "./Redux/actions";
+import { useDispatch } from "react-redux";
 
 const auth0Domain = process.env.REACT_APP_AUTH0_DOMAIN;
 const auth0Client = process.env.REACT_APP_AUTH0_CLIENT;
@@ -24,30 +26,18 @@ export const Auth0ProviderConfig = {
 //https://buenprovecho.vercel.app/ => dominio
 
 function App() {
-  const { isAuthenticated } = useAuth0();
-  const [usuarioLocalStorage, setUsuarioLocalStorage] = useState(null);
+  const { isAuthenticated, user } = useAuth0();
+
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    const obtenerUsuarioLocalStorage = async () => {
-      let intentos = 0;
-      const maxIntentos = 5;
-      const intervaloTiempo = 500;
+    dispatch(getUsers(user));
+  }, [user]);
 
-      while (intentos < maxIntentos) {
-        const usuarioGuardado = JSON.parse(localStorage.getItem("user"));
-        if (usuarioGuardado) {
-          setUsuarioLocalStorage(usuarioGuardado);
-          console.log(usuarioGuardado);
-          break;
-        }
+  const email = user?.email;
 
-        await new Promise((resolve) => setTimeout(resolve, intervaloTiempo));
-        intentos++;
-      }
-    };
-
-    obtenerUsuarioLocalStorage();
-  }, []);
+  console.log(user);
+  console.log(email);
 
   return (
     <Auth0Provider {...Auth0ProviderConfig}>
@@ -58,8 +48,7 @@ function App() {
         <Route
           path="/admin"
           element={
-            isAuthenticated &&
-            usuarioLocalStorage?.email === "matipineda857@gmail.com" ? (
+            isAuthenticated && user?.email === "matipineda857@gmail.com" ? (
               <AppAdmin />
             ) : (
               <Navigate to="/" />

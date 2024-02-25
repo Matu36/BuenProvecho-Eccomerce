@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
 import { Box, Text, Image, Flex } from "@chakra-ui/react";
@@ -18,16 +18,8 @@ export default function LoggedInPage() {
   //CON ESTA FUNCION UNA VEZ LOGUEADO, SE ENVIA EL USER POR QUERY PARA MATCHEAR
   //CON LA BASE DE DATOS.
   useEffect(() => {
-    if (isAuthenticated) {
-      dispatch(getUsers(user))
-        .then(() => {
-          localStorage.setItem("user", JSON.stringify(user));
-        })
-        .catch((error) => {
-          console.error("Error al obtener y almacenar el usuario:", error);
-        });
-    }
-  }, [isAuthenticated, user, dispatch]);
+    dispatch(getUsers(user));
+  }, [user]);
 
   // Esperar 4 segundos antes de redirigir
   setTimeout(() => {
