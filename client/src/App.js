@@ -1,5 +1,5 @@
 import "./App.css";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, Navigate } from "react-router-dom";
 import NavBar from "./components/NavBar";
 import Home from "./components/Home";
 import ShoppingCart from "../src/components/ShoppingCart/ShoppingCart/ShoppingCart";
@@ -16,24 +16,43 @@ const auth0Client = process.env.REACT_APP_AUTH0_CLIENT;
 export const Auth0ProviderConfig = {
   domain: auth0Domain,
   clientId: auth0Client,
-
   redirectUri: `https://buenprovecho.vercel.app/Logued/`,
 };
-//https://buenprovecho.vercel.app/ => dominio
+
+function AuthenticatedApp() {
+  const { isAuthenticated, user } = useAuth0();
+
+  console.log(isAuthenticated);
+  console.log(user);
+
+  // Resto del componente
+  return (
+    <Routes>
+      <Route path={"/"} element={<Home />} />
+      <Route path={"/"} element={<NavBar />} />
+      <Route path={"/Scart"} element={<ShoppingCart />} />
+      <Route
+        path="/admin"
+        element={
+          isAuthenticated && user.email === "matipineda857@gmail.com" ? (
+            <AppAdmin />
+          ) : (
+            <Navigate to="/" />
+          )
+        }
+      />
+      <Route path={"/Logued"} element={<LoginUser />} />
+      <Route path={"/Checkout"} element={<Stripe />} />
+      <Route path={"/CheckoutMP"} element={<CheckoutMP />} />
+      <Route path={"/Carta"} element={<Carta />} />
+    </Routes>
+  );
+}
 
 function App() {
   return (
     <Auth0Provider {...Auth0ProviderConfig}>
-      <Routes>
-        <Route exact path={"/"} element={<Home />} />
-        <Route exact path={"/"} element={<NavBar />} />
-        <Route exact path={"/Scart"} element={<ShoppingCart />} />
-        <Route exact path={"/admin"} element={<AppAdmin />} />
-        <Route exact path={"/Logued"} element={<LoginUser />} />
-        <Route exact path={"/Checkout"} element={<Stripe />} />
-        <Route exact path={"/CheckoutMP"} element={<CheckoutMP />} />
-        <Route exact path={"/Carta"} element={<Carta />} />
-      </Routes>
+      <AuthenticatedApp />
     </Auth0Provider>
   );
 }
