@@ -12,7 +12,6 @@ import CheckoutMP from "./components/MercadoPago/CheckoutMP";
 import Carta from "./components/Carta";
 import { useAuth0 } from "@auth0/auth0-react";
 import { getUsers } from "./Redux/actions";
-import { useDispatch } from "react-redux";
 
 const auth0Domain = process.env.REACT_APP_AUTH0_DOMAIN;
 const auth0Client = process.env.REACT_APP_AUTH0_CLIENT;
@@ -26,15 +25,25 @@ export const Auth0ProviderConfig = {
 //https://buenprovecho.vercel.app/ => dominio
 
 function App() {
-  const { user, isAuthenticated } = useAuth0();
+  const { isAuthenticated, user, isLoading } = useAuth0();
 
-  const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(getUsers(user));
-  }, [user]);
+    const obtenerUsuario = async () => {
+      try {
+        if (isAuthenticated && user?.email === "matipineda857@gmail.com") {
+          // Llama a getUsers para obtener información del usuario
+          const response = await getUsers({ email: user.email });
+          console.log("Información del usuario obtenida:", response);
+        }
+      } catch (error) {
+        console.error("Error al obtener usuario:", error);
+      }
+    };
 
-  console.log(user?.email);
-  console.log(user);
+    if (!isLoading) {
+      obtenerUsuario();
+    }
+  }, [isAuthenticated, user, isLoading]);
 
   return (
     <Auth0Provider {...Auth0ProviderConfig}>
