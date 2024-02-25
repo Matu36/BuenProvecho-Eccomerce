@@ -1,5 +1,5 @@
 import "./App.css";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Routes, Route, Navigate } from "react-router-dom";
 import NavBar from "./components/NavBar";
 import Home from "./components/Home";
@@ -25,25 +25,30 @@ export const Auth0ProviderConfig = {
 //https://buenprovecho.vercel.app/ => dominio
 
 function App() {
-  const { isAuthenticated, user, isLoading } = useAuth0();
+  const { isAuthenticated, isLoading } = useAuth0();
+  const [esMatipineda857, setEsMatipineda857] = useState(false);
 
   useEffect(() => {
-    const obtenerUsuario = async () => {
+    const obtenerUsuarios = async () => {
       try {
-        if (isAuthenticated && user?.email === "matipineda857@gmail.com") {
-          // Llama a getUsers para obtener información del usuario
-          const response = await getUsers({ email: user.email });
-          console.log("Información del usuario obtenida:", response);
-        }
+        // Llama a getUsers para obtener información de los usuarios
+        const response = await getUsers({ email: "matipineda857@gmail.com" });
+
+        // Verifica si el usuario actual es "matipineda857@gmail.com"
+        const esUsuarioMatipineda857 =
+          response?.email === "matipineda857@gmail.com";
+
+        // Actualiza el estado según la verificación
+        setEsMatipineda857(esUsuarioMatipineda857);
       } catch (error) {
-        console.error("Error al obtener usuario:", error);
+        console.error("Error al obtener usuarios:", error);
       }
     };
 
-    if (!isLoading) {
-      obtenerUsuario();
+    if (!isLoading && isAuthenticated) {
+      obtenerUsuarios();
     }
-  }, [isAuthenticated, user, isLoading]);
+  }, [isAuthenticated, isLoading]);
 
   return (
     <Auth0Provider {...Auth0ProviderConfig}>
@@ -54,7 +59,7 @@ function App() {
         <Route
           path="/admin"
           element={
-            isAuthenticated && user?.email === "matipineda857@gmail.com" ? (
+            isAuthenticated && esMatipineda857 ? (
               <AppAdmin />
             ) : (
               <Navigate to="/" />
