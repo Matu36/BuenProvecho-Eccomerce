@@ -10,8 +10,8 @@ import { Table, Thead, Tbody, Tr, Th, Td, Box } from "@chakra-ui/react";
 import { CgCloseO } from "react-icons/cg";
 import { DeleteIcon } from "@chakra-ui/icons";
 import "./Styles.css";
-import {GoSmiley} from "react-icons/go";
- import { postOfertas } from "../../Redux/actions/index";
+import { GoSmiley } from "react-icons/go";
+import { postOfertas } from "../../Redux/actions/index";
 
 export default function Productos() {
   let dispatch = useDispatch();
@@ -68,16 +68,25 @@ export default function Productos() {
 
   //FIN SEARCHBAR
 
-  const handleDelete = (id) => {
+  const handleDelete = async (id) => {
     if (window.confirm("¿Estás seguro de que quieres eliminar esta comida?")) {
-      dispatch(deleteComida(id));
-      window.location.reload();
+      try {
+        // Intenta eliminar la comida
+        await dispatch(deleteComida(id));
+
+        // Si la eliminación es exitosa, recarga la página
+        window.location.reload();
+      } catch (error) {
+        // Si hay un error en la eliminación, muestra un mensaje
+        console.error("Error al eliminar la comida:", error);
+        alert("No se pudo eliminar la comida.");
+      }
     }
   };
 
-   //Creamos la oferta para enviarla al estado global ofertas
+  //Creamos la oferta para enviarla al estado global ofertas
 
-   const ofertas = (Nombre, Imagen, Efectivo) => {
+  const ofertas = (Nombre, Imagen, Efectivo) => {
     console.log(Nombre, Efectivo, Imagen);
     dispatch(
       postOfertas({ Nombre: Nombre, Imagen: Imagen, Efectivo: Efectivo })
@@ -321,8 +330,8 @@ export default function Productos() {
 
                         {column.field === "Acciones" && (
                           <Box ml={{ base: "auto", md: "7rem" }}>
-                            <button style={{marginTop:"-0.5rem"
-                            }}
+                            <button
+                              style={{ marginTop: "-0.5rem" }}
                               className="btn"
                               onClick={() => handleDelete(row.id)} // aquí se pasa el ID
                             >
@@ -344,7 +353,6 @@ export default function Productos() {
                                 <GoSmiley />
                               </button>
                             </div>
-                            
                           </Box>
                         )}
                       </div>
