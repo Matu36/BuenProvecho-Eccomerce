@@ -33,7 +33,7 @@ function App() {
     dispatch(getUsers(user));
   }, [user]);
 
-  console.log(user.email);
+  console.log(user?.email);
 
   return (
     <Auth0Provider {...Auth0ProviderConfig}>
