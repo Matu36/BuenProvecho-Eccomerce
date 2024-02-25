@@ -29,21 +29,23 @@ function App() {
   const location = useLocation();
   const { isAuthenticated } = useAuth0();
   const dispatch = useDispatch();
-  const userFromLocation = location?.state?.user;
+  const userFromLogin = location?.state?.user; // Obtener el usuario desde la ubicación
 
   useEffect(() => {
-    if (userFromLocation) {
-      // Usa la información de autenticación recibida
-      const { isAuthenticated, user } = userFromLocation;
-      console.log("isAuthenticated from location:", isAuthenticated);
-      console.log("user from location:", user);
-
-      // Haz lo que necesites con la información
-      if (isAuthenticated) {
-        dispatch(getUsers(user));
-      }
+    console.log("isAuthenticated:", isAuthenticated);
+    console.log("userFromLogin:", userFromLogin);
+    if (userFromLogin) {
+      dispatch(getUsers(userFromLogin));
     }
-  }, [userFromLocation, dispatch]);
+  }, [userFromLogin, dispatch, isAuthenticated]);
+
+  const email = userFromLogin?.email;
+
+  console.log("Usuario desde ubicación:", userFromLogin);
+  console.log("Email:", email);
+
+  console.log(userFromLogin);
+  console.log(email);
 
   return (
     <Auth0Provider {...Auth0ProviderConfig}>
@@ -54,8 +56,7 @@ function App() {
         <Route
           path="/admin"
           element={
-            isAuthenticated &&
-            userFromLocation?.email === "matipineda857@gmail.com" ? (
+            userFromLogin?.email === "matipineda857@gmail.com" ? (
               <AppAdmin />
             ) : (
               <Navigate to="/" />

@@ -23,7 +23,7 @@ export default function LoggedInPage() {
 
   // Esperar 4 segundos antes de redirigir
   setTimeout(() => {
-    navigate("/", { state: { isAuthenticated, user } });
+    navigate("/", { state: { user } });
   }, 4000);
 
   return (
